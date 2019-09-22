@@ -1,5 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 
 import Layout from '../src/components/Layout';
 
@@ -19,11 +20,9 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <Container>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>        
-      </Container>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     );
   }
 }
