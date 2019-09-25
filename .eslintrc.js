@@ -21,5 +21,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    'react/prop-types': 0
   },
+  parser: "babel-eslint"
 };

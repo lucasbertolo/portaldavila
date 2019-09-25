@@ -9,8 +9,8 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.get('/control/:id', (req, res) => {
-    const actualPage = '/control';
+  server.get('/areauser/:id', (req, res) => {
+    const actualPage = '/areauser';
     const queryParams = { id: req.params.id };
     app.render(req, res, actualPage, queryParams);
   });
