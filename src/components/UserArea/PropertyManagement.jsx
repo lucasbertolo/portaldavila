@@ -2,20 +2,22 @@
 import React from 'react';
 import fetch from 'isomorphic-fetch';
 
-import { Select, Input, Radio } from '../../helpers/FormComponents';
+import { Select, Input, Radio } from '../Helpers/FormComponents';
 
 import enums from '../../enums';
 
 class PropertyManagement extends React.Component {
   constructor(props) {
     super(props);
+
+    const { price } = this.props;
     this.state = {
       neighborhoodList: [],
       typeList: [],
-      neighborhood: '',
-      type: '',
-      price: '',
-      purpose: '',
+      neighborhood: props.neighborhood_id || '',
+      type: props.type_id || '',
+      price: price || '',
+      purpose: props.purpose_id || '',
       sendStatus: '',
     };
   }
@@ -102,6 +104,7 @@ class PropertyManagement extends React.Component {
       neighborhoodList,
       typeList,
       sendStatus,
+      price,
     } = this.state;
 
     return (
@@ -166,6 +169,7 @@ class PropertyManagement extends React.Component {
           required
           type="number"
           name="price"
+          value={price}
         />
 
         <fieldset>

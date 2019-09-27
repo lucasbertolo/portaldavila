@@ -27,6 +27,7 @@ const Input = (props) => {
     step,
     type,
     onChange,
+    value,
   } = props;
 
   return (
@@ -47,6 +48,7 @@ const Input = (props) => {
         step={step || null}
         type={type || 'text'}
         onChange={onChange}
+        value={value || null}
       />
     </fieldset>
   );

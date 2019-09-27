@@ -2,7 +2,7 @@
 import React from 'react';
 import App from 'next/app';
 
-import Layout from '../src/components/Layout';
+import Layout from '../src/components/Common/Layout';
 
 
 class MyApp extends App {

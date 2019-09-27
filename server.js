@@ -10,7 +10,7 @@ app.prepare().then(() => {
   const server = express();
 
   server.get('/userarea/:id', (req, res) => {
-    const actualPage = '/areauser';
+    const actualPage = '/userarea';
     const queryParams = { id: req.params.id };
     app.render(req, res, actualPage, queryParams);
   });

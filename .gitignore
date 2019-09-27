@@ -2,10 +2,10 @@ node_modules
 
 *.next
 
-next
+.next
 
-*.vscode
+.vscode
 
-*.env
+.env
 
 yarn-error.log

@@ -11,12 +11,18 @@ const UserArea = ({ data }) => (
   </div>
 );
 
-UserArea.getInitialProps = async ({ query }) => {
-  const result = await fetch(`http://localhost:8000/user/${query.id}`)
-    .then((res) => res.json)
-    .catch(() => []);
+// UserArea.getInitialProps = async ({ query }) => {
+//   const result = await fetch(`http://localhost:8000/property/${query.id}`)
+//     .then((res) => res.json)
+//     .catch(() => []);
 
-  return result;
+//   return result;
+// };
+
+UserArea.getInitialProps = async ({ query }) => {
+  const res = await fetch(`http://localhost:8000/property/${query.id}`);
+  const json = await res.json();
+  return { data: json };
 };
 
 export default UserArea;
