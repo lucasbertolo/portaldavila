@@ -1,7 +1,7 @@
-import config from '../../config';
+import config from '../../content/config';
 
 export default function ApiFetch(props) {
-  const { area, query, items } = props;
+  const { area, query } = props;
   let url;
 
   if (props.request === 'get') {

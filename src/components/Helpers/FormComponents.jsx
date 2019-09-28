@@ -1,4 +1,6 @@
+/* eslint-disable max-len */
 import React from 'react';
+
 import { toCurrency } from './FormatFields';
 
 const Label = (props) => {
@@ -82,7 +84,7 @@ const Radio = (props) => {
           name={name || null}
           required={required || null}
           type="radio"
-          value={value}
+          value={value || ''}
           checked={state}
           onChange={onChange}
         />
@@ -111,8 +113,8 @@ const Select = (props) => {
   if (options) {
     arrayOptions = options.map((item) => item.name || item.type);
 
-    // eslint-disable-next-line max-len
-    selectOptionsList = arrayOptions.map((option, index) => <option key={option} value={index}>{option}</option>);
+    // eslint-disable-next-line react/no-array-index-key
+    selectOptionsList = arrayOptions.map((option, index) => <option key={option + index} value={index}>{option}</option>);
   }
 
 

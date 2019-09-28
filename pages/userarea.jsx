@@ -2,28 +2,25 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import fetch from 'isomorphic-fetch';
+import config from '../src/content/config';
 
-import PropertyManagement from '../src/components/UserArea/PropertyManagement';
+import PropertyManager from '../src/components/Property/PropertyManager';
 
 const UserArea = ({ data, operation }) => (
   <div>
-    <PropertyManagement {...data} op={operation} />
+    <PropertyManager {...data} op={operation} />
   </div>
 );
 
-// UserArea.getInitialProps = async ({ query }) => {
-//   const result = await fetch(`http://localhost:8000/property/${query.id}`)
-//     .then((res) => res.json)
-//     .catch(() => []);
-
-//   return result;
-// };
-
 UserArea.getInitialProps = async ({ query }) => {
-  const res = await fetch(`http://localhost:8000/property/${query.id}`);
-  const json = await res.json();
+  let json;
+  let operation;
 
-  const operation = json ? true : null;
+  if (Object.entries(query).length !== 0 && query.constructor === Object) {
+    const res = await fetch(`${config.urlDev}/property/${query.id}`);
+    json = await res.json();
+    operation = true;
+  } else { operation = false; }
 
   return { data: json, operation };
 };
