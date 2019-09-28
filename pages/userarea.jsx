@@ -5,9 +5,9 @@ import fetch from 'isomorphic-fetch';
 
 import PropertyManagement from '../src/components/UserArea/PropertyManagement';
 
-const UserArea = ({ data }) => (
+const UserArea = ({ data, operation }) => (
   <div>
-    <PropertyManagement {...data} />
+    <PropertyManagement {...data} op={operation} />
   </div>
 );
 
@@ -22,7 +22,10 @@ const UserArea = ({ data }) => (
 UserArea.getInitialProps = async ({ query }) => {
   const res = await fetch(`http://localhost:8000/property/${query.id}`);
   const json = await res.json();
-  return { data: json };
+
+  const operation = json ? true : null;
+
+  return { data: json, operation };
 };
 
 export default UserArea;
