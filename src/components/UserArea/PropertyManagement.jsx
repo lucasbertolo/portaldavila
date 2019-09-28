@@ -10,21 +10,25 @@ class PropertyManagement extends React.Component {
   constructor(props) {
     super(props);
 
-    const { price } = this.props;
     this.state = {
       neighborhoodList: [],
       typeList: [],
       neighborhood: props.neighborhood_id || '',
       type: props.type_id || '',
-      price: price || '',
+      price: props.price || '',
       purpose: props.purpose_id || '',
       sendStatus: '',
+      isEditing: false,
     };
   }
 
   componentDidMount() {
     this.getNeighborhoodList();
     this.getTypeList();
+  }
+
+  toggleEditing = () => {
+    this.setState((prevState) => ({ isEditing: !prevState.isEditing }));
   }
 
   getNeighborhoodList = async () => {
@@ -105,6 +109,10 @@ class PropertyManagement extends React.Component {
       typeList,
       sendStatus,
       price,
+      type,
+      neighborhood,
+      purpose,
+      isEditing,
     } = this.state;
 
     return (
@@ -121,6 +129,7 @@ class PropertyManagement extends React.Component {
                 options={neighborhoodList}
                 onChange={this.handleChange}
                 name="neighborhood"
+                value={neighborhood}
               />
             )
             : null
@@ -136,6 +145,7 @@ class PropertyManagement extends React.Component {
                 options={typeList}
                 onChange={this.handleChange}
                 name="type"
+                value={type}
               />
             ) : null
         }
@@ -148,6 +158,7 @@ class PropertyManagement extends React.Component {
           name="purpose"
           onChange={this.handleChange}
           value={enums.purposeOfProperty.renting}
+          state={purpose === enums.purposeOfProperty.renting ? 'checked' : null}
           required
         />
 
@@ -158,19 +169,42 @@ class PropertyManagement extends React.Component {
           onChange={this.handleChange}
           value={enums.purposeOfProperty.selling}
           name="purpose"
+          state={purpose === enums.purposeOfProperty.selling ? 'checked' : null}
           required
         />
 
-        <Input
-          hasLabel
-          htmlFor="price"
-          onChange={this.handleChange}
-          label="Preço"
-          required
-          type="number"
-          name="price"
-          value={price}
-        />
+        {
+          isEditing
+            ? (
+              <Input
+                hasLabel
+                htmlFor="price"
+                onChange={this.handleChange}
+                label="Preço"
+                required
+                type="number"
+                name="price"
+                value={price}
+                onBlur={this.toggleEditing}
+              />
+            )
+            : (
+              <Input
+                hasLabel
+                htmlFor="price"
+                onChange={this.handleChange}
+                label="Preço"
+                required
+                type="text"
+                name="price"
+                value={price}
+                onFocus={this.toggleEditing}
+                currency
+              />
+            )
+
+      }
+
 
         <fieldset>
           <button

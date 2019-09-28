@@ -1,4 +1,5 @@
 import React from 'react';
+import { toCurrency } from './FormatFields';
 
 const Label = (props) => {
   const {
@@ -28,6 +29,9 @@ const Input = (props) => {
     type,
     onChange,
     value,
+    currency,
+    onBlur,
+    onFocus,
   } = props;
 
   return (
@@ -48,7 +52,9 @@ const Input = (props) => {
         step={step || null}
         type={type || 'text'}
         onChange={onChange}
-        value={value || null}
+        onBlur={onBlur || null}
+        onFocus={onFocus || null}
+        value={currency ? toCurrency(value) : value || ''}
       />
     </fieldset>
   );
@@ -62,6 +68,7 @@ const Radio = (props) => {
     required,
     value,
     onChange,
+    state,
   } = props;
 
   return (
@@ -76,6 +83,7 @@ const Radio = (props) => {
           required={required || null}
           type="radio"
           value={value}
+          checked={state}
           onChange={onChange}
         />
         {label}
@@ -94,6 +102,7 @@ const Select = (props) => {
     required,
     options,
     onChange,
+    value,
   } = props;
 
   let arrayOptions;
@@ -116,7 +125,7 @@ const Select = (props) => {
       />
 
       <select
-        defaultValue=""
+        defaultValue={value}
         id={htmlFor}
         name={name || null}
         required={required || null}
