@@ -114,7 +114,7 @@ const Select = (props) => {
     arrayOptions = options.map((item) => item.name || item.type);
 
     // eslint-disable-next-line react/no-array-index-key
-    selectOptionsList = arrayOptions.map((option, index) => <option key={option + index} value={index}>{option}</option>);
+    selectOptionsList = arrayOptions.map((option, index) => <option key={option + index} value={index + 1}>{option}</option>);
   }
 
 
@@ -127,11 +127,11 @@ const Select = (props) => {
       />
 
       <select
-        defaultValue={value}
         id={htmlFor}
         name={name || null}
         required={required || null}
         onChange={onChange}
+        value={value}
       >
         <option value="" disabled>Escolha uma opção</option>
 

@@ -1,22 +1,13 @@
+import axios from 'axios';
 import config from '../../content/config';
 
-export default function ApiFetch(props) {
-  const { area, query } = props;
-  let url;
+const db = axios.create({
+  baseURL: `${config.urlDev}/`,
+  timeout: 1000,
+  headers: { 'Content-Type': 'application/json' },
+});
 
-  if (props.request === 'get') {
-    url = `${config.urlDev}/${area}/${query}`;
-  }
-
-  if (props.request === 'post') { url = `${config.urlDev}/${area}`; }
-
-  if (props.request === 'put') { url = `${config.urlDev}/${area}/${query}`; }
-
-  if (props.request === 'delete') { url = `${config.urlDev}/${area}/${query}`; }
-
-
-  return {
-    url,
-    headers: { 'Content-Type': 'application/json' },
-  };
-}
+export {
+  // eslint-disable-next-line import/prefer-default-export
+  db,
+};

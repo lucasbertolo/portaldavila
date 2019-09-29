@@ -1,6 +1,7 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 
-import axios from 'axios';
+import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
 import { Select, Input, Radio } from '../Helpers/FormComponents';
@@ -23,17 +24,21 @@ function PropertyInfo(props) {
 
   useEffect(() => {
     const fetchBlock = async () => {
-      const resultBlock = await axios(
-        'http://localhost:8000/neighborhood',
-      );
-      setNeigborhoodList(resultBlock.data);
+      try {
+        const resultBlock = await db.get('/neighborhood');
+        setNeigborhoodList(resultBlock.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     const fetchType = async () => {
-      const resultType = await axios(
-        'http://localhost:8000/typeproperty',
-      );
-      setTypeList(resultType.data);
+      try {
+        const resultType = await db.get('/typeproperty');
+        setTypeList(resultType.data);
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchBlock();

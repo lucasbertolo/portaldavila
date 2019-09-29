@@ -1,10 +1,8 @@
-/* eslint-disable react/button-has-type */
 import React from 'react';
-import fetch from 'isomorphic-fetch';
 
-import ApiFetch from '../Helpers/ApiFetch';
 import PropertyInfo from './PropertyInfo';
 
+import { db } from '../Helpers/ApiFetch';
 
 class PropertyManager extends React.Component {
   constructor(props) {
@@ -18,6 +16,14 @@ class PropertyManager extends React.Component {
       sendStatus: '',
       isEditing: false,
     };
+  }
+
+
+  componentDidMount() {
+    const { message } = this.props;
+    if (message) {
+      this.setState({ sendStatus: message });
+    }
   }
 
   toggleEditing = () => {
@@ -35,44 +41,25 @@ class PropertyManager extends React.Component {
       purpose,
     } = this.state;
 
-    const { op, id } = this.props;
+    const { id } = this.props;
+    const method = id ? 'put' : 'post';
 
-    const request = op ? 'put' : 'post';
+    const url = id
+      ? `/property/${id}`
+      : '/property';
 
-    const call = ApiFetch({
-      area: 'property',
-      query: id,
-      request,
-    });
 
-    // Validar se campos estao preenchidos
-
-    // this.setState({ sendStatus: 'Enviando ...' });
-
-    fetch(call.url, {
-      method: request,
-      headers: call.headers,
-      body: JSON.stringify({
-        neighborhood_id: Number(neighborhood) + 1,
-        type_id: Number(type) + 1,
-        purpose_id: purpose,
-        price,
-        creator_id: 1,
-      }),
+    db[method](url, {
+      neighborhood_id: Number(neighborhood),
+      type_id: Number(type),
+      purpose_id: purpose,
+      price,
+      creator_id: 1,
     })
-      .then((response) => response.json())
       .then((message) => {
-        if (message) {
-          this.setState({
-            sendStatus: 'Enviada com sucesso',
-          });
-        }
+        if (message.status === 200) { this.setState({ sendStatus: 'Cadastrado com sucesso' }); }
       })
-      .catch(() => {
-        this.setState({
-          sendStatus: 'Algo deu errado, tente novamente mais tarde',
-        });
-      });
+      .catch(() => this.setState({ sendStatus: 'Erro ao cadastrar' }));
   }
 
   handleChange = (evt) => {

@@ -1,28 +1,27 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import fetch from 'isomorphic-fetch';
-import config from '../src/content/config';
-
+import { db } from '../src/components/Helpers/ApiFetch';
+// import fetch from 'isomorphic-fetch';
 import PropertyManager from '../src/components/Property/PropertyManager';
 
-const UserArea = ({ data, operation }) => (
+const UserArea = ({ data }) => (
   <div>
-    <PropertyManager {...data} op={operation} />
+    <PropertyManager {...data} />
   </div>
 );
 
 UserArea.getInitialProps = async ({ query }) => {
-  let json;
-  let operation;
-
-  if (Object.entries(query).length !== 0 && query.constructor === Object) {
-    const res = await fetch(`${config.urlDev}/property/${query.id}`);
-    json = await res.json();
-    operation = true;
-  } else { operation = false; }
-
-  return { data: json, operation };
+  if (query.id) {
+    try {
+      const res = await db(`/property/${query.id}`);
+      return { data: res.status === 200 ? res.data : null };
+    } catch (error) {
+      // TODO - REDIRECIONAR USUARIO PARA PAGINA DE ERRO - NAO ENCONTRADO
+      return { data: { message: 'User not found' } };
+    }
+  }
+  return null;
 };
 
 export default UserArea;
