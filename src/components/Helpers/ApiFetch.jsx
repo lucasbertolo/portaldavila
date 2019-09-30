@@ -3,7 +3,7 @@ import config from '../../content/config';
 
 const db = axios.create({
   baseURL: `${config.urlDev}/`,
-  timeout: 1000,
+  timeout: 3000,
   headers: { 'Content-Type': 'application/json' },
 });
 

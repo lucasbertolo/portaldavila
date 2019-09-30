@@ -1,8 +1,11 @@
 import React from 'react';
 
-import PropertyInfo from './PropertyInfo';
+// import PropertyInfo from './PropertyInfo';
+
+import PropertyDetails from './PropertyDetails';
 
 import { db } from '../Helpers/ApiFetch';
+// import PropertyDetails from './PropertyDetails';
 
 class PropertyManager extends React.Component {
   constructor(props) {
@@ -15,6 +18,13 @@ class PropertyManager extends React.Component {
       purpose: props.purpose_id || '',
       sendStatus: '',
       isEditing: false,
+      area: props.area || 0,
+      building: props.building_area || 0,
+      // details: {},
+      // info: {},
+      // features: {},
+      // room: props.room || 0,
+
     };
   }
 
@@ -30,7 +40,6 @@ class PropertyManager extends React.Component {
     this.setState((prevState) => ({ isEditing: !prevState.isEditing }));
   }
 
-
   onSubmit = (e) => {
     e.preventDefault();
 
@@ -39,6 +48,8 @@ class PropertyManager extends React.Component {
       type,
       neighborhood,
       purpose,
+      area,
+      building,
     } = this.state;
 
     const { id } = this.props;
@@ -52,6 +63,8 @@ class PropertyManager extends React.Component {
     db[method](url, {
       neighborhood_id: Number(neighborhood),
       type_id: Number(type),
+      area: Number(area),
+      building_area: Number(building),
       purpose_id: purpose,
       price,
       creator_id: 1,
@@ -75,12 +88,15 @@ class PropertyManager extends React.Component {
       neighborhood,
       purpose,
       isEditing,
+      // room,
+      building,
+      area,
     } = this.state;
 
     return (
       <form>
         <h2>Inserir Propriedade</h2>
-
+        {/*
         <PropertyInfo
           price={price}
           type={type}
@@ -89,10 +105,13 @@ class PropertyManager extends React.Component {
           isEditing={isEditing}
           handleChange={this.handleChange}
           toggleEditing={this.toggleEditing}
-        />
+          area={area}
+          building={building}
+        /> */}
 
+        <PropertyDetails />
 
-        <fieldset>
+        {/* <fieldset>
           <button
             type="button"
             onClick={this.onSubmit}
@@ -100,7 +119,7 @@ class PropertyManager extends React.Component {
             Cadastrar
           </button>
         </fieldset>
-        {sendStatus}
+        {sendStatus} */}
 
       </form>
     );

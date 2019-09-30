@@ -1,30 +1,24 @@
 import React, { useState } from 'react';
 
 import { db } from '../Helpers/ApiFetch';
-import { Input, Button } from '../Common/FormComponents';
+import { Select, Input, Button } from '../Common/FormComponents';
 
-function PropertyDetails() {
+function PropertyFeatures() {
   const [state, setState] = useState({
-    room: 0,
-    dormitory: 0,
-    garage: 0,
-    bathroom: 0,
-    visiting_room: 0,
-    dining_room: 0,
-    suite: 0,
-    laundry: 0,
-    washbasin: 0,
-    kitchen: 0,
-    gourmet_space: 0,
-    office: 0,
-    property_id: 2,
+    description: '',
+    air_conditioning: false,
+    pool: false,
+    balcony: false,
+    barbecue_grill: false,
+    stairway: false,
+    garden: false,
   });
 
   const onSubmit = (e) => {
     e.preventDefault();
 
 
-    db.post('/details', {
+    db.post('/features', {
       state,
     })
       .then((message) => {
@@ -43,17 +37,14 @@ function PropertyDetails() {
 
   return (
     <div>
-      <Input
+      <Select
         hasLabel
-        htmlFor="room"
+        htmlFor="air-conditioning"
+        label="Ar condicionado"
+        options="Sim, Não"
         onChange={handleChange}
-        label="Dormitórios"
-        type="number"
-        name="room"
-        value={state.room}
-        min="0"
-        max="10"
-        step="1"
+        name="neighborhood"
+        value={state.air_conditioning}
       />
 
       <Input
@@ -87,4 +78,4 @@ function PropertyDetails() {
   );
 }
 
-export default PropertyDetails;
+export default PropertyFeatures;

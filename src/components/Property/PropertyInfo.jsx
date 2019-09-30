@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
-import { Select, Input, Radio } from '../Helpers/FormComponents';
+import { Select, Input, Radio } from '../Common/FormComponents';
 
 
 function PropertyInfo(props) {
@@ -16,6 +16,8 @@ function PropertyInfo(props) {
     price,
     purpose,
     isEditing,
+    area,
+    building,
   } = props;
 
   const [neighborhoodList, setNeigborhoodList] = useState(['']);
@@ -120,6 +122,34 @@ function PropertyInfo(props) {
             )
 
       }
+
+      <Input
+        hasLabel
+        htmlFor="area"
+        onChange={handleChange}
+        label="Área"
+        required
+        type="number"
+        name="area"
+        value={area}
+        min="0"
+        max="1000000000"
+        step="10"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="building"
+        onChange={handleChange}
+        label="Área Construída"
+        required
+        type="number"
+        name="building"
+        value={building}
+        min="0"
+        max="100000000"
+        step="10"
+      />
     </div>
 
   );

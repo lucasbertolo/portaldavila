@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 
-import { toCurrency } from './FormatFields';
+import { toCurrency } from '../Helpers/FormatFields';
 
 const Label = (props) => {
   const {
@@ -15,6 +15,26 @@ const Label = (props) => {
   }
 
   return null;
+};
+
+const Button = (props) => {
+  const {
+    value,
+    text,
+    action,
+  } = props;
+
+  return (
+    <fieldset>
+      <button
+        type="button"
+        onClick={action}
+        value={value || ''}
+      >
+        {text}
+      </button>
+    </fieldset>
+  );
 };
 
 const Input = (props) => {
@@ -141,10 +161,42 @@ const Select = (props) => {
   );
 };
 
+const TextArea = (props) => {
+  const {
+    hasLabel,
+    htmlFor,
+    label,
+    cols,
+    name,
+    required,
+    rows,
+  } = props;
+
+  return (
+    <fieldset>
+      <Label
+        hasLabel={hasLabel}
+        htmlFor={htmlFor}
+        label={label}
+      />
+
+      <textarea
+        cols={cols || null}
+        id={htmlFor}
+        name={name || null}
+        required={required || null}
+        rows={rows || null}
+      />
+    </fieldset>
+  );
+};
+
 
 export {
   Radio,
   Select,
   Label,
   Input,
+  Button,
+  TextArea,
 };
