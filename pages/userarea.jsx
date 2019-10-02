@@ -14,7 +14,7 @@ const UserArea = ({ data }) => (
 UserArea.getInitialProps = async ({ query }) => {
   if (query.id) {
     try {
-      const res = await db(`/property/${query.id}`);
+      const res = await db(`/property/details/${query.id}`);
       return { data: res.status === 200 ? res.data : null };
     } catch (error) {
       // TODO - REDIRECIONAR USUARIO PARA PAGINA DE ERRO - NAO ENCONTRADO

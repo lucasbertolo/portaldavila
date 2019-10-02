@@ -1,44 +1,78 @@
-/* eslint-disable no-console */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable camelcase */
+
 import React, { useState, useEffect } from 'react';
 
 import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
-import { Select, Input, Radio } from '../Common/FormComponents';
+import {
+  Select, Input, Radio, Button,
+} from '../Common/FormComponents';
 
 
 function PropertyInfo(props) {
-  const {
-    neighborhood,
-    handleChange,
-    type,
-    toggleEditing,
-    price,
-    purpose,
-    isEditing,
-    area,
-    building,
-  } = props;
+  const [state, setState] = useState({
+    neighborhood_id: props.data.neighborhood_id || '',
+    type_id: props.data.type_id || '',
+    price: props.data.price || '',
+    purpose_id: props.data.purpose_id || '',
+    isEditing: false,
+    area: props.data.area || 0,
+    building_area: props.data.building_area || 0,
+    neighborhoodList: [],
+    typeList: [],
+  });
 
-  const [neighborhoodList, setNeigborhoodList] = useState(['']);
-  const [typeList, setTypeList] = useState(['']);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const toggleEditing = () => {
+    setState((prevState) => ({
+      ...prevState,
+      isEditing: !prevState.isEditing,
+    }));
+  };
+
+
+  // const [neighborhoodList, setNeigborhoodList] = useState(['']);
+  // const [typeList, setTypeList] = useState(['']);
 
 
   useEffect(() => {
     const fetchBlock = async () => {
       try {
         const resultBlock = await db.get('/neighborhood');
-        setNeigborhoodList(resultBlock.data);
+        const options = resultBlock.data.map((item) => item.name);
+
+        setState((prevState) => ({
+          ...prevState,
+          neighborhoodList: options,
+        }));
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     };
 
+
     const fetchType = async () => {
       try {
-        const resultType = await db.get('/typeproperty');
-        setTypeList(resultType.data);
+        const resultType = await db.get('/typeofproperty');
+        const options = resultType.data.map((item) => item.type);
+
+        setState((prevState) => ({
+          ...prevState,
+          typeList: options,
+        }));
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
       }
     };
@@ -47,36 +81,42 @@ function PropertyInfo(props) {
     fetchType();
   }, []);
 
+  const ForwardData = (e) => {
+    e.preventDefault();
+
+    props.handleComponent('info', state);
+  };
+
   return (
     <div>
       <Select
         hasLabel
         htmlFor="neighborhood-list"
         label="Bairro"
-        options={neighborhoodList}
+        options={state.neighborhoodList}
         onChange={handleChange}
-        name="neighborhood"
-        value={neighborhood}
+        name="neighborhood_id"
+        value={state.neighborhood_id}
       />
 
       <Select
         hasLabel
         htmlFor="property-type"
         label="Tipo de imóvel"
-        options={typeList}
+        options={state.typeList}
         onChange={handleChange}
-        name="type"
-        value={type}
+        name="type_id"
+        value={state.type_id}
       />
 
       <Radio
         hasLabel
         htmlFor="radioOne"
         label="Locação"
-        name="purpose"
+        name="purpose_id"
         onChange={handleChange}
         value={enums.purposeOfProperty.renting}
-        state={purpose === enums.purposeOfProperty.renting ? 'checked' : null}
+        state={state.purpose_id === enums.purposeOfProperty.renting ? 'checked' : null}
         required
       />
 
@@ -86,13 +126,13 @@ function PropertyInfo(props) {
         label="Venda"
         onChange={handleChange}
         value={enums.purposeOfProperty.selling}
-        name="purpose"
-        state={purpose === enums.purposeOfProperty.selling ? 'checked' : null}
+        name="purpose_id"
+        state={state.purpose_id === enums.purposeOfProperty.selling ? 'checked' : null}
         required
       />
 
       {
-          isEditing
+          state.isEditing
             ? (
               <Input
                 hasLabel
@@ -102,7 +142,7 @@ function PropertyInfo(props) {
                 required
                 type="number"
                 name="price"
-                value={price}
+                value={state.price}
                 onBlur={toggleEditing}
               />
             )
@@ -115,7 +155,7 @@ function PropertyInfo(props) {
                 required
                 type="text"
                 name="price"
-                value={price}
+                value={state.price}
                 onFocus={toggleEditing}
                 currency
               />
@@ -131,7 +171,7 @@ function PropertyInfo(props) {
         required
         type="number"
         name="area"
-        value={area}
+        value={state.area}
         min="0"
         max="1000000000"
         step="10"
@@ -139,17 +179,20 @@ function PropertyInfo(props) {
 
       <Input
         hasLabel
-        htmlFor="building"
+        htmlFor="building_area"
         onChange={handleChange}
         label="Área Construída"
         required
         type="number"
-        name="building"
-        value={building}
+        name="building_area"
+        value={state.building_area}
         min="0"
         max="100000000"
         step="10"
       />
+
+      <Button text="Seguinte" action={ForwardData} />
+
     </div>
 
   );

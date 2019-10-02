@@ -1,36 +1,41 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
 
-import { db } from '../Helpers/ApiFetch';
 import { Input, Button } from '../Common/FormComponents';
 
-function PropertyDetails() {
+function PropertyDetails(props) {
   const [state, setState] = useState({
-    room: 0,
-    dormitory: 0,
-    garage: 0,
-    bathroom: 0,
-    visiting_room: 0,
-    dining_room: 0,
-    suite: 0,
-    laundry: 0,
-    washbasin: 0,
-    kitchen: 0,
-    gourmet_space: 0,
-    office: 0,
-    property_id: 2,
+    room: props.data.room || 0,
+    dormitory: props.data.dormitory || 0,
+    garage: props.data.garage || 0,
+    bathroom: props.data.bathroom || 0,
+    visiting_room: props.data.visiting_room || 0,
+    dining_room: props.data.dining_room || 0,
+    suite: props.data.suite || 0,
+    laundry: props.data.laundry || 0,
+    washbasin: props.data.washbasin || 0,
+    kitchen: props.data.kitchen || 0,
+    gourmet_space: props.data.kitchen || 0,
+    office: props.data.office || 0,
   });
 
-  const onSubmit = (e) => {
+  // const onSubmit = (e) => {
+  //   e.preventDefault();
+
+
+  //   db.post('/details', {
+  //     state,
+  //   })
+  //     .then((message) => {
+  //       if (message.status === 200) { console.log(message); }
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  const ForwardData = (e) => {
     e.preventDefault();
 
-
-    db.post('/details', {
-      state,
-    })
-      .then((message) => {
-        if (message.status === 200) { console.log(message); }
-      })
-      .catch((err) => console.log(err));
+    props.handleComponent('details', state);
   };
 
   const handleChange = (e) => {
@@ -81,7 +86,7 @@ function PropertyDetails() {
         step="1"
       />
 
-      <Button text="Seguinte" action={onSubmit} />
+      <Button text="Seguinte" action={ForwardData} />
 
     </div>
   );

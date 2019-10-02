@@ -1,5 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
+import PropTypes from 'prop-types';
+
 
 import { toCurrency } from '../Helpers/FormatFields';
 
@@ -125,18 +127,19 @@ const Select = (props) => {
     options,
     onChange,
     value,
+    noIndex,
   } = props;
 
-  let arrayOptions;
-  let selectOptionsList = [];
 
-  if (options) {
-    arrayOptions = options.map((item) => item.name || item.type);
-
-    // eslint-disable-next-line react/no-array-index-key
-    selectOptionsList = arrayOptions.map((option, index) => <option key={option + index} value={index + 1}>{option}</option>);
-  }
-
+  const selectOptionsList = options.map((option, index) => (
+    <option
+      // eslint-disable-next-line react/no-array-index-key
+      key={option + index}
+      value={noIndex ? index : index + 1}
+    >
+      {option}
+    </option>
+  ));
 
   return (
     <fieldset>
@@ -161,6 +164,10 @@ const Select = (props) => {
   );
 };
 
+Select.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
 const TextArea = (props) => {
   const {
     hasLabel,
@@ -170,6 +177,9 @@ const TextArea = (props) => {
     name,
     required,
     rows,
+    value,
+    placeholder,
+    onChange,
   } = props;
 
   return (
@@ -181,12 +191,16 @@ const TextArea = (props) => {
       />
 
       <textarea
+        placeholder={placeholder}
+        onChange={onChange}
         cols={cols || null}
         id={htmlFor}
         name={name || null}
         required={required || null}
         rows={rows || null}
+        value={value}
       />
+
     </fieldset>
   );
 };

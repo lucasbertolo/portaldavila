@@ -1,78 +1,126 @@
+/* eslint-disable react/destructuring-assignment */
 import React, { useState } from 'react';
 
-import { db } from '../Helpers/ApiFetch';
-import { Select, Input, Button } from '../Common/FormComponents';
+import { Select, TextArea, Button } from '../Common/FormComponents';
 
-function PropertyFeatures() {
+function PropertyFeatures(props) {
   const [state, setState] = useState({
-    description: '',
-    air_conditioning: false,
-    pool: false,
-    balcony: false,
-    barbecue_grill: false,
-    stairway: false,
-    garden: false,
+    description: props.data.description || '',
+    air_conditioning: props.data.air_conditioning || 0,
+    pool: props.data.pool || 0,
+    balcony: props.data.balcony || 0,
+    barbecue_grill: props.data.barbecue_grill || 0,
+    stairway: props.data.stairway || 0,
+    garden: props.data.garden || 0,
   });
 
-  const onSubmit = (e) => {
+  const ForwardData = (e) => {
     e.preventDefault();
 
 
-    db.post('/features', {
-      state,
-    })
-      .then((message) => {
-        if (message.status === 200) { console.log(message); }
-      })
-      .catch((err) => console.log(err));
+    props.handleComponent('features', state);
+
+    // db.post('/features', {
+    //   state,
+    // })
+    //   .then((message) => {
+    //     if (message.status === 200) { console.log(message); }
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setState((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
 
+  const standardOption = ['Não', 'Sim'];
+
   return (
     <div>
+      <TextArea
+        hasLabel
+        htmlFor="description"
+        label="Descrição"
+        name="description"
+        onChange={handleChange}
+        rows={2}
+        value={state.description}
+        placeholder="Descreva o imóvel"
+      />
+
       <Select
         hasLabel
-        htmlFor="air-conditioning"
+        htmlFor="air_conditioning"
         label="Ar condicionado"
-        options="Sim, Não"
+        options={standardOption}
         onChange={handleChange}
-        name="neighborhood"
+        name="air_conditioning"
         value={state.air_conditioning}
+        noIndex
       />
 
-      <Input
+      <Select
         hasLabel
-        htmlFor="dormitory"
+        htmlFor="pool"
+        label="Piscina"
+        options={standardOption}
         onChange={handleChange}
-        label="Dormitórios"
-        type="number"
-        name="dormitory"
-        value={state.dormitory}
-        min="0"
-        max="10"
-        step="1"
-      />
-      <Input
-        hasLabel
-        htmlFor="garage"
-        onChange={handleChange}
-        label="Garagem"
-        type="number"
-        name="garage"
-        value={state.garage}
-        min="0"
-        max="10"
-        step="1"
+        name="pool"
+        value={state.pool}
+        noIndex
       />
 
-      <Button text="Seguinte" action={onSubmit} />
+      <Select
+        hasLabel
+        htmlFor="balcony"
+        label="Sacada"
+        options={standardOption}
+        onChange={handleChange}
+        name="balcony"
+        value={state.balcony}
+        noIndex
+      />
+
+      <Select
+        hasLabel
+        htmlFor="barbecue_grill"
+        label="Churrasqueira"
+        options={standardOption}
+        onChange={handleChange}
+        name="barbecue_grill"
+        value={state.barbecue_grill}
+        noIndex
+      />
+
+      <Select
+        hasLabel
+        htmlFor="stairway"
+        label="Escada"
+        options={standardOption}
+        onChange={handleChange}
+        name="stairway"
+        value={state.stairway}
+        noIndex
+      />
+
+      <Select
+        hasLabel
+        htmlFor="garden"
+        label="Jardim"
+        options={standardOption}
+        onChange={handleChange}
+        name="garden"
+        value={state.garden}
+        noIndex
+      />
+
+
+      <Button text="Seguinte" action={ForwardData} />
 
     </div>
   );

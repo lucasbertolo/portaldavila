@@ -1,72 +1,60 @@
 import React from 'react';
 
-// import PropertyInfo from './PropertyInfo';
-
+import PropertyInfo from './PropertyInfo';
+import PropertyFeatures from './PropertyFeatures';
 import PropertyDetails from './PropertyDetails';
 
 import { db } from '../Helpers/ApiFetch';
-// import PropertyDetails from './PropertyDetails';
+
+import { Button } from '../Common/FormComponents';
+import PropertyPhotos from './PropertyPhotos';
 
 class PropertyManager extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      neighborhood: props.neighborhood_id || '',
-      type: props.type_id || '',
-      price: props.price || '',
-      purpose: props.purpose_id || '',
       sendStatus: '',
-      isEditing: false,
-      area: props.area || 0,
-      building: props.building_area || 0,
-      // details: {},
-      // info: {},
-      // features: {},
-      // room: props.room || 0,
-
+      details: {},
+      info: {},
+      features: {},
+      index: 0,
     };
   }
 
 
   componentDidMount() {
     const { message } = this.props;
+
     if (message) {
       this.setState({ sendStatus: message });
     }
   }
 
-  toggleEditing = () => {
-    this.setState((prevState) => ({ isEditing: !prevState.isEditing }));
-  }
 
   onSubmit = (e) => {
     e.preventDefault();
-
     const {
-      price,
-      type,
-      neighborhood,
-      purpose,
-      area,
-      building,
+      details,
+      info,
+      features,
     } = this.state;
 
     const { id } = this.props;
     const method = id ? 'put' : 'post';
 
+    const data = {
+      info,
+      details,
+      features,
+    };
+
     const url = id
       ? `/property/${id}`
       : '/property';
 
-
     db[method](url, {
-      neighborhood_id: Number(neighborhood),
-      type_id: Number(type),
-      area: Number(area),
-      building_area: Number(building),
-      purpose_id: purpose,
-      price,
+      data,
       creator_id: 1,
     })
       .then((message) => {
@@ -75,53 +63,36 @@ class PropertyManager extends React.Component {
       .catch(() => this.setState({ sendStatus: 'Erro ao cadastrar' }));
   }
 
-  handleChange = (evt) => {
-    this.setState({ [evt.target.name]: evt.target.value });
+  handleComponent = (name, data) => {
+    this.setState((prevState) => ({
+      [name]: data,
+      index: prevState.index + 1,
+    }));
   }
 
 
   render() {
     const {
       sendStatus,
-      price,
-      type,
-      neighborhood,
-      purpose,
-      isEditing,
-      // room,
-      building,
-      area,
+      index,
     } = this.state;
 
+    const container = [
+      <PropertyInfo handleComponent={this.handleComponent} data={this.props} />,
+      <PropertyFeatures handleComponent={this.handleComponent} data={this.props} />,
+      <PropertyDetails handleComponent={this.handleComponent} data={this.props} />,
+      <PropertyPhotos />,
+    ];
+
     return (
-      <form>
-        <h2>Inserir Propriedade</h2>
-        {/*
-        <PropertyInfo
-          price={price}
-          type={type}
-          neighborhood={neighborhood}
-          purpose={purpose}
-          isEditing={isEditing}
-          handleChange={this.handleChange}
-          toggleEditing={this.toggleEditing}
-          area={area}
-          building={building}
-        /> */}
+      <div>
+        <form>
+          {container[index]}
+          <Button action={this.onSubmit} text="Enviar dados" />
+          {sendStatus}
+        </form>
+      </div>
 
-        <PropertyDetails />
-
-        {/* <fieldset>
-          <button
-            type="button"
-            onClick={this.onSubmit}
-          >
-            Cadastrar
-          </button>
-        </fieldset>
-        {sendStatus} */}
-
-      </form>
     );
   }
 }
