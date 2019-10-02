@@ -1,6 +1,6 @@
 {
-	"name": "lais-salvador",
-	"short_name": "lais-salvado",
+	"name": "portaldavilaimoveis",
+	"short_name": "portal",
 	"icons": [
 		{
 			"src": "/static/manifest/icons/icon-192x192.png",
