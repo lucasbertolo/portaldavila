@@ -87,9 +87,10 @@ class PropertyManager extends React.Component {
     return (
       <div>
         <form>
-          {container[index]}
-          <Button action={this.onSubmit} text="Enviar dados" />
-          {sendStatus}
+          {/* {container[index]} */}
+          {/* <Button action={this.onSubmit} text="Enviar dados" /> */}
+          <PropertyPhotos />
+          {/* {sendStatus} */}
         </form>
       </div>
 
