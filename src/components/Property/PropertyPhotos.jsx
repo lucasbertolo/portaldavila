@@ -1,7 +1,16 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable react/destructuring-assignment */
 import React, { Component } from 'react';
+
 import axios from 'axios';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+
+import { Button } from '../Common/FormComponents';
+
 import { db } from '../Helpers/ApiFetch';
+import DisplayImage from '../Photos/DisplayImage';
 
 class PropertyPhotos extends Component {
   constructor(props) {
@@ -9,52 +18,66 @@ class PropertyPhotos extends Component {
     this.state = {
       success: false,
       url: '',
+      message: '',
+      photos: [],
     };
   }
 
-  handleChange = (ev) => {
+  handleChange = () => {
     this.setState({ success: false, url: '' });
   }
 
   // Perform the upload
   handleUpload = (ev) => {
     ev.preventDefault();
+
     const file = this.uploadInput.files[0];
+    const maxSize = file.size / 1024 / 1024;
+
     // Split the filename to get the name and type
     const fileParts = this.uploadInput.files[0].name.split('.');
     const name = fileParts[0];
     const type = fileParts[1];
 
-    console.log('Preparing the upload');
-    db.post('/sign_s3', {
-      fileName: name,
-      fileType: type,
-    })
-      .then((response) => {
-        const { returnData } = response.data.data;
-        const { signedRequest } = returnData;
-        const { url } = returnData;
-        this.setState({ url });
-        console.log(`Recieved a signed request ${signedRequest}`);
-        // Put the fileType in the headers for the upload
-        const options = {
-          headers: {
-            'Content-Type': type,
-            'x-amz-acl': 'authenticated-read',
-          },
-        };
-        axios.put(signedRequest, file, options)
-          .then((result) => {
-            console.log('Response from s3');
-            this.setState({ success: true });
-          })
-          .catch((error) => {
-            alert(`ERROR ${error}`);
-          });
+    if (maxSize > 5) {
+      this.setState({ message: 'Imagem muito grande, máximo de 5mb permitido' });
+    } else {
+      db.post('/sign_s3', {
+        fileName: name,
+        fileType: type,
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          const { returnData } = response.data.data;
+          const { signedRequest } = returnData;
+          const { url } = returnData;
+          const { photos } = this.state;
+          photos.push({ src: url });
+          this.setState({
+            url,
+            photos,
+          });
+
+          const options = {
+            headers: {
+              'Content-Type': type,
+              'x-amz-acl': 'authenticated-read',
+            },
+          };
+          axios.put(signedRequest, file, options)
+            .then(() => {
+              this.setState({
+                success: true,
+              });
+            })
+            .catch((error) => {
+              this.setState({ message: error });
+            });
+        })
+        .catch((error) => {
+          // eslint-disable-next-line no-console
+          console.log(error);
+        });
+    }
   }
 
 
@@ -66,15 +89,33 @@ class PropertyPhotos extends Component {
         <br />
       </div>
     );
+    const { message, success, photos } = this.state;
+
     return (
-      <div className="App">
-        <center>
-          <h1>UPLOAD A FILE</h1>
-          {this.state.success ? <SuccessMessage /> : null }
-          <input onChange={this.handleChange} ref={(ref) => { this.uploadInput = ref; }} type="file" />
-          <br />
-          <button onClick={this.handleUpload}>UPLOAD</button>
-        </center>
+      <div>
+        <div className="wrapper-upload">
+          {success ? <SuccessMessage /> : null }
+          <div className="file-upload">
+            <input
+              onChange={this.handleChange}
+              ref={(ref) => { this.uploadInput = ref; }}
+              type="file"
+            />
+            <FontAwesomeIcon icon={faArrowUp} />
+            <br />
+          </div>
+
+          {/* <button onClick={this.handleUpload}>UPLOAD</button> */}
+          <Button text="Enviar" action={this.handleUpload} />
+
+        </div>
+        {message}
+        {/* {photos.map((item) => (
+          <div>
+            <img src={item.src} alt="Girl in a jacket" />
+          </div>
+        ))} */}
+        <DisplayImage photos={photos} />
       </div>
     );
   }

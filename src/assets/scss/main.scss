@@ -6,8 +6,11 @@
 	@import 'base/page';
 	@import 'base/typography';
 
-// Component.
+// Components.
 	@import 'components/form';
+	@import 'components/upload';
+	@import 'components/editor-image';
+
 // Layout.
 	@import 'layout/layout';
 	
