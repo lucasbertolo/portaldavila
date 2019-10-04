@@ -7,27 +7,27 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
-import { Button } from '../Common/FormComponents';
-
-import { db } from '../Helpers/ApiFetch';
+// import { db } from '../Helpers/ApiFetch';
 import DisplayImage from '../Photos/DisplayImage';
 
 class PropertyPhotos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      success: false,
-      url: '',
+    //   success: false,
+      //   url: '',
       message: '',
       photos: [],
     };
   }
 
-  handleChange = () => {
-    this.setState({ success: false, url: '' });
-  }
+  //   handleChange = () => {
+  //     this.setState({
+  //     //   success: false,
+  //       // url: ''
+  //     });
+  //   }
 
-  // Perform the upload
   handleUpload = (ev) => {
     ev.preventDefault();
 
@@ -35,87 +35,100 @@ class PropertyPhotos extends Component {
     const maxSize = file.size / 1024 / 1024;
 
     // Split the filename to get the name and type
-    const fileParts = this.uploadInput.files[0].name.split('.');
-    const name = fileParts[0];
-    const type = fileParts[1];
+    // const fileParts = this.uploadInput.files[0].name.split('.');
+    // const name = fileParts[0];
+    // const type = fileParts[1];
 
     if (maxSize > 5) {
       this.setState({ message: 'Imagem muito grande, máximo de 5mb permitido' });
     } else {
-      db.post('/sign_s3', {
-        fileName: name,
-        fileType: type,
-      })
-        .then((response) => {
-          const { returnData } = response.data.data;
-          const { signedRequest } = returnData;
-          const { url } = returnData;
+    //   db.post('/sign_s3', {
+    //     fileName: name,
+    //     fileType: type,
+    //   })
+    //     .then((response) => {
+    //       const { returnData } = response.data.data;
+    //       const { signedRequest } = returnData;
+    //       const { url } = returnData;
+    //       const { photos } = this.state;
+    //       photos.push({ src: url });
+    //       this.setState({
+    //         url,
+    //         photos,
+    //       });
+
+      //       const options = {
+      //         headers: {
+      //           'Content-Type': type,
+      //           'x-amz-acl': 'authenticated-read',
+      //         },
+      //       };
+      //       axios.put(signedRequest, file, options)
+      //         .then(() => {
+      //           this.setState({
+      //             success: true,
+      //           });
+      //         })
+      //         .catch((error) => {
+      //           this.setState({ message: error });
+      //         });
+      //     })
+      //     .catch((error) => {
+      //       // eslint-disable-next-line no-console
+      //       console.log(error);
+      //     });
+
+
+      // MOCK
+      axios.get('https://dog.ceo/api/breeds/image/random')
+        .then((res) => {
+          const url = res.data.message;
           const { photos } = this.state;
           photos.push({ src: url });
+
           this.setState({
-            url,
             photos,
           });
-
-          const options = {
-            headers: {
-              'Content-Type': type,
-              'x-amz-acl': 'authenticated-read',
-            },
-          };
-          axios.put(signedRequest, file, options)
-            .then(() => {
-              this.setState({
-                success: true,
-              });
-            })
-            .catch((error) => {
-              this.setState({ message: error });
-            });
         })
-        .catch((error) => {
-          // eslint-disable-next-line no-console
-          console.log(error);
-        });
+        // eslint-disable-next-line no-console
+        .catch((err) => console.log(err));
     }
   }
 
 
   render() {
-    const SuccessMessage = () => (
-      <div style={{ padding: 50 }}>
-        <h3 style={{ color: 'green' }}>SUCCESSFUL UPLOAD</h3>
-        <a href={this.state.url}>Access the file here</a>
-        <br />
-      </div>
-    );
-    const { message, success, photos } = this.state;
+    // const SuccessMessage = () => (
+    //   <div style={{ padding: 50 }}>
+    //     <h3 style={{ color: 'green' }}>SUCCESSFUL UPLOAD</h3>
+    //     <a href={this.state.url}>Access the file here</a>
+    //     <br />
+    //   </div>
+    // );
+    const { message, photos } = this.state;
 
     return (
       <div>
+        <DisplayImage photos={photos} />
+
         <div className="wrapper-upload">
-          {success ? <SuccessMessage /> : null }
+          {/* {success ? <SuccessMessage /> : null } */}
           <div className="file-upload">
             <input
-              onChange={this.handleChange}
+              onChange={this.handleUpload}
               ref={(ref) => { this.uploadInput = ref; }}
               type="file"
             />
-            <FontAwesomeIcon icon={faArrowUp} />
+            <FontAwesomeIcon
+              icon={faArrowUp}
+            />
             <br />
           </div>
 
-          {/* <button onClick={this.handleUpload}>UPLOAD</button> */}
-          <Button text="Enviar" action={this.handleUpload} />
+          {/* <Button text="Enviar" action={this.handleUpload} /> */}
 
         </div>
         {message}
-        {/* {photos.map((item) => (
-          <div>
-            <img src={item.src} alt="Girl in a jacket" />
-          </div>
-        ))} */}
-        <DisplayImage photos={photos} />
+
       </div>
     );
   }

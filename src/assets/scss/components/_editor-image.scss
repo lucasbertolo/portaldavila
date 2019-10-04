@@ -1,10 +1,22 @@
 .container-editor-images{
-    width: 100%;
-    height: 40vh;
     background: lightblue;
+    display: flex;
+    justify-content: space-around;
+    padding: 50px;
+    margin-top: 95px;
+    margin-bottom: 30px;
 
-    img{
-        width: 200px;
-        height: 200px;
+    .gallery-editor{
+        display: grid;
+        grid-gap: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-auto-rows: 250px 150px;
+        grid-auto-flow: dense;
+        
+        img{
+            max-width: 400px;
+            max-height: 400px;
+        }   
     }
+  
 }
