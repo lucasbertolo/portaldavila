@@ -18,6 +18,7 @@ class PropertyManager extends React.Component {
       details: {},
       info: {},
       features: {},
+      images: {},
       index: 0,
     };
   }
@@ -34,33 +35,38 @@ class PropertyManager extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+
     const {
       details,
       info,
       features,
+      images,
     } = this.state;
 
-    const { id } = this.props;
-    const method = id ? 'put' : 'post';
+    // const { id } = this.props;
+    // const method = id ? 'put' : 'post';
 
     const data = {
       info,
       details,
       features,
+      images,
     };
 
-    const url = id
-      ? `/property/${id}`
-      : '/property';
+    console.log(data);
 
-    db[method](url, {
-      data,
-      creator_id: 1,
-    })
-      .then((message) => {
-        if (message.status === 200) { this.setState({ sendStatus: 'Cadastrado com sucesso' }); }
-      })
-      .catch(() => this.setState({ sendStatus: 'Erro ao cadastrar' }));
+    // const url = id
+    //   ? `/property/${id}`
+    //   : '/property';
+
+    // db[method](url, {
+    //   data,
+    //   creator_id: 1,
+    // })
+    //   .then((message) => {
+    //     if (message.status === 200) { this.setState({ sendStatus: 'Cadastrado com sucesso' }); }
+    //   })
+    //   .catch(() => this.setState({ sendStatus: 'Erro ao cadastrar' }));
   }
 
   handleComponent = (name, data) => {
@@ -81,15 +87,14 @@ class PropertyManager extends React.Component {
       <PropertyInfo handleComponent={this.handleComponent} data={this.props} />,
       <PropertyFeatures handleComponent={this.handleComponent} data={this.props} />,
       <PropertyDetails handleComponent={this.handleComponent} data={this.props} />,
-      <PropertyPhotos />,
+      <PropertyPhotos handleComponent={this.handleComponent} data={this.props} />,
     ];
 
     return (
       <div>
         <form>
-          {/* {container[index]} */}
-          {/* <Button action={this.onSubmit} text="Enviar dados" /> */}
-          <PropertyPhotos />
+          {container[index]}
+          <Button action={this.onSubmit} text="Enviar dados" />
           {/* {sendStatus} */}
         </form>
       </div>

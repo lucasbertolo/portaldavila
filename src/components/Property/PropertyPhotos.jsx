@@ -10,6 +10,8 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 // import { db } from '../Helpers/ApiFetch';
 import DisplayImage from '../Photos/DisplayImage';
 
+import { Button } from '../Common/FormComponents';
+
 class PropertyPhotos extends Component {
   constructor(props) {
     super(props);
@@ -20,6 +22,23 @@ class PropertyPhotos extends Component {
       photos: [],
     };
   }
+
+  forwardData = (e) => {
+    e.preventDefault();
+    this.props.handleComponent('images', this.state.photos);
+  }
+
+  handleChange = (e) => {
+    const { value } = e.target;
+    const { photos } = this.state;
+
+    photos[Number(e.target.id)].alt = value;
+
+    this.setState((prevState) => ({
+      ...prevState,
+      photos,
+    }));
+  };
 
   //   handleChange = () => {
   //     this.setState({
@@ -38,7 +57,6 @@ class PropertyPhotos extends Component {
     // const fileParts = this.uploadInput.files[0].name.split('.');
     // const name = fileParts[0];
     // const type = fileParts[1];
-
     if (maxSize > 5) {
       this.setState({ message: 'Imagem muito grande, máximo de 5mb permitido' });
     } else {
@@ -108,7 +126,10 @@ class PropertyPhotos extends Component {
 
     return (
       <div>
-        <DisplayImage photos={photos} />
+        <DisplayImage
+          photos={photos}
+          handleChange={this.handleChange}
+        />
 
         <div className="wrapper-upload">
           {/* {success ? <SuccessMessage /> : null } */}
@@ -124,7 +145,7 @@ class PropertyPhotos extends Component {
             <br />
           </div>
 
-          {/* <Button text="Enviar" action={this.handleUpload} /> */}
+          <Button text="Enviar" action={this.forwardData} />
 
         </div>
         {message}

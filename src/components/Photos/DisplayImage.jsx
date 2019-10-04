@@ -1,13 +1,23 @@
 import React from 'react';
 
-const DisplayImage = ({ photos }) => {
-  const arrayImages = photos.map((item, index) => (
-    // eslint-disable-next-line react/no-array-index-key
-    <span
-      key={index}
-      style={{ gridArea: `grid-${index}`, background: `url(${item.src}) no-repeat center` }}
-    />
+import { Input } from '../Common/FormComponents';
 
+const DisplayImage = ({ photos, handleChange }) => {
+  const arrayImages = photos.map((item, index) => (
+    <span
+      // eslint-disable-next-line react/no-array-index-key
+      key={index}
+      style={{ gridArea: `grid-${index}` }}
+    >
+      <img src={item.src} alt="property" />
+      <Input
+        placeholder="Digite a descrição aqui"
+        name={`alt${index}`}
+        htmlFor={index}
+        value={item.alt}
+        onChange={handleChange}
+      />
+    </span>
   ));
 
   return (
