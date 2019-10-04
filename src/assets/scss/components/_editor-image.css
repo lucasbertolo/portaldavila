@@ -1,21 +1,12 @@
 .container-editor-images {
-  background: lightblue;
-  display: flex;
-  justify-content: space-around;
-  padding: 50px;
-  margin-top: 95px;
-  margin-bottom: 30px;
-}
-
-.container-editor-images .gallery-editor {
   display: grid;
-  grid-gap: 15px;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-auto-rows: 250px 150px;
-  grid-auto-flow: dense;
-}
-
-.container-editor-images .gallery-editor img {
-  max-width: 400px;
-  max-height: 400px;
+  grid-gap: 0.5rem;
+  grid-template-columns: 1fr;
+  grid-template-areas: "grid-0" "grid-1" "grid-2" "grid-3" "grid-4" "grid-5";
+  height: 100vh;
+  margin: 0 auto;
+  max-width: 1200px;
+  grid-template-columns: repeat(6, 2fr);
+  grid-template-rows: 1fr 2fr 1fr 1fr;
+  grid-template-areas: "grid-0 grid-1" "grid-0 grid-1";
 }
