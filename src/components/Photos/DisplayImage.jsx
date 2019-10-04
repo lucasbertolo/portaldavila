@@ -1,22 +1,13 @@
 import React from 'react';
-import { Input } from '../Common/FormComponents';
 
 const DisplayImage = ({ photos }) => {
   const arrayImages = photos.map((item, index) => (
     // eslint-disable-next-line react/no-array-index-key
-    <div
+    <span
       key={index}
-      style={{ gridArea: `grid-${index}`, backgroundColor: 'red' }}
-    >
-      {/* <img src={item.src} alt="property" /> */}
+      style={{ gridArea: `grid-${index}`, background: `url(${item.src}) no-repeat center` }}
+    />
 
-      {/* <Input
-        hasLabel
-        htmlFor="alt"
-        type="text"
-        name="alt"
-      /> */}
-    </div>
   ));
 
   return (
