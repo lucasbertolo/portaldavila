@@ -53,48 +53,49 @@ class PropertyPhotos extends Component {
     const file = this.uploadInput.files[0];
     const maxSize = file.size / 1024 / 1024;
 
-    // Split the filename to get the name and type
     // const fileParts = this.uploadInput.files[0].name.split('.');
     // const name = fileParts[0];
     // const type = fileParts[1];
-    if (maxSize > 5) {
-      this.setState({ message: 'Imagem muito grande, máximo de 5mb permitido' });
+    if (maxSize > 10) {
+      this.setState({ message: 'Imagem muito grande, máximo de 10mb permitido' });
     } else {
-    //   db.post('/sign_s3', {
-    //     fileName: name,
-    //     fileType: type,
-    //   })
-    //     .then((response) => {
-    //       const { returnData } = response.data.data;
-    //       const { signedRequest } = returnData;
-    //       const { url } = returnData;
-    //       const { photos } = this.state;
-    //       photos.push({ src: url });
-    //       this.setState({
-    //         url,
-    //         photos,
-    //       });
+      // db.post('/sign_s3', {
+      //   fileName: name,
+      //   fileType: type,
+      // })
+      //   .then((response) => {
+      //     const { returnData } = response.data;
+      //     const { signedRequest } = returnData;
+      //     const { url } = returnData;
+      //     const { photos } = this.state;
 
-      //       const options = {
-      //         headers: {
-      //           'Content-Type': type,
-      //           'x-amz-acl': 'authenticated-read',
-      //         },
-      //       };
-      //       axios.put(signedRequest, file, options)
-      //         .then(() => {
-      //           this.setState({
-      //             success: true,
-      //           });
-      //         })
-      //         .catch((error) => {
-      //           this.setState({ message: error });
-      //         });
-      //     })
-      //     .catch((error) => {
-      //       // eslint-disable-next-line no-console
-      //       console.log(error);
+
+      //     photos.push({ src: url });
+      //     this.setState({
+      //       url,
+      //       photos,
       //     });
+
+      //     const options = {
+      //       headers: {
+      //         'Content-Type': type,
+      //         'x-amz-acl': 'authenticated-read',
+      //       },
+      //     };
+      //     axios.put(signedRequest, file, options)
+      //       .then(() => {
+      //         this.setState({
+      //           success: true,
+      //         });
+      //       })
+      //       .catch((error) => {
+      //         this.setState({ message: error });
+      //       });
+      //   })
+      //   .catch((error) => {
+      //     // eslint-disable-next-line no-console
+      //     console.log(error);
+      //   });
 
 
       // MOCK

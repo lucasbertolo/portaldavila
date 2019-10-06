@@ -43,8 +43,8 @@ class PropertyManager extends React.Component {
       images,
     } = this.state;
 
-    // const { id } = this.props;
-    // const method = id ? 'put' : 'post';
+    const { id } = this.props;
+    const method = id ? 'put' : 'post';
 
     const data = {
       info,
@@ -53,20 +53,18 @@ class PropertyManager extends React.Component {
       images,
     };
 
-    console.log(data);
+    const url = id
+      ? `/property/${id}`
+      : '/property';
 
-    // const url = id
-    //   ? `/property/${id}`
-    //   : '/property';
-
-    // db[method](url, {
-    //   data,
-    //   creator_id: 1,
-    // })
-    //   .then((message) => {
-    //     if (message.status === 200) { this.setState({ sendStatus: 'Cadastrado com sucesso' }); }
-    //   })
-    //   .catch(() => this.setState({ sendStatus: 'Erro ao cadastrar' }));
+    db[method](url, {
+      data,
+      // creator_id: 1,
+    })
+      .then((message) => {
+        if (message.status === 200) { this.setState({ sendStatus: 'Cadastrado com sucesso' }); }
+      })
+      .catch(() => this.setState({ sendStatus: 'Erro ao cadastrar' }));
   }
 
   handleComponent = (name, data) => {
@@ -95,7 +93,7 @@ class PropertyManager extends React.Component {
         <form>
           {container[index]}
           <Button action={this.onSubmit} text="Enviar dados" />
-          {/* {sendStatus} */}
+          {sendStatus}
         </form>
       </div>
 
