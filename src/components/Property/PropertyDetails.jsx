@@ -39,7 +39,7 @@ function PropertyDetails(props) {
         hasLabel
         htmlFor="room"
         onChange={handleChange}
-        label="Dormitórios"
+        label="Sala"
         type="number"
         name="room"
         value={state.room}
@@ -68,6 +68,123 @@ function PropertyDetails(props) {
         type="number"
         name="garage"
         value={state.garage}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="bathroom"
+        onChange={handleChange}
+        label="Banheiro"
+        type="number"
+        name="bathroom"
+        value={state.bathroom}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="visiting_room"
+        onChange={handleChange}
+        label="Sala de Visitas"
+        type="number"
+        name="visiting_room"
+        value={state.visiting_room}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="dining_room"
+        onChange={handleChange}
+        label="Sala de jantar"
+        type="number"
+        name="dining_room"
+        value={state.dining_room}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="suite"
+        onChange={handleChange}
+        label="Suíte"
+        type="number"
+        name="suite"
+        value={state.suite}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="laundry"
+        onChange={handleChange}
+        label="Lavanderia"
+        type="number"
+        name="laundry"
+        value={state.laundry}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="washbasin"
+        onChange={handleChange}
+        label="Lavabo"
+        type="number"
+        name="washbasin"
+        value={state.washbasin}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="kitchen"
+        onChange={handleChange}
+        label="Cozinha"
+        type="number"
+        name="kitchen"
+        value={state.kitchen}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="gourmet_space"
+        onChange={handleChange}
+        label="Área Gourmet"
+        type="number"
+        name="gourmet_space"
+        value={state.gourmet_space}
+        min="0"
+        max="10"
+        step="1"
+      />
+
+      <Input
+        hasLabel
+        htmlFor="office"
+        onChange={handleChange}
+        label="Escritório"
+        type="number"
+        name="office"
+        value={state.office}
         min="0"
         max="10"
         step="1"

@@ -89,6 +89,7 @@ class PropertyManager extends React.Component {
     ];
 
     return (
+      // Criar modal de result com resposta do banco de dados
       <div>
         <form>
           {container[index]}
