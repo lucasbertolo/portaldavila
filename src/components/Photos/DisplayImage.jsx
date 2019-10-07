@@ -9,7 +9,7 @@ const DisplayImage = ({ photos, handleChange }) => {
       key={index}
       style={{ gridArea: `grid-${index}` }}
     >
-      <img src={item.src} alt="property" />
+      <img src={item.src || item.url} alt="property" />
       <Input
         placeholder="Digite a descrição aqui"
         name={`alt${index}`}

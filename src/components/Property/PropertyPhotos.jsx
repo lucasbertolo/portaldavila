@@ -6,6 +6,7 @@ import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { db } from '../Helpers/ApiFetch';
 
 // import { db } from '../Helpers/ApiFetch';
 import DisplayImage from '../Photos/DisplayImage';
@@ -16,11 +17,23 @@ class PropertyPhotos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-    //   success: false,
-      //   url: '',
-      message: '',
+      // success: false,
+      message: props.message || '',
       photos: [],
     };
+  }
+
+  async componentDidMount() {
+    try {
+      const resultPhotos = await db.get(`/property/photos/${this.props.data.id}`);
+
+      this.setState({
+        photos: resultPhotos.data,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
   }
 
   forwardData = (e) => {
@@ -40,13 +53,6 @@ class PropertyPhotos extends Component {
     }));
   };
 
-  //   handleChange = () => {
-  //     this.setState({
-  //     //   success: false,
-  //       // url: ''
-  //     });
-  //   }
-
   handleUpload = (ev) => {
     ev.preventDefault();
 
@@ -59,6 +65,7 @@ class PropertyPhotos extends Component {
     if (maxSize > 10) {
       this.setState({ message: 'Imagem muito grande, máximo de 10mb permitido' });
     } else {
+      // // AWS
       // db.post('/sign_s3', {
       //   fileName: name,
       //   fileType: type,

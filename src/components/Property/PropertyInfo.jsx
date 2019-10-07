@@ -41,10 +41,6 @@ function PropertyInfo(props) {
   };
 
 
-  // const [neighborhoodList, setNeigborhoodList] = useState(['']);
-  // const [typeList, setTypeList] = useState(['']);
-
-
   useEffect(() => {
     const fetchBlock = async () => {
       try {

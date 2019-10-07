@@ -19,19 +19,6 @@ function PropertyDetails(props) {
     office: props.data.office || 0,
   });
 
-  // const onSubmit = (e) => {
-  //   e.preventDefault();
-
-
-  //   db.post('/details', {
-  //     state,
-  //   })
-  //     .then((message) => {
-  //       if (message.status === 200) { console.log(message); }
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
   const ForwardData = (e) => {
     e.preventDefault();
 

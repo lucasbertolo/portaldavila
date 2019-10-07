@@ -17,16 +17,7 @@ function PropertyFeatures(props) {
   const ForwardData = (e) => {
     e.preventDefault();
 
-
     props.handleComponent('features', state);
-
-    // db.post('/features', {
-    //   state,
-    // })
-    //   .then((message) => {
-    //     if (message.status === 200) { console.log(message); }
-    //   })
-    //   .catch((err) => console.log(err));
   };
 
   const handleChange = (e) => {
