@@ -1,0 +1,1 @@
+input:not([type="radio"]){width:100%;height:50px;padding:10px;border:1px solid #ccc;text-align:center}.inputGroup{margin:5px auto;position:relative;display:table;color:black}.inputGroup input{padding:0px;width:350px}.inputGroup .fa{cursor:pointer;position:absolute}.inputGroup .cover-icon{margin:40px 10px 40px 0px}.inputGroup .remove-icon{margin:40px 10px 40px 0px}

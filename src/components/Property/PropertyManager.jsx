@@ -3,6 +3,7 @@ import PropertyInfo from './PropertyInfo';
 import PropertyFeatures from './PropertyFeatures';
 import PropertyDetails from './PropertyDetails';
 
+import { Button } from '../Common/FormComponents';
 import { db } from '../Helpers/ApiFetch';
 
 
@@ -119,14 +120,19 @@ class PropertyManager extends React.Component {
           initialState={images}
         />,
       },
+      {
+        name: 'Finalizar',
+        component: <Button type="button" text="Enviar dados" action={this.onSubmit} />,
+      },
     ];
 
     return (
 
-      <div>
+      <form>
         <MultiStageProgress steps={steps} />
         {sendStatus}
-      </div>
+        {/* <Button type="button" text="Enviar dados" action={this.onSubmit} /> */}
+      </form>
 
     );
   }

@@ -25,6 +25,7 @@ const Button = (props) => {
     text,
     action,
     className,
+    disabled,
   } = props;
 
   return (
@@ -34,6 +35,7 @@ const Button = (props) => {
         type="button"
         onClick={action}
         value={value || ''}
+        disabled={disabled}
       >
         {text}
       </button>
@@ -58,6 +60,7 @@ const Input = (props) => {
     currency,
     onBlur,
     onFocus,
+    className,
   } = props;
 
   return (
@@ -69,6 +72,7 @@ const Input = (props) => {
       />
 
       <input
+        className={className || null}
         id={htmlFor}
         max={max || null}
         min={min || null}

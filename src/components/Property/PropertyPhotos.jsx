@@ -36,6 +36,14 @@ class PropertyPhotos extends Component {
     }
   }
 
+  removePhoto = (e) => {
+    console.log(e.target);
+  }
+
+  setCover = (e) => {
+    console.log(e.target);
+  }
+
   forwardData = (e) => {
     e.preventDefault();
     this.props.handleComponent('images', this.state.photos);
@@ -137,6 +145,8 @@ class PropertyPhotos extends Component {
         <DisplayImage
           photos={photos}
           handleChange={this.handleChange}
+          removePhoto={this.removePhoto}
+          setCover={this.setCover}
         />
 
         <div className="wrapper-upload">

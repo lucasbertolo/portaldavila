@@ -2,7 +2,7 @@
   display: grid;
   grid-gap: 0.4rem;
   grid-template-columns: 1fr;
-  padding: 10px;
+  padding: 5px;
   grid-template-areas:
     "grid-0"
     "grid-1"
@@ -35,7 +35,26 @@
      max-height: 100%;
      width: 100%;
      margin-bottom: 5px;
+    //  display: flex;
+    //  flex-direction: column;
+    
+     .inputGroup{
+       display: grid;
+       grid-auto-flow: column;
+      //  grid-column: 70% 15% 15%; 
 
+       div{
+         z-index: 1;
+         margin-right: 35px;
+
+        i{
+          width: 15px;
+          height: 15px;
+        }
+       }
+      
+     }
+    
      img{
        max-height: 85%;
        width: 100%;

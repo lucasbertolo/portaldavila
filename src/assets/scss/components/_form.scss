@@ -10,9 +10,9 @@
     margin: 10px;
     border: 0;
     
-    // & + & {
-    //   margin-top: 24px;
-    // }
+    & + & {
+      margin-top: 12px;
+    }
   }
   
   label {
@@ -21,10 +21,10 @@
     color: #2b2e4a;
   }
   
-  input:not([type=checkbox]):not([type=radio]),
+  input:not([type=radio]),
   select,
   textarea {
-    // padding: 8px;
+    padding: 8px;
     width: 100%;
     border-top: 0;
     border-right: 0;

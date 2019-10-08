@@ -2,7 +2,7 @@
   display: grid;
   grid-gap: 0.4rem;
   grid-template-columns: 1fr;
-  padding: 10px;
+  padding: 5px;
   grid-template-areas: "grid-0" "grid-1" "grid-2" "grid-3" "grid-4" "grid-5";
   max-height: 75vh;
   margin: 0 auto;
@@ -15,6 +15,21 @@
   max-height: 100%;
   width: 100%;
   margin-bottom: 5px;
+}
+
+.container-editor-images span .inputGroup {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.container-editor-images span .inputGroup div {
+  z-index: 1;
+  margin-right: 35px;
+}
+
+.container-editor-images span .inputGroup div i {
+  width: 15px;
+  height: 15px;
 }
 
 .container-editor-images span img {
