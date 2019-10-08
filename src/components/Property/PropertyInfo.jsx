@@ -13,13 +13,13 @@ import {
 
 function PropertyInfo(props) {
   const [state, setState] = useState({
-    neighborhood_id: props.data.neighborhood_id || '',
-    type_id: props.data.type_id || '',
-    price: props.data.price || '',
-    purpose_id: props.data.purpose_id || '',
+    neighborhood_id: props.data.neighborhood_id || props.initialState.neighborhood_id || '',
+    type_id: props.data.type_id || props.initialState.type_id || '',
+    price: props.data.price || props.initialState.price || '',
+    purpose_id: props.data.purpose_id || props.initialState.purpose_id || '',
     isEditing: false,
-    area: props.data.area || 0,
-    building_area: props.data.building_area || 0,
+    area: props.data.area || props.initialState.area || 0,
+    building_area: props.data.building_area || props.initialState.building_area || 0,
     neighborhoodList: [],
     typeList: [],
   });
@@ -84,7 +84,7 @@ function PropertyInfo(props) {
   };
 
   return (
-    <div>
+    <div className="form">
       <Select
         hasLabel
         htmlFor="neighborhood-list"
@@ -187,7 +187,7 @@ function PropertyInfo(props) {
         step="10"
       />
 
-      <Button text="Seguinte" action={ForwardData} />
+      <Button text="Salvar" action={ForwardData} className="editor-save-button" />
 
     </div>
 

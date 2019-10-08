@@ -1,13 +1,14 @@
 import React from 'react';
-
 import PropertyInfo from './PropertyInfo';
 import PropertyFeatures from './PropertyFeatures';
 import PropertyDetails from './PropertyDetails';
 
 import { db } from '../Helpers/ApiFetch';
 
-import { Button } from '../Common/FormComponents';
+
+// import { Button } from '../Common/FormComponents';
 import PropertyPhotos from './PropertyPhotos';
+import MultiStageProgress from '../Common/MultiStageProgress';
 
 class PropertyManager extends React.Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class PropertyManager extends React.Component {
       info: {},
       features: {},
       images: {},
-      index: 0,
     };
   }
 
@@ -30,6 +30,10 @@ class PropertyManager extends React.Component {
     if (message) {
       this.setState({ sendStatus: message });
     }
+  }
+
+  componentDidUpdate() {
+    console.log(this.state);
   }
 
 
@@ -68,34 +72,60 @@ class PropertyManager extends React.Component {
   }
 
   handleComponent = (name, data) => {
-    this.setState((prevState) => ({
+    this.setState(() => ({
       [name]: data,
-      index: prevState.index + 1,
     }));
   }
-
 
   render() {
     const {
       sendStatus,
-      index,
+      info,
+      details,
+      features,
+      images,
     } = this.state;
 
-    const container = [
-      <PropertyInfo handleComponent={this.handleComponent} data={this.props} />,
-      <PropertyFeatures handleComponent={this.handleComponent} data={this.props} />,
-      <PropertyDetails handleComponent={this.handleComponent} data={this.props} />,
-      <PropertyPhotos handleComponent={this.handleComponent} data={this.props} />,
+    const steps = [
+      {
+        name: 'Dados gerais',
+        component: <PropertyInfo
+          handleComponent={this.handleComponent}
+          data={this.props}
+          initialState={info}
+        />,
+      },
+      {
+        name: 'Comodos',
+        component: <PropertyDetails
+          handleComponent={this.handleComponent}
+          data={this.props}
+          initialState={details}
+        />,
+      },
+      {
+        name: 'Adicionais',
+        component: <PropertyFeatures
+          handleComponent={this.handleComponent}
+          data={this.props}
+          initialState={features}
+        />,
+      },
+      {
+        name: 'Fotos',
+        component: <PropertyPhotos
+          handleComponent={this.handleComponent}
+          data={this.props}
+          initialState={images}
+        />,
+      },
     ];
 
     return (
-      // Criar modal de result com resposta do banco de dados
+
       <div>
-        <form>
-          {container[index]}
-          <Button action={this.onSubmit} text="Enviar dados" />
-          {sendStatus}
-        </form>
+        <MultiStageProgress steps={steps} />
+        {sendStatus}
       </div>
 
     );

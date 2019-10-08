@@ -19,7 +19,7 @@ class PropertyPhotos extends Component {
     this.state = {
       // success: false,
       message: props.message || '',
-      photos: [],
+      photos: props.initialState.images || [],
     };
   }
 
@@ -153,9 +153,9 @@ class PropertyPhotos extends Component {
             <br />
           </div>
 
-          <Button text="Enviar" action={this.forwardData} />
-
         </div>
+        <Button text="Salvar" action={this.forwardData} className="editor-save-button" />
+
         {message}
 
       </div>

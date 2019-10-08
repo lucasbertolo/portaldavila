@@ -5,13 +5,13 @@ import { Select, TextArea, Button } from '../Common/FormComponents';
 
 function PropertyFeatures(props) {
   const [state, setState] = useState({
-    description: props.data.description || '',
-    air_conditioning: props.data.air_conditioning || 0,
-    pool: props.data.pool || 0,
-    balcony: props.data.balcony || 0,
-    barbecue_grill: props.data.barbecue_grill || 0,
-    stairway: props.data.stairway || 0,
-    garden: props.data.garden || 0,
+    description: props.data.description || props.initialState.description || '',
+    air_conditioning: props.data.air_conditioning || props.initialState.air_conditioning || 0,
+    pool: props.data.pool || props.initialState.pool || 0,
+    balcony: props.data.balcony || props.initialState.balcony || 0,
+    barbecue_grill: props.data.barbecue_grill || props.initialState.barbecue_grill || 0,
+    stairway: props.data.stairway || props.initialState.stairway || 0,
+    garden: props.data.garden || props.initialState.garden || 0,
   });
 
   const ForwardData = (e) => {
@@ -32,7 +32,7 @@ function PropertyFeatures(props) {
   const standardOption = ['Não', 'Sim'];
 
   return (
-    <div>
+    <div className="form">
       <TextArea
         hasLabel
         htmlFor="description"
@@ -111,7 +111,7 @@ function PropertyFeatures(props) {
       />
 
 
-      <Button text="Seguinte" action={ForwardData} />
+      <Button text="Salvar" action={ForwardData} className="editor-save-button" />
 
     </div>
   );

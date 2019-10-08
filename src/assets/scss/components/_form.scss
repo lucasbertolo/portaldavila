@@ -1,22 +1,22 @@
 
-  // form {
-  //   margin-right: auto;
-  //   margin-left: auto;
-  //   max-width: 320px;
-  // }
+  .form {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 320px;
+  }
   
   fieldset {
-    padding: 0;
-    margin: 0;
+    padding: 10px;
+    margin: 10px;
     border: 0;
     
-    & + & {
-      margin-top: 24px;
-    }
+    // & + & {
+    //   margin-top: 24px;
+    // }
   }
   
   label {
-    margin-bottom: 8px;
+    margin-bottom: 15px;
     display: block;
     color: #2b2e4a;
   }
@@ -24,7 +24,7 @@
   input:not([type=checkbox]):not([type=radio]),
   select,
   textarea {
-    padding: 8px;
+    // padding: 8px;
     width: 100%;
     border-top: 0;
     border-right: 0;
@@ -47,30 +47,22 @@
     resize: vertical;
   }
   
-  button {
-    margin-right: auto;
-    margin-left: auto;
-    display: block;
-    padding: 8px 16px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #3fc1c9;
-    border: 0;
-    border-radius: 2px;
-    cursor: pointer;
-    transition: background-color .15s ease-in;
-    
-    &:focus:active {
-      background-color: darken(#3fc1c9, 8%);
-    }
-    
-    &:focus {
-      outline: 0;
-    }
-    
-    &:hover {
-      background-color: lighten(#3fc1c9, 15%);
+  .editor-save-button{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .editor-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 15vh;
+    // margin-bottom: 5px;
+    // padding: 10px;
+    align-items: flex-end;
+
+    input{
+      width: 40px;
     }
   }
-  
-  

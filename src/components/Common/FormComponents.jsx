@@ -24,11 +24,13 @@ const Button = (props) => {
     value,
     text,
     action,
+    className,
   } = props;
 
   return (
     <fieldset>
       <button
+        className={className || null}
         type="button"
         onClick={action}
         value={value || ''}

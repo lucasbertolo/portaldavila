@@ -1,9 +1,22 @@
-// reset
-html { box-sizing: border-box; }
-*, *:before, *:after { box-sizing: inherit; }
-body, ul, li  { margin: 0; padding: 0; }
-// input { border-style: none; background: transparent; outline: none; }
-button { padding: 0; background: none; border: none; outline: none; }
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body, ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+}
 
 * {
   margin: 0;
@@ -14,6 +27,7 @@ button { padding: 0; background: none; border: none; outline: none; }
   backface-visibility: hidden;
   -webkit-font-smoothing: antialiased;
 }
+
 *:focus {
   outline: none;
 }
@@ -27,7 +41,7 @@ body {
 a {
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
-
