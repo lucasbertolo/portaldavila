@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
 import React, { useState, useEffect } from 'react';
 
-import { Input, Button } from '../Common/FormComponents';
+import { Input } from '../Common/FormComponents';
 
 function PropertyDetails(props) {
   const [state, setState] = useState({
@@ -19,17 +19,18 @@ function PropertyDetails(props) {
     office: props.data.office || props.initialState.office || 0,
   });
 
-  useEffect(() => {
-    if (props.saveData) {
-      props.handleComponent('details', state);
-    }
-  });
-
-  const ForwardData = (e) => {
-    e.preventDefault();
-
-    props.handleComponent('details', state);
-  };
+  // Salva os novos valores de state e reenvia para o PropertyManager
+  const val = React.useRef();
+  useEffect(
+    () => {
+      val.current = state;
+    },
+    [state],
+  );
+  useEffect(
+    () => () => props.handleComponent('details', val.current),
+    [val],
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -120,7 +121,6 @@ function PropertyDetails(props) {
           step="1"
         />
 
-
       </div>
 
       <div className="editor-row">
@@ -206,8 +206,6 @@ function PropertyDetails(props) {
         />
 
       </div>
-
-      <Button text="Salvar" action={ForwardData} className="editor-save-button" />
 
     </div>
   );

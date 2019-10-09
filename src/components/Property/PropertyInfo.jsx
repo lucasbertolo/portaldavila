@@ -7,7 +7,7 @@ import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
 import {
-  Select, Input, Radio, Button,
+  Select, Input, Radio,
 } from '../Common/FormComponents';
 
 
@@ -77,11 +77,17 @@ function PropertyInfo(props) {
     fetchType();
   }, []);
 
-  const ForwardData = (e) => {
-    e.preventDefault();
-
-    props.handleComponent('info', state);
-  };
+  const val = React.useRef();
+  useEffect(
+    () => {
+      val.current = state;
+    },
+    [state],
+  );
+  useEffect(
+    () => () => props.handleComponent('info', val.current),
+    [val],
+  );
 
   return (
     <div className="form">
@@ -186,8 +192,6 @@ function PropertyInfo(props) {
         max="100000000"
         step="10"
       />
-
-      <Button text="Salvar" action={ForwardData} className="editor-save-button" />
 
     </div>
 

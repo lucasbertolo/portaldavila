@@ -56,6 +56,7 @@ export default function MultiStep(props) {
 
   const handleOnClick = (evt) => {
     // eslint-disable-next-line max-len
+
     if (evt.currentTarget.value === props.steps.length - 1
       && compState === props.steps.length - 1) {
       setStepState(props.steps.length);

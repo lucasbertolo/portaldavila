@@ -37,6 +37,13 @@ class PropertyManager extends React.Component {
     console.log(this.state);
   }
 
+  handleSave = () => {
+    this.setState((prevState) => ({
+      ...prevState,
+      saveData: !prevState.saveData,
+    }));
+  }
+
 
   onSubmit = (e) => {
     e.preventDefault();

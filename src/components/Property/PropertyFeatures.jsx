@@ -1,7 +1,7 @@
 /* eslint-disable react/destructuring-assignment */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Select, TextArea, Button } from '../Common/FormComponents';
+import { Select, TextArea } from '../Common/FormComponents';
 
 function PropertyFeatures(props) {
   const [state, setState] = useState({
@@ -14,11 +14,11 @@ function PropertyFeatures(props) {
     garden: props.data.garden || props.initialState.garden || 0,
   });
 
-  const ForwardData = (e) => {
-    e.preventDefault();
+  // const ForwardData = (e) => {
+  //   e.preventDefault();
 
-    props.handleComponent('features', state);
-  };
+  //   props.handleComponent('features', state);
+  // };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +28,18 @@ function PropertyFeatures(props) {
       [name]: value,
     }));
   };
+
+  const val = React.useRef();
+  useEffect(
+    () => {
+      val.current = state;
+    },
+    [state],
+  );
+  useEffect(
+    () => () => props.handleComponent('features', val.current),
+    [val],
+  );
 
   const standardOption = ['Não', 'Sim'];
 
@@ -109,9 +121,6 @@ function PropertyFeatures(props) {
         value={state.garden}
         noIndex
       />
-
-
-      <Button text="Salvar" action={ForwardData} className="editor-save-button" />
 
     </div>
   );
