@@ -13,15 +13,15 @@ import {
 
 function PropertyInfo(props) {
   const [state, setState] = useState({
-    neighborhood_id: props.data.neighborhood_id || props.initialState.neighborhood_id || '',
-    type_id: props.data.type_id || props.initialState.type_id || '',
-    price: props.data.price || props.initialState.price || '',
-    purpose_id: props.data.purpose_id || props.initialState.purpose_id || '',
+    neighborhood_id: props.initialState.neighborhood_id || props.data.neighborhood_id || '',
+    type_id: props.initialState.type_id || props.data.type_id || '',
+    price: props.initialState.price || props.data.price || '',
+    purpose_id: Number(props.initialState.purpose_id) || props.data.purpose_id || '',
     isEditing: false,
-    area: props.data.area || props.initialState.area || 0,
-    building_area: props.data.building_area || props.initialState.building_area || 0,
-    neighborhoodList: [],
-    typeList: [],
+    area: props.initialState.area || props.data.area || 0,
+    building_area: props.initialState.building_area || props.data.building_area || 0,
+    neighborhoodList: props.initialState.neighborhoodList || [],
+    typeList: props.initialState.typeList || [],
   });
 
   const handleChange = (e) => {
@@ -42,39 +42,43 @@ function PropertyInfo(props) {
 
 
   useEffect(() => {
-    const fetchBlock = async () => {
-      try {
-        const resultBlock = await db.get('/neighborhood');
-        const options = resultBlock.data.map((item) => item.name);
+    console.log(props.data);
+    if (Object.entries(props.initialState).length === 0
+      && props.initialState.constructor === Object) {
+      const fetchBlock = async () => {
+        try {
+          const resultBlock = await db.get('/neighborhood');
+          const options = resultBlock.data.map((item) => item.name);
 
-        setState((prevState) => ({
-          ...prevState,
-          neighborhoodList: options,
-        }));
-      } catch (error) {
+          setState((prevState) => ({
+            ...prevState,
+            neighborhoodList: options,
+          }));
+        } catch (error) {
         // eslint-disable-next-line no-console
-        console.log(error);
-      }
-    };
+          console.log(error);
+        }
+      };
 
 
-    const fetchType = async () => {
-      try {
-        const resultType = await db.get('/typeofproperty');
-        const options = resultType.data.map((item) => item.type);
+      const fetchType = async () => {
+        try {
+          const resultType = await db.get('/typeofproperty');
+          const options = resultType.data.map((item) => item.type);
 
-        setState((prevState) => ({
-          ...prevState,
-          typeList: options,
-        }));
-      } catch (error) {
+          setState((prevState) => ({
+            ...prevState,
+            typeList: options,
+          }));
+        } catch (error) {
         // eslint-disable-next-line no-console
-        console.log(error);
-      }
-    };
+          console.log(error);
+        }
+      };
 
-    fetchBlock();
-    fetchType();
+      fetchBlock();
+      fetchType();
+    }
   }, []);
 
   const val = React.useRef();

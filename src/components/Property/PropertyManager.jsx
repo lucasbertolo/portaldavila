@@ -20,7 +20,7 @@ class PropertyManager extends React.Component {
       details: {},
       info: {},
       features: {},
-      images: {},
+      images: [],
     };
   }
 

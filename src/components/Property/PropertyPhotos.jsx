@@ -11,29 +11,33 @@ import { db } from '../Helpers/ApiFetch';
 // import { db } from '../Helpers/ApiFetch';
 import DisplayImage from '../Photos/DisplayImage';
 
-import { Button } from '../Common/FormComponents';
-
 class PropertyPhotos extends Component {
   constructor(props) {
     super(props);
     this.state = {
       // success: false,
       message: props.message || '',
-      photos: props.initialState.images || [],
+      photos: props.initialState || [],
     };
   }
 
   async componentDidMount() {
-    try {
-      const resultPhotos = await db.get(`/property/photos/${this.props.data.id}`);
+    if (!this.props.initialState.length > 0) {
+      try {
+        const resultPhotos = await db.get(`/property/photos/${this.props.data.id}`);
 
-      this.setState({
-        photos: resultPhotos.data,
-      });
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.log(error);
+        this.setState({
+          photos: resultPhotos.data,
+        });
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      }
     }
+  }
+
+  componentWillUnmount() {
+    this.props.handleComponent('images', this.state.photos);
   }
 
   removePhoto = (e) => {
@@ -44,10 +48,10 @@ class PropertyPhotos extends Component {
     console.log(e.target);
   }
 
-  forwardData = (e) => {
-    e.preventDefault();
-    this.props.handleComponent('images', this.state.photos);
-  }
+  // forwardData = (e) => {
+  //   e.preventDefault();
+  //   this.props.handleComponent('images', this.state.photos);
+  // }
 
   handleChange = (e) => {
     const { value } = e.target;
@@ -164,7 +168,7 @@ class PropertyPhotos extends Component {
           </div>
 
         </div>
-        <Button text="Salvar" action={this.forwardData} className="editor-save-button" />
+        {/* <Button text="Salvar" action={this.forwardData} className="editor-save-button" /> */}
 
         {message}
 
