@@ -9,12 +9,14 @@
 // Components.
 	@import 'components/form';
 	@import 'components/upload';
-	@import 'components/editor-image';
 	@import 'components/multistage';
 	@import 'components/button';
 	@import 'components/input';
+	@import 'components/icon';
+	@import 'components/shadow';
 
-// Layout.
+// Pages Layout.
+	@import 'layout/displayImage';
 	@import 'layout/layout';
 	
 

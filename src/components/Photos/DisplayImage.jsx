@@ -16,35 +16,29 @@ const DisplayImage = ({
       key={index}
       style={{ gridArea: `grid-${index}` }}
     >
-      <img src={item.src || item.url} alt="property" />
+      <img className="md-shadow" src={item.src || item.url} alt="property" />
 
-      <div className="inputGroup">
-        <Input
-          placeholder="Digite a descrição aqui"
-          name={`alt${index}`}
-          htmlFor={index}
-          value={item.alt}
-          onChange={handleChange}
-          className="input-desc"
-        />
+      <Input
+        placeholder="Digite a descrição aqui"
+        name={`alt${index}`}
+        htmlFor={index}
+        value={item.alt}
+        onChange={handleChange}
+      />
+      <div id={item.src} onClick={removePhoto} className="remove-photo">
+        <i className="input-icon fa">
+          <FontAwesomeIcon
+            icon={faTrashAlt}
+          />
+        </i>
+      </div>
 
-        <div id={item.id} onClick={removePhoto}>
-          <i className="remove-icon fa">
-            <FontAwesomeIcon
-              icon={faTrashAlt}
-            />
-          </i>
-        </div>
-
-        <div id={item.id} onClick={removePhoto}>
-          <i className="remove-icon fa">
-            <FontAwesomeIcon
-              icon={faImage}
-            />
-          </i>
-        </div>
-
-
+      <div id={item.src} onClick={setCover} className="set-cover">
+        <i className="input-icon fa">
+          <FontAwesomeIcon
+            icon={faImage}
+          />
+        </i>
       </div>
     </span>
   ));

@@ -42,7 +42,6 @@ function PropertyInfo(props) {
 
 
   useEffect(() => {
-    console.log(props.data);
     if (Object.entries(props.initialState).length === 0
       && props.initialState.constructor === Object) {
       const fetchBlock = async () => {
@@ -55,7 +54,8 @@ function PropertyInfo(props) {
             neighborhoodList: options,
           }));
         } catch (error) {
-        // eslint-disable-next-line no-console
+          // ADICIONAR MENSAGEM POPUP
+          // eslint-disable-next-line no-console
           console.log(error);
         }
       };
@@ -71,6 +71,7 @@ function PropertyInfo(props) {
             typeList: options,
           }));
         } catch (error) {
+          // ADICIONAR MENSAGEM POPUP
         // eslint-disable-next-line no-console
           console.log(error);
         }

@@ -33,10 +33,6 @@ class PropertyManager extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
   handleSave = () => {
     this.setState((prevState) => ({
       ...prevState,

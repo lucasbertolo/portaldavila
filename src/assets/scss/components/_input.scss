@@ -5,26 +5,3 @@ input:not([type="radio"]) {
   border: 1px solid #ccc;
   text-align: center;
 }
-
-.inputGroup {
-  margin: 5px auto;
-  position: relative;
-  display: table;
-  color: black;
-
-  input{
-    padding: 0px;
-    width: 350px;
-  }
-
-  .fa{
-    cursor: pointer;
-    position: absolute;
-  }  
-  .cover-icon {
-    margin: 40px 10px 40px 0px;
-  }
-  .remove-icon {
-    margin: 40px 10px 40px 0px;
-  }
-}

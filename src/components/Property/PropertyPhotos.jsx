@@ -41,7 +41,12 @@ class PropertyPhotos extends Component {
   }
 
   removePhoto = (e) => {
-    console.log(e.target);
+    const { photos } = this.state;
+    const newList = photos.filter((item) => item.src !== e.target.id);
+
+    this.setState({
+      photos: newList,
+    });
   }
 
   setCover = (e) => {
