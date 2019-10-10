@@ -11,10 +11,11 @@
     "grid-4"
     "grid-5";
 
+  height: 75vh;
   max-height: 75vh;
   margin: 0 auto;
   grid-template-columns: repeat(11, 1fr);
-
+  overflow-y: scroll;
   grid-template-rows: repeat(6, 250px);
   grid-template-areas:
     ". grid-0 grid-0 grid-0 grid-0 . grid-1 grid-1 grid-1 grid-1 ."
@@ -31,7 +32,7 @@
     position: relative;
 
     img {
-      max-height: 85%;
+      height: 85%;
       width: 100%;
     }
 
@@ -50,9 +51,12 @@
       cursor: pointer;
     //   border: 1px solid black;
     }
-
     .set-cover {
       top: 60px;
+    }
+
+    .active{
+      border: 1px solid red;
     }
   }
 }

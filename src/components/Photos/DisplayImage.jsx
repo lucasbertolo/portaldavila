@@ -16,7 +16,11 @@ const DisplayImage = ({
       key={index}
       style={{ gridArea: `grid-${index}` }}
     >
-      <img className="md-shadow" src={item.src || item.url} alt="property" />
+      <img
+        className={item.active ? 'active md-shadow' : 'md-shadow'}
+        src={item.src || item.url}
+        alt="property"
+      />
 
       <Input
         placeholder="Digite a descrição aqui"
