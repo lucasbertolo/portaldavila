@@ -15,7 +15,7 @@
   max-height: 75vh;
   margin: 0 auto;
   grid-template-columns: repeat(11, 1fr);
-  overflow-y: scroll;
+  overflow-y: auto;
   grid-template-rows: repeat(6, 250px);
   grid-template-areas:
     ". grid-0 grid-0 grid-0 grid-0 . grid-1 grid-1 grid-1 grid-1 ."

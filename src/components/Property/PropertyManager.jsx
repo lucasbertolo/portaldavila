@@ -3,7 +3,6 @@ import PropertyInfo from './PropertyInfo';
 import PropertyFeatures from './PropertyFeatures';
 import PropertyDetails from './PropertyDetails';
 
-import { Button } from '../Common/FormComponents';
 import { db } from '../Helpers/ApiFetch';
 
 
@@ -89,7 +88,6 @@ class PropertyManager extends React.Component {
       features,
       images,
     } = this.state;
-
     const steps = [
       {
         name: 'Dados gerais',
@@ -123,18 +121,13 @@ class PropertyManager extends React.Component {
           initialState={images}
         />,
       },
-      {
-        name: 'Finalizar',
-        component: <Button type="button" text="Enviar dados" action={this.onSubmit} />,
-      },
     ];
 
     return (
 
       <form>
-        <MultiStageProgress steps={steps} />
+        <MultiStageProgress steps={steps} onSubmit={this.onSubmit} />
         {sendStatus}
-        {/* <Button type="button" text="Enviar dados" action={this.onSubmit} /> */}
       </form>
 
     );

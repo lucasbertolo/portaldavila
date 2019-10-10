@@ -22,16 +22,25 @@ const getNavStyles = (indx, length) => {
 const getButtonsState = (indx, length) => {
   if (indx > 0 && indx < length - 1) {
     return {
+      showSaveBtn: false,
       showPreviousBtn: true,
       showNextBtn: true,
     };
   } if (indx === 0) {
     return {
+      showSaveBtn: false,
       showPreviousBtn: false,
       showNextBtn: true,
     };
   }
+  if (indx === length - 1) {
+    return {
+      showPreviousBtn: true,
+      showSaveBtn: true,
+    };
+  }
   return {
+    showSaveBtn: false,
     showPreviousBtn: true,
     showNextBtn: false,
   };
@@ -100,6 +109,13 @@ export default function MultiStep(props) {
           type="button"
         >
             Seguinte
+        </button>
+        <button
+          style={buttonsState.showSaveBtn ? {} : { display: 'none' }}
+          onClick={props.onSubmit}
+          type="button"
+        >
+            Salvar
         </button>
       </div>
     </div>
