@@ -14,12 +14,6 @@ function PropertyFeatures(props) {
     garden: props.data.garden || props.initialState.garden || 0,
   });
 
-  // const ForwardData = (e) => {
-  //   e.preventDefault();
-
-  //   props.handleComponent('features', state);
-  // };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
 

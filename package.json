@@ -20,6 +20,7 @@
     "dotenv-webpack": "^1.7.0",
     "es6-promise": "^4.2.8",
     "express": "^4.17.1",
+    "formik": "^1.5.8",
     "next": "^9.0.6",
     "next-manifest": "^2.0.0",
     "node-sass": "^4.12.0",
