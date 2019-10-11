@@ -134,6 +134,7 @@ const Select = (props) => {
     onChange,
     value,
     noIndex,
+    onBlur,
   } = props;
 
 
@@ -161,6 +162,7 @@ const Select = (props) => {
         required={required || null}
         onChange={onChange}
         value={value}
+        onBlur={onBlur}
       >
         <option value="" disabled>Escolha uma opção</option>
 
@@ -170,9 +172,6 @@ const Select = (props) => {
   );
 };
 
-Select.propTypes = {
-  options: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 const TextArea = (props) => {
   const {
@@ -212,6 +211,23 @@ const TextArea = (props) => {
 };
 
 
+// Radio group
+const RadioButtonGroup = ({
+  error,
+  touched,
+  label,
+  children,
+}) => (
+  <div>
+    <fieldset>
+      <legend>{label}</legend>
+      {children}
+      {touched && error}
+    </fieldset>
+  </div>
+);
+
+
 export {
   Radio,
   Select,
@@ -219,4 +235,10 @@ export {
   Input,
   Button,
   TextArea,
+  RadioButtonGroup,
+};
+
+// Validações
+Select.propTypes = {
+  options: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

@@ -84,7 +84,7 @@ export default function PropertyDetails(props) {
 
             {
               Object.keys(initialValues).map((item) => (
-                <div>
+                <div key={item}>
                   <label htmlFor={item}>
                     {item}
                   </label>

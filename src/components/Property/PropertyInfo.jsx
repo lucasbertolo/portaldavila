@@ -8,18 +8,22 @@ import * as Yup from 'yup';
 import {
   Formik, Field,
 } from 'formik';
+import {
+  Select, RadioButtonGroup, Radio, Input,
+} from '../Common/FormComponents';
+
 import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
-import {
-  Select, Input, Radio,
-} from '../Common/FormComponents';
 
 const SignupSchema = Yup.object().shape({
   area: Yup.number()
-    .min(0, 'Too Short!')
-    .max(20000, 'Too Long!'),
+    .min(0)
+    .required('Valor requerido'),
+  building_area: Yup.number()
+    .lessThan(Yup.ref('area'), 'Área construída deve ser menor que a área total'),
 });
+
 function PropertyInfo(props) {
   const initialValues = {
     neighborhood_id: props.initialState.neighborhood_id || props.data.neighborhood_id || '',
@@ -28,6 +32,7 @@ function PropertyInfo(props) {
     purpose_id: Number(props.initialState.purpose_id) || props.data.purpose_id || '',
     area: props.initialState.area || props.data.area || 0,
     building_area: props.initialState.building_area || props.data.building_area || 0,
+    radioGroup: '',
   };
 
   const [state, setState] = useState({
@@ -36,16 +41,6 @@ function PropertyInfo(props) {
     typeList: props.initialState.typeList || [],
   });
 
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-
-  //   setState((prevState) => ({
-  //     ...prevState,
-  //     [name]: value,
-  //   }));
-  // };
-
-
   const toggleEditing = () => {
     setState((prevState) => ({
       ...prevState,
@@ -53,163 +48,43 @@ function PropertyInfo(props) {
     }));
   };
 
-
   useEffect(() => {
-    if (Object.entries(props.initialState).length === 0
-      && props.initialState.constructor === Object) {
-      const fetchBlock = async () => {
-        try {
-          const resultBlock = await db.get('/neighborhood');
-          const options = resultBlock.data.map((item) => item.name);
+    const fetchBlock = async () => {
+      try {
+        const resultBlock = await db.get('/neighborhood');
+        const options = resultBlock.data.map((item) => item.name);
 
-          setState((prevState) => ({
-            ...prevState,
-            neighborhoodList: options,
-          }));
-        } catch (error) {
-          // ADICIONAR MENSAGEM POPUP
-          // eslint-disable-next-line no-console
-          console.log(error);
-        }
-      };
-      const fetchType = async () => {
-        try {
-          const resultType = await db.get('/typeofproperty');
-          const options = resultType.data.map((item) => item.type);
-
-          setState((prevState) => ({
-            ...prevState,
-            typeList: options,
-          }));
-        } catch (error) {
-          // ADICIONAR MENSAGEM POPUP
+        setState((prevState) => ({
+          ...prevState,
+          neighborhoodList: options,
+        }));
+      } catch (error) {
+        // ADICIONAR MENSAGEM POPUP
         // eslint-disable-next-line no-console
-          console.log(error);
-        }
-      };
+        console.log(error);
+      }
+    };
+    const fetchType = async () => {
+      try {
+        const resultType = await db.get('/typeofproperty');
+        const options = resultType.data.map((item) => item.type);
 
-      fetchBlock();
-      fetchType();
-    }
+        setState((prevState) => ({
+          ...prevState,
+          typeList: options,
+        }));
+      } catch (error) {
+        // ADICIONAR MENSAGEM POPUP
+        // eslint-disable-next-line no-console
+        console.log(error);
+      }
+    };
+
+    fetchBlock();
+    fetchType();
   }, []);
 
-  // const val = React.useRef();
-  // useEffect(
-  //   () => {
-  //     val.current = state;
-  //   },
-  //   [state],
-  // );
-  // useEffect(
-  //   () => () => props.handleComponent('info', val.current),
-  //   [val],
-  // );
-
   return (
-  // <div className="form">
-  //   <Select
-  //     hasLabel
-  //     htmlFor="neighborhood-list"
-  //     label="Bairro"
-  //     options={state.neighborhoodList}
-  //     onChange={handleChange}
-  //     name="neighborhood_id"
-  //     value={state.neighborhood_id}
-  //   />
-
-  //   <Select
-  //     hasLabel
-  //     htmlFor="property-type"
-  //     label="Tipo de imóvel"
-  //     options={state.typeList}
-  //     onChange={handleChange}
-  //     name="type_id"
-  //     value={state.type_id}
-  //   />
-
-  //   <Radio
-  //     hasLabel
-  //     htmlFor="radioOne"
-  //     label="Locação"
-  //     name="purpose_id"
-  //     onChange={handleChange}
-  //     value={enums.purposeOfProperty.renting}
-  //     state={state.purpose_id === enums.purposeOfProperty.renting ? 'checked' : null}
-  //     required
-  //   />
-
-  //   <Radio
-  //     hasLabel
-  //     htmlFor="radioTwo"
-  //     label="Venda"
-  //     onChange={handleChange}
-  //     value={enums.purposeOfProperty.selling}
-  //     name="purpose_id"
-  //     state={state.purpose_id === enums.purposeOfProperty.selling ? 'checked' : null}
-  //     required
-  //   />
-
-  //   {
-  //       state.isEditing
-  //         ? (
-  //           <Input
-  //             hasLabel
-  //             htmlFor="price"
-  //             onChange={handleChange}
-  //             label="Preço"
-  //             required
-  //             type="number"
-  //             name="price"
-  //             value={state.price}
-  //             onBlur={toggleEditing}
-  //           />
-  //         )
-  //         : (
-  //           <Input
-  //             hasLabel
-  //             htmlFor="price"
-  //             onChange={handleChange}
-  //             label="Preço"
-  //             required
-  //             type="text"
-  //             name="price"
-  //             value={state.price}
-  //             onFocus={toggleEditing}
-  //             currency
-  //           />
-  //         )
-
-  //   }
-
-  //   <Input
-  //     hasLabel
-  //     htmlFor="area"
-  //     onChange={handleChange}
-  //     label="Área"
-  //     required
-  //     type="number"
-  //     name="area"
-  //     value={state.area}
-  //     min="0"
-  //     max="1000000000"
-  //     step="10"
-  //   />
-
-  //   <Input
-  //     hasLabel
-  //     htmlFor="building_area"
-  //     onChange={handleChange}
-  //     label="Área Construída"
-  //     required
-  //     type="number"
-  //     name="building_area"
-  //     value={state.building_area}
-  //     min="0"
-  //     max="100000000"
-  //     step="10"
-  //   />
-
-    // </div>
     <Formik
       initialValues={initialValues}
       validationSchema={SignupSchema}
@@ -228,9 +103,98 @@ function PropertyInfo(props) {
             <Effect
               formik={formikProps}
             />
+
+
+            <Select
+              hasLabel
+              htmlFor="neighborhood-list"
+              label="Bairro"
+              options={state.neighborhoodList}
+              onChange={handleChange}
+              name="neighborhood_id"
+              onBlur={handleBlur}
+              value={values.neighborhood_id}
+            />
+
+            <Select
+              hasLabel
+              htmlFor="property-type"
+              label="Tipo de imóvel"
+              options={state.typeList}
+              onChange={handleChange}
+              name="type_id"
+              value={values.type_id}
+            />
+
+            <RadioButtonGroup
+              id="purpose_id"
+              value={values.purpose_id}
+              error={errors.purpose_id}
+              touched={touched.purpose_id}
+            >
+              <Radio
+                hasLabel
+                htmlFor="radioTwo"
+                label="Venda"
+                onChange={handleChange}
+                value={enums.purposeOfProperty.selling || ''}
+                name="purpose_id"
+                state={values.purpose_id === enums.purposeOfProperty.selling ? 'checked' : null}
+                required
+              />
+
+              <Radio
+                hasLabel
+                htmlFor="radioTwo"
+                label="Locação"
+                onChange={handleChange}
+                value={enums.purposeOfProperty.renting || ''}
+                name="purpose_id"
+                state={values.purpose_id === enums.purposeOfProperty.renting ? 'checked' : null}
+                required
+              />
+
+              {errors.purpose_id && touched.purpose_id ? (
+                <div>{errors.purpose_id}</div>
+              ) : null}
+
+            </RadioButtonGroup>
+
+            {
+              state.isEditing
+                ? (
+                  <Input
+                    hasLabel
+                    htmlFor="price"
+                    onChange={handleChange}
+                    label="Preço"
+                    required
+                    type="number"
+                    name="price"
+                    value={values.price}
+                    onBlur={toggleEditing}
+                  />
+                )
+                : (
+                  <Input
+                    hasLabel
+                    htmlFor="price"
+                    onChange={handleChange}
+                    label="Preço"
+                    required
+                    type="text"
+                    name="price"
+                    value={values.price}
+                    onFocus={toggleEditing}
+                    currency
+                  />
+                )
+
+            }
+
             <div>
               <label htmlFor="area">
-                {'Area'}
+                {'Area m²'}
               </label>
               <Field
                 type="number"
@@ -241,6 +205,21 @@ function PropertyInfo(props) {
               />
               {errors.area && touched.area ? (
                 <div>{errors.area}</div>
+              ) : null}
+            </div>
+            <div>
+              <label htmlFor="building_area">
+                {'Area construída - m²'}
+              </label>
+              <Field
+                type="number"
+                name="building_area"
+                value={values.building_area}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.building_area && touched.building_area ? (
+                <div>{errors.building_area}</div>
               ) : null}
             </div>
 
