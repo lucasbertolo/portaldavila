@@ -129,10 +129,10 @@ class PropertyManager extends React.Component {
 
     return (
 
-      <form>
+      <div>
         <MultiStageProgress steps={steps} onSubmit={this.onSubmit} />
         {sendStatus}
-      </form>
+      </div>
 
     );
   }
