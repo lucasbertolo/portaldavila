@@ -48,7 +48,17 @@ class PropertyPhotos extends Component {
   // TODO - IF IS EDIT STAGE - DELETE IN DB
   removePhoto = (e) => {
     const { photos } = this.state;
-    const newList = photos.filter((item) => item.url !== e.target.id);
+
+    if (Number(e.target.id)) {
+      db.delete(`/property/photos/${e.target.id}`);
+    }
+
+    const newList = photos.filter((item) => {
+      if (item.id) {
+        return item.id !== Number(e.target.id);
+      }
+      return item.url !== e.target.id;
+    });
 
     this.setState({
       photos: newList,
@@ -57,6 +67,12 @@ class PropertyPhotos extends Component {
 
   setCover = (e) => {
     const { photos } = this.state;
+
+    // TO DO - SET COVER ON UPDATE
+
+    // if (Number(e.target.id)) {
+    //   db.post(`/property/cover/${e.target.id}`);
+    // }
 
     // eslint-disable-next-line no-param-reassign
     photos.map((el) => { el.active = false; });
@@ -68,11 +84,6 @@ class PropertyPhotos extends Component {
       photos,
     });
   }
-
-  // forwardData = (e) => {
-  //   e.preventDefault();
-  //   this.props.handleComponent('images', this.state.photos);
-  // }
 
   handleChange = (e) => {
     const { value } = e.target;
@@ -162,13 +173,6 @@ class PropertyPhotos extends Component {
 
 
   render() {
-    // const SuccessMessage = () => (
-    //   <div style={{ padding: 50 }}>
-    //     <h3 style={{ color: 'green' }}>SUCCESSFUL UPLOAD</h3>
-    //     <a href={this.state.url}>Access the file here</a>
-    //     <br />
-    //   </div>
-    // );
     const { message, photos } = this.state;
 
     return (

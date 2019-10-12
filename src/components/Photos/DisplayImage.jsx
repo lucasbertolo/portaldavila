@@ -29,7 +29,7 @@ const DisplayImage = ({
         value={item.alt}
         onChange={handleChange}
       />
-      <div id={item.url} onClick={removePhoto} className="remove-photo">
+      <div id={item.id || item.url} onClick={removePhoto} className="remove-photo">
         <i className="input-icon fa">
           <FontAwesomeIcon
             icon={faTrashAlt}
