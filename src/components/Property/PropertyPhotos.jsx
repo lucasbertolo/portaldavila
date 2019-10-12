@@ -21,14 +21,16 @@ class PropertyPhotos extends Component {
   }
 
   async componentDidMount() {
-    const { initialState, data } = this.props;
-    if (!initialState.length > 0) {
+    const { data, getServerData, handleRequest } = this.props;
+    if (getServerData) {
       try {
         const resultPhotos = await db.get(`/property/photos/${data.id}`);
 
         this.setState({
           photos: resultPhotos.data,
         });
+
+        handleRequest();
       } catch (error) {
         // eslint-disable-next-line no-console
         console.log(error);
@@ -43,9 +45,10 @@ class PropertyPhotos extends Component {
     handleComponent('images', photos);
   }
 
+  // TODO - IF IS EDIT STAGE - DELETE IN DB
   removePhoto = (e) => {
     const { photos } = this.state;
-    const newList = photos.filter((item) => item.src !== e.target.id);
+    const newList = photos.filter((item) => item.url !== e.target.id);
 
     this.setState({
       photos: newList,
@@ -58,7 +61,7 @@ class PropertyPhotos extends Component {
     // eslint-disable-next-line no-param-reassign
     photos.map((el) => { el.active = false; });
 
-    const index = photos.findIndex((x) => x.src === e.target.id);
+    const index = photos.findIndex((x) => x.url === e.target.id);
     photos[index].active = true;
 
     this.setState({
@@ -144,7 +147,7 @@ class PropertyPhotos extends Component {
         .then((res) => {
           const url = res.data.message;
           // const { photos } = this.state;
-          photos.push({ src: url });
+          photos.push({ url });
 
           this.setState({
             photos,

@@ -18,7 +18,7 @@ const DisplayImage = ({
     >
       <img
         className={item.active ? 'active md-shadow' : 'md-shadow'}
-        src={item.src || item.url}
+        src={item.url}
         alt="property"
       />
 
@@ -29,7 +29,7 @@ const DisplayImage = ({
         value={item.alt}
         onChange={handleChange}
       />
-      <div id={item.src} onClick={removePhoto} className="remove-photo">
+      <div id={item.url} onClick={removePhoto} className="remove-photo">
         <i className="input-icon fa">
           <FontAwesomeIcon
             icon={faTrashAlt}
@@ -37,7 +37,7 @@ const DisplayImage = ({
         </i>
       </div>
 
-      <div id={item.src} onClick={setCover} className="set-cover">
+      <div id={item.url} onClick={setCover} className="set-cover">
         <i className="input-icon fa">
           <FontAwesomeIcon
             icon={faImage}

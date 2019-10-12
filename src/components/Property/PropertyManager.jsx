@@ -20,6 +20,7 @@ class PropertyManager extends React.Component {
       info: {},
       features: {},
       images: [],
+      getServerData: true,
     };
   }
 
@@ -32,15 +33,10 @@ class PropertyManager extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
-  handleSave = () => {
-    this.setState((prevState) => ({
-      ...prevState,
-      saveData: !prevState.saveData,
-    }));
+  handleRequest = () => {
+    this.setState({
+      getServerData: false,
+    });
   }
 
 
@@ -91,6 +87,7 @@ class PropertyManager extends React.Component {
       details,
       features,
       images,
+      getServerData,
     } = this.state;
     const steps = [
       {
@@ -123,6 +120,8 @@ class PropertyManager extends React.Component {
           handleComponent={this.handleComponent}
           data={this.props}
           initialState={images}
+          getServerData={getServerData}
+          handleRequest={this.handleRequest}
         />,
       },
     ];
