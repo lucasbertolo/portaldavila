@@ -9,6 +9,7 @@ import { db } from '../Helpers/ApiFetch';
 // import { Button } from '../Common/FormComponents';
 import PropertyPhotos from './PropertyPhotos';
 import MultiStageProgress from '../Common/MultiStageProgress';
+import HouseDescription from '../HouseDescription/HouseDescription';
 
 class PropertyManager extends React.Component {
   constructor(props) {
@@ -122,6 +123,13 @@ class PropertyManager extends React.Component {
           initialState={images}
           getServerData={getServerData}
           handleRequest={this.handleRequest}
+        />,
+      },
+      {
+        name: 'Resumo',
+        component: <HouseDescription
+          data={this.props}
+          initialState={this.state}
         />,
       },
     ];
