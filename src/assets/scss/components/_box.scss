@@ -1,0 +1,65 @@
+
+.box {
+  width: 350px;
+  margin: 48px auto;
+  padding: 16px;
+  position: relative;
+  height: 350px;
+  background: green;
+}
+
+// .box > img {
+//   width: 400px;
+//   height: 300px;
+//   opacity: .5;
+//   object-fit: cover;
+// }
+
+.box::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: $pad;
+  right: $pad;
+  left: $pad;
+  bottom: $pad - $space + 7px;
+  border: solid $stroke white;
+  border-bottom: 0;
+}
+
+.text {
+  color: white; 
+  position: absolute;
+  text-align: center;
+  bottom: $pad - $space;
+  left: $pad;
+  right: $pad;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: 'fjalla one', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.text > div {
+  width: 2000px;
+  margin-left: -1 * (2000px - (350px - $pad)) / 2;
+}
+
+.innertext::before,
+.innertext::after {
+  content: '';
+  display: inline-block;
+  width: 600px;
+  height: $stroke;
+  background: white;
+  vertical-align: middle;
+}
+  
+.innertext::before {
+  margin-right: 16px;
+}
+
+.innertext::after {
+  margin-left: 16px;
+}

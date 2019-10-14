@@ -1,0 +1,64 @@
+.hs-wrapper {
+  height: 75vh;
+  overflow: auto;
+  width: 100%;
+  position: relative;
+
+  h1,
+  h2 {
+    text-align: center;
+    font-size: 2em;
+  }
+}
+
+.general-info{
+  position: absolute;
+  height: 50vh;
+  width: 250px;
+  top: 25%;
+  left:0;
+  background: purple;
+}
+
+.visit-button {
+  position: fixed;
+  bottom: 5px;
+  right: 10px;
+}
+
+.info-box {
+  width: 80%;
+  min-height: 40vh;
+  display: flex;
+  background: orange;
+  margin: auto;
+  justify-content: space-between;
+
+  .map-container {
+    background: blue;
+    width: 50vmin;
+    height: 300px;
+    margin-left: 10%;
+  }
+
+  .contact-container {
+    background: grey;
+    width: 50vmin;
+    height: 300px;
+    margin-right: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.box-wrapper {
+  background: orange;
+  width: 60%;
+  margin: auto;
+  display: flex;
+  min-height: 20vh;
+  padding: 20px;
+  margin-bottom: 10px;
+  background: linear-gradient(to top right, red calc(50% - 1px), #aaa, purple calc(50% + 1px) )
+}
