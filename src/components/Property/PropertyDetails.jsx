@@ -76,13 +76,15 @@ export default function PropertyDetails(props) {
         } = formikProps;
 
         return (
-          <form noValidate onSubmit={handleSubmit}>
+          <div className="form-style-5">
 
-            <Effect
-              formik={formikProps}
-            />
+            <form noValidate onSubmit={handleSubmit}>
 
-            {
+              <Effect
+                formik={formikProps}
+              />
+
+              {
               Object.keys(initialValues).map((item) => (
                 <div key={item}>
                   <label htmlFor={item}>
@@ -94,6 +96,7 @@ export default function PropertyDetails(props) {
                     value={values[item]}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    className="number"
                   />
                   {errors[item] && touched[item] ? (
                     <div>{errors[item]}</div>
@@ -101,7 +104,8 @@ export default function PropertyDetails(props) {
                 </div>
               ))
             }
-          </form>
+            </form>
+          </div>
         );
       }}
     </Formik>

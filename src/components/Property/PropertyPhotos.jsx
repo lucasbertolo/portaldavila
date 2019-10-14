@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { db } from '../Helpers/ApiFetch';
 
 // import { db } from '../Helpers/ApiFetch';
@@ -193,7 +193,7 @@ class PropertyPhotos extends Component {
               type="file"
             />
             <FontAwesomeIcon
-              icon={faArrowUp}
+              icon={faUpload}
             />
             <br />
           </div>

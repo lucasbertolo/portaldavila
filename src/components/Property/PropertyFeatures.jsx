@@ -38,84 +38,87 @@ function PropertyFeatures(props) {
   const standardOption = ['Não', 'Sim'];
 
   return (
-    <div className="form">
-      <TextArea
-        hasLabel
-        htmlFor="description"
-        label="Descrição"
-        name="description"
-        onChange={handleChange}
-        rows={2}
-        value={state.description}
-        placeholder="Descreva o imóvel"
-      />
+    <div className="form-style-5">
 
-      <Select
-        hasLabel
-        htmlFor="air_conditioning"
-        label="Ar condicionado"
-        options={standardOption}
-        onChange={handleChange}
-        name="air_conditioning"
-        value={state.air_conditioning}
-        noIndex
-      />
+      <div className="form">
+        <TextArea
+          hasLabel
+          htmlFor="description"
+          label="Descrição"
+          name="description"
+          onChange={handleChange}
+          rows={2}
+          value={state.description}
+          placeholder="Descreva o imóvel"
+        />
 
-      <Select
-        hasLabel
-        htmlFor="pool"
-        label="Piscina"
-        options={standardOption}
-        onChange={handleChange}
-        name="pool"
-        value={state.pool}
-        noIndex
-      />
+        <Select
+          hasLabel
+          htmlFor="air_conditioning"
+          label="Ar condicionado"
+          options={standardOption}
+          onChange={handleChange}
+          name="air_conditioning"
+          value={state.air_conditioning}
+          noIndex
+        />
 
-      <Select
-        hasLabel
-        htmlFor="balcony"
-        label="Sacada"
-        options={standardOption}
-        onChange={handleChange}
-        name="balcony"
-        value={state.balcony}
-        noIndex
-      />
+        <Select
+          hasLabel
+          htmlFor="pool"
+          label="Piscina"
+          options={standardOption}
+          onChange={handleChange}
+          name="pool"
+          value={state.pool}
+          noIndex
+        />
 
-      <Select
-        hasLabel
-        htmlFor="barbecue_grill"
-        label="Churrasqueira"
-        options={standardOption}
-        onChange={handleChange}
-        name="barbecue_grill"
-        value={state.barbecue_grill}
-        noIndex
-      />
+        <Select
+          hasLabel
+          htmlFor="balcony"
+          label="Sacada"
+          options={standardOption}
+          onChange={handleChange}
+          name="balcony"
+          value={state.balcony}
+          noIndex
+        />
 
-      <Select
-        hasLabel
-        htmlFor="stairway"
-        label="Escada"
-        options={standardOption}
-        onChange={handleChange}
-        name="stairway"
-        value={state.stairway}
-        noIndex
-      />
+        <Select
+          hasLabel
+          htmlFor="barbecue_grill"
+          label="Churrasqueira"
+          options={standardOption}
+          onChange={handleChange}
+          name="barbecue_grill"
+          value={state.barbecue_grill}
+          noIndex
+        />
 
-      <Select
-        hasLabel
-        htmlFor="garden"
-        label="Jardim"
-        options={standardOption}
-        onChange={handleChange}
-        name="garden"
-        value={state.garden}
-        noIndex
-      />
+        <Select
+          hasLabel
+          htmlFor="stairway"
+          label="Escada"
+          options={standardOption}
+          onChange={handleChange}
+          name="stairway"
+          value={state.stairway}
+          noIndex
+        />
 
+        <Select
+          hasLabel
+          htmlFor="garden"
+          label="Jardim"
+          options={standardOption}
+          onChange={handleChange}
+          name="garden"
+          value={state.garden}
+          noIndex
+        />
+
+      </div>
     </div>
   );
 }

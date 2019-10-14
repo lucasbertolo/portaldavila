@@ -98,69 +98,71 @@ function PropertyInfo(props) {
         } = formikProps;
 
         return (
-          <form noValidate onSubmit={handleSubmit}>
+          <div className="form-style-5">
 
-            <Effect
-              formik={formikProps}
-            />
+            <form noValidate onSubmit={handleSubmit}>
 
-
-            <Select
-              hasLabel
-              htmlFor="neighborhood-list"
-              label="Bairro"
-              options={state.neighborhoodList}
-              onChange={handleChange}
-              name="neighborhood_id"
-              onBlur={handleBlur}
-              value={values.neighborhood_id}
-            />
-
-            <Select
-              hasLabel
-              htmlFor="property-type"
-              label="Tipo de imóvel"
-              options={state.typeList}
-              onChange={handleChange}
-              name="type_id"
-              value={values.type_id}
-            />
-
-            <RadioButtonGroup
-              id="purpose_id"
-              value={values.purpose_id}
-              error={errors.purpose_id}
-              touched={touched.purpose_id}
-            >
-              <Radio
-                hasLabel
-                htmlFor="radioTwo"
-                label="Venda"
-                onChange={handleChange}
-                value={enums.purposeOfProperty.selling || ''}
-                name="purpose_id"
-                state={values.purpose_id === enums.purposeOfProperty.selling ? 'checked' : null}
-                required
+              <Effect
+                formik={formikProps}
               />
 
-              <Radio
+
+              <Select
                 hasLabel
-                htmlFor="radioTwo"
-                label="Locação"
+                htmlFor="neighborhood-list"
+                label="Bairro"
+                options={state.neighborhoodList}
                 onChange={handleChange}
-                value={enums.purposeOfProperty.renting || ''}
-                name="purpose_id"
-                state={values.purpose_id === enums.purposeOfProperty.renting ? 'checked' : null}
-                required
+                name="neighborhood_id"
+                onBlur={handleBlur}
+                value={values.neighborhood_id}
               />
 
-              {errors.purpose_id && touched.purpose_id ? (
-                <div>{errors.purpose_id}</div>
-              ) : null}
+              <Select
+                hasLabel
+                htmlFor="property-type"
+                label="Tipo de imóvel"
+                options={state.typeList}
+                onChange={handleChange}
+                name="type_id"
+                value={values.type_id}
+              />
 
-            </RadioButtonGroup>
+              <RadioButtonGroup
+                id="purpose_id"
+                value={values.purpose_id}
+                error={errors.purpose_id}
+                touched={touched.purpose_id}
+              >
+                <Radio
+                  hasLabel
+                  htmlFor="radioTwo"
+                  label="Venda"
+                  onChange={handleChange}
+                  value={enums.purposeOfProperty.selling || ''}
+                  name="purpose_id"
+                  state={values.purpose_id === enums.purposeOfProperty.selling ? 'checked' : null}
+                  required
+                />
 
-            {
+                <Radio
+                  hasLabel
+                  htmlFor="radioTwo"
+                  label="Locação"
+                  onChange={handleChange}
+                  value={enums.purposeOfProperty.renting || ''}
+                  name="purpose_id"
+                  state={values.purpose_id === enums.purposeOfProperty.renting ? 'checked' : null}
+                  required
+                />
+
+                {errors.purpose_id && touched.purpose_id ? (
+                  <div>{errors.purpose_id}</div>
+                ) : null}
+
+              </RadioButtonGroup>
+
+              {
               state.isEditing
                 ? (
                   <Input
@@ -192,38 +194,40 @@ function PropertyInfo(props) {
 
             }
 
-            <div>
-              <label htmlFor="area">
-                {'Area m²'}
-              </label>
-              <Field
-                type="number"
-                name="area"
-                value={values.area}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.area && touched.area ? (
-                <div>{errors.area}</div>
-              ) : null}
-            </div>
-            <div>
-              <label htmlFor="building_area">
-                {'Area construída - m²'}
-              </label>
-              <Field
-                type="number"
-                name="building_area"
-                value={values.building_area}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              {errors.building_area && touched.building_area ? (
-                <div>{errors.building_area}</div>
-              ) : null}
-            </div>
+              <div>
+                <label htmlFor="area">
+                  {'Area m²'}
+                </label>
+                <Field
+                  type="number"
+                  name="area"
+                  value={values.area}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.area && touched.area ? (
+                  <div>{errors.area}</div>
+                ) : null}
+              </div>
+              <div>
+                <label htmlFor="building_area">
+                  {'Area construída - m²'}
+                </label>
+                <Field
+                  type="number"
+                  name="building_area"
+                  value={values.building_area}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.building_area && touched.building_area ? (
+                  <div>{errors.building_area}</div>
+                ) : null}
+              </div>
 
-          </form>
+            </form>
+          </div>
+
         );
       }}
     </Formik>
