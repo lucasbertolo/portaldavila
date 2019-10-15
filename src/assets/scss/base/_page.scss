@@ -33,10 +33,17 @@ ul {
   margin: 0;
 }
 
+::-webkit-scrollbar {
+  width: 0px;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
 html,
 body {
   min-height: 100%;
   width: 100%;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 a {

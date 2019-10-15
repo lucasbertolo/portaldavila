@@ -15,6 +15,11 @@ app.prepare().then(() => {
     app.render(req, res, actualPage, queryParams);
   });
 
+  server.get('/team', (req, res) => {
+    const actualPage = '/team';
+    app.render(req, res, actualPage);
+  });
+
   server.get('*', (req, res) => handle(req, res));
 
 

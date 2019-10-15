@@ -52,13 +52,21 @@
   }
 }
 
-.box-wrapper {
-  background: orange;
+// .box-wrapper {
+//   background: orange;
+//   width: 60%;
+//   margin: auto;
+//   display: flex;
+//   min-height: 20vh;
+//   padding: 20px;
+//   margin-bottom: 10px;
+//   background: linear-gradient(to top right, red calc(50% - 1px), #aaa, purple calc(50% + 1px) )
+// }
+
+.box-wrapper{
+  background-image: url('https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/bg-card_GsehVK3Wf.svg');
   width: 60%;
   margin: auto;
   display: flex;
-  min-height: 20vh;
   padding: 20px;
-  margin-bottom: 10px;
-  background: linear-gradient(to top right, red calc(50% - 1px), #aaa, purple calc(50% + 1px) )
 }

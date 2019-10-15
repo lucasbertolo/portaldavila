@@ -5,7 +5,6 @@
   padding: 16px;
   position: relative;
   height: 350px;
-  background: green;
 }
 
 // .box > img {
@@ -23,7 +22,7 @@
   right: $pad;
   left: $pad;
   bottom: $pad - $space + 7px;
-  border: solid $stroke white;
+  border: solid $stroke $color5;
   border-bottom: 0;
 }
 
@@ -52,7 +51,7 @@
   display: inline-block;
   width: 600px;
   height: $stroke;
-  background: white;
+  background: $color5;
   vertical-align: middle;
 }
   
