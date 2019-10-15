@@ -1,13 +1,12 @@
 import React from 'react';
+
 import PropertyInfo from './PropertyInfo';
 import PropertyFeatures from './PropertyFeatures';
 import PropertyDetails from './PropertyDetails';
+import PropertyPhotos from './PropertyPhotos';
 
 import { db } from '../Helpers/ApiFetch';
 
-
-// import { Button } from '../Common/FormComponents';
-import PropertyPhotos from './PropertyPhotos';
 import MultiStageProgress from '../Common/MultiStageProgress';
 import HouseDescription from '../HouseDescription/HouseDescription';
 
