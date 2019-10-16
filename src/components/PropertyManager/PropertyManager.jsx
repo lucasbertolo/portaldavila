@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { ToastProvider } from 'react-toast-notifications/dist/ToastProvider';
 import PropertyInfo from './PropertyInfo';
 import PropertyFeatures from './PropertyFeatures';
 import PropertyDetails from './PropertyDetails';
@@ -136,7 +137,9 @@ class PropertyManager extends React.Component {
     return (
 
       <div>
-        <MultiStageProgress steps={steps} onSubmit={this.onSubmit} />
+        <ToastProvider>
+          <MultiStageProgress steps={steps} onSubmit={this.onSubmit} />
+        </ToastProvider>
         {sendStatus}
       </div>
 

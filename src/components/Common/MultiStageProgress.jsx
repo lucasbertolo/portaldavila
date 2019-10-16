@@ -4,6 +4,8 @@
 
 import React, { useState } from 'react';
 
+import { useToasts } from 'react-toast-notifications';
+
 const getNavStyles = (indx, length) => {
   const styles = [];
   // eslint-disable-next-line no-plusplus
@@ -57,6 +59,8 @@ export default function MultiStep(props) {
     setButtons(getButtonsState(indx, props.steps.length));
   }
 
+  const { addToast } = useToasts();
+
   const next = () => setStepState(compState + 1);
 
   const previous = () => setStepState((compState > 0) ? compState - 1 : compState);
@@ -65,7 +69,7 @@ export default function MultiStep(props) {
 
   const handleOnClick = (evt) => {
     // eslint-disable-next-line max-len
-
+    addToast('Saved Successfully', { appearance: 'success' });
     if (evt.currentTarget.value === props.steps.length - 1
       && compState === props.steps.length - 1) {
       setStepState(props.steps.length);

@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 
+import Popup from '../Helpers/Popup';
 import { db } from '../Helpers/ApiFetch';
 
 import SliderImages from './SliderImages';
@@ -64,6 +65,7 @@ export default class HouseDescription extends React.Component {
         </div>
 
         <VisitButton />
+        <Popup />
       </div>
 
 

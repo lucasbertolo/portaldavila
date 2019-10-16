@@ -1,8 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:400,900&display=swap');
-
-*, *::before, *::afrer {
-  box-sizing: border-box;
-}
 
 $color-grey-1: #dfdfdf;
 $color-white-1: #ffffff;
@@ -19,12 +14,6 @@ $fw--2: 900;
 @mixin body() {
   font-family: $roboto;
   font-weight: $fw--1;
-}
-
-body {
-  width: 1000px;
-  margin: 50px auto 0;
-  background: $color-grey-1;
 }
 
 .c_50_50 {
@@ -69,13 +58,8 @@ body {
   }
 }
 
-// method second
 .c_50_50_first_second {
-  overflow: hidden; // mark everyting out.
-  
-  .c_50_50_image img {
-    
-  }
+  overflow: hidden;
 }
 
 
