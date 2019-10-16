@@ -60,7 +60,6 @@ export default class HouseDescription extends React.Component {
         <MainBox />
 
         <div className="info-box">
-          <Maps />
           <ContactBox />
         </div>
 

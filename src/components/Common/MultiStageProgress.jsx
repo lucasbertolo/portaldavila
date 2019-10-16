@@ -68,7 +68,6 @@ export default function MultiStep(props) {
   const handleKeyDown = (evt) => (evt.which === 13 ? next(props.steps.length) : {});
 
   const handleOnClick = (evt) => {
-    // eslint-disable-next-line max-len
     addToast('Saved Successfully', { appearance: 'success' });
     if (evt.currentTarget.value === props.steps.length - 1
       && compState === props.steps.length - 1) {
