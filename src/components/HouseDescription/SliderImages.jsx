@@ -4,7 +4,7 @@ const SliderImages = ({ images }) => (
   <div className="container-slider">
     <ul className="slides md-shadow">
       {images.map((item, index) => (
-        <li id={index}><img src={item.url} alt={item.alt} /></li>
+        <li key={item.url} id={index}><img src={item.url} alt={item.alt} /></li>
       ))}
     </ul>
     <ul className="thumbnails">

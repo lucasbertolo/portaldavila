@@ -28,6 +28,7 @@
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-spinners": "^0.6.1",
     "react-toast-notifications": "^2.2.5",
     "reactjs-popup": "^1.5.0",
     "yup": "^0.27.0"
@@ -42,6 +43,8 @@
     "eslint-plugin-react-hooks": "^1.7.0",
     "nodemon": "^1.19.2"
   },
+  "presets": ["@babel/preset-react", "@babel/preset-env"],
+  "plugins": ["emotion"],
   "description": "Portal da Vila Imoveis - Imobiliaria em Piracicaba - Sao Paulo ",
   "repository": "git@github.com:lucasbertolo/portaldavila.git",
   "author": "Lucas <lucasbertolo2@gmail.com>"

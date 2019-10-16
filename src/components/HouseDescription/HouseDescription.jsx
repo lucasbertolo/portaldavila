@@ -2,6 +2,8 @@
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import React from 'react';
 
+import { RingLoader } from 'react-spinners';
+
 import Popup from '../Helpers/Popup';
 import { db } from '../Helpers/ApiFetch';
 
@@ -20,6 +22,7 @@ export default class HouseDescription extends React.Component {
     this.state = {
       neighborhoodList: [],
       typeList: [],
+      isLoading: false,
     };
   }
 
@@ -37,37 +40,51 @@ export default class HouseDescription extends React.Component {
     }));
   }
 
-
   render() {
-    const { typeList, neighborhoodList } = this.state;
+    const { typeList, neighborhoodList, isLoading } = this.state;
 
     const { initialState } = this.props;
     const { type_id, neighborhood_id } = initialState.info;
     const { images } = initialState;
 
     return (
-      <div className="hs-wrapper">
-        <HouseTitle
-          typeId={type_id}
-          neighId={neighborhood_id}
-          typeList={typeList}
-          neighborhoodList={neighborhoodList}
-        />
+      <div>
+        {
+        isLoading
+          ? (
+            <div style={{ margin: 'auto', height: '400px' }}>
+              <RingLoader
+                size={150}
+                color="#123abc"
+                loading={isLoading}
+              />
+            </div>
+          )
+          : (
+            <div className="hs-wrapper">
 
+              <HouseTitle
+                typeId={type_id}
+                neighId={neighborhood_id}
+                typeList={typeList}
+                neighborhoodList={neighborhoodList}
+              />
 
-        <HouseInfo info={initialState.info} />
-        <SliderImages images={images} />
-        <MainBox />
+              <HouseInfo info={initialState.info} />
+              <SliderImages images={images} />
+              <MainBox />
 
-        <div className="info-box">
-          <ContactBox />
-        </div>
+              <div className="info-box">
+                <Maps />
+                <ContactBox />
+              </div>
 
-        <VisitButton />
-        <Popup />
+              <VisitButton />
+              <Popup />
+            </div>
+          )
+      }
       </div>
-
-
     );
   }
 }

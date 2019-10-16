@@ -34,6 +34,10 @@ class PropertyManager extends React.Component {
     }
   }
 
+  componentDidUpdate() {
+    console.log(this.state);
+  }
+
   handleRequest = () => {
     this.setState({
       getServerData: false,

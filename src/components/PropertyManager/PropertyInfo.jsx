@@ -25,21 +25,12 @@ const SignupSchema = Yup.object().shape({
 });
 
 function PropertyInfo(props) {
-  const initialValues = {
-    neighborhood_id: props.initialState.neighborhood_id || props.data.neighborhood_id || '',
-    type_id: props.initialState.type_id || props.data.type_id || '',
-    price: props.initialState.price || props.data.price || '',
-    purpose_id: Number(props.initialState.purpose_id) || props.data.purpose_id || '',
-    area: props.initialState.area || props.data.area || 0,
-    building_area: props.initialState.building_area || props.data.building_area || 0,
-    radioGroup: '',
-  };
-
   const [state, setState] = useState({
     isEditing: false,
     neighborhoodList: props.initialState.neighborhoodList || [],
     typeList: props.initialState.typeList || [],
   });
+
 
   const toggleEditing = () => {
     setState((prevState) => ({
@@ -59,7 +50,6 @@ function PropertyInfo(props) {
           neighborhoodList: options,
         }));
       } catch (error) {
-        // ADICIONAR MENSAGEM POPUP
         // eslint-disable-next-line no-console
         console.log(error);
       }
@@ -74,7 +64,6 @@ function PropertyInfo(props) {
           typeList: options,
         }));
       } catch (error) {
-        // ADICIONAR MENSAGEM POPUP
         // eslint-disable-next-line no-console
         console.log(error);
       }
@@ -84,11 +73,28 @@ function PropertyInfo(props) {
     fetchType();
   }, []);
 
+  const initialValues = {
+    neighborhood_id: props.initialState.neighborhood_id || props.data.neighborhood_id || '',
+    type_id: props.initialState.type_id || props.data.type_id || '',
+    price: props.initialState.price || props.data.price || '',
+    position: JSON.parse(props.data.position) || props.data.position || {},
+    purpose_id: Number(props.initialState.purpose_id) || props.data.purpose_id || '',
+    area: props.initialState.area || props.data.area || 0,
+    building_area: props.initialState.building_area || props.data.building_area || 0,
+    radioGroup: '',
+  };
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={SignupSchema}
       onSubmit={(values) => {
+        // eslint-disable-next-line no-param-reassign
+        values.position = {
+          lat: values.lat,
+          long: values.long,
+        };
+
         props.handleComponent('info', values);
       }}
     >
@@ -105,7 +111,6 @@ function PropertyInfo(props) {
               <Effect
                 formik={formikProps}
               />
-
 
               <Select
                 hasLabel
@@ -222,6 +227,39 @@ function PropertyInfo(props) {
                 />
                 {errors.building_area && touched.building_area ? (
                   <div>{errors.building_area}</div>
+                ) : null}
+              </div>
+
+              {/* MAPS POSITION */}
+              <div>
+                <label htmlFor="lat">
+                  {'Latitude'}
+                </label>
+                <Field
+                  type="text"
+                  name="lat"
+                  value={values.position.lat}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.lat && touched.lat ? (
+                  <div>{errors.lat}</div>
+                ) : null}
+              </div>
+
+              <div>
+                <label htmlFor="long">
+                  {'Longitude'}
+                </label>
+                <Field
+                  type="text"
+                  name="long"
+                  value={values.position.long}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {errors.long && touched.long ? (
+                  <div>{errors.long}</div>
                 ) : null}
               </div>
 
