@@ -6,12 +6,12 @@ const mapStyles = {
   height: '400px',
 };
 
-const Maps = ({ google }) => (
+const Maps = ({ google, lat, lng }) => (
   <Map
     google={google}
     zoom={8}
     style={mapStyles}
-    initialCenter={{ lat: 47.444, lng: -122.176 }}
+    initialCenter={{ lat: Number(lat), lng: Number(lng) }}
   />
 );
 

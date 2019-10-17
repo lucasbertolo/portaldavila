@@ -77,11 +77,10 @@ function PropertyInfo(props) {
     neighborhood_id: props.initialState.neighborhood_id || props.data.neighborhood_id || '',
     type_id: props.initialState.type_id || props.data.type_id || '',
     price: props.initialState.price || props.data.price || '',
-    position: JSON.parse(props.data.position) || props.data.position || {},
+    position: props.data.position ? JSON.parse(props.data.position) : {},
     purpose_id: Number(props.initialState.purpose_id) || props.data.purpose_id || '',
     area: props.initialState.area || props.data.area || 0,
     building_area: props.initialState.building_area || props.data.building_area || 0,
-    radioGroup: '',
   };
 
   return (

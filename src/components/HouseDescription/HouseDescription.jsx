@@ -11,7 +11,7 @@ import SliderImages from './SliderImages';
 import HouseInfo from './HouseInfo';
 import MainBox from './MainBox';
 
-import Maps from '../Common/Maps';
+// import Maps from '../Common/Maps';
 import ContactBox from '../Common/ContactBox';
 import VisitButton from '../Common/VisitButton';
 import HouseTitle from './HouseTitle';
@@ -42,10 +42,12 @@ export default class HouseDescription extends React.Component {
 
   render() {
     const { typeList, neighborhoodList, isLoading } = this.state;
-
     const { initialState } = this.props;
+
     const { type_id, neighborhood_id } = initialState.info;
+    // const { lat, long } = initialState.info.position;
     const { images } = initialState;
+
 
     return (
       <div>
@@ -75,7 +77,7 @@ export default class HouseDescription extends React.Component {
               <MainBox />
 
               <div className="info-box">
-                <Maps />
+                {/* <Maps lat={lat} lng={long} /> */}
                 <ContactBox />
               </div>
 

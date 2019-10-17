@@ -3,8 +3,8 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import React, { useState } from 'react';
-
-import { useToasts } from 'react-toast-notifications';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const getNavStyles = (indx, length) => {
   const styles = [];
@@ -53,13 +53,14 @@ export default function MultiStep(props) {
   const [compState, setComp] = useState(0);
   const [buttonsState, setButtons] = useState(getButtonsState(0, props.steps.length));
 
+
   function setStepState(indx) {
     setStyles(getNavStyles(indx, props.steps.length));
     setComp(indx < props.steps.length ? indx : compState);
     setButtons(getButtonsState(indx, props.steps.length));
   }
 
-  const { addToast } = useToasts();
+  const notify = () => toast('Wow so easy !');
 
   const next = () => setStepState(compState + 1);
 
@@ -68,7 +69,8 @@ export default function MultiStep(props) {
   const handleKeyDown = (evt) => (evt.which === 13 ? next(props.steps.length) : {});
 
   const handleOnClick = (evt) => {
-    addToast('Saved Successfully', { appearance: 'success' });
+    notify();
+
     if (evt.currentTarget.value === props.steps.length - 1
       && compState === props.steps.length - 1) {
       setStepState(props.steps.length);
@@ -92,34 +94,47 @@ export default function MultiStep(props) {
   ));
 
   return (
-    <div className="container" onKeyDown={handleKeyDown}>
-      <ol className="progtrckr">
-        {renderSteps()}
-      </ol>
-      {props.steps[compState].component}
-      <div className="prog-button">
-        <button
-          style={buttonsState.showPreviousBtn ? {} : { display: 'none' }}
-          onClick={previous}
-          type="button"
-        >
+    <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnVisibilityChange
+        draggable
+        pauseOnHover
+      />
+      <div className="container" onKeyDown={handleKeyDown}>
+        <ol className="progtrckr">
+          {renderSteps()}
+        </ol>
+        {props.steps[compState].component}
+        <div className="prog-button">
+          <button
+            style={buttonsState.showPreviousBtn ? {} : { display: 'none' }}
+            onClick={previous}
+            type="button"
+          >
             Anterior
-        </button>
+          </button>
 
-        <button
-          style={buttonsState.showNextBtn ? {} : { display: 'none' }}
-          onClick={next}
-          type="button"
-        >
+          <button
+            style={buttonsState.showNextBtn ? {} : { display: 'none' }}
+            onClick={next}
+            type="button"
+          >
             Seguinte
-        </button>
-        <button
-          style={buttonsState.showSaveBtn ? {} : { display: 'none' }}
-          onClick={props.onSubmit}
-          type="button"
-        >
+          </button>
+          <button
+            style={buttonsState.showSaveBtn ? {} : { display: 'none' }}
+            onClick={props.onSubmit}
+            type="button"
+          >
             Salvar
-        </button>
+          </button>
+        </div>
       </div>
     </div>
   );
