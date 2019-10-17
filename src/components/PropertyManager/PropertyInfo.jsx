@@ -3,11 +3,13 @@
 
 import React, { useState, useEffect } from 'react';
 
-import * as Yup from 'yup';
-
 import {
   Formik, Field,
 } from 'formik';
+
+import { ValidationInfo } from '../Helpers/Validation';
+import Effect from '../Helpers/Effect';
+
 import {
   Select, RadioButtonGroup, Radio, Input,
 } from '../Common/FormComponents';
@@ -16,22 +18,14 @@ import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
 
-const SignupSchema = Yup.object().shape({
-  area: Yup.number()
-    .min(0)
-    .required('Valor requerido'),
-  building_area: Yup.number()
-    .lessThan(Yup.ref('area'), 'Área construída deve ser menor que a área total'),
-});
-
-function PropertyInfo(props) {
+export default function PropertyInfo(props) {
   const [state, setState] = useState({
     isEditing: false,
-    neighborhoodList: props.initialState.neighborhoodList || [],
-    typeList: props.initialState.typeList || [],
+    neighborhoodList: [],
+    typeList: [],
   });
 
-
+  // Para lidar com campo preço que tem placeholder personalizado
   const toggleEditing = () => {
     setState((prevState) => ({
       ...prevState,
@@ -39,7 +33,9 @@ function PropertyInfo(props) {
     }));
   };
 
+  // Chamadas para listas de bairros e tipos
   useEffect(() => {
+    console.log(props.data);
     const fetchBlock = async () => {
       try {
         const resultBlock = await db.get('/neighborhood');
@@ -73,20 +69,15 @@ function PropertyInfo(props) {
     fetchType();
   }, []);
 
+  // Valores iniciais dos atributos
   const initialValues = {
-    neighborhood_id: props.initialState.neighborhood_id || props.data.neighborhood_id || '',
-    type_id: props.initialState.type_id || props.data.type_id || '',
-    price: props.initialState.price || props.data.price || '',
-    position: props.data.position ? JSON.parse(props.data.position) : {},
-    purpose_id: Number(props.initialState.purpose_id) || props.data.purpose_id || '',
-    area: props.initialState.area || props.data.area || 0,
-    building_area: props.initialState.building_area || props.data.building_area || 0,
+    ...props.data,
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={SignupSchema}
+      validationSchema={ValidationInfo}
       onSubmit={(values) => {
         // eslint-disable-next-line no-param-reassign
         values.position = {
@@ -229,7 +220,7 @@ function PropertyInfo(props) {
                 ) : null}
               </div>
 
-              {/* MAPS POSITION */}
+              {/* MAPS POSITION
               <div>
                 <label htmlFor="lat">
                   {'Latitude'}
@@ -260,7 +251,7 @@ function PropertyInfo(props) {
                 {errors.long && touched.long ? (
                   <div>{errors.long}</div>
                 ) : null}
-              </div>
+              </div> */}
 
             </form>
           </div>
@@ -272,16 +263,28 @@ function PropertyInfo(props) {
   );
 }
 
-function Effect(props) {
-  const effect = () => {
-    props.formik.submitForm();
-  };
+function Info(data) {
+  this.neighborhood_id = data.neighborhood_id || 0;
+  this.position = data.position ? JSON.stringify(data.position) : null;
+  this.price = data.price || 0;
+  this.purpose_id = data.purpose_id || 0;
+  this.type_id = data.type_id || 0;
+  this.creator_id = 1;
+  this.area = data.area || 0;
+  this.building_area = data.building_area || 0;
 
-  useEffect(
-    () => () => effect(),
-    [],
+  return (
+    this.neighborhood_id,
+    this.position,
+    this.price,
+    this.purpose_id,
+    this.type_id,
+    this.creator_id,
+    this.area,
+    this.building_area
   );
-  return null;
 }
 
-export default PropertyInfo;
+export {
+  Info,
+};

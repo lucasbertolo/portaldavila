@@ -12,8 +12,8 @@ import HouseInfo from './HouseInfo';
 import MainBox from './MainBox';
 
 // import Maps from '../Common/Maps';
-import ContactBox from '../Common/ContactBox';
-import VisitButton from '../Common/VisitButton';
+import ContactBox from '../Contact/ContactBox';
+import VisitButton from '../Visit/VisitButton';
 import HouseTitle from './HouseTitle';
 
 export default class HouseDescription extends React.Component {

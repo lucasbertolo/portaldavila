@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PropertyInfo from './PropertyInfo';
+import PropertyInfo, { Info } from './PropertyInfo';
 import PropertyFeatures from './PropertyFeatures';
 import PropertyDetails from './PropertyDetails';
 import PropertyPhotos from './PropertyPhotos';
@@ -93,13 +93,15 @@ class PropertyManager extends React.Component {
       images,
       getServerData,
     } = this.state;
+
+    const dataInfo = new Info(this.props.id ? this.props : info);
+
     const steps = [
       {
         name: 'Dados gerais',
         component: <PropertyInfo
           handleComponent={this.handleComponent}
-          data={this.props}
-          initialState={info}
+          data={dataInfo}
         />,
       },
       {
