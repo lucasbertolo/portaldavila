@@ -20,6 +20,11 @@ app.prepare().then(() => {
     app.render(req, res, actualPage);
   });
 
+  server.get('/property', (req, res) => {
+    const actualPage = '/property';
+    app.render(req, res, actualPage);
+  });
+
   server.get('*', (req, res) => handle(req, res));
 
 

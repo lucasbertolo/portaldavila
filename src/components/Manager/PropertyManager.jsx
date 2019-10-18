@@ -8,7 +8,7 @@ import PropertyPhotos from './PropertyPhotos';
 import { db } from '../Helpers/ApiFetch';
 
 import MultiStageProgress from '../Common/MultiStageProgress';
-import HouseDescription from '../HouseDescription/HouseDescription';
+import HouseDescription from '../Description/HouseDescription';
 
 class PropertyManager extends React.Component {
   constructor(props) {
