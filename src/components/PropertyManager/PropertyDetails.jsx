@@ -1,71 +1,23 @@
 /* eslint-disable react/destructuring-assignment */
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
   Formik, Field,
 } from 'formik';
 
-import * as Yup from 'yup';
+import { ValidationDetails } from '../Helpers/Validation';
+import Effect from '../Helpers/Effect';
 
-const SignupSchema = Yup.object().shape({
-  room: Yup.number()
-    .min(0, 'Too Short!')
-    .max(5, 'Too Long!'),
-  dormitory: Yup.number()
-    .min(0, 'Too Short!')
-    .max(10, 'Too Long!'),
-  dining_room: Yup.number()
-    .min(0, 'Too Short!')
-    .max(5, 'Too Long!'),
-  garage: Yup.number()
-    .min(0, 'Too Short!')
-    .max(10, 'Too Long!'),
-  bathroom: Yup.number()
-    .min(0, 'Too Short!')
-    .max(10, 'Too Long!'),
-  visiting_room: Yup.number()
-    .min(0, 'Too Short!')
-    .max(5, 'Too Long!'),
-  suite: Yup.number()
-    .min(0, 'Too Short!')
-    .max(10, 'Too Long!'),
-  laundry: Yup.number()
-    .min(0, 'Too Short!')
-    .max(5, 'Too Long!'),
-  washbasin: Yup.number()
-    .min(0, 'Too Short!')
-    .max(5, 'Too Long!'),
-  kitchen: Yup.number()
-    .min(0, 'Too Short!')
-    .max(5, 'Too Long!'),
-  office: Yup.number()
-    .min(0, 'Too Short!')
-    .max(5, 'Too Long!'),
-  gourmet_space: Yup.number()
-    .min(0, 'Too Short!')
-    .max(5, 'Too Long!'),
-});
 
 export default function PropertyDetails(props) {
   const initialValues = {
-    room: props.data.room || props.initialState.room || 0,
-    dormitory: props.data.dormitory || props.initialState.dormitory || 0,
-    garage: props.data.garage || props.initialState.garage || 0,
-    bathroom: props.data.bathroom || props.initialState.bathroom || 0,
-    visiting_room: props.data.visiting_room || props.initialState.visiting_room || 0,
-    dining_room: props.data.dining_room || props.initialState.dining_room || 0,
-    suite: props.data.suite || props.initialState.suite || 0,
-    laundry: props.data.laundry || props.initialState.laundry || 0,
-    washbasin: props.data.washbasin || props.initialState.washbasin || 0,
-    kitchen: props.data.kitchen || props.initialState.kitchen || 0,
-    gourmet_space: props.data.kitchen || props.initialState.kitchen || 0,
-    office: props.data.office || props.initialState.office || 0,
+    ...props.data,
   };
 
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={SignupSchema}
+      validationSchema={ValidationDetails}
       onSubmit={(values) => {
         props.handleComponent('details', values);
       }}
@@ -112,14 +64,33 @@ export default function PropertyDetails(props) {
   );
 }
 
-function Effect(props) {
-  const effect = () => {
-    props.formik.submitForm();
-  };
+export function Details(data) {
+  this.room = data.room;
+  this.dormitory = data.dormitory;
+  this.garage = data.garage;
+  this.bathroom = data.bathroom;
+  this.visiting_room = data.visiting_room;
+  this.dining_room = data.dining_room;
+  this.suite = data.suite;
+  this.laundry = data.laundry;
+  this.washbasin = data.washbasin;
+  this.kitchen = data.kitchen;
+  this.gourmet_space = data.gourmet_space;
+  this.office = data.office;
 
-  useEffect(
-    () => () => effect(),
-    [],
+
+  return (
+    this.room,
+    this.dormitory,
+    this.garage,
+    this.bathroom,
+    this.visiting_room,
+    this.dining_room,
+    this.suite,
+    this.laundry,
+    this.washbasin,
+    this.kitchen,
+    this.gourmet_space,
+    this.office
   );
-  return null;
 }

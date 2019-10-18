@@ -1,8 +1,8 @@
 import React from 'react';
 
 import PropertyInfo, { Info } from './PropertyInfo';
-import PropertyFeatures from './PropertyFeatures';
-import PropertyDetails from './PropertyDetails';
+import PropertyFeatures, { Features } from './PropertyFeatures';
+import PropertyDetails, { Details } from './PropertyDetails';
 import PropertyPhotos from './PropertyPhotos';
 
 import { db } from '../Helpers/ApiFetch';
@@ -16,33 +16,27 @@ class PropertyManager extends React.Component {
 
     this.state = {
       sendStatus: '',
-      details: {},
-      info: {},
-      features: {},
+      details: props || null,
+      info: props || null,
+      features: props || null,
       images: [],
-      getServerData: true,
     };
   }
 
 
-  componentDidMount() {
-    const { message } = this.props;
+  async componentDidMount() {
+    const { id } = this.props;
+    try {
+      const resultPhotos = await db.get(`/property/photos/${id}`);
 
-    if (message) {
-      this.setState({ sendStatus: message });
+      this.setState({
+        images: resultPhotos.data,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
     }
   }
-
-  componentDidUpdate() {
-    console.log(this.state);
-  }
-
-  handleRequest = () => {
-    this.setState({
-      getServerData: false,
-    });
-  }
-
 
   onSubmit = (e) => {
     e.preventDefault();
@@ -91,10 +85,11 @@ class PropertyManager extends React.Component {
       details,
       features,
       images,
-      getServerData,
     } = this.state;
 
-    const dataInfo = new Info(this.props.id ? this.props : info);
+    const dataInfo = new Info(info);
+    const dataDetails = new Details(details);
+    const dataFeature = new Features(features);
 
     const steps = [
       {
@@ -108,26 +103,21 @@ class PropertyManager extends React.Component {
         name: 'Comodos',
         component: <PropertyDetails
           handleComponent={this.handleComponent}
-          data={this.props}
-          initialState={details}
+          data={dataDetails}
         />,
       },
       {
         name: 'Adicionais',
         component: <PropertyFeatures
           handleComponent={this.handleComponent}
-          data={this.props}
-          initialState={features}
+          data={dataFeature}
         />,
       },
       {
         name: 'Fotos',
         component: <PropertyPhotos
           handleComponent={this.handleComponent}
-          data={this.props}
-          initialState={images}
-          getServerData={getServerData}
-          handleRequest={this.handleRequest}
+          data={images}
         />,
       },
       {

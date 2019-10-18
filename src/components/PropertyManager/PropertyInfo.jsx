@@ -35,7 +35,6 @@ export default function PropertyInfo(props) {
 
   // Chamadas para listas de bairros e tipos
   useEffect(() => {
-    console.log(props.data);
     const fetchBlock = async () => {
       try {
         const resultBlock = await db.get('/neighborhood');
@@ -125,7 +124,7 @@ export default function PropertyInfo(props) {
 
               <RadioButtonGroup
                 id="purpose_id"
-                value={values.purpose_id}
+                value={values.purpose_id || ''}
                 error={errors.purpose_id}
                 touched={touched.purpose_id}
               >
@@ -267,7 +266,7 @@ function Info(data) {
   this.neighborhood_id = data.neighborhood_id || 0;
   this.position = data.position ? JSON.stringify(data.position) : null;
   this.price = data.price || 0;
-  this.purpose_id = data.purpose_id || 0;
+  this.purpose_id = Number(data.purpose_id) || '';
   this.type_id = data.type_id || 0;
   this.creator_id = 1;
   this.area = data.area || 0;

@@ -9,8 +9,44 @@ const ValidationInfo = Yup.object().shape({
 });
 
 const ValidationDetails = Yup.object().shape({
-  // TODO
+  room: Yup.number()
+    .min(0, 'Too Short!')
+    .max(5, 'Too Long!'),
+  dormitory: Yup.number()
+    .min(0, 'Too Short!')
+    .max(10, 'Too Long!'),
+  dining_room: Yup.number()
+    .min(0, 'Too Short!')
+    .max(5, 'Too Long!'),
+  garage: Yup.number()
+    .min(0, 'Too Short!')
+    .max(10, 'Too Long!'),
+  bathroom: Yup.number()
+    .min(0, 'Too Short!')
+    .max(10, 'Too Long!'),
+  visiting_room: Yup.number()
+    .min(0, 'Too Short!')
+    .max(5, 'Too Long!'),
+  suite: Yup.number()
+    .min(0, 'Too Short!')
+    .max(10, 'Too Long!'),
+  laundry: Yup.number()
+    .min(0, 'Too Short!')
+    .max(5, 'Too Long!'),
+  washbasin: Yup.number()
+    .min(0, 'Too Short!')
+    .max(5, 'Too Long!'),
+  kitchen: Yup.number()
+    .min(0, 'Too Short!')
+    .max(5, 'Too Long!'),
+  office: Yup.number()
+    .min(0, 'Too Short!')
+    .max(5, 'Too Long!'),
+  gourmet_space: Yup.number()
+    .min(0, 'Too Short!')
+    .max(5, 'Too Long!'),
 });
+
 
 export {
   ValidationInfo,

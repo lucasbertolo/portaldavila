@@ -16,26 +16,8 @@ class PropertyPhotos extends Component {
     this.state = {
       // success: false,
       message: props.message || '',
-      photos: props.initialState || [],
+      photos: props.data || [],
     };
-  }
-
-  async componentDidMount() {
-    const { data, getServerData, handleRequest } = this.props;
-    if (getServerData) {
-      try {
-        const resultPhotos = await db.get(`/property/photos/${data.id}`);
-
-        this.setState({
-          photos: resultPhotos.data,
-        });
-
-        handleRequest();
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      }
-    }
   }
 
   componentWillUnmount() {
@@ -199,7 +181,6 @@ class PropertyPhotos extends Component {
           </div>
 
         </div>
-        {/* <Button text="Salvar" action={this.forwardData} className="editor-save-button" /> */}
 
         {message}
 

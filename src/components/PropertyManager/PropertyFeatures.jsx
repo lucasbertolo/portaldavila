@@ -1,126 +1,98 @@
 /* eslint-disable react/destructuring-assignment */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
+import { Formik } from 'formik';
 import { Select, TextArea } from '../Common/FormComponents';
 
-function PropertyFeatures(props) {
-  const [state, setState] = useState({
-    description: props.data.description || props.initialState.description || '',
-    air_conditioning: props.data.air_conditioning || props.initialState.air_conditioning || 0,
-    pool: props.data.pool || props.initialState.pool || 0,
-    balcony: props.data.balcony || props.initialState.balcony || 0,
-    barbecue_grill: props.data.barbecue_grill || props.initialState.barbecue_grill || 0,
-    stairway: props.data.stairway || props.initialState.stairway || 0,
-    garden: props.data.garden || props.initialState.garden || 0,
-  });
+import { ValidationDetails } from '../Helpers/Validation';
+import Effect from '../Helpers/Effect';
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+export default function PropertyFeatures(props) {
+  const initialValues = {
+    ...props.data,
   };
 
-  const val = React.useRef();
-  useEffect(
-    () => {
-      val.current = state;
-    },
-    [state],
-  );
-  useEffect(
-    () => () => props.handleComponent('features', val.current),
-    [val],
-  );
-
   const standardOption = ['Não', 'Sim'];
+  const selectArray = Object.keys(initialValues).filter((item) => (
+    item !== 'description'
+  ));
 
   return (
-    <div className="form-style-5">
+    <Formik
+      initialValues={initialValues}
+      validationSchema={ValidationDetails}
+      onSubmit={(values) => {
+        props.handleComponent('features', values);
+      }}
+    >
+      {(formikProps) => {
+        const {
+          values, handleChange, handleBlur, handleSubmit, errors, touched,
+        } = formikProps;
 
-      <div className="form">
-        <TextArea
-          hasLabel
-          htmlFor="description"
-          label="Descrição"
-          name="description"
-          onChange={handleChange}
-          rows={2}
-          value={state.description}
-          placeholder="Descreva o imóvel"
-        />
+        return (
+          <div className="form-style-5">
+            <form noValidate onSubmit={handleSubmit}>
+              <Effect
+                formik={formikProps}
+              />
+              <TextArea
+                hasLabel
+                htmlFor="description"
+                label="Descrição"
+                name="description"
+                onChange={handleChange}
+                rows={2}
+                value={values.description}
+                placeholder="Descreva o imóvel"
+              />
+              {errors.description && touched.description ? (
+                <div>{errors.description}</div>
+              ) : null}
 
-        <Select
-          hasLabel
-          htmlFor="air_conditioning"
-          label="Ar condicionado"
-          options={standardOption}
-          onChange={handleChange}
-          name="air_conditioning"
-          value={state.air_conditioning}
-          noIndex
-        />
-
-        <Select
-          hasLabel
-          htmlFor="pool"
-          label="Piscina"
-          options={standardOption}
-          onChange={handleChange}
-          name="pool"
-          value={state.pool}
-          noIndex
-        />
-
-        <Select
-          hasLabel
-          htmlFor="balcony"
-          label="Sacada"
-          options={standardOption}
-          onChange={handleChange}
-          name="balcony"
-          value={state.balcony}
-          noIndex
-        />
-
-        <Select
-          hasLabel
-          htmlFor="barbecue_grill"
-          label="Churrasqueira"
-          options={standardOption}
-          onChange={handleChange}
-          name="barbecue_grill"
-          value={state.barbecue_grill}
-          noIndex
-        />
-
-        <Select
-          hasLabel
-          htmlFor="stairway"
-          label="Escada"
-          options={standardOption}
-          onChange={handleChange}
-          name="stairway"
-          value={state.stairway}
-          noIndex
-        />
-
-        <Select
-          hasLabel
-          htmlFor="garden"
-          label="Jardim"
-          options={standardOption}
-          onChange={handleChange}
-          name="garden"
-          value={state.garden}
-          noIndex
-        />
-
-      </div>
-    </div>
+              {
+                selectArray.map((item) => (
+                  <Select
+                    key={item}
+                    hasLabel
+                    htmlFor={item}
+                    label={item}
+                    options={standardOption}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    name={item}
+                    value={values[item]}
+                    noIndex
+                  />
+                ))
+              }
+            </form>
+          </div>
+        );
+      }}
+    </Formik>
   );
 }
 
-export default PropertyFeatures;
+/* eslint-disable camelcase */
+export function Features(data, id) {
+  this.description = data.description;
+  this.air_conditioning = data.air_conditioning || 0;
+  this.pool = data.pool || 0;
+  this.balcony = data.balcony || 0;
+  this.barbecue_grill = data.barbecue_grill || 0;
+  this.stairway = data.stairway || 0;
+  this.garden = data.garden || 0;
+  this.property_id = id || 0;
+
+  return (
+    this.description,
+    this.air_conditioning,
+    this.pool,
+    this.balcony,
+    this.barbecue_grill,
+    this.stairway,
+    this.garden,
+    this.property_id
+  );
+}
