@@ -9,7 +9,7 @@ import PropertyPhotos from './PropertyPhotos';
 
 import { db } from '../Helpers/ApiFetch';
 
-import MultiStageProgress from '../Common/MultiStageProgress';
+import ManagerForm from './ManagerForm';
 import HouseDescription from '../Description/HouseDescription';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -152,7 +152,7 @@ class PropertyManager extends React.Component {
 
     return (
 
-      <div>
+      <>
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -165,9 +165,10 @@ class PropertyManager extends React.Component {
           pauseOnHover
         />
 
-        <MultiStageProgress steps={steps} onSubmit={this.onSubmit} isValid={isValid} />
+        <ManagerForm steps={steps} onSubmit={this.onSubmit} isValid={isValid} />
+
         {sendStatus}
-      </div>
+      </>
 
     );
   }
