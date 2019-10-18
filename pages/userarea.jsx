@@ -2,7 +2,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import { db } from '../src/components/Helpers/ApiFetch';
-import PropertyManager from '../src/components/PropertyManager/PropertyManager';
+import PropertyManager from '../src/components/Manager/PropertyManager';
 
 const UserArea = ({ data }) => (
   <div>
