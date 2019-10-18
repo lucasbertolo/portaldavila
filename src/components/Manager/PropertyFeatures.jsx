@@ -4,7 +4,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import { Select, TextArea } from '../Common/FormComponents';
 
-import { ValidationDetails } from '../Helpers/Validation';
+import { ValidationFeatures } from '../Helpers/Validation';
 import Effect from '../Helpers/Effect';
 
 export default function PropertyFeatures(props) {
@@ -20,7 +20,7 @@ export default function PropertyFeatures(props) {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={ValidationDetails}
+      validationSchema={ValidationFeatures}
       onSubmit={(values) => {
         props.handleComponent('features', values);
       }}
@@ -46,7 +46,7 @@ export default function PropertyFeatures(props) {
                 value={values.description}
                 placeholder="Descreva o imóvel"
               />
-              {errors.description && touched.description ? (
+              {errors.description ? (
                 <div>{errors.description}</div>
               ) : null}
 
@@ -74,7 +74,6 @@ export default function PropertyFeatures(props) {
   );
 }
 
-/* eslint-disable camelcase */
 export function Features(data, id) {
   this.description = data.description;
   this.air_conditioning = data.air_conditioning || 0;

@@ -1,5 +1,4 @@
 /* eslint-disable react/destructuring-assignment */
-
 import React from 'react';
 import {
   Formik, Field,
@@ -7,7 +6,6 @@ import {
 
 import { ValidationDetails } from '../Helpers/Validation';
 import Effect from '../Helpers/Effect';
-
 
 export default function PropertyDetails(props) {
   const initialValues = {

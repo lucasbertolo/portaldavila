@@ -6,7 +6,7 @@
 	@import 'base/page';
 	@import 'base/typography';
 
-// Components.
+// Items
 	@import 'components/form';
 	@import 'components/upload';
 	@import 'components/multistage';
@@ -18,10 +18,11 @@
 	@import 'components/box';
 	@import 'components/card';
 	
-// Pages Layout.
+// Components Layout.
 	@import 'layout/displayImage';
 	@import 'layout/houseDescription';
-	@import 'layout/team';
 	@import 'layout/layout';
 
-	
+// Pages Layout 
+	@import 'pages/team';
+	@import 'pages/property';

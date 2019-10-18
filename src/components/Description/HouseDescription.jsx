@@ -42,12 +42,12 @@ export default class HouseDescription extends React.Component {
 
   render() {
     const { typeList, neighborhoodList, isLoading } = this.state;
-    const { initialState } = this.props;
+    const {
+      info, details, features, images,
+    } = this.props;
 
-    const { type_id, neighborhood_id } = initialState.info;
+    const { type_id, neighborhood_id } = info;
     // const { lat, long } = initialState.info.position;
-    const { images } = initialState;
-
 
     return (
       <div>
@@ -72,9 +72,9 @@ export default class HouseDescription extends React.Component {
                 neighborhoodList={neighborhoodList}
               />
 
-              <HouseInfo info={initialState.info} />
+              <HouseInfo info={info} />
               <SliderImages images={images} />
-              <MainBox />
+              <MainBox details={details} features={features} />
 
               <div className="info-box">
                 {/* <Maps lat={lat} lng={long} /> */}

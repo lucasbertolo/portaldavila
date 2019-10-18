@@ -23,7 +23,6 @@ class PropertyManager extends React.Component {
     };
   }
 
-
   async componentDidMount() {
     const { id } = this.props;
     try {
@@ -123,8 +122,10 @@ class PropertyManager extends React.Component {
       {
         name: 'Resumo',
         component: <HouseDescription
-          data={this.props}
-          initialState={this.state}
+          info={dataInfo}
+          details={dataDetails}
+          features={dataFeature}
+          images={images}
         />,
       },
     ];

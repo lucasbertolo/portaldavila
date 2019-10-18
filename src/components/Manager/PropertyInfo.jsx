@@ -97,6 +97,7 @@ export default function PropertyInfo(props) {
 
             <form noValidate onSubmit={handleSubmit}>
 
+              {/* Envia valores para Manager ao desmontar o componente */ }
               <Effect
                 formik={formikProps}
               />
@@ -268,7 +269,6 @@ function Info(data) {
   this.price = data.price || 0;
   this.purpose_id = Number(data.purpose_id) || '';
   this.type_id = data.type_id || 0;
-  this.creator_id = 1;
   this.area = data.area || 0;
   this.building_area = data.building_area || 0;
 

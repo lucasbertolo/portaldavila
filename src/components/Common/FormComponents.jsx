@@ -164,7 +164,7 @@ const Select = (props) => {
         value={value}
         onBlur={onBlur}
       >
-        <option value="" disabled>Escolha uma opção</option>
+        <option value="0" disabled>Escolha uma opção</option>
 
         {selectOptionsList}
       </select>

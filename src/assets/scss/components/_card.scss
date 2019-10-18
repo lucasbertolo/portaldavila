@@ -1,15 +1,17 @@
 
   
-  img {
-    max-width: 100%;
-  }
+ 
   
-  .container {
+  .container-card {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     background: #444;
+
+    img {
+      max-width: 100%;
+    }
   }
   
   .card {

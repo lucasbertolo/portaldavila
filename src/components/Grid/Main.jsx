@@ -5,7 +5,7 @@ const Main = (props) => {
 
   return (
     data.map((item) => (
-      <div className="container">
+      <div className="container-card">
         <div className="card">
           <div className="card__image-container">
             <img className="card__image" src={item.url} alt="" />
@@ -19,7 +19,7 @@ const Main = (props) => {
 
           <div className="card__content">
             <h1 className="card__title">Lorem ipsum</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta dolor praesentium at quod autem omnis, amet eaque unde perspiciatis adipisci possimus quam facere illo et quisquam quia earum nesciunt porro.</p>
+            <p>Teste</p>
           </div>
         </div>
       </div>
