@@ -3,8 +3,6 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
 import React, { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const getNavStyles = (indx, length) => {
   const styles = [];
@@ -60,17 +58,16 @@ export default function MultiStep(props) {
     setButtons(getButtonsState(indx, props.steps.length));
   }
 
-  const notify = () => toast('Wow so easy !');
 
-  const next = () => setStepState(compState + 1);
+  const next = () => {
+    if (props.isValid) { setStepState(compState + 1); } else console.log('teste2');
+  };
 
   const previous = () => setStepState((compState > 0) ? compState - 1 : compState);
 
   const handleKeyDown = (evt) => (evt.which === 13 ? next(props.steps.length) : {});
 
   const handleOnClick = (evt) => {
-    notify();
-
     if (evt.currentTarget.value === props.steps.length - 1
       && compState === props.steps.length - 1) {
       setStepState(props.steps.length);
@@ -95,17 +92,6 @@ export default function MultiStep(props) {
 
   return (
     <div>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnVisibilityChange
-        draggable
-        pauseOnHover
-      />
       <div className="container" onKeyDown={handleKeyDown}>
         <ol className="progtrckr">
           {renderSteps()}

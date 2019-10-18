@@ -63,18 +63,18 @@ export default function PropertyDetails(props) {
 }
 
 export function Details(data) {
-  this.room = data.room;
-  this.dormitory = data.dormitory;
-  this.garage = data.garage;
-  this.bathroom = data.bathroom;
-  this.visiting_room = data.visiting_room;
-  this.dining_room = data.dining_room;
-  this.suite = data.suite;
-  this.laundry = data.laundry;
-  this.washbasin = data.washbasin;
-  this.kitchen = data.kitchen;
-  this.gourmet_space = data.gourmet_space;
-  this.office = data.office;
+  this.room = data.room || 0;
+  this.dormitory = data.dormitory || 0;
+  this.garage = data.garage || 0;
+  this.bathroom = data.bathroom || 0;
+  this.visiting_room = data.visiting_room || 0;
+  this.dining_room = data.dining_room || 0;
+  this.suite = data.suite || 0;
+  this.laundry = data.laundry || 0;
+  this.washbasin = data.washbasin || 0;
+  this.kitchen = data.kitchen || 0;
+  this.gourmet_space = data.gourmet_space || 0;
+  this.office = data.office || 0;
 
 
   return (

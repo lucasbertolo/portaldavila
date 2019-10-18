@@ -134,7 +134,7 @@ export default function PropertyInfo(props) {
                   htmlFor="radioTwo"
                   label="Venda"
                   onChange={handleChange}
-                  value={enums.purposeOfProperty.selling || ''}
+                  value={enums.purposeOfProperty.selling}
                   name="purpose_id"
                   state={values.purpose_id === enums.purposeOfProperty.selling ? 'checked' : null}
                   required
@@ -145,7 +145,7 @@ export default function PropertyInfo(props) {
                   htmlFor="radioTwo"
                   label="Locação"
                   onChange={handleChange}
-                  value={enums.purposeOfProperty.renting || ''}
+                  value={enums.purposeOfProperty.renting}
                   name="purpose_id"
                   state={values.purpose_id === enums.purposeOfProperty.renting ? 'checked' : null}
                   required

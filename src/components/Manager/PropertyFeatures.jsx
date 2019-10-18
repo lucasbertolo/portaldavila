@@ -75,7 +75,7 @@ export default function PropertyFeatures(props) {
 }
 
 export function Features(data, id) {
-  this.description = data.description;
+  this.description = data.description || '';
   this.air_conditioning = data.air_conditioning || 0;
   this.pool = data.pool || 0;
   this.balcony = data.balcony || 0;

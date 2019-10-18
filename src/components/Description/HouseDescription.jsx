@@ -28,15 +28,17 @@ export default class HouseDescription extends React.Component {
 
   async componentDidMount() {
     const resultBlock = await db.get('/neighborhood');
-    const options = resultBlock.data.map((item) => item.name);
+    const block = resultBlock.data.map((item) => item.name);
+    block.unshift('');
 
     const resultType = await db.get('/typeofproperty');
-    const optionsType = resultType.data.map((item) => item.type);
+    const type = resultType.data.map((item) => item.type);
+    type.unshift('');
 
     this.setState((prevState) => ({
       ...prevState,
-      neighborhoodList: options,
-      typeList: optionsType,
+      neighborhoodList: block,
+      typeList: type,
     }));
   }
 

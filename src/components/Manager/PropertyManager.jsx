@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { ToastContainer, toast } from 'react-toastify';
+
 import PropertyInfo, { Info } from './PropertyInfo';
 import PropertyFeatures, { Features } from './PropertyFeatures';
 import PropertyDetails, { Details } from './PropertyDetails';
@@ -9,6 +11,9 @@ import { db } from '../Helpers/ApiFetch';
 
 import MultiStageProgress from '../Common/MultiStageProgress';
 import HouseDescription from '../Description/HouseDescription';
+
+import 'react-toastify/dist/ReactToastify.css';
+
 
 class PropertyManager extends React.Component {
   constructor(props) {
@@ -20,6 +25,7 @@ class PropertyManager extends React.Component {
       info: props || null,
       features: props || null,
       images: [],
+      isValid: false,
     };
   }
 
@@ -39,6 +45,8 @@ class PropertyManager extends React.Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+
+    let toastId = null;
 
     const {
       details,
@@ -61,14 +69,25 @@ class PropertyManager extends React.Component {
       ? `/property/${id}`
       : '/property';
 
+    toastId = toast('Enviando...');
     db[method](url, {
       data,
       // creator_id: 1,
     })
       .then((message) => {
-        if (message.status === 200) { this.setState({ sendStatus: 'Cadastrado com sucesso' }); }
+        if (message.status === 200) {
+          toast.update(toastId, {
+            render: 'Cadastrado com sucesso',
+            type: toast.TYPE.SUCCESS,
+            autoClose: 5000,
+          });
+        }
       })
-      .catch(() => this.setState({ sendStatus: 'Erro ao cadastrar' }));
+      .catch(() => toast.update(toastId, {
+        render: 'Erro ao cadastrar',
+        type: toast.TYPE.ERROR,
+        autoClose: 5000,
+      }));
   }
 
   handleComponent = (name, data) => {
@@ -84,6 +103,7 @@ class PropertyManager extends React.Component {
       details,
       features,
       images,
+      isValid,
     } = this.state;
 
     const dataInfo = new Info(info);
@@ -133,7 +153,19 @@ class PropertyManager extends React.Component {
     return (
 
       <div>
-        <MultiStageProgress steps={steps} onSubmit={this.onSubmit} />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnVisibilityChange
+          draggable
+          pauseOnHover
+        />
+
+        <MultiStageProgress steps={steps} onSubmit={this.onSubmit} isValid={isValid} />
         {sendStatus}
       </div>
 
