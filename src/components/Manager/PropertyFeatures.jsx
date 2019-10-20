@@ -5,7 +5,6 @@ import { Formik } from 'formik';
 import { Select, TextArea } from '../Common/FormComponents';
 
 import { ValidationFeatures } from '../Helpers/Validation';
-import Effect from '../Helpers/Effect';
 
 export default function PropertyFeatures(props) {
   const initialValues = {
@@ -35,25 +34,23 @@ export default function PropertyFeatures(props) {
 
         bindSubmitForm(formikProps.submitForm);
         return (
-            <form  className="form-style-5" noValidate onSubmit={handleSubmit}>
-              <Effect
-                formik={formikProps}
-              />
-              <TextArea
-                hasLabel
-                htmlFor="description"
-                label="Descrição"
-                name="description"
-                onChange={handleChange}
-                rows={2}
-                value={values.description}
-                placeholder="Descreva o imóvel"
-              />
-              {errors.description ? (
-                <div>{errors.description}</div>
-              ) : null}
+          <form className="form-style-5" noValidate onSubmit={handleSubmit}>
 
-              {
+            <TextArea
+              hasLabel
+              htmlFor="description"
+              label="Descrição"
+              name="description"
+              onChange={handleChange}
+              rows={2}
+              value={values.description}
+              placeholder="Descreva o imóvel"
+            />
+            {errors.description ? (
+              <div>{errors.description}</div>
+            ) : null}
+
+            {
                 selectArray.map((item) => (
                   <Select
                     key={item}
@@ -69,7 +66,7 @@ export default function PropertyFeatures(props) {
                   />
                 ))
               }
-            </form>
+          </form>
         );
       }}
     </Formik>

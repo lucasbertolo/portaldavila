@@ -60,6 +60,8 @@ const getButtonsState = (indx, length) => {
 export default class ManagerForm extends React.Component {
   numberSteps = 5;
 
+  errors = null;
+
   submitMyForm = null;
 
   constructor(props) {
@@ -77,7 +79,6 @@ export default class ManagerForm extends React.Component {
       info: dataInfo,
       details: dataDetails,
       features: dataFeature,
-      isValid: false,
     };
   }
 
@@ -95,11 +96,6 @@ export default class ManagerForm extends React.Component {
     }
   }
 
-  handleValidation = () => {
-    this.setState(() => ({
-      isValid: false,
-    }));
-  }
 
   handleComponent = (name, data) => {
     this.setState(() => ({
@@ -108,11 +104,10 @@ export default class ManagerForm extends React.Component {
   };
 
   handleNext = (e) => {
+    const { compIndex } = this.state;
     this.submitMyForm(e);
 
-    const { isValid, compIndex } = this.state;
-
-    if (isValid) {
+    if (Object.entries(this.errors).length === 0) {
       this.setStepState(compIndex + 1);
     } else {
       toast('Existem campos inválidos', {
@@ -141,6 +136,10 @@ export default class ManagerForm extends React.Component {
     this.submitMyForm = submitForm;
   };
 
+  bindErrors = (errors) => {
+    this.errors = errors;
+  }
+
   getSteps = () => {
     const {
       images, info, features, details,
@@ -153,6 +152,7 @@ export default class ManagerForm extends React.Component {
           handleComponent={this.handleComponent}
           data={info}
           bindSubmitForm={this.bindSubmitForm}
+          bindErrors={this.bindErrors}
         />,
       },
       {
@@ -161,6 +161,7 @@ export default class ManagerForm extends React.Component {
           handleComponent={this.handleComponent}
           data={details}
           bindSubmitForm={this.bindSubmitForm}
+          handleValidation={this.handleValidation}
         />,
       },
       {
@@ -169,6 +170,7 @@ export default class ManagerForm extends React.Component {
           handleComponent={this.handleComponent}
           data={features}
           bindSubmitForm={this.bindSubmitForm}
+          handleValidation={this.handleValidation}
         />,
       },
       {
@@ -176,6 +178,7 @@ export default class ManagerForm extends React.Component {
         component: <PropertyPhotos
           handleComponent={this.handleComponent}
           data={images}
+          handleValidation={this.handleValidation}
         />,
       },
       {
