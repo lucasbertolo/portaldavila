@@ -13,6 +13,8 @@ export default function PropertyFeatures(props) {
   };
 
   const standardOption = ['Não', 'Sim'];
+  const { bindSubmitForm } = props;
+
   const selectArray = Object.keys(initialValues).filter((item) => (
     item !== 'description'
   ));
@@ -21,18 +23,19 @@ export default function PropertyFeatures(props) {
     <Formik
       initialValues={initialValues}
       validationSchema={ValidationFeatures}
-      onSubmit={(values) => {
+      onSubmit={(values, { setSubmitting }) => {
         props.handleComponent('features', values);
+        setSubmitting(false);
       }}
     >
       {(formikProps) => {
         const {
-          values, handleChange, handleBlur, handleSubmit, errors, touched,
+          values, handleChange, handleBlur, handleSubmit, errors,
         } = formikProps;
 
+        bindSubmitForm(formikProps.submitForm);
         return (
-          <div className="form-style-5">
-            <form noValidate onSubmit={handleSubmit}>
+            <form  className="form-style-5" noValidate onSubmit={handleSubmit}>
               <Effect
                 formik={formikProps}
               />
@@ -67,7 +70,6 @@ export default function PropertyFeatures(props) {
                 ))
               }
             </form>
-          </div>
         );
       }}
     </Formik>

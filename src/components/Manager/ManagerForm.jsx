@@ -2,8 +2,18 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import React, { useState } from 'react';
-import MultiStageProgress from '../Common/MultiStageProgress';
+import React from 'react';
+
+import { toast } from 'react-toastify';
+
+import PropertyInfo, { Info } from './PropertyInfo';
+import PropertyFeatures, { Features } from './PropertyFeatures';
+import PropertyDetails, { Details } from './PropertyDetails';
+import PropertyPhotos from './PropertyPhotos';
+import HouseDescription from '../Description/HouseDescription';
+
+import { db } from '../Helpers/ApiFetch';
+
 
 const getNavStyles = (indx, length) => {
   const styles = [];
@@ -47,87 +57,220 @@ const getButtonsState = (indx, length) => {
   };
 };
 
-export default function ManagerForm(props) {
-  const [stylesState, setStyles] = useState(getNavStyles(0, props.steps.length));
-  const [compState, setComp] = useState(0);
-  const [buttonsState, setButtons] = useState(getButtonsState(0, props.steps.length));
+export default class ManagerForm extends React.Component {
+  numberSteps = 5;
 
+  submitMyForm = null;
 
-  function setStepState(indx) {
-    setStyles(getNavStyles(indx, props.steps.length));
-    setComp(indx < props.steps.length ? indx : compState);
-    setButtons(getButtonsState(indx, props.steps.length));
+  constructor(props) {
+    super(props);
+
+    const dataInfo = new Info(this.props);
+    const dataDetails = new Details(this.props);
+    const dataFeature = new Features(this.props);
+
+    this.state = {
+      styles: getNavStyles(0, this.numberSteps),
+      compIndex: 0,
+      buttons: getButtonsState(0, this.numberSteps),
+      images: [],
+      info: dataInfo,
+      details: dataDetails,
+      features: dataFeature,
+      isValid: false,
+    };
   }
 
+  async componentDidMount() {
+    const { id } = this.props;
+    try {
+      const resultPhotos = await db.get(`/property/photos/${id}`);
 
-  const next = () => {
-    if (props.isValid) { setStepState(compState + 1); } else console.log('teste2');
+      this.setState({
+        images: resultPhotos.data,
+      });
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
+  }
+
+  handleValidation = () => {
+    this.setState(() => ({
+      isValid: false,
+    }));
+  }
+
+  handleComponent = (name, data) => {
+    this.setState(() => ({
+      [name]: data,
+    }));
   };
 
-  const previous = () => setStepState((compState > 0) ? compState - 1 : compState);
+  handleNext = (e) => {
+    this.submitMyForm(e);
 
-  const handleKeyDown = (evt) => (evt.which === 13 ? next(props.steps.length) : {});
+    const { isValid, compIndex } = this.state;
 
-  const handleOnClick = (evt) => {
-    if (evt.currentTarget.value === props.steps.length - 1
-      && compState === props.steps.length - 1) {
-      setStepState(props.steps.length);
+    if (isValid) {
+      this.setStepState(compIndex + 1);
     } else {
-      setStepState(evt.currentTarget.value);
+      toast('Existem campos inválidos', {
+        type: toast.TYPE.ERROR,
+        autoClose: 5000,
+      });
     }
   };
 
-  const renderSteps = () => props.steps.map((s, i) => (
-    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-    <li
-      className={`progtrckr-${stylesState[i]}`}
-      onClick={handleOnClick}
-      // eslint-disable-next-line react/no-array-index-key
-      key={i}
-      value={i}
-    >
-      <em>{i + 1}</em>
-      <span>{props.steps[i].name}</span>
-    </li>
-  ));
+  handlePrevious = (e) => {
+    this.submitMyForm(e);
 
-  return (
-    <div>
-      <div className="container" onKeyDown={handleKeyDown}>
-        <MultiStageProgress
-          handleKeyDown={handleKeyDown}
-          steps={props.steps}
-          renderSteps={renderSteps}
-          compState={compState}
-        />
+    const { compIndex, isValid } = this.state;
+
+    if (isValid) {
+      this.setStepState((compIndex > 0) ? compIndex - 1 : compIndex);
+    } else {
+      toast('Existem campos inválidos', {
+        type: toast.TYPE.ERROR,
+        autoClose: 5000,
+      });
+    }
+  }
+
+  bindSubmitForm = (submitForm) => {
+    this.submitMyForm = submitForm;
+  };
+
+  getSteps = () => {
+    const {
+      images, info, features, details,
+    } = this.state;
+
+    const steps = [
+      {
+        name: 'Dados gerais',
+        component: <PropertyInfo
+          handleComponent={this.handleComponent}
+          data={info}
+          bindSubmitForm={this.bindSubmitForm}
+        />,
+      },
+      {
+        name: 'Comodos',
+        component: <PropertyDetails
+          handleComponent={this.handleComponent}
+          data={details}
+          bindSubmitForm={this.bindSubmitForm}
+        />,
+      },
+      {
+        name: 'Adicionais',
+        component: <PropertyFeatures
+          handleComponent={this.handleComponent}
+          data={features}
+          bindSubmitForm={this.bindSubmitForm}
+        />,
+      },
+      {
+        name: 'Fotos',
+        component: <PropertyPhotos
+          handleComponent={this.handleComponent}
+          data={images}
+        />,
+      },
+      {
+        name: 'Resumo',
+        component: <HouseDescription
+          info={info}
+          details={details}
+          features={features}
+          images={images}
+        />,
+      },
+    ];
+
+    return steps;
+  }
+
+
+  setStepState = (indx) => {
+    const { compIndex } = this.state;
+    this.setState({
+      styles: getNavStyles(indx, this.numberSteps),
+      compIndex: indx < this.numberSteps ? indx : compIndex,
+      buttons: getButtonsState(indx, this.numberSteps),
+    });
+  }
+
+  handleKeyDown = (evt) => (evt.which === 13 ? this.next(this.numberSteps) : {});
+
+  handleOnClick = (evt) => {
+    if (evt.currentTarget.value === this.numberSteps - 1
+      && this.state.compIndex === this.numberSteps - 1) {
+      this.setStepState(this.numberSteps);
+    } else {
+      this.setStepState(evt.currentTarget.value);
+    }
+  };
+
+  renderSteps = () => {
+    const steps = this.getSteps();
+    const { styles } = this.state;
+
+    return steps.map((s, i) => (
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+      <li
+        className={`progtrckr-${styles[i]}`}
+        onClick={this.handleOnClick}
+      // eslint-disable-next-line react/no-array-index-key
+        key={i}
+        value={i}
+      >
+        <span>{steps[i].name}</span>
+      </li>
+    ));
+  };
+
+  render() {
+    const { compIndex, buttons } = this.state;
+    const steps = this.getSteps();
+    const progressBar = this.renderSteps();
+
+    return (
+      <div className="container-editor" onKeyDown={this.handleKeyDown}>
+        <ol className="progtrckr">
+          {progressBar}
+        </ol>
+        {steps[compIndex].component}
         <div className="prog-button">
           <button
-            style={buttonsState.showPreviousBtn ? {} : { display: 'none' }}
-            onClick={previous}
+            style={buttons.showPreviousBtn ? {} : { display: 'none' }}
+            onClick={this.handlePrevious}
             type="button"
           >
             Anterior
           </button>
 
           <button
-            style={buttonsState.showNextBtn ? {} : { display: 'none' }}
-            onClick={next}
+            style={buttons.showNextBtn ? {} : { display: 'none' }}
+            onClick={this.handleNext}
             type="button"
           >
             Seguinte
           </button>
           <button
-            style={buttonsState.showSaveBtn ? {} : { display: 'none' }}
-            onClick={props.onSubmit}
+            style={buttons.showSaveBtn ? {} : { display: 'none' }}
+            // onClick={onSubmit}
             type="button"
           >
             Salvar
           </button>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
+
 
 ManagerForm.defaultProps = {
   showNavigation: true,

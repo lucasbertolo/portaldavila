@@ -8,10 +8,9 @@ import {
 } from 'formik';
 
 import { ValidationInfo } from '../Helpers/Validation';
-import Effect from '../Helpers/Effect';
 
 import {
-  Select, RadioButtonGroup, Radio, Input,
+  Select, Input, Radio, RadioButtonGroup,
 } from '../Common/FormComponents';
 
 import { db } from '../Helpers/ApiFetch';
@@ -49,6 +48,7 @@ export default function PropertyInfo(props) {
         console.log(error);
       }
     };
+
     const fetchType = async () => {
       try {
         const resultType = await db.get('/typeofproperty');
@@ -77,14 +77,14 @@ export default function PropertyInfo(props) {
     <Formik
       initialValues={initialValues}
       validationSchema={ValidationInfo}
-      onSubmit={(values) => {
+      onSubmit={(values, { setSubmitting }) => {
         // eslint-disable-next-line no-param-reassign
         values.position = {
           lat: values.lat,
           long: values.long,
         };
-
         props.handleComponent('info', values);
+        setSubmitting(false);
       }}
     >
       {(formikProps) => {
@@ -92,15 +92,17 @@ export default function PropertyInfo(props) {
           values, handleChange, handleBlur, handleSubmit, errors, touched,
         } = formikProps;
 
+        const { bindSubmitForm } = props;
+        bindSubmitForm(formikProps.submitForm);
         return (
           <div className="form-style-5">
 
             <form noValidate onSubmit={handleSubmit}>
 
               {/* Envia valores para Manager ao desmontar o componente */ }
-              <Effect
+              {/* <Effect
                 formik={formikProps}
-              />
+              /> */}
 
               <Select
                 hasLabel
@@ -135,7 +137,7 @@ export default function PropertyInfo(props) {
                   label="Venda"
                   onChange={handleChange}
                   value={enums.purposeOfProperty.selling}
-                  name="purpose_id"
+                  name="radioOne"
                   state={values.purpose_id === enums.purposeOfProperty.selling ? 'checked' : null}
                   required
                 />
@@ -146,7 +148,7 @@ export default function PropertyInfo(props) {
                   label="Locação"
                   onChange={handleChange}
                   value={enums.purposeOfProperty.renting}
-                  name="purpose_id"
+                  name="radioTwo"
                   state={values.purpose_id === enums.purposeOfProperty.renting ? 'checked' : null}
                   required
                 />
@@ -156,6 +158,7 @@ export default function PropertyInfo(props) {
                 ) : null}
 
               </RadioButtonGroup>
+
 
               {
               state.isEditing
@@ -186,7 +189,6 @@ export default function PropertyInfo(props) {
                     currency
                   />
                 )
-
             }
 
               <div>
@@ -252,7 +254,6 @@ export default function PropertyInfo(props) {
                   <div>{errors.long}</div>
                 ) : null}
               </div> */}
-
             </form>
           </div>
 

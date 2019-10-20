@@ -1,40 +1,37 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import {
-  Formik, Field,
+  Formik, Field, ErrorMessage,
 } from 'formik';
 
 import { ValidationDetails } from '../Helpers/Validation';
-import Effect from '../Helpers/Effect';
 
 export default function PropertyDetails(props) {
   const initialValues = {
     ...props.data,
   };
+  const { bindSubmitForm } = props;
 
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={ValidationDetails}
-      onSubmit={(values) => {
+      onSubmit={(values, { setSubmitting }) => {
         props.handleComponent('details', values);
+        setSubmitting(false);
       }}
     >
       {(formikProps) => {
         const {
-          values, handleChange, handleBlur, handleSubmit, errors, touched,
+          values, handleChange, handleBlur, handleSubmit,
         } = formikProps;
 
+        bindSubmitForm(formikProps.submitForm);
+
         return (
-          <div className="form-style-5">
 
-            <form noValidate onSubmit={handleSubmit}>
-
-              <Effect
-                formik={formikProps}
-              />
-
-              {
+          <form className="form-style-5" noValidate onSubmit={handleSubmit}>
+            {
               Object.keys(initialValues).map((item) => (
                 <div key={item}>
                   <label htmlFor={item}>
@@ -48,14 +45,11 @@ export default function PropertyDetails(props) {
                     onBlur={handleBlur}
                     className="number"
                   />
-                  {errors[item] && touched[item] ? (
-                    <div>{errors[item]}</div>
-                  ) : null}
+                  <ErrorMessage component="span" name={item} />
                 </div>
               ))
             }
-            </form>
-          </div>
+          </form>
         );
       }}
     </Formik>
