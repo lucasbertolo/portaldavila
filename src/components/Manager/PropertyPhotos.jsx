@@ -1,10 +1,13 @@
 /* eslint-disable array-callback-return */
+/* eslint-disable prefer-promise-reject-errors */
+
 import React, { Component } from 'react';
 
 import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
 import { db } from '../Helpers/ApiFetch';
 
 // import { db } from '../Helpers/ApiFetch';
@@ -20,11 +23,20 @@ class PropertyPhotos extends Component {
     };
   }
 
-  componentWillUnmount() {
+  onSubmit = () => {
     const { handleComponent } = this.props;
     const { photos } = this.state;
 
+    if (photos.length === 0) {
+      return Promise.reject('É necessário adicionar ao menos uma foto');
+    }
+    const coverCheck = photos.filter((item) => item.active === true);
+    if (coverCheck.length === 0) {
+      return Promise.reject('Selecione ao menos uma foto como capa');
+    }
+
     handleComponent('images', photos);
+    return Promise.resolve();
   }
 
   // TODO - IF IS EDIT STAGE - DELETE IN DB
@@ -146,19 +158,19 @@ class PropertyPhotos extends Component {
             photos,
           });
         })
-
-        // TO DO
-        // eslint-disable-next-line no-console
-        .catch((err) => console.log(err));
+        .catch(() => toast.error('Não foi possivel carregar a imagem'));
     }
   }
 
 
   render() {
     const { message, photos } = this.state;
+    const { bindSubmitForm } = this.props;
+
+    bindSubmitForm(this.onSubmit);
 
     return (
-      <div>
+      <>
         <DisplayImage
           photos={photos}
           handleChange={this.handleChange}
@@ -167,7 +179,6 @@ class PropertyPhotos extends Component {
         />
 
         <div className="wrapper-upload">
-          {/* {success ? <SuccessMessage /> : null } */}
           <div className="file-upload">
             <input
               onChange={this.handleUpload}
@@ -179,12 +190,11 @@ class PropertyPhotos extends Component {
             />
             <br />
           </div>
-
         </div>
 
         {message}
 
-      </div>
+      </>
     );
   }
 }

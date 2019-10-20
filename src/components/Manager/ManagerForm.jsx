@@ -104,7 +104,6 @@ export default class ManagerForm extends React.Component {
 
   handleNext = (e) => {
     const { compIndex } = this.state;
-
     this.submitMyForm(e)
       .then(() => {
         if (Object.entries(this.errors).length === 0) {
@@ -115,7 +114,8 @@ export default class ManagerForm extends React.Component {
             autoClose: 5000,
           });
         }
-      });
+      })
+      .catch((err) => toast.error(err));
   };
 
   handlePrevious = (e) => {
@@ -131,7 +131,8 @@ export default class ManagerForm extends React.Component {
             autoClose: 5000,
           });
         }
-      });
+      })
+      .catch((err) => toast.error(err));
   }
 
   handleOnClick = (evt) => {
@@ -151,7 +152,8 @@ export default class ManagerForm extends React.Component {
             autoClose: 5000,
           });
         }
-      });
+      })
+      .catch((err) => toast.error(err));
   };
 
   bindSubmitForm = (submitForm) => {
@@ -200,6 +202,7 @@ export default class ManagerForm extends React.Component {
         component: <PropertyPhotos
           handleComponent={this.handleComponent}
           data={images}
+          bindSubmitForm={this.bindSubmitForm}
           bindErrors={this.bindErrors}
         />,
       },
