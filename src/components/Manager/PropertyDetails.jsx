@@ -10,7 +10,7 @@ export default function PropertyDetails(props) {
   const initialValues = {
     ...props.data,
   };
-  const { bindSubmitForm } = props;
+  const { bindSubmitForm, bindErrors } = props;
 
   return (
     <Formik
@@ -26,6 +26,7 @@ export default function PropertyDetails(props) {
           values, handleChange, handleBlur, handleSubmit,
         } = formikProps;
 
+        bindErrors(formikProps.errors);
         bindSubmitForm(formikProps.submitForm);
 
         return (

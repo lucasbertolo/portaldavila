@@ -83,7 +83,6 @@ export default function PropertyInfo(props) {
           lat: values.lat,
           long: values.long,
         };
-
         props.handleComponent('info', values);
         setSubmitting(false);
       }}

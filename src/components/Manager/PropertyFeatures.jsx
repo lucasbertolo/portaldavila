@@ -12,7 +12,7 @@ export default function PropertyFeatures(props) {
   };
 
   const standardOption = ['Não', 'Sim'];
-  const { bindSubmitForm } = props;
+  const { bindSubmitForm, bindErrors } = props;
 
   const selectArray = Object.keys(initialValues).filter((item) => (
     item !== 'description'
@@ -33,6 +33,8 @@ export default function PropertyFeatures(props) {
         } = formikProps;
 
         bindSubmitForm(formikProps.submitForm);
+        bindErrors(formikProps.errors);
+
         return (
           <form className="form-style-5" noValidate onSubmit={handleSubmit}>
 

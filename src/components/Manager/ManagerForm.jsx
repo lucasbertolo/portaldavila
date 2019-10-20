@@ -96,7 +96,6 @@ export default class ManagerForm extends React.Component {
     }
   }
 
-
   handleComponent = (name, data) => {
     this.setState(() => ({
       [name]: data,
@@ -105,32 +104,55 @@ export default class ManagerForm extends React.Component {
 
   handleNext = (e) => {
     const { compIndex } = this.state;
-    this.submitMyForm(e);
 
-    if (Object.entries(this.errors).length === 0) {
-      this.setStepState(compIndex + 1);
-    } else {
-      toast('Existem campos inválidos', {
-        type: toast.TYPE.ERROR,
-        autoClose: 5000,
+    this.submitMyForm(e)
+      .then(() => {
+        if (Object.entries(this.errors).length === 0) {
+          this.setStepState(compIndex + 1);
+        } else {
+          toast('Existem campos inválidos', {
+            type: toast.TYPE.ERROR,
+            autoClose: 5000,
+          });
+        }
       });
-    }
   };
 
   handlePrevious = (e) => {
-    this.submitMyForm(e);
+    const { compIndex } = this.state;
 
-    const { compIndex, isValid } = this.state;
-
-    if (isValid) {
-      this.setStepState((compIndex > 0) ? compIndex - 1 : compIndex);
-    } else {
-      toast('Existem campos inválidos', {
-        type: toast.TYPE.ERROR,
-        autoClose: 5000,
+    this.submitMyForm(e)
+      .then(() => {
+        if (Object.entries(this.errors).length === 0) {
+          this.setStepState((compIndex > 0) ? compIndex - 1 : compIndex);
+        } else {
+          toast('Existem campos inválidos', {
+            type: toast.TYPE.ERROR,
+            autoClose: 5000,
+          });
+        }
       });
-    }
   }
+
+  handleOnClick = (evt) => {
+    const { value } = evt.target;
+    this.submitMyForm(evt)
+      .then(() => {
+        if (Object.entries(this.errors).length === 0) {
+          if (value === this.numberSteps - 1
+          && this.state.compIndex === this.numberSteps - 1) {
+            this.setStepState(this.numberSteps);
+          } else {
+            this.setStepState(value);
+          }
+        } else {
+          toast('Existem campos inválidos', {
+            type: toast.TYPE.ERROR,
+            autoClose: 5000,
+          });
+        }
+      });
+  };
 
   bindSubmitForm = (submitForm) => {
     this.submitMyForm = submitForm;
@@ -161,7 +183,7 @@ export default class ManagerForm extends React.Component {
           handleComponent={this.handleComponent}
           data={details}
           bindSubmitForm={this.bindSubmitForm}
-          handleValidation={this.handleValidation}
+          bindErrors={this.bindErrors}
         />,
       },
       {
@@ -170,7 +192,7 @@ export default class ManagerForm extends React.Component {
           handleComponent={this.handleComponent}
           data={features}
           bindSubmitForm={this.bindSubmitForm}
-          handleValidation={this.handleValidation}
+          bindErrors={this.bindErrors}
         />,
       },
       {
@@ -178,7 +200,7 @@ export default class ManagerForm extends React.Component {
         component: <PropertyPhotos
           handleComponent={this.handleComponent}
           data={images}
-          handleValidation={this.handleValidation}
+          bindErrors={this.bindErrors}
         />,
       },
       {
@@ -205,16 +227,8 @@ export default class ManagerForm extends React.Component {
     });
   }
 
-  handleKeyDown = (evt) => (evt.which === 13 ? this.next(this.numberSteps) : {});
+  handleKeyDown = (evt) => (evt.which === 13 ? this.handleNext(this.numberSteps) : {});
 
-  handleOnClick = (evt) => {
-    if (evt.currentTarget.value === this.numberSteps - 1
-      && this.state.compIndex === this.numberSteps - 1) {
-      this.setStepState(this.numberSteps);
-    } else {
-      this.setStepState(evt.currentTarget.value);
-    }
-  };
 
   renderSteps = () => {
     const steps = this.getSteps();
