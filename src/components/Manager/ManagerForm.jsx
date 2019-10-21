@@ -251,6 +251,22 @@ export default class ManagerForm extends React.Component {
     ));
   };
 
+  sendData = (e) => {
+    e.preventDefault();
+    const {
+      info, details, features, images,
+    } = this.state;
+
+    const obj = {
+      info,
+      details,
+      features,
+      images,
+    };
+
+    this.props.onSubmit(obj);
+  }
+
   render() {
     const { compIndex, buttons } = this.state;
     const steps = this.getSteps();
@@ -280,7 +296,7 @@ export default class ManagerForm extends React.Component {
           </button>
           <button
             style={buttons.showSaveBtn ? {} : { display: 'none' }}
-            // onClick={onSubmit}
+            onClick={this.sendData}
             type="button"
           >
             Salvar

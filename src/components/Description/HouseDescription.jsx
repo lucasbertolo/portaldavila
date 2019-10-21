@@ -52,7 +52,7 @@ export default class HouseDescription extends React.Component {
     // const { lat, long } = initialState.info.position;
 
     return (
-      <div>
+      <>
         {
         isLoading
           ? (
@@ -88,7 +88,7 @@ export default class HouseDescription extends React.Component {
             </div>
           )
       }
-      </div>
+      </>
     );
   }
 }

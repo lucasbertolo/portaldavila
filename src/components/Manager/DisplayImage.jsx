@@ -17,7 +17,7 @@ const DisplayImage = ({
       style={{ gridArea: `grid-${index}` }}
     >
       <img
-        className={item.active ? 'active md-shadow' : 'md-shadow'}
+        className={item.isCover ? 'active md-shadow' : 'md-shadow'}
         src={item.url}
         alt="property"
       />

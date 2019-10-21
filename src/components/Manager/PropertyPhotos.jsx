@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable array-callback-return */
 /* eslint-disable prefer-promise-reject-errors */
 
@@ -10,14 +11,12 @@ import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import { db } from '../Helpers/ApiFetch';
 
-// import { db } from '../Helpers/ApiFetch';
 import DisplayImage from './DisplayImage';
 
 class PropertyPhotos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // success: false,
       message: props.message || '',
       photos: props.data || [],
     };
@@ -30,7 +29,7 @@ class PropertyPhotos extends Component {
     if (photos.length === 0) {
       return Promise.reject('É necessário adicionar ao menos uma foto');
     }
-    const coverCheck = photos.filter((item) => item.active === true);
+    const coverCheck = photos.filter((item) => item.isCover === true);
     if (coverCheck.length === 0) {
       return Promise.reject('Selecione ao menos uma foto como capa');
     }
@@ -39,40 +38,38 @@ class PropertyPhotos extends Component {
     return Promise.resolve();
   }
 
-  // TODO - IF IS EDIT STAGE - DELETE IN DB
   removePhoto = (e) => {
     const { photos } = this.state;
 
-    if (Number(e.target.id)) {
-      db.delete(`/property/photos/${e.target.id}`);
-    }
+    // eslint-disable-next-line no-alert
+    const result = confirm('Want to delete?');
 
-    const newList = photos.filter((item) => {
-      if (item.id) {
-        return item.id !== Number(e.target.id);
+    if (result) {
+      if (Number(e.target.id)) {
+        db.delete(`/property/photos/${e.target.id}`);
       }
-      return item.url !== e.target.id;
-    });
 
-    this.setState({
-      photos: newList,
-    });
+      const newList = photos.filter((item) => {
+        if (item.id) {
+          return item.id !== Number(e.target.id);
+        }
+        return item.url !== e.target.id;
+      });
+
+      this.setState({
+        photos: newList,
+      });
+    }
   }
 
   setCover = (e) => {
     const { photos } = this.state;
 
-    // TO DO - SET COVER ON UPDATE
-
-    // if (Number(e.target.id)) {
-    //   db.post(`/property/cover/${e.target.id}`);
-    // }
-
     // eslint-disable-next-line no-param-reassign
-    photos.map((el) => { el.active = false; });
+    photos.map((el) => { el.isCover = false; });
 
     const index = photos.findIndex((x) => x.url === e.target.id);
-    photos[index].active = true;
+    photos[index].isCover = true;
 
     this.setState({
       photos,
