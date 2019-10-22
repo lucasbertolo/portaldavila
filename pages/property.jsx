@@ -2,10 +2,13 @@
 
 import React from 'react';
 import { db } from '../src/components/Helpers/ApiFetch';
-import Main from '../src/components/Grid/Main';
+
+import Main from '../src/components/Property/Main';
+import Filter from '../src/components/Property/Filter';
 
 const Property = ({ data }) => (
   <div>
+    <Filter />
     <Main data={data} />
   </div>
 );
