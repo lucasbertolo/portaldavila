@@ -26,6 +26,17 @@ export default function FilterBox({ state, handleInput }) {
         value={state.price}
         type="number"
       />
+
+      <Input
+        hasLabel
+        htmlFor="type"
+        name="type"
+        label="Tipo"
+        placeholder="Filtrar por tipo"
+        onChange={handleInput}
+        value={state.type}
+        type="number"
+      />
     </div>
   );
 }
