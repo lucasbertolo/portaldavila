@@ -9,6 +9,8 @@ const CardContent = () => (
     <span className="card-icons">
       <i className="icon-garage" />
           &nbsp;4
+      <i className="icon-pool" />
+
     </span>
   </div>
 );
