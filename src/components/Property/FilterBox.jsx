@@ -1,42 +1,103 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-
-import { Input } from '../Common/FormComponents';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faUpload, faDollarSign, faWarehouse, faSearch,
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function FilterBox({ state, handleInput }) {
   return (
-    <div>
-      <Input
-        hasLabel
-        htmlFor="code"
-        name="code"
-        label="Codigo"
-        placeholder="Filtrar por codigo"
-        onChange={handleInput}
-        value={state.code}
-        type="search"
-      />
+    <>
+      <div className="primary-nav">
 
-      <Input
-        hasLabel
-        htmlFor="price"
-        name="price"
-        label="Preço"
-        placeholder="Filtrar por preço"
-        onChange={handleInput}
-        value={state.price}
-        type="number"
-      />
+        <button href="#" type="button" className="hamburger open-panel nav-toggle">
+          <span className="screen-reader-text">Menu</span>
+          <span className="icon">
+            <FontAwesomeIcon
+              icon={faSearch}
+            />
+          </span>
+        </button>
 
-      <Input
-        hasLabel
-        htmlFor="type"
-        name="type"
-        label="Tipo"
-        placeholder="Filtrar por tipo"
-        onChange={handleInput}
-        value={state.type}
-        type="number"
-      />
-    </div>
+        <nav role="navigation" className="menu">
+
+          <a href="#" className="logotype">
+              LOGO
+            <span>TYPE</span>
+          </a>
+
+          <div className="overflow-container">
+
+            <ul className="menu-dropdown">
+
+              <li>
+                <a href="#">Dashboard</a>
+                <span className="icon">
+                  <FontAwesomeIcon
+                    icon={faWarehouse}
+                  />
+                </span>
+              </li>
+
+              <li className="menu-hasdropdown">
+                <a href="#">Settings</a>
+                <span className="icon">
+                  {' '}
+                  <FontAwesomeIcon
+                    icon={faDollarSign}
+                  />
+
+                </span>
+
+                <label title="toggle menu" htmlFor="settings">
+                  <span className="downarrow">
+
+                    <FontAwesomeIcon
+                      icon={faUpload}
+                    />
+                  </span>
+                </label>
+                <input type="checkbox" className="sub-menu-checkbox" id="settings" />
+
+                <ul className="sub-menu-dropdown">
+                  <li><a href="">Profile</a></li>
+                  <li><a href="">Security</a></li>
+                  <li><a href="">Account</a></li>
+                </ul>
+              </li>
+
+              <li>
+                <a href="#">Favourites</a>
+                <span className="icon">
+                  {' '}
+                  <FontAwesomeIcon
+                    icon={faUpload}
+                  />
+
+                </span>
+              </li>
+
+              <li>
+                <a href="#">Messages</a>
+                <span className="icon">
+                  {' '}
+                  <FontAwesomeIcon
+                    icon={faUpload}
+                  />
+
+                </span>
+              </li>
+
+            </ul>
+
+          </div>
+
+        </nav>
+
+      </div>
+
+
+    </>
   );
 }
