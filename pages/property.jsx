@@ -15,18 +15,17 @@ const Property = ({ data }) => {
     type: 0,
   });
 
-  const [grid, setGrid] = useState(data);
+  const [grid, setGrid] = useState(data || []);
 
-  const handleInput = (e) => {
-    const { name, value } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  // const handleInput = (e) => {
+  //   const { name, value } = e.target;
+  //   setState((prevState) => ({
+  //     ...prevState,
+  //     [name]: value,
+  //   }));
+  // };
 
   useEffect(() => {
-    console.log(data);
     if (state.code > 0) setGrid(Model.EqualsTo(data, Number(state.code), 'id'));
 
     if (state.price > 0) setGrid(Model.MoreThan(data, Number(state.price), 'price'));
@@ -37,8 +36,14 @@ const Property = ({ data }) => {
 
   return (
     <div>
-      <FilterBox handleInput={handleInput} state={state} />
-      <HouseCard data={grid} />
+      {/* <FilterBox handleInput={handleInput} state={state} /> */}
+      {
+        grid.length > 0 ? (
+          grid.map((item) => (
+            <HouseCard data={item} key={item.id} />
+          ))
+        ) : <div>No properties</div>
+      }
     </div>
   );
 };

@@ -1,22 +1,21 @@
 
-  
-  .container-card {
+   .container-card {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     background: #444;
-
     img {
-      max-width: 100%;
+      width: 110%;
+      max-width: 110%;
     }
   }
   
   .card {
     position: relative;
     background: #333;
-    width: 400px;
-    height: 75vh;
+    width: 300px;
+    height: 400px;
     border-radius: 6px;
     padding: 2rem;
     color: #aaa;
@@ -56,6 +55,11 @@
       left: 0;
       top: 115px;
     }
+  }
+
+  .card-icons{
+    width: 200px;
+    height: 200px;
   }
   
   @keyframes LineFadeIn {

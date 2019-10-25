@@ -1,4 +1,29 @@
-.fa{
-    z-index: -1;
-    position: relative;
-  } 
+.fa {
+  z-index: -1;
+  position: relative;
+}
+
+.icon-garage,
+.icon-room,
+.icon-garden,
+.icon-grill
+{
+  display:block;
+  color:white;
+  text-decoration:none;
+  padding-left:20px;
+
+  &::before{
+    content: '';
+    background-size:cover;
+    position:absolute;
+    width:40px;
+    height:40px;
+    margin-left:-20px;
+  }
+}
+
+.icon-garage:before{
+  background:url('https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/Icons/noun_Upload_1562155_9FQYTZNYa.svg') no-repeat;
+}
+
