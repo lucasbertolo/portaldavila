@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import enums from '../../content/enums'
+import enums from '../../content/enums';
 import { db } from '../Helpers/ApiFetch';
 
 const CardInfo = ({ typeId, blockId, purposeId }) => {
@@ -46,14 +46,14 @@ const CardInfo = ({ typeId, blockId, purposeId }) => {
     fetchType();
   }, []);
 
+  const type = state.typeList[typeId];
+  const purpose = Object.keys(enums.purposeOfProperty)
+    .filter((key) => enums.purposeOfProperty[key] === purposeId)[0];
+
   return (
     <div className="card__info">
       <span className="card__category">
-        {state.typeList[typeId]} - 
-        {
-          Object.keys(enums.purposeOfProperty)
-          .filter(function(key) {return enums.purposeOfProperty[key] === purposeId})[0]
-        }
+        {`${type} - ${purpose}`}
       </span>
       <h3 className="card__title">{state.neighborhoodList[blockId]}</h3>
     </div>

@@ -3,56 +3,37 @@
   position: relative;
 }
 
-.icon-garage,
-.icon-room,
-.icon-garden,
-.icon-pool
-{
-  display:inline;
-  color:white;
-  text-decoration:none;
-  padding-left:50px;
-
-  &::before{
-    content: '';
-    background-size:cover;
-    position:absolute;
-    width:40px;
-    height:40px;
-    margin-left:-50px;
-    width: 40px;
-    height: 40px;
-  }
-}
-
-.icon-garage:before{
-  background:url('https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/Icons/garage_Kstn_I8Sv.svg') no-repeat;
-  background-size: cover; 
-}
-
-.icon-pool:before{
-  background: url('https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/Icons/pool_S6tFmbQSv.svg') no-repeat;
-  background-size: cover; 
-}
-
-.svg-fav-icon{
+.garage-icon,
+.bath-icon,
+.fav-icon{
   width: 1.4em;
   height: 1.4em;
 }
-
-.svg-price-icon{
+.price-icon, .bed-icon {
   width: 1em;
   height: 1em;
 }
-
-.svg-fav-icon path,
-.svg-fav-icon polygon,
-.svg-fav-icon rect 
-.svg-price-icon path{
-  fill: black;
+.bed-icon{
+  margin-top: 2px;
 }
 
-.svg-fav-icon circle {
-  stroke: black;
-  stroke-width: 1;
+.svg {
+  path,
+  polygon,
+  rect,
+  path {
+    fill: black;
+  }
+  circle {
+    stroke: black;
+    stroke-width: 1;
+  }
+}
+
+.fav-icon{
+  margin-top: 3px;
+}
+
+.selected-fav{
+  fill: $color5 !important
 }
