@@ -35,3 +35,24 @@
   background-size: cover; 
 }
 
+.svg-fav-icon{
+  width: 1.4em;
+  height: 1.4em;
+}
+
+.svg-price-icon{
+  width: 1em;
+  height: 1em;
+}
+
+.svg-fav-icon path,
+.svg-fav-icon polygon,
+.svg-fav-icon rect 
+.svg-price-icon path{
+  fill: black;
+}
+
+.svg-fav-icon circle {
+  stroke: black;
+  stroke-width: 1;
+}

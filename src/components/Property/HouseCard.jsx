@@ -1,20 +1,21 @@
 import React from 'react';
 
-import CardContent from './CardContent';
+import CardInfo from './CardInfo';
 import CardImage from './CardImage';
-import CardDivider from './CardDivider';
+import CardHeader from './CardHeader';
 
 const HouseCard = ({ data }) => {
-  const { url, key, alt } = data;
+  console.log(data);
+  const {
+    url, price,
+  } = data;
 
   return (
-    <div className="container-card" key={key}>
-      <div className="card">
-        <CardImage url={url} alt={alt} />
-        <CardDivider />
-        <CardContent />
-      </div>
-    </div>
+    <article className="card">
+      <CardHeader price={price} />
+      <CardImage url={url} />
+      <CardInfo />
+    </article>
   );
 };
 

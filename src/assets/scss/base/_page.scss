@@ -1,17 +1,18 @@
-// // reset
+// RESET 
+*,
+*::before,
+*::after,
 html {
   box-sizing: border-box;
 }
-// *,
-// *:before,
-// *:after {
-//   box-sizing: inherit;
-// }
+
 body,
-ul,
-li {
+html
+{
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100vh;
 }
 
 * {
@@ -27,7 +28,7 @@ li {
   outline: none;
 }
 
-ul {
+ul,li {
   list-style: none;
   padding: 0;
   margin: 0;

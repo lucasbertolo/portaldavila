@@ -35,7 +35,7 @@ const Property = ({ data }) => {
 
 
   return (
-    <div>
+    <section className="cards">
       {/* <FilterBox handleInput={handleInput} state={state} /> */}
       {
         grid.length > 0 ? (
@@ -44,7 +44,7 @@ const Property = ({ data }) => {
           ))
         ) : <div>No properties</div>
       }
-    </div>
+    </section>
   );
 };
 

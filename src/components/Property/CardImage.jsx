@@ -1,11 +1,10 @@
 import React from 'react';
 
-const CardImage = ({ url, alt }) => (
-  <div className="card__image-container">
-    <figure>
-      <img className="card__image" src={url} alt={alt} />
-    </figure>
-  </div>
+const CardImage = ({ url }) => (
+  <>
+    <div className="card__img" style={{ backgroundImage: `url("${url}")` }} />
+    <div className="card__img--hover" style={{ backgroundImage: `url("${url}")` }} />
+  </>
 );
 
 export default CardImage;
