@@ -21,6 +21,7 @@ module.exports = {
     'react',
   ],
   rules: {
+    camelcase: {properties: "never"},
     'react/prop-types': 0
   },
   parser: "babel-eslint"

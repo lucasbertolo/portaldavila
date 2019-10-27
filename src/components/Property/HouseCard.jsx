@@ -5,16 +5,15 @@ import CardImage from './CardImage';
 import CardHeader from './CardHeader';
 
 const HouseCard = ({ data }) => {
-  console.log(data);
   const {
-    url, price,
+    url, price, type_id, neighborhood_id, purpose_id
   } = data;
 
   return (
     <article className="card">
       <CardHeader price={price} />
       <CardImage url={url} />
-      <CardInfo />
+      <CardInfo typeId={type_id} blockId={neighborhood_id} purposeId={purpose_id} />
     </article>
   );
 };

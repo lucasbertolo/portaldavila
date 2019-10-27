@@ -5,7 +5,7 @@ import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { db } from '../src/components/Helpers/ApiFetch';
 
-import ManagerForm from '../src/components/Manager/ManagerForm';
+import ManagerForm from '../src/components/UserArea/ManagerForm';
 
 import 'react-toastify/dist/ReactToastify.css';
 
