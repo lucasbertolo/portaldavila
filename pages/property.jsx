@@ -7,6 +7,7 @@ import HouseCard from '../src/components/Property/HouseCard';
 import FilterBox from '../src/components/Property/FilterBox';
 
 import Model from '../src/util/filters';
+import Header from '../src/components/Header/Header';
 
 const Property = ({ data }) => {
   const [state, setState] = useState({
@@ -35,16 +36,19 @@ const Property = ({ data }) => {
 
 
   return (
-    <section className="cards">
-      {/* <FilterBox handleInput={handleInput} state={state} /> */}
-      {
+    <>
+      <Header />
+      <section className="cards">
+        {/* <FilterBox handleInput={handleInput} state={state} /> */}
+        {
         grid.length > 0 ? (
           grid.map((item) => (
             <HouseCard data={item} key={item.id} />
           ))
         ) : <div>No properties</div>
       }
-    </section>
+      </section>
+    </>
   );
 };
 
