@@ -8,6 +8,8 @@ import { db } from '../src/components/Helpers/ApiFetch';
 import ManagerForm from '../src/components/UserArea/ManagerForm';
 
 import 'react-toastify/dist/ReactToastify.css';
+import Menu from '../src/components/UserArea/Menu';
+import Header from '../src/components/Header/Header';
 
 
 const UserArea = ({ data }) => {
@@ -57,10 +59,12 @@ const UserArea = ({ data }) => {
         draggable
         pauseOnHover
       />
-      <ManagerForm
+      <Header />
+      <Menu />
+      {/* <ManagerForm
         {...data}
         onSubmit={onSubmit}
-      />
+      /> */}
     </>
   );
 };

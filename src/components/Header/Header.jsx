@@ -85,11 +85,11 @@ export default class Header extends React.Component {
             </Link>
             {
                 listItems.map((item) => (
-                  <div key="item">
+                  <div key={item}>
                     <Link href={`/${item}`}>
                       <section id={item}>
-                      <p>{item}</p>
-                    </section>
+                        <p>{item}</p>
+                      </section>
                     </Link>
                   </div>
                 ))

@@ -57,6 +57,7 @@
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0, 1);
   background-color: #fff;
   width: 25.3%;
+  max-height: 380px;
   position: relative;
   border-radius: 12px;
   overflow: hidden;
@@ -106,11 +107,12 @@
 .card__icons{
   display: flex;
   justify-content: space-around;
-  height: 100%;
+  height: 80px;
   padding-bottom: 15px;
 
   .icon-container{
-    height: 100%;
+    padding-top:20px;
+    height: 80px;
     display: flex;
     justify-content: flex-end;
 
