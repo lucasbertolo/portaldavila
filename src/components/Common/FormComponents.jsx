@@ -65,12 +65,6 @@ const Input = (props) => {
 
   return (
     <fieldset>
-      <Label
-        hasLabel={hasLabel}
-        htmlFor={htmlFor}
-        label={label}
-      />
-
       <input
         className={className || null}
         id={htmlFor}
@@ -85,6 +79,12 @@ const Input = (props) => {
         onBlur={onBlur || null}
         onFocus={onFocus || null}
         value={currency ? toCurrency(value) : value || ''}
+      />
+
+      <Label
+        hasLabel={hasLabel}
+        htmlFor={htmlFor}
+        label={label}
       />
     </fieldset>
   );

@@ -1,0 +1,35 @@
+.idx {
+  height: 100vh;
+  width: 100%;
+  background: green;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .idx-logo-container {
+    margin: auto;
+    width: 140px;
+    background: white;
+    min-height: 140px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.4em;
+  }
+
+  .idx-logo {
+    width: 120px;
+    height: 140px;
+    background-image: url("https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/bal_o_remax_bHu5IfE9r.svg");
+    background-size: cover;
+  }
+
+  .arr-down {
+    position: absolute;
+    font-size: 4.5em;
+    bottom: 5px;
+    left: 48%;
+    color: white;
+  }
+}

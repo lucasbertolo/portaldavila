@@ -60,11 +60,11 @@ const UserArea = ({ data }) => {
         pauseOnHover
       />
       <Header />
-      <Menu />
-      {/* <ManagerForm
+      {/* <Menu /> */}
+      <ManagerForm
         {...data}
         onSubmit={onSubmit}
-      /> */}
+      />
     </>
   );
 };

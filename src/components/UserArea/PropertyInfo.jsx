@@ -158,38 +158,42 @@ export default function PropertyInfo(props) {
             {
               state.isEditing
                 ? (
-                  <Input
-                    hasLabel
-                    htmlFor="price"
-                    onChange={handleChange}
-                    label="Preço"
-                    required
-                    type="number"
-                    name="price"
-                    value={values.price}
-                    onBlur={toggleEditing}
-                  />
+                  <div className="group">
+                    <Input
+                      hasLabel
+                      htmlFor="price"
+                      onChange={handleChange}
+                      label="Preço"
+                      required
+                      type="number"
+                      name="price"
+                      value={values.price}
+                      onBlur={toggleEditing}
+                    />
+                  </div>
+
                 )
                 : (
-                  <Input
-                    hasLabel
-                    htmlFor="price"
-                    onChange={handleChange}
-                    label="Preço"
-                    required
-                    type="text"
-                    name="price"
-                    value={values.price}
-                    onFocus={toggleEditing}
-                    currency
-                  />
+                  <div className="group">
+                    <Input
+                      hasLabel
+                      htmlFor="price"
+                      onChange={handleChange}
+                      label="Preço"
+                      required
+                      type="text"
+                      name="price"
+                      value={values.price}
+                      onFocus={toggleEditing}
+                      currency
+                    />
+                    <span className="highlight" />
+                    <span className="bar" />
+                  </div>
                 )
             }
 
-            <div>
-              <label htmlFor="area">
-                {'Area m²'}
-              </label>
+            <div className="group">
               <Field
                 type="number"
                 name="area"
@@ -197,14 +201,17 @@ export default function PropertyInfo(props) {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <span className="highlight" />
+              <span className="bar" />
+              <label htmlFor="area">
+                {'Area m²'}
+              </label>
               {errors.area && touched.area ? (
                 <div>{errors.area}</div>
               ) : null}
             </div>
-            <div>
-              <label htmlFor="building_area">
-                {'Area construída - m²'}
-              </label>
+
+            <div className="group">
               <Field
                 type="number"
                 name="building_area"
@@ -212,6 +219,12 @@ export default function PropertyInfo(props) {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <span className="highlight" />
+              <span className="bar" />
+              <label htmlFor="building_area">
+                {'Area construída - m²'}
+              </label>
+
               {errors.building_area && touched.building_area ? (
                 <div>{errors.building_area}</div>
               ) : null}

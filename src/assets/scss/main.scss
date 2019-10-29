@@ -1,10 +1,10 @@
 @import 'libs/vars';
 @import 'libs/mixins';
 
-// Base.
-
+// Base
 	@import 'base/page';
 	@import 'base/typography';
+	@import 'base/layout';
 
 // Items
 	@import 'components/aside';
@@ -29,6 +29,6 @@
 	@import 'pages/team';
 	@import 'pages/property';
 	@import 'pages/userarea';
+	@import 'pages/index';
 
-// Main Layout
-	@import 'layout';
+	
