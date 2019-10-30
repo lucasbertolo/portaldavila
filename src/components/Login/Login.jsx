@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
 const Login = ({ handleLogin }) => {
@@ -6,18 +7,40 @@ const Login = ({ handleLogin }) => {
     handleLogin('a', 'b');
   };
   return (
-    <main>
-      <div id="container">
-        <form>
-          <img src="https://bit.ly/2tlJLoz" />
-          <input type="text" value="@AmJustSam" />
-          <input type="password" />
-          <input type="submit" value="SIGN IN" />
-          <span><a href="#">Forgot Password?</a></span>
-          <button type="button" onClick={handleSubmit}> Entrar </button>
-        </form>
-      </div>
-    </main>
+    <div className="login-container">
+      <header>
+        {/*logo */}
+      </header>
+      <h1 className="text-center">Register</h1>
+      <form className="registration-form">
+        <label className="col-one-half login-label">
+          <span className="label-text">First Name</span>
+          <input type="text" name="firstName" className="login-input" />
+        </label>
+        <label className="col-one-half login-label">
+          <span className="label-text">Last Name</span>
+          <input type="text" name="lastName" className="login-input" />
+        </label>
+        <label className="login-label">
+          <span className="label-text">Email</span>
+          <input type="text" name="email" className="login-input" />
+        </label>
+        <label className="password login-label">
+          <span className="label-text">Password</span>
+          <button type="text" className="toggle-visibility login-button" title="toggle password visibility" tabIndex="-1">
+            <span className="glyphicon glyphicon-eye-close" />
+          </button>
+          <input type="password" name="password" className="login-input" />
+        </label>
+        <label className="checkbox login-label">
+          <input type="checkbox" name="newsletter" className="login-input" />
+          <span>Sign me up for the weekly newsletter.</span>
+        </label>
+        <div className="text-center">
+          <button className="form-btn submit login-button" name="register">Sign Me Up</button>
+        </div>
+      </form>
+    </div>
   );
 };
 

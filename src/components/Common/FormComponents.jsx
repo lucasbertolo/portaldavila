@@ -29,7 +29,7 @@ const Button = (props) => {
   } = props;
 
   return (
-    <fieldset>
+    <>
       <button
         className={className || null}
         type="button"
@@ -39,7 +39,7 @@ const Button = (props) => {
       >
         {text}
       </button>
-    </fieldset>
+    </>
   );
 };
 
@@ -64,7 +64,7 @@ const Input = (props) => {
   } = props;
 
   return (
-    <fieldset>
+    <>
       <input
         className={className || null}
         id={htmlFor}
@@ -86,7 +86,7 @@ const Input = (props) => {
         htmlFor={htmlFor}
         label={label}
       />
-    </fieldset>
+    </>
   );
 };
 
@@ -102,7 +102,7 @@ const Radio = (props) => {
   } = props;
 
   return (
-    <fieldset>
+    <>
       <label
         htmlFor={htmlFor}
         label={label}
@@ -116,9 +116,9 @@ const Radio = (props) => {
           checked={state}
           onChange={onChange}
         />
-        {label}
+        <span>{label}</span>
       </label>
-    </fieldset>
+    </>
   );
 };
 
@@ -221,7 +221,10 @@ const RadioButtonGroup = ({
   <div>
     <fieldset>
       <legend>{label}</legend>
-      {children}
+      <div className="radio-toolbar">
+        {children}
+      </div>
+
       {touched && error}
     </fieldset>
   </div>

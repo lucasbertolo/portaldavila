@@ -34,10 +34,7 @@ export default function PropertyDetails(props) {
           <form className="form-style-5" noValidate onSubmit={handleSubmit}>
             {
               Object.keys(initialValues).map((item) => (
-                <div key={item}>
-                  <label htmlFor={item}>
-                    {item}
-                  </label>
+                <div key={item} className="group">
                   <Field
                     type="number"
                     name={item}
@@ -46,6 +43,11 @@ export default function PropertyDetails(props) {
                     onBlur={handleBlur}
                     className="number"
                   />
+                  <span className="highlight" />
+                  <span className="bar" />
+                  <label htmlFor={item}>
+                    {item}
+                  </label>
                   <ErrorMessage component="span" name={item} />
                 </div>
               ))

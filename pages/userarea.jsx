@@ -10,7 +10,7 @@ export default class UserArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: false,
+      isLogged: true,
     };
   }
 
@@ -32,7 +32,12 @@ export default class UserArea extends React.Component {
                 <Menu />
               </>
             )
-            : <Login handleLogin={this.handleLogin} />
+            : (
+              <>
+                <Header />
+                <Login handleLogin={this.handleLogin} />
+              </>
+            )
         }
       </>
     );

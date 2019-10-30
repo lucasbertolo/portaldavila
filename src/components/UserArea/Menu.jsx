@@ -12,7 +12,7 @@ const Menu = () => (
     <div className="items-menu-usr">
       <div className="icon-wrapper-usr">
         <i className="fa-file-text-o">
-          <Link href="/userarea/property">
+          <Link href="/userarea/manager">
             <FontAwesomeIcon icon={faHorse} />
           </Link>
         </i>
