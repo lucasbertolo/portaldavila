@@ -13,7 +13,7 @@ const Label = (props) => {
   } = props;
 
   if (hasLabel === true) {
-    return <label htmlFor={htmlFor}>{label}</label>;
+    return <label htmlFor={htmlFor} className="styled-label">{label}</label>;
   }
 
   return null;
@@ -89,39 +89,6 @@ const Input = (props) => {
     </>
   );
 };
-
-const Radio = (props) => {
-  const {
-    htmlFor,
-    label,
-    name,
-    required,
-    value,
-    onChange,
-    state,
-  } = props;
-
-  return (
-    <>
-      <label
-        htmlFor={htmlFor}
-        label={label}
-      >
-        <input
-          id={htmlFor}
-          name={name || null}
-          required={required || null}
-          type="radio"
-          value={value || ''}
-          checked={state}
-          onChange={onChange}
-        />
-        <span>{label}</span>
-      </label>
-    </>
-  );
-};
-
 
 const Select = (props) => {
   const {
@@ -221,7 +188,7 @@ const RadioButtonGroup = ({
   <div>
     <fieldset>
       <legend>{label}</legend>
-      <div className="radio-toolbar">
+      <div className="container-radio">
         {children}
       </div>
 
@@ -229,6 +196,43 @@ const RadioButtonGroup = ({
     </fieldset>
   </div>
 );
+
+const Radio = (props) => {
+  const {
+    htmlFor,
+    label,
+    name,
+    required,
+    value,
+    onChange,
+    state,
+  } = props;
+
+  console.log(state);
+  console.log(value);
+  return (
+    <>
+      <label
+        htmlFor={htmlFor}
+        label={label}
+        className="container-radio"
+      >
+        {label}
+        <input
+          id={htmlFor}
+          name={name || null}
+          required={required || null}
+          type="radio"
+          value={value || ''}
+          checked={state}
+          onChange={onChange}
+        />
+        <span className="checkmark" />
+
+      </label>
+    </>
+  );
+};
 
 
 export {

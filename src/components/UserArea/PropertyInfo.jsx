@@ -1,5 +1,5 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react/destructuring-assignment */
-/* eslint-disable camelcase */
 
 import React, { useState, useEffect } from 'react';
 
@@ -10,7 +10,7 @@ import {
 import { ValidationInfo } from '../Helpers/Validation';
 
 import {
-  Select, Input, Radio, RadioButtonGroup,
+  Select, Input,
 } from '../Common/FormComponents';
 
 import { db } from '../Helpers/ApiFetch';
@@ -78,7 +78,13 @@ export default function PropertyInfo(props) {
       initialValues={initialValues}
       validationSchema={ValidationInfo}
       onSubmit={(values, { setSubmitting }) => {
-        // eslint-disable-next-line no-param-reassign
+        if (values.renting && values.selling) {
+          values.purpose_id = enums.purposeOfProperty.both;
+        } else if (values.selling) {
+          values.purpose_id = enums.purposeOfProperty.selling;
+        } else if (values.renting) {
+          values.purpose_id = enums.purposeOfProperty.renting;
+        }
         values.position = {
           lat: values.lat,
           long: values.long,
@@ -121,39 +127,35 @@ export default function PropertyInfo(props) {
               value={values.type_id}
             />
 
-            <RadioButtonGroup
-              id="purpose_id"
-              value={values.purpose_id || ''}
-              error={errors.purpose_id}
-              touched={touched.purpose_id}
-            >
-              <Radio
-                hasLabel
-                htmlFor="radioTwo"
-                label="Venda"
-                onChange={handleChange}
-                value={enums.purposeOfProperty.selling}
-                name="purpose_id"
-                state={values.purpose_id === enums.purposeOfProperty.selling ? 'checked' : null}
-                required
-              />
+            <div>
+              <label className="container-checkbox" htmlFor="renting">
+                Renting
+                <input
+                  type="checkbox"
+                  checked={values.renting ? 'checked' : ''}
+                  id="renting"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <span className="checkmark" />
+              </label>
 
-              <Radio
-                hasLabel
-                htmlFor="radioTwo"
-                label="Locação"
-                onChange={handleChange}
-                value={enums.purposeOfProperty.renting}
-                name="purpose_id"
-                state={values.purpose_id === enums.purposeOfProperty.renting ? 'checked' : null}
-                required
-              />
+              <label className="container-checkbox" htmlFor="selling">
+                Selling
+                <input
+                  type="checkbox"
+                  id="selling"
+                  checked={values.selling ? 'checked' : ''}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <span className="checkmark" />
+              </label>
 
               {errors.purpose_id && touched.purpose_id ? (
                 <div>{errors.purpose_id}</div>
               ) : null}
-
-            </RadioButtonGroup>
+            </div>
 
             {
               state.isEditing
@@ -169,6 +171,7 @@ export default function PropertyInfo(props) {
                       name="price"
                       value={values.price}
                       onBlur={toggleEditing}
+                      className="styled-input"
                     />
                   </div>
 
@@ -186,6 +189,7 @@ export default function PropertyInfo(props) {
                       value={values.price}
                       onFocus={toggleEditing}
                       currency
+                      className="styled-input"
                     />
                     <span className="highlight" />
                     <span className="bar" />
@@ -200,10 +204,11 @@ export default function PropertyInfo(props) {
                 value={values.area}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                className="styled-input"
               />
               <span className="highlight" />
               <span className="bar" />
-              <label htmlFor="area">
+              <label htmlFor="area" className="styled-label">
                 {'Area m²'}
               </label>
               {errors.area && touched.area ? (
@@ -218,10 +223,11 @@ export default function PropertyInfo(props) {
                 value={values.building_area}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                className="styled-input"
               />
               <span className="highlight" />
               <span className="bar" />
-              <label htmlFor="building_area">
+              <label htmlFor="building_area" className="styled-label">
                 {'Area construída - m²'}
               </label>
 
@@ -278,7 +284,8 @@ function Info(data) {
   this.type_id = data.type_id || 0;
   this.area = data.area || 0;
   this.building_area = data.building_area || 0;
-
+  this.selling = false;
+  this.renting = false;
   return (
     this.neighborhood_id,
     this.position,
@@ -287,7 +294,9 @@ function Info(data) {
     this.type_id,
     this.creator_id,
     this.area,
-    this.building_area
+    this.building_area,
+    this.selling,
+    this.renting
   );
 }
 
