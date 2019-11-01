@@ -9,41 +9,44 @@ import Link from 'next/link';
 
 const Menu = () => (
   <div className="ctn-menu-usr">
-    <div className="items-menu-usr">
-      <div className="icon-wrapper-usr">
-        <i className="fa-file-text-o">
-          <Link href="/userarea/manager">
+    <Link href="/userarea/manager">
+      <div className="items-menu-usr">
+        <div className="icon-wrapper-usr">
+          <i className="fa-file-text-o">
             <FontAwesomeIcon icon={faHorse} />
-          </Link>
-        </i>
+          </i>
+        </div>
+        <div className="project-name">
+          <p>PROPERTIES</p>
+        </div>
       </div>
-      <div className="project-name">
-        <p>PROPERTIES</p>
-      </div>
-    </div>
-    <div className="items-menu-usr">
-      <div className="icon-wrapper-usr">
-        <Link href="/userarea">
+    </Link>
+
+    <Link href="/comingsoon">
+      <div className="items-menu-usr">
+        <div className="icon-wrapper-usr">
           <i className="fa-th-list">
             <FontAwesomeIcon icon={faCalendarCheck} />
           </i>
-        </Link>
+        </div>
+        <div className="project-name">
+          <p>VISIT</p>
+        </div>
+      </div>
+    </Link>
 
+    <Link href="/comingsoon">
+      <div className="items-menu-usr">
+        <div className="icon-wrapper-usr">
+          <i className="fa-th-large">
+            <FontAwesomeIcon icon={faThLarge} />
+          </i>
+        </div>
+        <div className="project-name">
+          <p>INFO</p>
+        </div>
       </div>
-      <div className="project-name">
-        <p>VISIT</p>
-      </div>
-    </div>
-    <div className="items-menu-usr">
-      <div className="icon-wrapper-usr">
-        <i className="fa-th-large">
-          <FontAwesomeIcon icon={faThLarge} />
-        </i>
-      </div>
-      <div className="project-name">
-        <p>INFO</p>
-      </div>
-    </div>
+    </Link>
   </div>
 );
 
