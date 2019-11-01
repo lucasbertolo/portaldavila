@@ -1,12 +1,12 @@
 import React from 'react';
 import Header from '../src/components/Header/Header';
-import Construction from '../src/components/Common/Construction';
+import OnBuilding from '../src/components/Common/OnBuilding';
 
 
 const ComingSoon = () => (
   <div>
     <Header />
-    <Construction />
+    <OnBuilding />
   </div>
 );
 
