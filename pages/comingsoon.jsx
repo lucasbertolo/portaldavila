@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../src/components/Header/Header';
-import OnBuilding from '../src/components/Common/OnBuilding';
+import OnBuilding from '../src/components/Helpers/OnBuilding';
 
 
 const ComingSoon = () => (

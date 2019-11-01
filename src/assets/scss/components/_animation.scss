@@ -10,3 +10,9 @@
       transform: rotate(8deg);
     }
 }
+
+@keyframes float {
+  100% {
+  transform: translateY(20px);
+}
+}
