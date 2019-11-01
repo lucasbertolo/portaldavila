@@ -4,6 +4,10 @@ const enums = {
     selling: 2,
     both: 3,
   },
+  viewModeProperty: {
+    edit: 1,
+    view: 2,
+  },
 };
 
 

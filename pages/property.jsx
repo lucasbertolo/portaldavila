@@ -8,8 +8,9 @@ import FilterBox from '../src/components/Property/FilterBox';
 
 import Model from '../src/util/filters';
 import Header from '../src/components/Header/Header';
+import enums from '../src/content/enums';
 
-const Property = ({ data }) => {
+const Property = ({ data, mode }) => {
   const [state, setState] = useState({
     code: 0,
     price: 0,
@@ -37,25 +38,34 @@ const Property = ({ data }) => {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
+      {
+        mode === enums.viewModeProperty.edit
+          ? <button type="button">Adicionar propriedade</button>
+          : null
+      }
       <section className="cards">
         {/* <FilterBox handleInput={handleInput} state={state} /> */}
         {
-        grid.length > 0 ? (
-          grid.map((item) => (
-            <HouseCard data={item} key={item.id} />
-          ))
-        ) : <div>No properties</div>
-      }
+          grid.length > 0 ? (
+            grid.map((item) => (
+              <HouseCard data={item} key={item.id} mode={mode} />
+            ))
+          ) : <div>No properties</div>
+        }
       </section>
     </>
   );
 };
 
-Property.getInitialProps = async () => {
+Property.getInitialProps = async ({ query }) => {
+  let mode = enums.viewModeProperty.view;
+  if (query && query.editable) {
+    mode = enums.viewModeProperty.edit;
+  }
   try {
     const res = await db('/property');
-    return { data: res.data };
+    return { data: res.data, mode };
   } catch (error) {
     // TO DO - RETORNAR MENSAGEM DE VAZIO
     return null;

@@ -121,3 +121,18 @@
     }
   }
 }
+
+.card-view{ 
+    z-index: 1;
+    height: 150px;
+    width: 150px;
+    position: absolute;
+    top: 20px;
+    background: red;
+    right: -25px;
+    font-size: 16px;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+  //   border: 1px solid black;
+}

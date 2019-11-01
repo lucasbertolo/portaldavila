@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 const Menu = () => (
   <div className="ctn-menu-usr">
-    <Link href="/userarea/manager">
+    <Link href={{ pathname: '/property', query: { editable: true } }} as="/userarea/listproperty">
       <div className="items-menu-usr">
         <div className="icon-wrapper-usr">
           <i className="fa-file-text-o">
