@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { db } from '../src/components/Helpers/ApiFetch';
 
 import HouseCard from '../src/components/Property/HouseCard';
@@ -35,7 +36,6 @@ const Property = ({ data, mode }) => {
     if (state.type > 0) setGrid(Model.EqualsTo(data, Number(state.type), 'type_id'));
   }, [state]);
 
-
   return (
     <>
       {/* <Header /> */}
@@ -43,12 +43,14 @@ const Property = ({ data, mode }) => {
         mode === enums.viewModeProperty.edit
           ? (
             <div className="align-bottom-left">
-              <button type="button" className="btn-icon add-property">
-                <div className="circle">
-                  <span className="icon arrow" />
-                </div>
-                <p className="button-text">Add Property</p>
-              </button>
+              <Link href="/userarea/manager">
+                <button type="button" className="btn-icon add-property">
+                  <div className="circle">
+                    <span className="icon arrow" />
+                  </div>
+                  <p className="button-text">Add Property</p>
+                </button>
+              </Link>
             </div>
           )
           : null
@@ -77,7 +79,7 @@ Property.getInitialProps = async ({ query }) => {
     return { data: res.data, mode };
   } catch (error) {
     // TO DO - RETORNAR MENSAGEM DE VAZIO
-    return null;
+    return { mode };
   }
 };
 

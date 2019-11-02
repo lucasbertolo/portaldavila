@@ -76,7 +76,7 @@ export default function PropertyInfo(props) {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={ValidationInfo}
+      // validationSchema={ValidationInfo}
       onSubmit={(values, { setSubmitting }) => {
         if (values.renting && values.selling) {
           values.purpose_id = enums.purposeOfProperty.both;
