@@ -41,7 +41,16 @@ const Property = ({ data, mode }) => {
       {/* <Header /> */}
       {
         mode === enums.viewModeProperty.edit
-          ? <button type="button">Adicionar propriedade</button>
+          ? (
+            <div className="align-bottom-left">
+              <button type="button" className="btn-icon add-property">
+                <div className="circle">
+                  <span className="icon arrow" />
+                </div>
+                <p className="button-text">Add Property</p>
+              </button>
+            </div>
+          )
           : null
       }
       <section className="cards">

@@ -12,11 +12,19 @@ const HouseCard = ({ data, mode }) => {
     garage, dormitory, area, bathroom,
   } = data;
 
+  const style = mode === enums.viewModeProperty.edit ? {} : { overflow: 'hidden' };
+
   return (
-    <article className="card">
+    <article className="card" style={style}>
       {
         mode === enums.viewModeProperty.edit
-          ? <span className="card-view" />
+          ? (
+            <>
+              <span className="card-visibility" />
+              <span className="card-remove" />
+            </>
+          )
+
           : null
       }
       <CardHeader price={price} isFav />
