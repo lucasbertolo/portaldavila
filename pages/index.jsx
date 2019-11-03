@@ -8,11 +8,18 @@ class Index extends React.PureComponent {
     return (
       <div className="idx">
         <img
-          src="https://images.unsplash.com/photo-1546292993-2b8f80c7f35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=668&q=80"
+          src="https://cdn.pixabay.com/photo/2018/09/19/23/03/sunset-3689760_1280.jpg"
           alt=""
           className="idx-image"
         />
         <div className="idx-text">
+          <header className="idx-header">
+            <ul>
+              <li>Imóveis</li>
+              <li>Sobre</li>
+              <li>Contato</li>
+            </ul>
+          </header>
           <span className="idx-logo" />
           Remax/Portal
 
