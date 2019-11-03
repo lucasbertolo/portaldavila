@@ -67,15 +67,14 @@ export default class HouseDescription extends React.Component {
           : (
             <div className="hs-wrapper">
 
+              {/* <HouseInfo info={info} /> */}
+              <SliderImages images={images} />
               <HouseTitle
                 typeId={type_id}
                 neighId={neighborhood_id}
                 typeList={typeList}
                 neighborhoodList={neighborhoodList}
               />
-
-              <HouseInfo info={info} />
-              <SliderImages images={images} />
               <MainBox details={details} features={features} />
 
               <div className="info-box">
