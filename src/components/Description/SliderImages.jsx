@@ -1,47 +1,81 @@
 import React from 'react';
 
-const SliderImages = ({ images }) => (
-  <div className="container-slider">
-    <div className="cover-photo">
-      <figure>
-        <img src="" alt="main" />
-      </figure>
-    </div>
-    <div className="slider-photos">
-      <div className="slider-left">
-        <figure>
-          <img src="" alt="lef" />
-        </figure>
-        <figure>
-          <img src="" alt="lef" />
-        </figure>
-      </div>
-      <div className="slider-right">
-        <figure>
-          <img src="" alt="rig" />
-        </figure>
-        <figure>
-          <img src="" alt="rig" />
-        </figure>
-      </div>
+const SliderImages = ({ images }) => {
+  const cover = images.filter((item) => item.isCover).map((x) => (
+    <figure>
+      <img src={x.url} alt={x.alt} />
+    </figure>
+  ));
 
-    </div>
-    {/* <ul className="slides md-shadow">
-      {images.map((item, index) => (
-        <li key={item.url} id={index}><img src={item.url} alt={item.alt} /></li>
-      ))}
-    </ul> */}
-    {/* <ul className="thumbnails">
-      {images.map((item, index) => (
-        <li key={item.url}>
-          <a href={`#${index}`}>
-            <img alt={item.alt} src={item.url} />
-          </a>
-        </li>
-      ))}
-    </ul> */}
-  </div>
-);
+  const slider = () => {
+    if (images.length === 0) {
+      return null;
+    }
+
+    const slideImages = images.filter((x) => !x.isCover);
+
+    if (slideImages.length >= 1 && slideImages.length < 3) {
+      const slide = slideImages.map((x) => (
+        <figure>
+          <img src={x.url} alt={x.alt} />
+        </figure>
+      ));
+
+      return (
+        <div className="slider-photos">
+
+          <div className="slider-left">
+            {slide}
+          </div>
+        </div>
+      );
+    }
+
+    if (slideImages.length >= 3) {
+      const leftSlider = slideImages.slice(0, 2).map((x) => (
+        <figure>
+          <img src={x.url} alt={x.alt} />
+        </figure>
+      ));
+
+      const rightslider = slideImages.slice(2, 4).map((x) => (
+        <figure>
+          <img src={x.url} alt={x.alt} />
+        </figure>
+      ));
+
+      return (
+        <div className="slider-photos">
+
+          <div className="slider-left">
+            {leftSlider}
+          </div>
+          <div className="slider-right">
+            {rightslider}
+          </div>
+        </div>
+
+      );
+    }
+
+    return null;
+  };
+
+  const sliderImages = slider();
+
+
+  return (
+    images.length > 0
+      ? (
+        <div className="container-slider">
+          <div className="cover-photo">
+            {cover}
+          </div>
+          {sliderImages}
+        </div>
+      ) : null
+  );
+};
 
 
 export default SliderImages;
