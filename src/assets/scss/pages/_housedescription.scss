@@ -13,19 +13,19 @@
 
   .box-description {
     min-height: 100px;
-    width: 90%;
+    width: 50%;
     font-style: italic;
     padding: 20px;
     border: 1px solid red;
-    margin: auto;
+    margin-left: 5%;
     margin-top: 30px;
   }
 
   .box-details{
     border-top: 1px solid black;
     border-bottom: 1px solid black;
-    width: 90%;
-    margin: auto;
+    width: 50%;
+    margin-left: 5%;
     margin-top: 20px;
     height: 200px;
     padding: 10px;
@@ -41,7 +41,6 @@
       min-width: 150px;
       max-width: 200px;
       font-size: 1em;
-      background: red;
       display: flex;
 
       svg {
