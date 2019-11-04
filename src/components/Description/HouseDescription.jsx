@@ -75,7 +75,12 @@ export default class HouseDescription extends React.Component {
                 typeList={typeList}
                 neighborhoodList={neighborhoodList}
               />
-              <MainBox details={details} features={features} />
+              <hr />
+
+              <MainBox
+                details={details}
+                features={features}
+              />
 
               <div className="info-box">
                 {/* <Maps lat={lat} lng={long} /> */}

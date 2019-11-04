@@ -23,12 +23,12 @@
 	
 // Components Layout.
 	@import 'layout/displayImage';
-	@import 'layout/houseDescription';
 	@import 'layout/header';
 	@import 'layout/login';
 	@import 'layout/managerForm';
 
 // Pages Layout 
+	@import 'pages/housedescription';
 	@import 'pages/team';
 	@import 'pages/property';
 	@import 'pages/userarea';

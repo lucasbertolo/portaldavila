@@ -141,7 +141,7 @@ form .login-label.checkbox span {
 form .login-label.checkbox span:before {
   content: "\e157";
   display: inline-block;
-  font-family: "Glyphicons Halflings";
+  // font-family: "Glyphicons Halflings";
   font-size: 1.125em;
   padding-right: 0.25em;
   position: relative;
@@ -185,12 +185,12 @@ form .login-label.password button.toggle-visibility span {
   vertical-align: middle;
 }
 
-h1 {
-  font-size: 3em;
-  margin: 0 0 0.5em 0;
-  text-align: center;
-  font-family: "Cookie", cursive;
-}
+// h1 {
+//   // font-size: 3em;
+//   // margin: 0 0 0.5em 0;
+//   // text-align: center;
+//   // font-family: "Cookie", cursive;
+// }
 h1 img {
   height: auto;
   margin: 0 auto;

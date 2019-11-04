@@ -6,17 +6,59 @@
 
   h1,
   h2 {
-    text-align: center;
     font-size: 2em;
+    padding: 20px;
+    text-align: left;
+  }
+
+  .box-description {
+    min-height: 100px;
+    width: 90%;
+    font-style: italic;
+    padding: 20px;
+    border: 1px solid red;
+    margin: auto;
+    margin-top: 30px;
+  }
+
+  .box-details{
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+    height: 200px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+
+    .box-column{
+      background-color: yellow;
+      margin: 10px;
+    }
+    .box-details-icons{
+      height: 40px;
+      min-width: 150px;
+      max-width: 200px;
+      font-size: 1em;
+      background: red;
+      display: flex;
+
+      svg {
+        font-size: 1.3em;
+      }
+
+      p{ margin-top: 5px;}
+    }
   }
 }
 
-.general-info{
+.general-info {
   position: absolute;
   height: 50vh;
   width: 250px;
   top: 25%;
-  left:0;
+  left: 0;
   background: purple;
 }
 
@@ -63,10 +105,10 @@
 //   background: linear-gradient(to top right, red calc(50% - 1px), #aaa, purple calc(50% + 1px) )
 // }
 
-.box-wrapper{
-  background-image: url('https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/bg-card_GsehVK3Wf.svg');
-  width: 60%;
-  margin: auto;
-  display: flex;
-  padding: 20px;
-}
+// .box-wrapper{
+//   background-image: url('https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/bg-card_GsehVK3Wf.svg');
+//   width: 60%;
+//   margin: auto;
+//   display: flex;
+//   padding: 20px;
+// }

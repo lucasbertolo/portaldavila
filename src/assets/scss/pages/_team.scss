@@ -7,12 +7,12 @@ $fw--1: 400;
 $fw--2: 900;
 
 @mixin heading() {
-  font-family: $roboto;
+  // font-family: $roboto;
   font-weight: $fw--2;
 }
 
 @mixin body() {
-  font-family: $roboto;
+  // font-family: $roboto;
   font-weight: $fw--1;
 }
 

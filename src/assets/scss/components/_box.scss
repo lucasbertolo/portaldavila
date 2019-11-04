@@ -1,10 +1,9 @@
 
 .box {
-  width: 350px;
-  margin: 48px auto;
+  width: 380px;
   padding: 16px;
   position: relative;
-  height: 350px;
+  height: 200px;
 }
 
 // .box > img {
@@ -22,12 +21,12 @@
   right: $pad;
   left: $pad;
   bottom: $pad - $space + 7px;
-  border: solid $stroke $color5;
+  border: solid $stroke $color1;
   border-bottom: 0;
 }
 
 .text {
-  color: white; 
+  color: black; 
   position: absolute;
   text-align: center;
   bottom: $pad - $space;
@@ -35,7 +34,6 @@
   right: $pad;
   white-space: nowrap;
   overflow: hidden;
-  font-family: 'fjalla one', sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -51,7 +49,7 @@
   display: inline-block;
   width: 600px;
   height: $stroke;
-  background: $color5;
+  background: $color1;
   vertical-align: middle;
 }
   
