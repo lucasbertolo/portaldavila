@@ -1,50 +1,65 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 
 import './Login.scss';
 
 const Login = ({ handleLogin }) => {
+  const [login, setLogin] = useState(true);
+  const [register, setRegister] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin('a', 'b');
+    // handleLogin('a', 'b');
   };
+
+  const handleContainer = () => {
+    setLogin(!login);
+    setRegister(!register);
+  };
+
   return (
     <div className="login-container">
-      <header>
-        {/* logo */}
-      </header>
-      <h1 className="text-center">Register</h1>
-      <form className="registration-form">
-        <label className="col-one-half login-label">
-          <span className="label-text">First Name</span>
-          <input type="text" name="firstName" className="login-input" />
-        </label>
-        <label className="col-one-half login-label">
-          <span className="label-text">Last Name</span>
-          <input type="text" name="lastName" className="login-input" />
-        </label>
-        <label className="login-label">
-          <span className="label-text">Email</span>
-          <input type="text" name="email" className="login-input" />
-        </label>
-        <label className="password login-label">
-          <span className="label-text">Password</span>
-          <button type="text" className="toggle-visibility login-button" title="toggle password visibility" tabIndex="-1">
-            <span className="glyphicon glyphicon-eye-close" />
-          </button>
-          <input type="password" name="password" className="login-input" />
-        </label>
-        <label className="checkbox login-label">
-          <input type="checkbox" name="newsletter" className="login-input" />
-          <span>Sign me up for the weekly newsletter.</span>
-        </label>
-        <div className="text-center">
-          <button className="form-btn submit login-button" name="register">Sign Me Up</button>
+      <div className="form-structor">
+        <div className={register ? 'signup' : 'signup slide-up'}>
+          <h2
+            className="form-title"
+            id="signup"
+            onClick={handleContainer}
+            onKeyPress={handleContainer}
+            role="presentation"
+          >
+            <span>or</span>
+Sign up
+          </h2>
+          <div className="form-holder">
+            <input type="text" className="input" placeholder="Name" />
+            <input type="email" className="input" placeholder="Email" />
+            <input type="password" className="input" placeholder="Password" />
+          </div>
+          <button type="button" className="submit-btn">Sign up</button>
         </div>
-      </form>
+        <div className={login ? 'login' : 'login slide-up'}>
+          <div className="center">
+            <h2
+              className="form-title"
+              id="login"
+              onClick={handleContainer}
+              onKeyPress={handleContainer}
+              role="presentation"
+            >
+              <span>or</span>
+Log in
+            </h2>
+            <div className="form-holder">
+              <input type="email" className="input" placeholder="Email" />
+              <input type="password" className="input" placeholder="Password" />
+            </div>
+            <button type="button" className="submit-btn">Log in</button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
-
 
 export default Login;

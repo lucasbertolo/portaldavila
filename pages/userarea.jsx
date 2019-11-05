@@ -10,35 +10,30 @@ export default class UserArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: true,
+      isLogged: false,
     };
   }
 
   handleLogin = (email, password) => {
     // chamar bd
     this.setState({ isLogged: true });
-  }
-
+  };
 
   render() {
     const { isLogged } = this.state;
     return (
       <>
-        {
-          isLogged
-            ? (
-              <>
-                <Header />
-                <Menu />
-              </>
-            )
-            : (
-              <>
-                <Header />
-                <Login handleLogin={this.handleLogin} />
-              </>
-            )
-        }
+        {isLogged ? (
+          <>
+            <Header />
+            <Menu />
+          </>
+        ) : (
+          <>
+            <Header />
+            <Login handleLogin={this.handleLogin} />
+          </>
+        )}
       </>
     );
   }
