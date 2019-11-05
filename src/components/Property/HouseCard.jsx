@@ -1,12 +1,15 @@
 /* eslint-disable no-restricted-globals */
 import React from 'react';
 
+import { db } from '../Helpers/ApiFetch';
+
 import CardInfo from './CardInfo';
 import CardImage from './CardImage';
 import CardHeader from './CardHeader';
 import CardIcons from './CardIcons';
+
 import enums from '../../content/enums';
-import { db } from '../Helpers/ApiFetch';
+import './HouseCard.scss';
 
 const HouseCard = ({ data, mode }) => {
   const {
