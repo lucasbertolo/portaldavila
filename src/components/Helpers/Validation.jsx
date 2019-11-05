@@ -70,8 +70,7 @@ const ValidationLogin = Yup.object().shape({
   loginEmail: Yup.string().email('Campo deve ser um email'),
   registerEmail: Yup.string().email('Campo deve ser um email'),
   registerPassword: Yup.string()
-    .min(8, 'Senha é muito curta, deve ter mais de 8 digitos')
-    .matches(/[a-zA-Z]/, 'Senha deve conter apenas letras latinas.'),
+    .min(8, 'Senha é muito curta, deve ter mais de 8 digitos'),
 });
 
 

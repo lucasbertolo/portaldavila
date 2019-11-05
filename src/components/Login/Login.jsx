@@ -8,7 +8,7 @@ import {
 import { ValidationLogin } from '../Helpers/Validation';
 
 import { db } from '../Helpers/ApiFetch';
-
+import enums from '../../content/enums';
 import './Login.scss';
 
 const Login = ({ handleLogin }) => {
@@ -30,14 +30,33 @@ const Login = ({ handleLogin }) => {
     if (register) {
       if (registerUsername !== '' && registerEmail !== '' && registerPassword !== '') {
         const request = await db.post('/user', {
-          login: registerUsername,
+          username: registerUsername,
           email: registerEmail,
           password: registerPassword,
+          phone: '3333-2222',
+          type_id: enums.userType.guest,
         });
-
-        console.log(request);
+        if (request.data.msg) {
+          alert(request.data.msg);
+        }
       } else {
         alert('Campo vazio');
+      }
+    }
+
+    if (login) {
+      if (loginUsername !== '' && loginPassword !== '') {
+        const request = await db.get('/user', {
+          params: {
+            username: loginUsername,
+            password: loginPassword,
+          },
+        });
+        if (request.data.msg) {
+          alert(request.data.msg);
+        }
+      } else {
+        alert('Campo(s) vazio');
       }
     }
 
@@ -127,15 +146,15 @@ const Login = ({ handleLogin }) => {
                   </h2>
                   <div className="form-holder">
                     <Field
-                      type="email"
-                      name="loginEmail"
+                      type="text"
+                      name="loginUsername"
                       value={values.loginUsername}
                       onChange={handleChange}
                       onBlur={handleBlur}
                       className="input"
                       placeholder="Nome de usuário"
                     />
-                    <ErrorMessage component="span" name="loginEmail" />
+                    <ErrorMessage component="span" name="loginUsername" />
 
                     <Field
                       type="password"
