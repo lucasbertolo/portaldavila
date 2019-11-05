@@ -19,7 +19,7 @@ const MainBox = ({ features }) => (
 
         <span className="box-details-icons">
           <GarageIcon />
-          <p className="icon-info">Dormitorios</p>
+          <p className="icon-info">4</p>
         </span>
 
         <span className="box-details-icons">

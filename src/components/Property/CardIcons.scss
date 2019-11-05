@@ -1,0 +1,16 @@
+.card__icons {
+    display: flex;
+    justify-content: space-around;
+    height: 80px;
+    padding-bottom: 15px;
+    .icon-container {
+      padding-top: 20px;
+      height: 80px;
+      display: flex;
+      justify-content: flex-end;
+    
+      .icon-info {
+        margin-left: 5px;
+      }
+    }  
+  }

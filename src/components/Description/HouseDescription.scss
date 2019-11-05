@@ -1,8 +1,11 @@
 .hs-wrapper {
   height: 75vh;
   overflow: auto;
-  width: 100%;
+  width:90%;
   position: relative;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .visit-button {
@@ -11,9 +14,3 @@
   right: 10px;
 }
 
-.extra-box {
-  width: 300px;
-  height: 200px;
-  background: orange;
-  margin-left: 5%;
-}

@@ -172,42 +172,42 @@ export default class ManagerForm extends React.Component {
     } = this.state;
 
     const steps = [
-      {
-        name: 'Dados gerais',
-        component: <PropertyInfo
-          handleComponent={this.handleComponent}
-          data={info}
-          bindSubmitForm={this.bindSubmitForm}
-          bindErrors={this.bindErrors}
-        />,
-      },
-      {
-        name: 'Comodos',
-        component: <PropertyDetails
-          handleComponent={this.handleComponent}
-          data={details}
-          bindSubmitForm={this.bindSubmitForm}
-          bindErrors={this.bindErrors}
-        />,
-      },
-      {
-        name: 'Adicionais',
-        component: <PropertyFeatures
-          handleComponent={this.handleComponent}
-          data={features}
-          bindSubmitForm={this.bindSubmitForm}
-          bindErrors={this.bindErrors}
-        />,
-      },
-      {
-        name: 'Fotos',
-        component: <PropertyPhotos
-          handleComponent={this.handleComponent}
-          data={images}
-          bindSubmitForm={this.bindSubmitForm}
-          bindErrors={this.bindErrors}
-        />,
-      },
+      // {
+      //   name: 'Dados gerais',
+      //   component: <PropertyInfo
+      //     handleComponent={this.handleComponent}
+      //     data={info}
+      //     bindSubmitForm={this.bindSubmitForm}
+      //     bindErrors={this.bindErrors}
+      //   />,
+      // },
+      // {
+      //   name: 'Comodos',
+      //   component: <PropertyDetails
+      //     handleComponent={this.handleComponent}
+      //     data={details}
+      //     bindSubmitForm={this.bindSubmitForm}
+      //     bindErrors={this.bindErrors}
+      //   />,
+      // },
+      // {
+      //   name: 'Adicionais',
+      //   component: <PropertyFeatures
+      //     handleComponent={this.handleComponent}
+      //     data={features}
+      //     bindSubmitForm={this.bindSubmitForm}
+      //     bindErrors={this.bindErrors}
+      //   />,
+      // },
+      // {
+      //   name: 'Fotos',
+      //   component: <PropertyPhotos
+      //     handleComponent={this.handleComponent}
+      //     data={images}
+      //     bindSubmitForm={this.bindSubmitForm}
+      //     bindErrors={this.bindErrors}
+      //   />,
+      // },
       {
         name: 'Resumo',
         component: <HouseDescription

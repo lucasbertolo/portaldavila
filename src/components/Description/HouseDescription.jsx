@@ -16,6 +16,7 @@ import VisitButton from '../Visit/VisitButton';
 import HouseTitle from './HouseTitle';
 
 import './HouseDescription.scss';
+import CardVisitation from './CardVisitation';
 
 export default class HouseDescription extends React.Component {
   constructor(props) {
@@ -50,49 +51,36 @@ export default class HouseDescription extends React.Component {
     } = this.props;
 
     const { type_id, neighborhood_id } = info;
+
+    const kind = typeList[type_id];
+    const neigh = neighborhoodList[neighborhood_id];
     // const { lat, long } = initialState.info.position;
 
     return (
       <>
-        {
-        isLoading
-          ? (
-            <div style={{ margin: 'auto', height: '400px' }}>
-              <RingLoader
-                size={150}
-                color="#123abc"
-                loading={isLoading}
-              />
-            </div>
-          )
-          : (
-            <div className="hs-wrapper">
+        {isLoading ? (
+          <div style={{ margin: 'auto', height: '400px' }}>
+            <RingLoader size={150} color="#123abc" loading={isLoading} />
+          </div>
+        ) : (
+          <div className="hs-wrapper">
+            <SliderImages images={images} />
+            {/* <SocialShare /> */}
+            <HouseTitle kind={kind} neigh={neigh} />
+            <hr />
+            <CardVisitation />
 
-              <SliderImages images={images} />
-              <HouseTitle
-                typeId={type_id}
-                neighId={neighborhood_id}
-                typeList={typeList}
-                neighborhoodList={neighborhoodList}
-              />
-              <hr />
+            <MainBox details={details} features={features} />
 
-              <MainBox
-                details={details}
-                features={features}
-              />
+            <ExtraBox features={features} />
 
-              <ExtraBox
-                features={features}
-              />
+            <ContactBox />
 
-              <ContactBox />
+            <VisitButton />
 
-              <VisitButton />
-              <Popup />
-            </div>
-          )
-      }
+            <Popup />
+          </div>
+        )}
       </>
     );
   }

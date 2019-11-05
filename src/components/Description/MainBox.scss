@@ -1,19 +1,17 @@
 .box-details {
   width: 50%;
-  margin-left: 5%;
   margin-top: 20px;
   padding: 10px;
   display: flex;
   justify-content: center;
 
   .box-column {
-    margin: 10px;
     display: flex;
     justify-content: center;
   }
   .box-details-icons {
     height: 40px;
-    min-width: 150px;
+    min-width: 100px;
     max-width: 200px;
     font-size: 1em;
     display: flex;
@@ -34,6 +32,5 @@
   font-style: italic;
   padding: 20px;
   border: 1px solid red;
-  margin-left: 5%;
   margin-top: 30px;
 }

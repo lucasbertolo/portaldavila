@@ -13,8 +13,16 @@ import './HouseCard.scss';
 
 const HouseCard = ({ data, mode }) => {
   const {
-    url, price, type_id, neighborhood_id, purpose_id,
-    garage, dormitory, area, bathroom, property_id,
+    url,
+    price,
+    type_id,
+    neighborhood_id,
+    purpose_id,
+    garage,
+    dormitory,
+    area,
+    bathroom,
+    property_id,
   } = data;
   const style = mode === enums.viewModeProperty.edit ? {} : { overflow: 'hidden' };
 
@@ -36,29 +44,24 @@ const HouseCard = ({ data, mode }) => {
 
   return (
     <article className="card" style={style}>
-      {
-        mode === enums.viewModeProperty.edit
-          ? (
-            <>
-              <span
-                className="card-visibility"
-                onClick={handleRemove}
-                onKeyUp={handleRemove}
-                role="presentation"
-                id={property_id}
-              />
-              <span
-                className="card-remove"
-                onClick={handleVisibility}
-                onKeyUp={handleVisibility}
-                role="presentation"
-                id={property_id}
-              />
-            </>
-          )
-
-          : null
-      }
+      {mode === enums.viewModeProperty.edit ? (
+        <>
+          <span
+            className="card-visibility"
+            onClick={handleRemove}
+            onKeyUp={handleRemove}
+            role="presentation"
+            id={property_id}
+          />
+          <span
+            className="card-remove"
+            onClick={handleVisibility}
+            onKeyUp={handleVisibility}
+            role="presentation"
+            id={property_id}
+          />
+        </>
+      ) : null}
       <CardHeader price={price} isFav />
       <CardImage url={url} />
       <CardInfo

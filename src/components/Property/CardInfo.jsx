@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+
 import enums from '../../content/enums';
 import { db } from '../Helpers/ApiFetch';
+import './CardInfo.scss';
 
 const CardInfo = ({ typeId, blockId, purposeId }) => {
   const [state, setState] = useState({

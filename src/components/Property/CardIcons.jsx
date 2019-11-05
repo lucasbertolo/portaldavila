@@ -1,6 +1,8 @@
 import React from 'react';
 import { GarageIcon, BedIcon, BathIcon } from '../Common/Icons';
 
+import './CardIcons.scss';
+
 const CardIcons = ({
   bathroom, area, dormitory, garage,
 }) => (
