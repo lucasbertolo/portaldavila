@@ -14,6 +14,8 @@ import HouseDescription from '../Description/HouseDescription';
 
 import { db } from '../Helpers/ApiFetch';
 
+import './ManagerForm.scss';
+
 
 const getNavStyles = (indx, length) => {
   const styles = [];

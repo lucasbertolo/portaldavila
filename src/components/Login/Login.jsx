@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
 
+import './Login.scss';
+
 const Login = ({ handleLogin }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,7 +11,7 @@ const Login = ({ handleLogin }) => {
   return (
     <div className="login-container">
       <header>
-        {/*logo */}
+        {/* logo */}
       </header>
       <h1 className="text-center">Register</h1>
       <form className="registration-form">

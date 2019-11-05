@@ -1,4 +1,5 @@
 import React from 'react';
+import './SliderImages.scss';
 
 const SliderImages = ({ images }) => {
   const cover = images.filter((item) => item.isCover).map((x) => (

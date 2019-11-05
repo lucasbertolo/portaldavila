@@ -8,13 +8,14 @@ import Popup from '../Helpers/Popup';
 import { db } from '../Helpers/ApiFetch';
 
 import SliderImages from './SliderImages';
-import HouseInfo from './HouseInfo';
+import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
 
-// import Maps from '../Common/Maps';
 import ContactBox from '../Contact/ContactBox';
 import VisitButton from '../Visit/VisitButton';
 import HouseTitle from './HouseTitle';
+
+import './HouseDescription.scss';
 
 export default class HouseDescription extends React.Component {
   constructor(props) {
@@ -67,7 +68,6 @@ export default class HouseDescription extends React.Component {
           : (
             <div className="hs-wrapper">
 
-              {/* <HouseInfo info={info} /> */}
               <SliderImages images={images} />
               <HouseTitle
                 typeId={type_id}
@@ -82,10 +82,11 @@ export default class HouseDescription extends React.Component {
                 features={features}
               />
 
-              <div className="info-box">
-                {/* <Maps lat={lat} lng={long} /> */}
-                <ContactBox />
-              </div>
+              <ExtraBox
+                features={features}
+              />
+
+              <ContactBox />
 
               <VisitButton />
               <Popup />

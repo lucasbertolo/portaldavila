@@ -6,6 +6,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'next/link';
+import './Menu.scss';
 
 const Menu = () => (
   <div className="ctn-menu-usr">

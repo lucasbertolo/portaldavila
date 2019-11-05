@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faAdjust } from '@fortawesome/free-solid-svg-icons';
 
+import './Header.scss';
+
 export default class Header extends React.Component {
 //   componentDidMount() {
 //     const { title } = this.props;

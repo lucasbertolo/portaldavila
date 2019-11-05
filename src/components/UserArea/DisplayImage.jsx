@@ -7,6 +7,8 @@ import { faTrashAlt, faImage } from '@fortawesome/free-solid-svg-icons';
 
 import { Input } from '../Common/FormComponents';
 
+import './DisplayImage.scss';
+
 const DisplayImage = ({
   photos, handleChange, removePhoto, setCover,
 }) => {

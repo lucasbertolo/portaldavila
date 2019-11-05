@@ -1,4 +1,5 @@
 import React from 'react';
+import './OnBuilding.scss';
 
 const OnBuilding = () => (
   <div>

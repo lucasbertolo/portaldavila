@@ -1,0 +1,65 @@
+
+$color-grey-1: #dfdfdf;
+$color-white-1: #ffffff;
+
+$roboto: 'Roboto', sans-serif;
+$fw--1: 400;
+$fw--2: 900;
+
+@mixin heading() {
+  // font-family: $roboto;
+  font-weight: $fw--2;
+}
+
+@mixin body() {
+  // font-family: $roboto;
+  font-weight: $fw--1;
+}
+
+.c_50_50 {
+  background: $color-white-1;
+  display: flex;
+  height: 350px;
+  margin-bottom: 50px;
+}
+
+.c_50_50_image {
+  max-width: 50%;
+  flex: 1 0 50%;
+}
+
+.c_50_50_image img {
+  width: 100%;
+}
+
+.c_50_50_content {
+  max-width: 50%;
+  flex: 1 0 50%;
+  align-self: center;
+}
+
+.c_50_50_content_info {
+  padding: 0 50px;
+}
+
+.c_50_50_content_info--heading {
+  @include heading();
+}
+
+.c_50_50_content_info--body {
+  @include body();
+}
+
+// How to make it full height :D 
+.c_50_50_first {
+  .c_50_50_image img {
+    object-fit: cover;
+    height: 100%;
+  }
+}
+
+.c_50_50_first_second {
+  overflow: hidden;
+}
+
+

@@ -142,3 +142,18 @@
 .card-remove {
   top: 90px;
 }
+
+.cards {
+  width: 85%;
+  padding-bottom: 100px;
+  height: 90vh;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  -webkit-justify-content: center;
+  flex-wrap: wrap;
+  overflow: scroll;
+  margin: auto;
+  margin-top: 100px;
+
+}

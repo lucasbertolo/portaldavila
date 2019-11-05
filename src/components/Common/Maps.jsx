@@ -7,12 +7,13 @@ const mapStyles = {
 };
 
 const Maps = ({ google, lat, lng }) => (
-  <Map
-    google={google}
-    zoom={8}
-    style={mapStyles}
-    initialCenter={{ lat: Number(lat), lng: Number(lng) }}
-  />
+  <div className="map-container" />
+  // <Map
+  //   google={google}
+  //   zoom={8}
+  //   style={mapStyles}
+  //   initialCenter={{ lat: Number(lat), lng: Number(lng) }}
+  // />
 );
 
 export default GoogleApiWrapper({
