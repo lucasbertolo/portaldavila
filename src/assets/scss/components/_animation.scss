@@ -1,18 +1,25 @@
-
 @keyframes sway {
-    0% {
-      transform: rotate(8deg);
-    }
-    50% {
-      transform: rotate(-8deg);
-    }
-    100% {
-      transform: rotate(8deg);
-    }
+  0% {
+    transform: rotate(8deg);
+  }
+  50% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(8deg);
+  }
 }
 
 @keyframes float {
   100% {
-  transform: translateY(20px);
+    transform: translateY(20px);
+  }
 }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

@@ -1,103 +1,38 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faUpload, faDollarSign, faWarehouse, faSearch,
-} from '@fortawesome/free-solid-svg-icons';
+import React, { useState } from 'react';
+import './FilterBox.scss';
+import { SearchIcon } from '../Common/Icons';
 
-export default function FilterBox({ state, handleInput }) {
+export default function FilterBox({ handleInput }) {
+  const [state, setState] = useState({
+    inputActive: false,
+  });
+
+  const handleSelect = () => {
+    setState({ inputActive: true });
+  };
   return (
-    <>
-      <div className="primary-nav">
-
-        <button href="#" type="button" className="hamburger open-panel nav-toggle">
-          <span className="screen-reader-text">Menu</span>
-          <span className="icon">
-            <FontAwesomeIcon
-              icon={faSearch}
-            />
-          </span>
-        </button>
-
-        <nav role="navigation" className="menu">
-
-          <a href="#" className="logotype">
-              LOGO
-            <span>TYPE</span>
-          </a>
-
-          <div className="overflow-container">
-
-            <ul className="menu-dropdown">
-
-              <li>
-                <a href="#">Dashboard</a>
-                <span className="icon">
-                  <FontAwesomeIcon
-                    icon={faWarehouse}
-                  />
-                </span>
-              </li>
-
-              <li className="menu-hasdropdown">
-                <a href="#">Settings</a>
-                <span className="icon">
-                  {' '}
-                  <FontAwesomeIcon
-                    icon={faDollarSign}
-                  />
-
-                </span>
-
-                <label title="toggle menu" htmlFor="settings">
-                  <span className="downarrow">
-
-                    <FontAwesomeIcon
-                      icon={faUpload}
-                    />
-                  </span>
-                </label>
-                <input type="checkbox" className="sub-menu-checkbox" id="settings" />
-
-                <ul className="sub-menu-dropdown">
-                  <li><a href="">Profile</a></li>
-                  <li><a href="">Security</a></li>
-                  <li><a href="">Account</a></li>
-                </ul>
-              </li>
-
-              <li>
-                <a href="#">Favourites</a>
-                <span className="icon">
-                  {' '}
-                  <FontAwesomeIcon
-                    icon={faUpload}
-                  />
-
-                </span>
-              </li>
-
-              <li>
-                <a href="#">Messages</a>
-                <span className="icon">
-                  {' '}
-                  <FontAwesomeIcon
-                    icon={faUpload}
-                  />
-
-                </span>
-              </li>
-
-            </ul>
-
-          </div>
-
-        </nav>
-
-      </div>
-
-
-    </>
+    <aside>
+      <span>
+        <div className="select-wrapper">
+          <select onChange={handleSelect} className="select">
+            <option value="value1">Tipo</option>
+            <option value="value1">Venda</option>
+            <option value="value2">Banana</option>
+            <option value="value3">Cherries</option>
+          </select>
+        </div>
+      </span>
+      {
+          state.inputActive ? (
+            <div className="filter" id="search">
+              <input type="text" id="search-assignee" required="required" />
+              <label htmlFor="search-assignee">{}</label>
+              <i><SearchIcon /></i>
+            </div>
+          ) : null
+        }
+    </aside>
   );
 }
