@@ -14,7 +14,7 @@ export default class UserArea extends React.Component {
     };
   }
 
-  handleLogin = (email, password) => {
+  handleLogin = () => {
     // chamar bd
     this.setState({ isLogged: true });
   };

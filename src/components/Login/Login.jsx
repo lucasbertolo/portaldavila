@@ -29,7 +29,7 @@ const Login = ({ handleLogin }) => {
 
     if (register) {
       if (registerUsername !== '' && registerEmail !== '' && registerPassword !== '') {
-        const request = await db.post('/user', {
+        const request = await db.post('/registeruser', {
           username: registerUsername,
           email: registerEmail,
           password: registerPassword,
@@ -46,15 +46,17 @@ const Login = ({ handleLogin }) => {
 
     if (login) {
       if (loginUsername !== '' && loginPassword !== '') {
-        const request = await db.get('/user', {
-          params: {
+        const request = await db.post('/user', {
+          auth: {
             username: loginUsername,
             password: loginPassword,
           },
         });
         if (request.data.msg) {
           alert(request.data.msg);
+          return;
         }
+        handleLogin();
       } else {
         alert('Campo(s) vazio');
       }
