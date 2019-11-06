@@ -14,25 +14,22 @@ export default function FilterBox({ handleInput }) {
   };
   return (
     <aside>
-      <span>
-        <div className="select-wrapper">
-          <select onChange={handleSelect} className="select">
-            <option value="value1">Tipo</option>
-            <option value="value1">Venda</option>
-            <option value="value2">Banana</option>
-            <option value="value3">Cherries</option>
-          </select>
+      <div className="container-filter">
+        <div className="toggle-button" />
+        <div className="filter-box">
+          <div className="filter" id="search">
+            <input type="text" id="search-assignee" required="required" />
+            <label htmlFor="search-assignee">SEARCH</label>
+          </div>
         </div>
-      </span>
-      {
-          state.inputActive ? (
-            <div className="filter" id="search">
-              <input type="text" id="search-assignee" required="required" />
-              <label htmlFor="search-assignee">{}</label>
-              <i><SearchIcon /></i>
-            </div>
-          ) : null
-        }
+      </div>
+      <div className="container-filter">
+
+        <div className="toggle-button" />
+        <div className="filter-box">
+          Hello, I'm a menu!
+        </div>
+      </div>
     </aside>
   );
 }

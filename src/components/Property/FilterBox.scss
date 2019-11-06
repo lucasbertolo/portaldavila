@@ -1,39 +1,59 @@
-@import '../../assets/scss/components/animation';
-
-$height-input: 45px;
 
 aside {
   background: yellow;
   display: flex;
+  height: 50px;
+}
+
+.container-filter{
+  .toggle-button {
+    width: 28px;
+    height: 30px;
+    margin: 10px auto;
+    background: blue;
+  } 
+
+  .filter-box {
+    color: white;
+    border: 1px solid white;
+    width: 150px;
+    height: 100px;
+    padding: 10px;
+    border-radius: 3px;
+    line-height: 100px;
+    text-align: center;
+    margin: auto;
+    // display: none;
+  }
 }
 
 .filter {
-  //   width: 50px;
-  height: $height-input;
+  margin-right: 20px;
+  width: 317px;
+  height: 69px;
   border-radius: 4px;
   background-color: #ffffff;
-  box-shadow: 0 0 30px 0 rgba(180, 173, 173, 0.25);
+  box-shadow: 0 0 30px 0 rgba(199, 199, 199, 0.25);
   position: relative;
   display: flex;
   align-items: center;
   padding: 0 20px;
-  margin: 20px 0;
-  animation: fadeIn 3s ease-in-out;
+  margin-bottom: 20px;
   label {
+    // font-family: Product Sans;
     font-size: 18px;
     font-weight: bold;
     color: rgba(33, 75, 93, 0.5);
     position: absolute;
     transition: 0.4s ease-in-out;
     margin-top: 2px;
-    // animation-name: delay-input;
-    // animation-duration: 4s;
   }
   input {
-    // width: 200px;
+    width: 200px;
     margin-top: 20px;
     border: none;
     outline: none;
+    // font-family: Product Sans;
     font-size: 20px;
     color: #214b5d;
     transition: 0.4s linear;
@@ -57,56 +77,6 @@ aside {
     width: 100%;
   }
   i {
-    width: 20px;
-    height: 20px;
     color: #214b5d;
-    margin-left: 4px;
-    display: flex;
-    svg {
-      animation: fadeIn 6s;
-      margin: auto;
-      fill: black;
-      width: 30px;
-      height: 30px;
-    }
-  }
-}
-
-.select-wrapper {
-  position: relative;
-  width: 150px;
-  margin: 20px 0 10px 10px;
-
-  &::after {
-    color: black;
-    content: "▾";
-    margin-right: 10px;
-    pointer-events: none;
-    position: absolute;
-    right: 2px;
-    top: $height-input / 3;
-    font-size: 20px;
-  }
-}
-
-.select {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  background: white;
-  border: none;
-  overflow: visible;
-  border-radius: 0;
-  cursor: pointer;
-  padding: 12px;
-  padding-top: 18px;
-  width: 100%;
-  height: $height-input;
-  font-size: 15px;
-  &:focus {
-    color: black;
-  }
-  // Hack for IE 11+
-  &::-ms-expand {
-    display: none;
   }
 }
