@@ -11,7 +11,7 @@ import CardIcons from './CardIcons';
 import enums from '../../content/enums';
 import './HouseCard.scss';
 
-const HouseCard = ({ data, mode }) => {
+const HouseCard = ({ data, mode, selectList }) => {
   const {
     url,
     price,
@@ -68,6 +68,7 @@ const HouseCard = ({ data, mode }) => {
         typeId={type_id}
         blockId={neighborhood_id}
         purposeId={purpose_id}
+        selectList={selectList}
       />
       <CardIcons
         garage={garage}

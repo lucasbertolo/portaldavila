@@ -1,35 +1,79 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
-import './FilterBox.scss';
+
+import FilterOption from './FilterOption';
+
 import { SearchIcon } from '../Common/Icons';
+import enums from '../../content/enums';
 
-export default function FilterBox({ handleInput }) {
-  const [state, setState] = useState({
-    inputActive: false,
-  });
+import './FilterBox.scss';
 
-  const handleSelect = () => {
-    setState({ inputActive: true });
+export default function FilterBox({ selectList }) {
+  const [boxFilter, setFilter] = useState(false);
+
+  const handleMenu = () => {
+    setFilter(!boxFilter);
   };
-  return (
-    <aside>
-      <div className="container-filter">
-        <div className="toggle-button" />
-        <div className="filter-box">
-          <div className="filter" id="search">
-            <input type="text" id="search-assignee" required="required" />
-            <label htmlFor="search-assignee">SEARCH</label>
-          </div>
-        </div>
-      </div>
-      <div className="container-filter">
 
-        <div className="toggle-button" />
-        <div className="filter-box">
-          Hello, I'm a menu!
-        </div>
-      </div>
+  return (
+    <aside className={boxFilter ? 'open-menu' : ''}>
+      <ul id="menu">
+        <li className="current">
+          <FilterOption
+            name="Preço"
+            mode={enums.filterOptions.price}
+          />
+        </li>
+        <li>
+          <FilterOption
+            name="Bairro"
+            mode={enums.filterOptions.neighborhood}
+            options={selectList.neighborhoodList}
+          />
+        </li>
+        <li>
+          <FilterOption
+            name="Tipo"
+            mode={enums.filterOptions.type}
+            options={selectList.typeList}
+          />
+        </li>
+        <li>
+          <FilterOption
+            name="Proposito"
+            mode={enums.filterOptions.purpose}
+            options={['Venda', 'Locação']}
+          />
+        </li>
+        <li>
+          <FilterOption
+            name="Vagas"
+            mode={enums.filterOptions.garage}
+          />
+        </li>
+        <li>
+          <FilterOption
+            name="Quartos"
+            mode={enums.filterOptions.dorm}
+          />
+        </li>
+        <li>
+          <FilterOption
+            name="Metragem"
+            mode={enums.filterOptions.area}
+          />
+        </li>
+        <li>
+          <FilterOption
+            name="Código"
+            mode={enums.filterOptions.code}
+          />
+        </li>
+      </ul>
+      <a href="#menu" id="toggle" onClick={handleMenu}>
+        <span className="icon-bar"><SearchIcon /></span>
+      </a>
     </aside>
   );
 }

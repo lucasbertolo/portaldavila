@@ -13,7 +13,16 @@ const enums = {
     consultant: 2,
     guest: 3,
   },
-
+  filterOptions: {
+    price: 1,
+    type: 2,
+    purpose: 3,
+    dorm: 4,
+    garage: 5,
+    code: 6,
+    area: 7,
+    neighborhood: 8,
+  },
 };
 
 
