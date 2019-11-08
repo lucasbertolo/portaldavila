@@ -13,5 +13,8 @@
 }
 
 .cards{
-    background-color: orange;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    z-index: -1;
 }

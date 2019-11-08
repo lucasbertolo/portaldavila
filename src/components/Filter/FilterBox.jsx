@@ -18,7 +18,7 @@ export default function FilterBox({ selectList }) {
 
   return (
     <aside className={boxFilter ? 'open-menu' : ''}>
-      <ul id="menu">
+      <ul id="menu-filter">
         <li className="current">
           <FilterOption
             name="Preço"
@@ -71,7 +71,7 @@ export default function FilterBox({ selectList }) {
           />
         </li>
       </ul>
-      <a href="#menu" id="toggle" onClick={handleMenu}>
+      <a href="#menu-filter" id="toggle" onClick={handleMenu}>
         <span className="icon-bar"><SearchIcon /></span>
       </a>
     </aside>

@@ -124,7 +124,7 @@ export default function FilterView({
 
     if (mode === area) return rangeNumeric('Área m²');
 
-    if (mode === code) return rangeNumeric('Nº');
+    if (mode === code) return rangeNumeric('Código');
 
     if (mode === price) return rangeMinMax();
 

@@ -4,7 +4,9 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import HouseCard from './HouseCard';
-import FilterBox from './FilterBox';
+
+import FilterBox from '../Filter/FilterBox';
+import Tags from '../Filter/Tags';
 
 import Model from '../../util/filters';
 import enums from '../../content/enums';
@@ -100,6 +102,7 @@ const PropertyView = ({ data, mode }) => {
           state={state}
           selectList={selectList}
         />
+        <Tags />
         {grid.length > 0 ? (
           <section className="cards">
             {grid.map((item) => (
