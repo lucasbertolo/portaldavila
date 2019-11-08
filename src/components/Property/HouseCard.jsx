@@ -1,5 +1,5 @@
 /* eslint-disable no-restricted-globals */
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { db } from '../Helpers/ApiFetch';
 
@@ -11,7 +11,7 @@ import CardIcons from './CardIcons';
 import enums from '../../content/enums';
 import './HouseCard.scss';
 
-const HouseCard = ({ data, mode, selectList }) => {
+const HouseCard = React.memo(({ data, mode, selectList }) => {
   const {
     url,
     price,
@@ -35,6 +35,8 @@ const HouseCard = ({ data, mode, selectList }) => {
       }
     }
   };
+
+  useEffect(() => console.log('mounted or updated'));
 
   const handleVisibility = (e) => {
     if (Number(e.target.id)) {
@@ -78,6 +80,6 @@ const HouseCard = ({ data, mode, selectList }) => {
       />
     </article>
   );
-};
+});
 
 export default HouseCard;

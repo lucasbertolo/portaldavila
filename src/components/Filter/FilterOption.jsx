@@ -42,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FilterOption({ name, mode, options }) {
+export default function FilterOption({
+  name, mode, options, state, handleInput, handleSelect,
+}) {
   const classes = useStyles();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -55,17 +57,6 @@ export default function FilterOption({ name, mode, options }) {
     setAnchorEl(null);
   };
 
-  const [values, setValues] = React.useState({
-    amount: '',
-    password: '',
-    weight: '',
-    weightRange: '',
-    showPassword: false,
-  });
-
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
   return (
     <>
       <Button
@@ -85,13 +76,13 @@ export default function FilterOption({ name, mode, options }) {
         onClose={handleClose}
       >
         <FilterView
-          values={values}
+          state={state}
           classes={classes}
-          handleChange={handleChange}
+          handleInput={handleInput}
+          handleSelect={handleSelect}
           mode={mode}
           options={options}
         />
-
       </StyledMenu>
     </>
   );

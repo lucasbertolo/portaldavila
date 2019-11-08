@@ -73,10 +73,31 @@ const ValidationLogin = Yup.object().shape({
     .min(8, 'Senha é muito curta, deve ter mais de 8 digitos'),
 });
 
+const ValidationFilter = (state) => {
+  const {
+    priceMax, priceMin, code, area, garage, dorm,
+  } = state;
+
+  const validItems = [];
+  if (priceMax > priceMin && priceMax > 0) validItems.push({ label: 'Preço' });
+
+  if (code > 0 && Number(code)) validItems.push({ label: 'Código' });
+
+  if (area > 0 && area < 10000 && Number(area)) validItems.push({ label: 'Área' });
+
+  if (dorm < 10 && dorm > 0 && Number(dorm)) validItems.push({ label: 'Nº Dormitórios' });
+
+  if (garage < 10 && garage > 0 && Number(garage)) validItems.push({ label: 'Nº Vagas' });
+
+
+  return validItems;
+};
+
 
 export {
   ValidationInfo,
   ValidationDetails,
   ValidationFeatures,
   ValidationLogin,
+  ValidationFilter,
 };
