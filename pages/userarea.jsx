@@ -10,7 +10,7 @@ export default class UserArea extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: false,
+      isLogged: true,
     };
   }
 

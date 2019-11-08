@@ -76,9 +76,9 @@ export default class HouseDescription extends React.Component {
 
             <ContactBox />
 
-            <VisitButton />
+            {/* <VisitButton />
 
-            <Popup />
+            <Popup /> */}
           </div>
         )}
       </>
