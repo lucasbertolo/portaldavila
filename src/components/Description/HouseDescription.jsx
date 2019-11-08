@@ -12,7 +12,6 @@ import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
 
 import ContactBox from '../Contact/ContactBox';
-import VisitButton from '../Visit/VisitButton';
 import HouseTitle from './HouseTitle';
 
 import './HouseDescription.scss';
