@@ -22,17 +22,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MaterialUIPickers() {
-  // The first commit of Material-UI
-
+export default function DatePicker({ selectedDate, handleDateChange }) {
   const today = new Date();
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
 
   const classes = useStyles();
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>

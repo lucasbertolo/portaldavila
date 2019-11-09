@@ -1,8 +1,8 @@
 import React from 'react';
 
+import Visit from '../Visit/Visit';
 
 import './CardVisitation.scss';
-import Visit from '../Visit/Visit';
 
 const CardVisitation = () => {
   const [open, setOpen] = React.useState(false);
