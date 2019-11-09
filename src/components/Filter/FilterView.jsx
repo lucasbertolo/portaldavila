@@ -29,7 +29,7 @@ export default function FilterView({
         <FormControl className={classes.margin} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-amount">Min</InputLabel>
           <OutlinedInput
-            id={[nameMin]}
+            id={nameMin}
             value={minValue}
             onChange={handleInput}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -42,7 +42,7 @@ export default function FilterView({
         <FormControl className={classes.margin} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-amount">Max</InputLabel>
           <OutlinedInput
-            id={[nameMax]}
+            id={nameMax}
             value={maxValue}
             onChange={handleInput}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -63,7 +63,7 @@ export default function FilterView({
         <FormControl className={classes.margin} variant="outlined">
           <InputLabel htmlFor="outlined-adornment-amount">{label || ''}</InputLabel>
           <OutlinedInput
-            id={[name]}
+            id={name}
             value={value}
             onChange={handleInput}
             labelWidth={60}
@@ -83,12 +83,12 @@ export default function FilterView({
         value={state[name]}
         onChange={handleInput}
         inputProps={{
-          name: [name],
-          id: [name],
+          name,
+          id: name,
         }}
       >
         {opt && opt.length > 0
-          ? opt.map((x, i) => <option value={i + 1}>{x}</option>)
+          ? opt.map((x, i) => <option key={x} value={i + 1}>{x}</option>)
           : null}
       </Select>
     </FormControl>

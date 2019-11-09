@@ -22,6 +22,7 @@ const StyledMenu = withStyles({
       vertical: 'top',
       horizontal: 'center',
     }}
+    // eslint-disable-next-line react/jsx-props-no-spreading
     {...props}
   />
 ));
@@ -75,14 +76,16 @@ export default function FilterOption({
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <FilterView
-          state={state}
-          classes={classes}
-          handleInput={handleInput}
-          handleSelect={handleSelect}
-          mode={mode}
-          options={options}
-        />
+        <div>
+          <FilterView
+            state={state}
+            classes={classes}
+            handleInput={handleInput}
+            handleSelect={handleSelect}
+            mode={mode}
+            options={options}
+          />
+        </div>
       </StyledMenu>
     </>
   );

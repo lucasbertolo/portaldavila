@@ -12,10 +12,16 @@ import ContactBox from '../Contact/ContactBox';
 
 export default function Visit({ open, handleClose }) {
   const [index, setIndex] = useState(0);
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [time, setTime] = React.useState({
+    selectedDate: new Date(),
+    selectedTime: '09:30',
+  });
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleDateChange = (e) => {
+    const { value, id } = e;
+    setTime({
+      [id]: value,
+    });
   };
 
   const handleNext = () => setIndex(index + 1);
@@ -25,8 +31,8 @@ export default function Visit({ open, handleClose }) {
     {
       label: 'Agendar horário',
       component: <DatePicker
-        selectedDate={selectedDate}
         handleDateChange={handleDateChange}
+        time={time}
       />,
       button: 'Próximo',
       action: handleNext,

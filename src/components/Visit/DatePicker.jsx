@@ -22,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DatePicker({ selectedDate, handleDateChange }) {
+export default function DatePicker({ time, handleDateChange }) {
   const today = new Date();
-
+  const { selectedTime, selectedDate } = time;
   const classes = useStyles();
 
   return (
@@ -36,7 +36,7 @@ export default function DatePicker({ selectedDate, handleDateChange }) {
           format="dd/MM/yyyy"
           margin="normal"
           minDate={today}
-          id="date-picker-inline"
+          id="selectedDate"
           label="Escolha o dia"
           value={selectedDate}
           onChange={handleDateChange}
@@ -45,10 +45,10 @@ export default function DatePicker({ selectedDate, handleDateChange }) {
           }}
         />
         <TextField
-          id="time"
+          id="selectedTime"
           label="Horário"
           type="time"
-          defaultValue="09:30"
+          value={selectedTime}
           className={classes.textField}
           InputLabelProps={{
             shrink: true,
