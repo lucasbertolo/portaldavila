@@ -1,32 +1,34 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import BottomNavigation from '@material-ui/core/BottomNavigation';
-import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { GarageIcon } from '../Common/Icons';
+import './ContactBox.scss';
 
-
-const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
-});
 
 export default function ContactBox() {
-  const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   return (
-    <BottomNavigation
-      value={value}
-      onChange={(event, newValue) => {
-        setValue(newValue);
-      }}
-      showLabels
-      className={classes.root}
-    >
-      <BottomNavigationAction label="Recents" icon={<GarageIcon />} />
-      <BottomNavigationAction label="Favorites" icon={<GarageIcon />} />
-      <BottomNavigationAction label="Nearby" icon={<GarageIcon />} />
-    </BottomNavigation>
+    <div className="contact-box">
+      <div className="social-btns">
+        <span className="btn whatsapp">
+          <i className="fa fa-whatsapp">
+            <FontAwesomeIcon icon={faWhatsapp} />
+          </i>
+        </span>
+        <span className="btn whatsapp">
+          <i className="fa fa-whatsapp">
+            <FontAwesomeIcon icon={faEnvelope} />
+          </i>
+        </span>
+        <span className="btn whatsapp">
+          <i className="fa fa-whatsapp">
+            <FontAwesomeIcon icon={faPhone} />
+          </i>
+        </span>
+      </div>
+    </div>
   );
 }

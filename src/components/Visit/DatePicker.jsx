@@ -22,9 +22,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function DatePicker({ time, handleDateChange }) {
+export default function DatePicker(props) {
   const today = new Date();
-  const { selectedTime, selectedDate } = time;
+  const {
+    time, date, handleTimeChange, handleDateChange,
+  } = props;
   const classes = useStyles();
 
   return (
@@ -38,7 +40,7 @@ export default function DatePicker({ time, handleDateChange }) {
           minDate={today}
           id="selectedDate"
           label="Escolha o dia"
-          value={selectedDate}
+          value={date}
           onChange={handleDateChange}
           KeyboardButtonProps={{
             'aria-label': 'change date',
@@ -48,7 +50,8 @@ export default function DatePicker({ time, handleDateChange }) {
           id="selectedTime"
           label="Horário"
           type="time"
-          value={selectedTime}
+          onChange={handleTimeChange}
+          value={time}
           className={classes.textField}
           InputLabelProps={{
             shrink: true,

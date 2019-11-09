@@ -35,7 +35,7 @@ const Menu = () => (
         </div>
       </div>
     </Link>
-
+    {/*
     <Link href="/comingsoon">
       <div className="items-menu-usr">
         <div className="icon-wrapper-usr">
@@ -47,7 +47,7 @@ const Menu = () => (
           <p>INFO</p>
         </div>
       </div>
-    </Link>
+    </Link> */}
   </div>
 );
 

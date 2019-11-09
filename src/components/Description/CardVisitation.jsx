@@ -22,10 +22,13 @@ const CardVisitation = () => {
         <span>Centro - Piracicaba - SP</span>
         <span>Barracão</span>
       </header>
-      <main className="container-btn">
-        <button className="btn-1 btn-laydown" type="button" onClick={handleClickOpen}>Visitar</button>
-        <Visit open={open} handleClose={handleClose} />
+      <main>
+        <span>Faça uma visita e conheça melhor o imóvel ou contate-nos para mais informações</span>
       </main>
+      <nav className="container-btn">
+        <button className="btn-1 btn-laydown" type="button" onClick={handleClickOpen}>Agendar</button>
+        <Visit open={open} handleClose={handleClose} />
+      </nav>
     </div>
   );
 };
