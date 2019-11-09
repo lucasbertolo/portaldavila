@@ -4,20 +4,19 @@ import React from 'react';
 
 import { RingLoader } from 'react-spinners';
 
-import Popup from '../Helpers/Popup';
 import { db } from '../Helpers/ApiFetch';
 
 import SliderImages from './SliderImages';
 import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
-
-import ContactBox from '../Contact/ContactBox';
 import HouseTitle from './HouseTitle';
-
-import './HouseDescription.scss';
 import CardVisitation from './CardVisitation';
+import Maps from '../Common/Maps';
 
-export default class HouseDescription extends React.Component {
+import './HouseWrapper.scss';
+
+
+export default class HouseWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -73,11 +72,7 @@ export default class HouseDescription extends React.Component {
 
             <ExtraBox features={features} />
 
-            <ContactBox />
-
-            {/* <VisitButton />
-
-            <Popup /> */}
+            <Maps />
           </div>
         )}
       </>

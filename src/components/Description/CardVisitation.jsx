@@ -1,15 +1,10 @@
 import React from 'react';
-import { GarageIcon, BedIcon, BathIcon } from '../Common/Icons';
 
 
 import './CardVisitation.scss';
 import Visit from '../Visit/Visit';
 
 const CardVisitation = () => {
-  const onClick = (e) => {
-    console.log(e);
-  };
-
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -27,11 +22,6 @@ const CardVisitation = () => {
         <span>Centro - Piracicaba - SP</span>
         <span>Barracão</span>
       </header>
-      <aside>
-        <div className="icon">
-          <BathIcon />
-        </div>
-      </aside>
       <main className="container-btn">
         <button className="btn-1 btn-laydown" type="button" onClick={handleClickOpen}>Visitar</button>
         <Visit open={open} handleClose={handleClose} />

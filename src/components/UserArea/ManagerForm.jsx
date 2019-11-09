@@ -10,7 +10,7 @@ import PropertyInfo, { Info } from './PropertyInfo';
 import PropertyFeatures, { Features } from './PropertyFeatures';
 import PropertyDetails, { Details } from './PropertyDetails';
 import PropertyPhotos from './PropertyPhotos';
-import HouseDescription from '../Description/HouseDescription';
+import HouseWrapper from '../Description/HouseWrapper';
 
 import { db } from '../Helpers/ApiFetch';
 
@@ -210,7 +210,7 @@ export default class ManagerForm extends React.Component {
       // },
       {
         name: 'Resumo',
-        component: <HouseDescription
+        component: <HouseWrapper
           info={info}
           details={details}
           features={features}
