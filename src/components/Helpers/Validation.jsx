@@ -1,10 +1,12 @@
 import * as Yup from 'yup';
 
 const ValidationInfo = Yup.object().shape({
+  price: Yup.number()
+    .required('Preço deve ser preenchido'),
   area: Yup.number()
     .min(0, 'Área deve ser maior que 0')
     .required('Valor requerido'),
-  purpose_id: Yup.string()
+  purpose_id: Yup.number()
     .required('É necessário escolher uma opção'),
   building_area: Yup.number()
     .max(Yup.ref('area'), 'Área construída deve ser menor que a área total'),

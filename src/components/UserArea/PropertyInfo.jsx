@@ -3,20 +3,24 @@
 
 import React, { useState, useEffect } from 'react';
 
-// import { ValidationInfo } from '../Helpers/Validation';
+
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
-import FormGroup from '@material-ui/core/FormGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
+import Switch from '@material-ui/core/Switch';
 
+import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 
 import { Formik } from 'formik';
+import { ValidationInfo } from '../Helpers/Validation';
 import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
@@ -26,12 +30,11 @@ const useStyles = makeStyles(() => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-  }
+  },
 }));
 
 export default function PropertyInfo(props) {
   const [state, setState] = useState({
-    isEditing: false,
     neighborhoodList: [],
     typeList: [],
   });
@@ -83,18 +86,11 @@ export default function PropertyInfo(props) {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={ValidationInfo}
+      validationSchema={ValidationInfo}
       onSubmit={(values, { setSubmitting }) => {
-        if (values.renting && values.selling) {
-          values.purpose_id = enums.purposeOfProperty.both;
-        } else if (values.selling) {
-          values.purpose_id = enums.purposeOfProperty.selling;
-        } else if (values.renting) {
-          values.purpose_id = enums.purposeOfProperty.renting;
-        }
         values.position = {
           lat: values.lat,
-          long: values.long,
+          long: values.lng,
         };
         props.handleComponent('info', values);
         setSubmitting(false);
@@ -113,7 +109,7 @@ export default function PropertyInfo(props) {
         return (
 
           <form className="form-details" noValidate onSubmit={handleSubmit}>
-            
+
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="neighborhood_id">Bairro</InputLabel>
               <Select
@@ -153,119 +149,125 @@ export default function PropertyInfo(props) {
             </FormControl>
 
             <FormControl component="fieldset" className={classes.formControl}>
-              <FormGroup>
-
-                <FormControlLabel
-                  control={(
-                    <Checkbox
-                      id="renting"
-                      checked={values.renting}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.renting}
-                      color="primary"
-                    />
-                )}
-                  label="Locação"
-                />
-
-                <FormControlLabel
-                  control={(
-                    <Checkbox
-                      id="selling"
-                      checked={values.selling}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values.selling}
-                      color="primary"
-                    />
-                )}
-                  label="Venda"
-                />
-
-              </FormGroup>
+              <FormLabel component="legend">Propósito</FormLabel>
+              <RadioGroup
+                aria-label="purpose"
+                id="purpose_id"
+                name="purpose_id"
+                value={Number(values.purpose_id)}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              >
+                <FormControlLabel value={enums.purposeOfProperty.renting} control={<Radio />} label="Locação" />
+                <FormControlLabel value={enums.purposeOfProperty.selling} control={<Radio />} label="Venda" />
+              </RadioGroup>
             </FormControl>
+            {errors.purpose_id && touched.purpose_id ? (
+              <div className="error-group">{errors.purpose_id}</div>
+            ) : null}
+
 
             <FormControl className="price-input" variant="outlined">
               <InputLabel htmlFor="price">Preço</InputLabel>
               <OutlinedInput
                 id="price"
                 name="price"
-                value={values.price}
+                value={Number(values.price)}
                 onChange={handleChange}
                 startAdornment={<InputAdornment position="start">R$</InputAdornment>}
                 labelWidth={60}
                 type="number"
-                error={errors.price}
+                error={!!errors.price}
               />
             </FormControl>
-            <div className="area-group">
-
-            <TextField
-              id="area"
-              label="Area"
-              type="number"
-              value={values.area}
-              name="area"
-
-              // className={classes.textField}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              margin="normal"
-              variant="outlined"
-            />
-
-            <TextField
-              id="area"
-              label="Area Construída"
-              type="number"
-              value={values.building_area}
-              name="building_area"
-
-              // className={classes.textField}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              margin="normal"
-              variant="outlined"
-            />
-
-
-            {errors.building_area && touched.building_area ? (
-              <div>{errors.building_area}</div>
+            {errors.price ? (
+              <div className="error-group">{errors.price}</div>
             ) : null}
-        </div>
-            {/* MAPS POSITION
-              <div>
-                <label htmlFor="lat">
-                  {'Latitude'}
-                </label>
-                <Field
-                  type="text"
-                  name="lat"
-                  value={values.position.lat}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                {errors.lat && touched.lat ? (
-                  <div>{errors.lat}</div>
-                ) : null}
-              </div>
+            <div className="txt-group">
+              <TextField
+                id="area"
+                label="Area"
+                type="number"
+                value={values.area}
+                name="area"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin="normal"
+                variant="outlined"
+              />
 
-              <div>
-                <label htmlFor="long">
-                  {'Longitude'}
-                </label>
-                <Field
-                  type="text"
-                  name="long"
-                  value={values.position.long}
-                  onChange={handleChange}
+              <TextField
+                id="area"
+                label="Area Construída"
+                type="number"
+                value={values.building_area}
+                name="building_area"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin="normal"
+                variant="outlined"
+                error={!!errors.building_area}
+              />
+            </div>
+            {errors.building_area && touched.building_area ? (
+              <div className="error-group">{errors.building_area}</div>
+            ) : null}
+
+            <div className="txt-group">
+              <TextField
+                id="lat"
+                label="Latitude"
+                type="text"
+                value={values.lat}
+                name="lat"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin="normal"
+                variant="outlined"
+              />
+              <TextField
+                id="lng"
+                label="Longitude"
+                type="text"
+                value={values.lng}
+                name="lng"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                margin="normal"
+                variant="outlined"
+              />
+            </div>
+
+            <FormControlLabel
+              control={(
+                <Switch
+                  id="building_loan"
+                  name="building_loan"
+                  checked={values.building_loan}
                   onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.building_loan}
+                  color="primary"
                 />
-                {errors.long && touched.long ? (
-                  <div>{errors.long}</div>
-                ) : null}
-              </div> */}
+              )}
+              label="Financiamento"
+            />
+
+            <FormControlLabel
+              control={(
+                <Switch
+                  id="exchange"
+                  name="exchange"
+                  checked={values.exchange}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.exchange}
+                  color="primary"
+                />
+              )}
+              label="Permuta"
+            />
+
           </form>
         );
       }}
@@ -278,7 +280,7 @@ function Info(data) {
   this.neighborhood_id = data.neighborhood_id || 0;
   this.position = data.position ? JSON.stringify(data.position) : null;
   this.price = data.price || 0;
-  this.purpose_id = Number(data.purpose_id) || '';
+  this.purpose_id = Number(data.purpose_id) || 1;
   this.type_id = data.type_id || 0;
   this.area = data.area || 0;
   this.building_area = data.building_area || 0;
