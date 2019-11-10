@@ -83,6 +83,8 @@ export function Features(data, id) {
   this.barbecue_grill = data.barbecue_grill || 0;
   this.stairway = data.stairway || 0;
   this.garden = data.garden || 0;
+  this.fire_security = data.fire_security || 0;
+  this.camera_security = data.camera_security || 0;
   this.property_id = id || 0;
 
   return (
@@ -93,6 +95,8 @@ export function Features(data, id) {
     this.barbecue_grill,
     this.stairway,
     this.garden,
+    this.fire_security,
+    this.camera_security,
     this.property_id
   );
 }

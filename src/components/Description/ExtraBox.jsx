@@ -14,19 +14,16 @@ import './ExtraBox.scss';
 
 const ExtraBox = ({ features }) => {
   const {
-    // garden,
+    garden,
     stairway,
     barbecue_grill,
     balcony,
-    // pool,
+    pool,
     air_contioning,
     fire_security,
     security_camera,
   } = features;
 
-  const garden = true;
-  const pool = true;
-  const air = true;
   return (
     <div className="extra-box">
       <h3>Informações</h3>
@@ -44,13 +41,13 @@ const ExtraBox = ({ features }) => {
           </span>
         )}
 
-        {air && (
+        {air_contioning && (
         <span className="extra-icons">
           <AirConditionerIcon />
           <p className="icon-info" />
         </span>
         )}
-        {/*
+
         {balcony && (
           <span className="extra-icons">
             <BalconyIcon />
@@ -83,7 +80,7 @@ const ExtraBox = ({ features }) => {
             <CameraIcon />
             <p className="icon-info" />
           </span>
-        )} */}
+        )}
 
       </div>
     </div>
