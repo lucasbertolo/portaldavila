@@ -3,19 +3,32 @@
 
 import React, { useState, useEffect } from 'react';
 
-import {
-  Formik, Field,
-} from 'formik';
+import { Formik } from 'formik';
 
-import { ValidationInfo } from '../Helpers/Validation';
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from '@material-ui/core/styles';
+
+// import { ValidationInfo } from '../Helpers/Validation';
 
 import {
   Select, Input,
 } from '../Common/FormComponents';
 
+
 import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    width: 200,
+  },
+}));
 
 export default function PropertyInfo(props) {
   const [state, setState] = useState({
@@ -23,6 +36,9 @@ export default function PropertyInfo(props) {
     neighborhoodList: [],
     typeList: [],
   });
+
+  const classes = useStyles();
+
 
   // Para lidar com campo preço que tem placeholder personalizado
   const toggleEditing = () => {
@@ -197,7 +213,21 @@ export default function PropertyInfo(props) {
                 )
             }
 
-            <div className="group">
+            <TextField
+              id="area"
+              label="Area"
+              type="number"
+              value={values.area}
+              name="area"
+
+              className={classes.textField}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              margin="normal"
+              variant="outlined"
+            />
+
+            {/* <div className="group">
               <Field
                 type="number"
                 name="area"
@@ -214,27 +244,27 @@ export default function PropertyInfo(props) {
               {errors.area && touched.area ? (
                 <div>{errors.area}</div>
               ) : null}
-            </div>
+            </div> */}
 
-            <div className="group">
-              <Field
-                type="number"
-                name="building_area"
-                value={values.building_area}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className="styled-input"
-              />
-              <span className="highlight" />
-              <span className="bar" />
-              <label htmlFor="building_area" className="styled-label">
-                {'Area construída - m²'}
-              </label>
 
-              {errors.building_area && touched.building_area ? (
-                <div>{errors.building_area}</div>
-              ) : null}
-            </div>
+            <TextField
+              id="area"
+              label="Area Construída"
+              type="number"
+              value={values.building_area}
+              name="building_area"
+
+              className={classes.textField}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              margin="normal"
+              variant="outlined"
+            />
+
+
+            {errors.building_area && touched.building_area ? (
+              <div>{errors.building_area}</div>
+            ) : null}
 
             {/* MAPS POSITION
               <div>
