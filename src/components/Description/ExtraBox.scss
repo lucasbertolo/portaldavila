@@ -1,8 +1,22 @@
 .extra-box {
-    width: 50%;
-    height: 100px;
-    background: orange;
+  width: 50%;
+  height: 130px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+  .box-extra-icons {
     margin-top: 10px;
-    flex-wrap: wrap;
+    display: flex;
+    .extra-icons {
+      height: 100px;
+      width: 100px;
+      display: flex;
+
+      svg {
+        margin: auto;
+        width: 30px;
+        height: 30px;
+      }
+    }
   }
-  
+}

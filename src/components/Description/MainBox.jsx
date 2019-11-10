@@ -7,10 +7,10 @@ import DescriptionBox from './DescriptionBox';
 import './MainBox.scss';
 
 
-const MainBox = ({ features }) => (
+const MainBox = ({ details, features }) => (
   <div className="box-wrapper">
-    <DetailsBox />
-    <AdditionalBox />
+    <DetailsBox data={details} />
+    <AdditionalBox details={details} />
     <DescriptionBox />
   </div>
 );

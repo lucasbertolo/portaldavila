@@ -1,30 +1,34 @@
 import React from 'react';
 import { GarageIcon, BedIcon, BathIcon } from '../Common/Icons';
+import './DetailsBox.scss';
 
-const DetailsBox = () => (
-  <div className="box-details">
-    <div className="box-column">
-      <span className="box-details-icons">
-        <GarageIcon />
-        <p className="icon-info" />
-      </span>
+const DetailsBox = ({ data }) => {
+  const { dormitory, bathroom, garage } = data;
+  return (
+    <div className="box-details">
+      <div className="box-column">
+        {dormitory > 0 && (
+        <span className="box-details-icons">
+          <BedIcon />
+          <p className="icon-info">{dormitory}</p>
+        </span>
+        )}
+        {garage > 0 && (
+        <span className="box-details-icons">
+          <GarageIcon />
+          <p className="icon-info">{garage}</p>
+        </span>
+        )}
 
-      <span className="box-details-icons">
-        <GarageIcon />
-        <p className="icon-info" />
-      </span>
-
-      <span className="box-details-icons">
-        <GarageIcon />
-        <p className="icon-info">4</p>
-      </span>
-
-      <span className="box-details-icons">
-        <GarageIcon />
-        <p className="icon-info" />
-      </span>
+        {bathroom > 0 && (
+        <span className="box-details-icons">
+          <BathIcon />
+          <p className="icon-info">{bathroom}</p>
+        </span>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default DetailsBox;

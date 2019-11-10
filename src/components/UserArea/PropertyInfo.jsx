@@ -286,6 +286,8 @@ function Info(data) {
   this.building_area = data.building_area || 0;
   this.selling = false;
   this.renting = false;
+  this.exchange = false;
+  this.building_loan = false;
   return (
     this.neighborhood_id,
     this.position,
@@ -296,7 +298,9 @@ function Info(data) {
     this.area,
     this.building_area,
     this.selling,
-    this.renting
+    this.renting,
+    this.exchange,
+    this.building_loan
   );
 }
 

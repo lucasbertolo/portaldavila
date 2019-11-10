@@ -9,7 +9,7 @@ import { db } from '../Helpers/ApiFetch';
 import SliderImages from './SliderImages';
 import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
-import HouseTitle from './HouseTitle';
+// import HouseTitle from './HouseTitle';
 import CardVisitation from './CardVisitation';
 import Maps from '../Common/Maps';
 
@@ -50,8 +50,8 @@ export default class HouseWrapper extends React.Component {
 
     const { type_id, neighborhood_id } = info;
 
-    const kind = typeList[type_id];
-    const neigh = neighborhoodList[neighborhood_id];
+    // const kind = typeList[type_id];
+    // const neigh = neighborhoodList[neighborhood_id];
     // const { lat, long } = initialState.info.position;
 
     return (
@@ -64,7 +64,7 @@ export default class HouseWrapper extends React.Component {
           <div className="hs-wrapper">
             <SliderImages images={images} />
             {/* <SocialShare /> */}
-            <HouseTitle kind={kind} neigh={neigh} />
+            {/* <HouseTitle kind={kind} neigh={neigh} /> */}
             <hr />
             <CardVisitation />
 

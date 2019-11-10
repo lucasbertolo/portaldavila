@@ -64,7 +64,7 @@ export function Details(data) {
   this.dormitory = data.dormitory || 0;
   this.garage = data.garage || 0;
   this.bathroom = data.bathroom || 0;
-  this.visiting_room = data.visiting_room || 0;
+  this.living_room = data.living_room || 0;
   this.dining_room = data.dining_room || 0;
   this.suite = data.suite || 0;
   this.laundry = data.laundry || 0;
@@ -79,7 +79,7 @@ export function Details(data) {
     this.dormitory,
     this.garage,
     this.bathroom,
-    this.visiting_room,
+    this.living_room,
     this.dining_room,
     this.suite,
     this.laundry,
