@@ -3,31 +3,30 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { Formik } from 'formik';
-
-import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
-
 // import { ValidationInfo } from '../Helpers/Validation';
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormGroup from '@material-ui/core/FormGroup';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
-import {
-  Select, Input,
-} from '../Common/FormComponents';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
 
-
+import { Formik } from 'formik';
 import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
-const useStyles = makeStyles((theme) => ({
+import './PropertyInfo.scss';
+
+const useStyles = makeStyles(() => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    width: 200,
-  },
+  }
 }));
 
 export default function PropertyInfo(props) {
@@ -39,14 +38,6 @@ export default function PropertyInfo(props) {
 
   const classes = useStyles();
 
-
-  // Para lidar com campo preço que tem placeholder personalizado
-  const toggleEditing = () => {
-    setState((prevState) => ({
-      ...prevState,
-      isEditing: !prevState.isEditing,
-    }));
-  };
 
   // Chamadas para listas de bairros e tipos
   useEffect(() => {
@@ -118,100 +109,97 @@ export default function PropertyInfo(props) {
         bindSubmitForm(formikProps.submitForm);
         bindErrors(formikProps.errors);
 
+        const { neighborhoodList, typeList } = state;
         return (
 
-          <form className="form-style-5" noValidate onSubmit={handleSubmit}>
+          <form className="form-details" noValidate onSubmit={handleSubmit}>
+            
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="neighborhood_id">Bairro</InputLabel>
+              <Select
+                native
+                value={Number(values.neighborhood_id)}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                inputProps={{
+                  name: 'neighborhood_id',
+                  id: 'neighborhood_id',
+                }}
+              >
+                <option value={0}>Escolha uma opção</option>
+                {neighborhoodList && neighborhoodList.length > 0
+                  ? neighborhoodList.map((x, i) => <option key={x} value={i + 1}>{x}</option>)
+                  : null}
+              </Select>
+            </FormControl>
 
-            <Select
-              hasLabel
-              htmlFor="neighborhood-list"
-              label="Bairro"
-              options={state.neighborhoodList}
-              onChange={handleChange}
-              name="neighborhood_id"
-              onBlur={handleBlur}
-              value={values.neighborhood_id}
-            />
+            <FormControl className={classes.formControl}>
+              <InputLabel htmlFor="neighborhood_id">Tipo</InputLabel>
+              <Select
+                native
+                value={Number(values.type_id)}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                inputProps={{
+                  name: 'type_id',
+                  id: 'type_id',
+                }}
+              >
+                <option value={0}>Escolha uma opção</option>
+                {typeList && typeList.length > 0
+                  ? typeList.map((x, i) => <option key={x} value={i + 1}>{x}</option>)
+                  : null}
+              </Select>
+            </FormControl>
 
-            <Select
-              hasLabel
-              htmlFor="property-type"
-              label="Tipo de imóvel"
-              options={state.typeList}
-              onChange={handleChange}
-              name="type_id"
-              value={values.type_id}
-            />
+            <FormControl component="fieldset" className={classes.formControl}>
+              <FormGroup>
 
-            <div>
-              <label className="container-checkbox" htmlFor="renting">
-                Renting
-                <input
-                  type="checkbox"
-                  checked={values.renting ? 'checked' : ''}
-                  id="renting"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <span className="checkmark" />
-              </label>
-
-              <label className="container-checkbox" htmlFor="selling">
-                Selling
-                <input
-                  type="checkbox"
-                  id="selling"
-                  checked={values.selling ? 'checked' : ''}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <span className="checkmark" />
-              </label>
-
-              {errors.purpose_id && touched.purpose_id ? (
-                <div>{errors.purpose_id}</div>
-              ) : null}
-            </div>
-
-            {
-              state.isEditing
-                ? (
-                  <div className="group">
-                    <Input
-                      hasLabel
-                      htmlFor="price"
+                <FormControlLabel
+                  control={(
+                    <Checkbox
+                      id="renting"
+                      checked={values.renting}
                       onChange={handleChange}
-                      label="Preço"
-                      required
-                      type="number"
-                      name="price"
-                      value={values.price}
-                      onBlur={toggleEditing}
-                      className="styled-input"
+                      onBlur={handleBlur}
+                      value={values.renting}
+                      color="primary"
                     />
-                  </div>
+                )}
+                  label="Locação"
+                />
 
-                )
-                : (
-                  <div className="group">
-                    <Input
-                      hasLabel
-                      htmlFor="price"
+                <FormControlLabel
+                  control={(
+                    <Checkbox
+                      id="selling"
+                      checked={values.selling}
                       onChange={handleChange}
-                      label="Preço"
-                      required
-                      type="text"
-                      name="price"
-                      value={values.price}
-                      onFocus={toggleEditing}
-                      currency
-                      className="styled-input"
+                      onBlur={handleBlur}
+                      value={values.selling}
+                      color="primary"
                     />
-                    <span className="highlight" />
-                    <span className="bar" />
-                  </div>
-                )
-            }
+                )}
+                  label="Venda"
+                />
+
+              </FormGroup>
+            </FormControl>
+
+            <FormControl className="price-input" variant="outlined">
+              <InputLabel htmlFor="price">Preço</InputLabel>
+              <OutlinedInput
+                id="price"
+                name="price"
+                value={values.price}
+                onChange={handleChange}
+                startAdornment={<InputAdornment position="start">R$</InputAdornment>}
+                labelWidth={60}
+                type="number"
+                error={errors.price}
+              />
+            </FormControl>
+            <div className="area-group">
 
             <TextField
               id="area"
@@ -220,32 +208,12 @@ export default function PropertyInfo(props) {
               value={values.area}
               name="area"
 
-              className={classes.textField}
+              // className={classes.textField}
               onChange={handleChange}
               onBlur={handleBlur}
               margin="normal"
               variant="outlined"
             />
-
-            {/* <div className="group">
-              <Field
-                type="number"
-                name="area"
-                value={values.area}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                className="styled-input"
-              />
-              <span className="highlight" />
-              <span className="bar" />
-              <label htmlFor="area" className="styled-label">
-                {'Area m²'}
-              </label>
-              {errors.area && touched.area ? (
-                <div>{errors.area}</div>
-              ) : null}
-            </div> */}
-
 
             <TextField
               id="area"
@@ -254,7 +222,7 @@ export default function PropertyInfo(props) {
               value={values.building_area}
               name="building_area"
 
-              className={classes.textField}
+              // className={classes.textField}
               onChange={handleChange}
               onBlur={handleBlur}
               margin="normal"
@@ -265,7 +233,7 @@ export default function PropertyInfo(props) {
             {errors.building_area && touched.building_area ? (
               <div>{errors.building_area}</div>
             ) : null}
-
+        </div>
             {/* MAPS POSITION
               <div>
                 <label htmlFor="lat">
