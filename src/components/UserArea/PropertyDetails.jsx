@@ -1,10 +1,13 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import {
-  Formik, Field, ErrorMessage,
+  Formik, ErrorMessage,
 } from 'formik';
 
+import TextField from '@material-ui/core/TextField';
 import { ValidationDetails } from '../Helpers/Validation';
+
+import './PropertyDetails.scss';
 
 export default function PropertyDetails(props) {
   const initialValues = {
@@ -31,11 +34,27 @@ export default function PropertyDetails(props) {
 
         return (
 
-          <form className="form-style-5" noValidate onSubmit={handleSubmit}>
+          <form className="details-group" noValidate onSubmit={handleSubmit}>
             {
               Object.keys(initialValues).map((item) => (
-                <div key={item} className="group">
-                  <Field
+                <div
+                  key={item}
+                  className="input-details"
+                >
+                  <TextField
+                    value={values[item]}
+                    label={item}
+                    id={item}
+                    type="number"
+                    name={item}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    margin="normal"
+                    variant="outlined"
+                  />
+                  <ErrorMessage className="error-message" component="span" name={item} />
+
+                  {/* <Field
                     type="number"
                     name={item}
                     value={values[item]}
@@ -48,7 +67,7 @@ export default function PropertyDetails(props) {
                   <label htmlFor={item}>
                     {item}
                   </label>
-                  <ErrorMessage component="span" name={item} />
+                </div> */}
                 </div>
               ))
             }

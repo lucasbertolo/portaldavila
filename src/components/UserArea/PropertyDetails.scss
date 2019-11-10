@@ -1,0 +1,14 @@
+.details-group{
+    width: 60%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    .input-details{
+        width: 40%;
+    }
+   .error-message{
+       font-size: 0.7em;
+   }
+}

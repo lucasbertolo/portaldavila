@@ -16,12 +16,12 @@ const ExtraBox = ({ features }) => {
   const {
     garden,
     stairway,
-    barbecue_grill,
+    barbecueGrill,
     balcony,
     pool,
-    air_contioning,
-    fire_security,
-    security_camera,
+    airConditioner,
+    fireSecurity,
+    securityCamera,
   } = features;
 
   return (
@@ -41,7 +41,7 @@ const ExtraBox = ({ features }) => {
           </span>
         )}
 
-        {air_contioning && (
+        {airConditioner && (
         <span className="extra-icons">
           <AirConditionerIcon />
           <p className="icon-info" />
@@ -54,7 +54,7 @@ const ExtraBox = ({ features }) => {
             <p className="icon-info" />
           </span>
         )}
-        {barbecue_grill && (
+        {barbecueGrill && (
           <span className="extra-icons">
             <GrillIcon />
             <p className="icon-info" />
@@ -68,14 +68,14 @@ const ExtraBox = ({ features }) => {
           </span>
         )}
 
-        {fire_security && (
+        {fireSecurity && (
           <span className="extra-icons">
             <HydrantIcon />
             <p className="icon-info" />
           </span>
         )}
 
-        {security_camera && (
+        {securityCamera && (
           <span className="extra-icons">
             <CameraIcon />
             <p className="icon-info" />

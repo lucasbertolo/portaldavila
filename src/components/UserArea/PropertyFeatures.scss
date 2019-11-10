@@ -1,0 +1,38 @@
+.features-group {
+  width: 50%;
+  margin: auto;
+  display: flex;
+  margin-top: 50px;
+  flex-direction: column;
+  flex-wrap: now;
+
+  .features-opt {
+    width: 100%;
+    display: flex;
+    margin: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .icon-editor {
+      width: 30%;
+      margin: 10px;
+      z-index: 5;
+      position: relative;
+      span{
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          margin: 0;
+          padding: 0;
+          z-index: 1;
+      }
+      svg {
+        height: 130px;    
+        z-index: -1;
+        width: 100%;
+      }
+    }
+    .active svg{
+        background: rgba(0, 0, 0, 0.7);
+    }
+  }
+}
