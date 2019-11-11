@@ -72,9 +72,16 @@ const PropertyView = ({ data, mode }) => {
     if (code.length > 0) setGrid(Model.EqualsTo(data, Number(code[0].value), 'id'));
 
     const price = filterList.filter((x) => x.name === 'price');
-    if (price.length > 0) { setGrid(Model.MinMax(data, Number(price[0].min), Number(price[0].max), 'price')); }
+    if (price.length > 0) setGrid(Model.MinMax(data, Number(price[0].min), Number(price[0].max), 'price'));
 
-    // if (state.type > 0) { setGrid(Model.EqualsTo(data, Number(state.type), 'type_id')); }
+    const area = filterList.filter((x) => x.name === 'area');
+    if (area.length > 0) setGrid(Model.BiggerThan(data, Number(area[0].value), 'area'));
+
+    const dormitory = filterList.filter((x) => x.name === 'dormitory');
+    if (dormitory.length > 0) setGrid(Model.BiggerThan(data, Number(dormitory[0].value), 'dormitory'));
+
+    const garage = filterList.filter((x) => x.name === 'garage');
+    if (garage.length > 0) setGrid(Model.BiggerThan(data, Number(garage[0].value), 'garage'));
   }, [filterList]);
 
   const checkButton = () => (mode === enums.viewModeProperty.edit ? (

@@ -45,7 +45,6 @@ export default function FilterView({
             labelWidth={60}
             type="number"
             error={min > max}
-
           />
         </FormControl>
         <FormControl className={classes.margin} variant="outlined">
@@ -61,10 +60,10 @@ export default function FilterView({
             error={min > max}
           />
         </FormControl>
+        <span>teste</span>
       </>
     );
   };
-
 
   const rangeNumeric = (name, label) => {
     const [value, setValue] = useState(0);
@@ -76,7 +75,9 @@ export default function FilterView({
     return (
       <>
         <FormControl className={classes.margin} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-amount">{label || ''}</InputLabel>
+          <InputLabel htmlFor="outlined-adornment-amount">
+            {label || ''}
+          </InputLabel>
           <OutlinedInput
             id={name}
             value={value}
@@ -89,7 +90,6 @@ export default function FilterView({
       </>
     );
   };
-
 
   const selectInput = (name, label, opt) => (
     <FormControl className={classes.formControl}>
@@ -104,7 +104,11 @@ export default function FilterView({
         }}
       >
         {opt && opt.length > 0
-          ? opt.map((x, i) => <option key={x} value={i + 1}>{x}</option>)
+          ? opt.map((x, i) => (
+            <option key={x} value={i + 1}>
+              {x}
+            </option>
+          ))
           : null}
       </Select>
     </FormControl>
@@ -114,7 +118,6 @@ export default function FilterView({
     <>
       <FormControl component="fieldset" className={classes.formControl}>
         <FormGroup>
-
           <FormControlLabel
             control={(
               <Checkbox
@@ -123,7 +126,7 @@ export default function FilterView({
                 onChange={handleSelect}
                 value={state.renting}
               />
-                )}
+            )}
             label="Locação"
           />
 
@@ -135,10 +138,9 @@ export default function FilterView({
                 onChange={handleSelect}
                 value={state.selling}
               />
-                )}
+            )}
             label="Venda"
           />
-
         </FormGroup>
       </FormControl>
     </>
@@ -150,13 +152,13 @@ export default function FilterView({
       neighborhood,
       type,
       purpose,
-      dorm,
+      dormitory,
       garage,
       code,
       area,
     } = enums.filterOptions;
 
-    if (mode === dorm) return rangeNumeric('dorm', 'Minimo');
+    if (mode === dormitory) return rangeNumeric('dormitory', 'Minimo');
 
     if (mode === garage) return rangeNumeric('garage', 'Minimo');
 

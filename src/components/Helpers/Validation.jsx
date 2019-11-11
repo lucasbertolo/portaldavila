@@ -81,11 +81,13 @@ const ValidationFilter = (state) => {
   } = state;
 
   const validItems = [];
+
   if (priceMax > priceMin && priceMax > 300) {
     validItems.push({
       label: 'Preço', name: 'price', min: Number(priceMin), max: Number(priceMax),
     });
   }
+
   if (code > 0 && Number(code)) {
     validItems.push({ label: 'Código', name: 'code', value: Number(code) });
   }
@@ -93,8 +95,11 @@ const ValidationFilter = (state) => {
   if (area > 10 && area < 10000 && Number(area)) {
     validItems.push({ label: 'Área', name: 'area', value: Number(area) });
   }
+
   if (dormitory < 10 && dormitory > 0 && Number(dormitory)) {
-    validItems.push({ label: 'Nº Dormitórios', name: 'dormitory', value: Number(dormitory) });
+    validItems.push({
+      label: 'Nº Dormitórios', name: 'dormitory', value: Number(dormitory),
+    });
   }
 
   if (garage < 10 && garage > 0 && Number(garage)) {

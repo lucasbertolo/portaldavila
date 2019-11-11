@@ -22,7 +22,7 @@ export default function FilterBox({ selectList, setFieldList }) {
     type: 0,
     neighborhood: 0,
     purpose: 0,
-    dorm: 0,
+    dormitory: 0,
     garage: 0,
     area: 0,
     renting: false,
@@ -32,6 +32,7 @@ export default function FilterBox({ selectList, setFieldList }) {
   const validList = () => {
     const listItems = { ...state };
     const items = ValidationFilter(listItems);
+
     setFieldList(items);
     setTag(items);
   };
@@ -128,7 +129,7 @@ export default function FilterBox({ selectList, setFieldList }) {
             name="Quartos"
             handleInput={handleInput}
             state={state}
-            mode={enums.filterOptions.dorm}
+            mode={enums.filterOptions.dormitory}
           />
         </li>
         <li>

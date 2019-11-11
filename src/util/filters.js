@@ -4,22 +4,27 @@ const ModelObject = {
     const res = obj.filter((x) => (
       x[name] === value
     ));
-
     return res;
   },
 
   MinMax: (obj, min, max, name) => {
     const res = obj.filter((x) => (
-      x[name] > min && x[name] < max
+      x[name] >= min && x[name] <= max
+    ));
+    return res;
+  },
+
+  BiggerThan: (obj, value, name) => {
+    const res = obj.filter((x) => (
+      x[name] >= value
     ));
     return res;
   },
 
   LessThan: (obj, value, name) => {
     const res = obj.filter((x) => (
-      x[name] < value
+      x[name] <= value
     ));
-
     return res;
   },
 };
