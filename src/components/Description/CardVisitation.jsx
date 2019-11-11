@@ -4,7 +4,8 @@ import Visit from '../Visit/Visit';
 
 import './CardVisitation.scss';
 
-const CardVisitation = () => {
+const CardVisitation = (props) => {
+  const { kind, neigh, price } = props;
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -18,15 +19,32 @@ const CardVisitation = () => {
   return (
     <div className="card-visit">
       <header className="header">
-        <span>Venda - R$ 1500,00</span>
-        <span>Centro - Piracicaba - SP</span>
-        <span>Barracão</span>
+        <span>
+          Venda - R$
+          {price}
+          ,00
+        </span>
+        <span>
+          {neigh}
+          {' '}
+          - Piracicaba/SP
+        </span>
+        <span>{kind}</span>
       </header>
       <main>
-        <span>Faça uma visita e conheça melhor o imóvel ou contate-nos para mais informações</span>
+        <span>
+          Faça uma visita e conheça melhor o imóvel ou contate-nos para mais
+          informações
+        </span>
       </main>
       <nav className="container-btn">
-        <button className="btn-1 btn-laydown" type="button" onClick={handleClickOpen}>Agendar</button>
+        <button
+          className="btn-1 btn-laydown"
+          type="button"
+          onClick={handleClickOpen}
+        >
+          Agendar
+        </button>
         <Visit open={open} handleClose={handleClose} />
       </nav>
     </div>

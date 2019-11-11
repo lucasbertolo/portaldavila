@@ -48,10 +48,10 @@ export default class HouseWrapper extends React.Component {
       info, details, features, images,
     } = this.props;
 
-    const { type_id, neighborhood_id } = info;
+    const { type_id, neighborhood_id, price } = info;
 
-    // const kind = typeList[type_id];
-    // const neigh = neighborhoodList[neighborhood_id];
+    const kind = typeList[type_id];
+    const neigh = neighborhoodList[neighborhood_id];
     // const { lat, long } = initialState.info.position;
 
     return (
@@ -68,7 +68,11 @@ export default class HouseWrapper extends React.Component {
               {/* <SocialShare /> */}
               {/* <HouseTitle kind={kind} neigh={neigh} /> */}
 
-              <CardVisitation />
+              <CardVisitation
+                kind={kind}
+                neigh={neigh}
+                price={price}
+              />
               <MainBox details={details} features={features} />
 
               <ExtraBox features={features} />
