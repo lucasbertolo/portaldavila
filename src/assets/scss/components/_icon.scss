@@ -1,16 +1,32 @@
-.garage-icon,
-.bath-icon,
-.fav-icon{
+$height-add-icon: 32px;
+$width-add-icon: 32px;
+
+.fav-icon {
   width: 1.4em;
   height: 1.4em;
 }
-.price-icon, .bed-icon {
+.price-icon {
   width: 1em;
   height: 1em;
 }
-.bed-icon{
-  margin-top: 2px;
+
+.living-room-icon,
+.kitchen-icon,
+.laundry-icon,
+.dining-room-icon,
+.washbasin-icon,
+.office-icon,
+.dormitory-icon,
+.bathroom-icon,
+.garage-icon {
+  width: $width-add-icon;
+  height: $height-add-icon;
 }
+
+// .bath-icon{
+//   width: 38px;
+//   height: 38px;
+// }
 
 .svg {
   path,
@@ -25,12 +41,12 @@
   }
 }
 
-.fav-icon{
+.fav-icon {
   margin-top: 3px;
 }
 
-.selected-fav{
-  fill: $color5 !important
+.selected-fav {
+  fill: $color5 !important;
 }
 
 .social-btns .btn,
@@ -46,45 +62,32 @@
 }
 .social-btns .btn .fa {
   -webkit-transform: scale(0.8);
-          transform: scale(0.8);
+  transform: scale(0.8);
 }
 .social-btns .btn.facebook:before {
   background-color: #3b5998;
 }
-.social-btns .btn.facebook .fa {
-  // color: #3b5998;
-}
+
 .social-btns .btn.pinterest:before {
   background-color: #801515;
 }
-.social-btns .btn.pinterest .fa {
-  // color: #801515;
-}
+
 .social-btns .btn.instagram:before {
   background-color: #dc4a38;
 }
-.social-btns .btn.instagram .fa {
-  // color: #dc4a38;
-}
 
 .social-btns .btn.mail:before {
-  background-color: #824D86;
+  background-color: #824d86;
 }
-.social-btns .btn.mail .fa {
-  // color: #dc4a38;
-}
+
 .social-btns .btn.academic:before {
-  background-color: #11244B;
+  background-color: #11244b;
 }
-.social-btns .btn.academic .fa {
-  // color: #11244B;
-}
+
 .social-btns .btn.whatsapp:before {
   background-color: #329457;
 }
-.social-btns .btn.whatsapp .fa {
-  // color: #329457;
-}
+
 .social-btns .btn:focus:before,
 .social-btns .btn:hover:before {
   top: -10%;
@@ -94,7 +97,7 @@
 .social-btns .btn:hover .fa {
   color: #fff;
   -webkit-transform: scale(1);
-          transform: scale(1);
+  transform: scale(1);
 }
 
 .social-btns .btn {
@@ -102,13 +105,13 @@
   // background-color: #fff;
   width: 100px;
   height: 100px;
-  line-height:100px;
+  line-height: 100px;
   margin: 0 7px;
   text-align: center;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  box-shadow: 0 5px 15px -5px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
   opacity: 0.99;
 
   //  @media screen and (max-width:$break-medium) {
@@ -118,18 +121,18 @@
   // }
 }
 .social-btns .btn:before {
-  content: '';
+  content: "";
   width: 120%;
   height: 120%;
   position: absolute;
   -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 .social-btns .btn .fa {
-  font-size:  48px;
+  font-size: 48px;
   vertical-align: middle;
 
-  @media screen and (max-width:$break-medium) {
-       font-size: 48px ;
+  @media screen and (max-width: $break-medium) {
+    font-size: 48px;
   }
 }

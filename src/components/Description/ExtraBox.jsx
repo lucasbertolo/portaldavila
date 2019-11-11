@@ -26,7 +26,6 @@ const ExtraBox = ({ features }) => {
 
   return (
     <div className="extra-box">
-      <h3>Informações</h3>
       <div className="box-extra-icons">
         {garden && (
           <span className="extra-icons">

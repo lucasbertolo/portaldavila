@@ -1,59 +1,72 @@
 import React from 'react';
-import { GarageIcon, BedIcon, BathIcon } from '../Common/Icons';
+import {
+  KitchenIcon, LivingRoomIcon, LaundryIcon,
+  DiningRoomIcon, WashbasinIcon, OfficeIcon,
+  BedIcon, BathIcon, GarageIcon,
+} from '../Common/Icons';
 
 const AdditionalIcons = ({ details }) => {
   const {
     dining_room,
-    gourmet_space,
     laundry,
     office,
-    room,
-    suite,
     living_room,
     washbasin,
+    kitchen,
+    dormitory,
+    garage,
+    bathroom,
   } = details;
 
-  const dining = 5;
   return (
     <div className="additional-icons">
-      {dining > 0 && (
-        <span className="box-icon">
-          <s />
-        </span>
+      {dormitory === 1 && (
+      <span className="dormitory-icon">
+        <BedIcon />
+      </span>
       )}
-      {gourmet_space > 0 && (
-        <span className="box-icon">
+      {garage === 1 && (
+        <span className="garage-icon">
           <GarageIcon />
         </span>
       )}
-      {laundry > 0 && (
-        <span className="box-icon">
-          <GarageIcon />
+
+      {bathroom === 1 && (
+        <span className="bathroom-icon">
+          <BathIcon />
         </span>
       )}
-      {office > 0 && (
-        <span className="box-icon">
-          <GarageIcon />
+      {kitchen === 1 && (
+      <span className="kitchen-icon">
+        <KitchenIcon />
+      </span>
+      )}
+
+
+      {dining_room === 1 && (
+        <span className="box-icon dining-room-icon">
+          <DiningRoomIcon />
         </span>
       )}
-      {room > 0 && (
-        <span className="box-icon">
-          <GarageIcon />
+      {laundry === 1 && (
+        <span className="box-icon laundry-icon">
+          <LaundryIcon />
         </span>
       )}
-      {suite > 0 && (
-        <span className="box-icon">
-          <GarageIcon />
+      {office === 1 && (
+        <span className="box-icon office-icon">
+          <OfficeIcon />
         </span>
       )}
-      {living_room > 0 && (
-        <span className="box-icon">
-          <GarageIcon />
+
+      {living_room === 1 && (
+        <span className="box-icon living-room-icon">
+          <LivingRoomIcon />
         </span>
       )}
-      {washbasin > 0 && (
-        <span className="box-icon">
-          <GarageIcon />
+      {washbasin === 1 && (
+        <span className="box-icon washbasin-icon">
+          <WashbasinIcon />
         </span>
       )}
     </div>

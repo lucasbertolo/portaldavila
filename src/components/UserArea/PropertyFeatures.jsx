@@ -24,11 +24,18 @@ export default function PropertyFeatures(props) {
   const [state, setState] = useState(initialValues);
 
   const handleIcon = (e) => {
-    console.log(e.target.id);
     const { id } = e.target;
     setState((prevState) => ({
       ...prevState,
       [id]: !prevState[id],
+    }));
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setState((prevState) => ({
+      ...prevState,
+      [name]: value,
     }));
   };
 
@@ -42,9 +49,7 @@ export default function PropertyFeatures(props) {
       }}
     >
       {(formikProps) => {
-        const {
-          values, handleChange, handleSubmit, errors,
-        } = formikProps;
+        const { handleSubmit, errors } = formikProps;
 
         bindSubmitForm(formikProps.submitForm);
         bindErrors(formikProps.errors);
@@ -58,7 +63,7 @@ export default function PropertyFeatures(props) {
               rows={2}
               label="Descrição"
               rowsMax={4}
-              value={values.description}
+              value={state.description}
               onChange={handleChange}
               name="description"
             />

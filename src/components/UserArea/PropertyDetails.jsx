@@ -53,21 +53,6 @@ export default function PropertyDetails(props) {
                     variant="outlined"
                   />
                   <ErrorMessage className="error-message" component="span" name={item} />
-
-                  {/* <Field
-                    type="number"
-                    name={item}
-                    value={values[item]}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className="number"
-                  />
-                  <span className="highlight" />
-                  <span className="bar" />
-                  <label htmlFor={item}>
-                    {item}
-                  </label>
-                </div> */}
                 </div>
               ))
             }
@@ -79,7 +64,6 @@ export default function PropertyDetails(props) {
 }
 
 export function Details(data) {
-  this.room = data.room || 0;
   this.dormitory = data.dormitory || 0;
   this.garage = data.garage || 0;
   this.bathroom = data.bathroom || 0;
@@ -94,7 +78,6 @@ export function Details(data) {
 
 
   return (
-    this.room,
     this.dormitory,
     this.garage,
     this.bathroom,
