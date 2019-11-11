@@ -18,16 +18,13 @@ const PropertyView = ({ data, mode }) => {
   const [state, setState] = useState({
     neighborhoodList: [],
     typeList: [],
-    fieldList: {},
   });
 
+  const [filterList, setFilterList] = useState([]);
   const [grid, setGrid] = useState(data || []);
 
   const setFieldList = (list) => {
-    // setState({
-    //   fieldList: list,
-    // });
-    console.log(list);
+    setFilterList(list);
   };
 
   useEffect(() => {
@@ -69,12 +66,16 @@ const PropertyView = ({ data, mode }) => {
 
 
   useEffect(() => {
-    // if (state.code > 0) setGrid(Model.EqualsTo(data, Number(state.code), 'id'));
+    setGrid(data);
 
-    // if (state.price > 0) { setGrid(Model.MoreThan(data, Number(state.price), 'price')); }
+    const code = filterList.filter((x) => x.name === 'code');
+    if (code.length > 0) setGrid(Model.EqualsTo(data, Number(code[0].value), 'id'));
+
+    const price = filterList.filter((x) => x.name === 'price');
+    if (price.length > 0) { setGrid(Model.MinMax(data, Number(price[0].min), Number(price[0].max), 'price')); }
 
     // if (state.type > 0) { setGrid(Model.EqualsTo(data, Number(state.type), 'type_id')); }
-  }, [state]);
+  }, [filterList]);
 
   const checkButton = () => (mode === enums.viewModeProperty.edit ? (
     <nav className="align-bottom-left">

@@ -11,9 +11,10 @@ import { ValidationFilter } from '../Helpers/Validation';
 
 import './FilterBox.scss';
 
-export default function FilterBox({ selectList }) {
+export default function FilterBox({ selectList, setFieldList }) {
   const [boxFilter, setFilter] = useState(false);
   const [tag, setTag] = useState({});
+
   const [state, setState] = useState({
     priceMin: 0,
     priceMax: 0,
@@ -31,6 +32,7 @@ export default function FilterBox({ selectList }) {
   const validList = () => {
     const listItems = { ...state };
     const items = ValidationFilter(listItems);
+    setFieldList(items);
     setTag(items);
   };
 
@@ -43,11 +45,19 @@ export default function FilterBox({ selectList }) {
   };
 
   const clearField = (e) => {
+    if (e === 'price') {
+      setState((prevState) => ({
+        ...prevState,
+        priceMin: 0,
+        priceMax: 0,
+      }));
+    }
     setState((prevState) => ({
       ...prevState,
       [e]: 0,
     }));
   };
+
 
   const handleSelect = (e) => {
     const { id } = e.target;

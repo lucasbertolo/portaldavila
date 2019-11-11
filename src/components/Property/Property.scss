@@ -4,17 +4,14 @@
   height: 85vh;
   display: flex;
   flex-direction: column;
-//   justify-content: space-between;
   flex-wrap: wrap;
-  overflow: scroll;
   margin: auto;
   margin-top: 100px;
-  // background-color: red;
+  z-index: -200 !important;
 }
 
 .cards{
     width: 90%;
     display: flex;
     flex-wrap: wrap;
-    z-index: -1;
 }

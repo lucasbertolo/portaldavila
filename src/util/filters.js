@@ -8,11 +8,10 @@ const ModelObject = {
     return res;
   },
 
-  MoreThan: (obj, value, name) => {
+  MinMax: (obj, min, max, name) => {
     const res = obj.filter((x) => (
-      x[name] > value
+      x[name] > min && x[name] < max
     ));
-
     return res;
   },
 
