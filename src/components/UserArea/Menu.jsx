@@ -23,7 +23,7 @@ const Menu = () => (
       </div>
     </Link>
 
-    <Link href="/comingsoon">
+    <Link href={{ pathname: '/visit', query: { isLogged: true, id: 3 } }} as="/userarea/visit">
       <div className="items-menu-usr">
         <div className="icon-wrapper-usr">
           <i className="fa-th-list">
