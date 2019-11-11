@@ -75,7 +75,7 @@ const PropertyView = ({ data, mode }) => {
           <div className="circle">
             <span className="icon arrow" />
           </div>
-          <p className="button-text">Add Property</p>
+          <p className="button-text">Adicionar imóveis</p>
         </button>
       </Link>
     </nav>

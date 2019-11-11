@@ -47,7 +47,7 @@ const DetailsBox = ({ data }) => {
           <span className="kitchen-icon">
             <KitchenIcon />
           </span>
-          <p className="icon-info">{bathroom}</p>
+          <p className="icon-info">{kitchen}</p>
         </>
         )}
 
@@ -56,7 +56,7 @@ const DetailsBox = ({ data }) => {
           <span className="dining-room-icon">
             <DiningRoomIcon />
           </span>
-          <p className="icon-info">{bathroom}</p>
+          <p className="icon-info">{dining_room}</p>
         </>
         )}
 
@@ -65,7 +65,7 @@ const DetailsBox = ({ data }) => {
           <span className="laundry-icon">
             <LaundryIcon />
           </span>
-          <p className="icon-info">{bathroom}</p>
+          <p className="icon-info">{laundry}</p>
         </>
         )}
 
@@ -74,7 +74,7 @@ const DetailsBox = ({ data }) => {
           <span className="office-icon">
             <OfficeIcon />
           </span>
-          <p className="icon-info">{bathroom}</p>
+          <p className="icon-info">{office}</p>
         </>
         )}
 
