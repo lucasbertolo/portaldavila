@@ -61,19 +61,21 @@ export default class HouseWrapper extends React.Component {
             <RingLoader size={150} color="#123abc" loading={isLoading} />
           </div>
         ) : (
-          <div className="hs-wrapper">
+          <>
             <SliderImages images={images} />
-            {/* <SocialShare /> */}
-            {/* <HouseTitle kind={kind} neigh={neigh} /> */}
-            <hr />
-            <CardVisitation />
 
-            <MainBox details={details} features={features} />
+            <div className="hs-wrapper">
+              {/* <SocialShare /> */}
+              {/* <HouseTitle kind={kind} neigh={neigh} /> */}
 
-            <ExtraBox features={features} />
+              <CardVisitation />
+              <MainBox details={details} features={features} />
 
-            <Maps />
-          </div>
+              <ExtraBox features={features} />
+
+              <Maps />
+            </div>
+          </>
         )}
       </>
     );

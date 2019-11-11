@@ -4,6 +4,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40vh, 100%));
     grid-auto-flow: column;
+    margin: 10px 0;
   
     .cover-photo,
     .slider-photos {

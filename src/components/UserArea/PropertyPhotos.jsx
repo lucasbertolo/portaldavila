@@ -64,7 +64,6 @@ class PropertyPhotos extends Component {
 
   setCover = (e) => {
     const { photos } = this.state;
-
     // eslint-disable-next-line no-param-reassign
     photos.map((el) => { el.isCover = false; });
 
@@ -94,7 +93,6 @@ class PropertyPhotos extends Component {
     const file = this.uploadInput.files[0];
     const maxSize = file.size / 1024 / 1024;
     const { photos } = this.state;
-
     // const fileParts = this.uploadInput.files[0].name.split('.');
     // const name = fileParts[0];
     // const type = fileParts[1];

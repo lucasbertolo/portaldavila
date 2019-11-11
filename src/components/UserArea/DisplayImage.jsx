@@ -5,9 +5,13 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faImage } from '@fortawesome/free-solid-svg-icons';
 
-import { Input } from '../Common/FormComponents';
+import FormControl from '@material-ui/core/FormControl';
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+import InputAdornment from '@material-ui/core/InputAdornment';
+
 
 import './DisplayImage.scss';
+
 
 const DisplayImage = ({
   photos, handleChange, removePhoto, setCover,
@@ -23,29 +27,32 @@ const DisplayImage = ({
         src={item.url}
         alt="property"
       />
-
-      <Input
-        placeholder="Digite a descrição aqui"
-        name={`alt${index}`}
-        htmlFor={index}
-        value={item.alt}
-        onChange={handleChange}
-      />
-      <div id={item.id || item.url} onClick={removePhoto} className="remove-photo">
-        <i className="input-icon fa">
-          <FontAwesomeIcon
-            icon={faTrashAlt}
-          />
-        </i>
-      </div>
-
-      <div id={item.url} onClick={setCover} className="set-cover">
-        <i className="input-icon fa">
-          <FontAwesomeIcon
-            icon={faImage}
-          />
-        </i>
-      </div>
+      <FormControl className="photo-input" variant="outlined" fullWidth>
+        <OutlinedInput
+          id={index}
+          name={`alt${index}`}
+          value={item.alt}
+          onChange={handleChange}
+          placeholder="Descrição"
+          startAdornment={(
+            <InputAdornment position="start" className="rmv-photo">
+              <span id={item.id || item.url} onClick={removePhoto} />
+              <FontAwesomeIcon
+                icon={faTrashAlt}
+              />
+            </InputAdornment>
+          )}
+          endAdornment={(
+            <InputAdornment position="end" className="set-cover">
+              <span id={item.url} onClick={setCover} />
+              <FontAwesomeIcon
+                icon={faImage}
+              />
+            </InputAdornment>
+          )}
+          type="text"
+        />
+      </FormControl>
     </span>
   ));
 

@@ -24,7 +24,7 @@ const getNavStyles = (indx, length) => {
     if (i < indx) {
       styles.push('done');
     } else if (i === indx) {
-      styles.push('doing');
+      styles.push('active');
     } else {
       styles.push('todo');
     }
@@ -96,10 +96,6 @@ export default class ManagerForm extends React.Component {
       // eslint-disable-next-line no-console
       console.log(error);
     }
-  }
-
-  componentDidUpdate(){
-    console.log(this.state)
   }
 
   handleComponent = (name, data) => {
@@ -285,28 +281,36 @@ export default class ManagerForm extends React.Component {
         </ol>
         {steps[compIndex].component}
         <div className="prog-button">
-          <button
-            style={buttons.showPreviousBtn ? {} : { display: 'none' }}
-            onClick={this.handlePrevious}
-            type="button"
-          >
-            Anterior
-          </button>
 
-          <button
-            style={buttons.showNextBtn ? {} : { display: 'none' }}
-            onClick={this.handleNext}
-            type="button"
-          >
-            Seguinte
-          </button>
-          <button
-            style={buttons.showSaveBtn ? {} : { display: 'none' }}
-            onClick={this.sendData}
-            type="button"
-          >
-            Salvar
-          </button>
+
+          <div className="next-container">
+
+            <span
+              className="prev-btn"
+              style={buttons.showPreviousBtn ? {} : { display: 'none' }}
+              onClick={this.handlePrevious}
+              type="button"
+            />
+            <span
+              className="next-btn"
+              style={buttons.showNextBtn ? {} : { display: 'none' }}
+              onClick={this.handleNext}
+              type="button"
+            />
+          </div>
+
+          <div className="save-container">
+            <button
+              style={buttons.showSaveBtn ? {} : { display: 'none' }}
+              onClick={this.sendData}
+              type="button"
+              className="button-save button--save"
+            >
+              <span role="img" aria-label="save-img">☁️</span>
+              Salvar
+            </button>
+          </div>
+
         </div>
       </div>
     );
