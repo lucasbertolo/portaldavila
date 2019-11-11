@@ -77,20 +77,29 @@ const ValidationLogin = Yup.object().shape({
 
 const ValidationFilter = (state) => {
   const {
-    priceMax, priceMin, code, area, garage, dorm,
+    priceMax, priceMin, code, area, garage, dormitory,
   } = state;
 
   const validItems = [];
-  if (priceMax > priceMin && priceMax > 0) validItems.push({ label: 'Preço' });
+  if (priceMax > priceMin && priceMax > 300) {
+    validItems.push({
+      label: 'Preço', name: 'price', min: Number(priceMin), max: Number(priceMax),
+    });
+  }
+  if (code > 0 && Number(code)) {
+    validItems.push({ label: 'Código', name: 'code', value: Number(code) });
+  }
 
-  if (code > 0 && Number(code)) validItems.push({ label: 'Código' });
+  if (area > 10 && area < 10000 && Number(area)) {
+    validItems.push({ label: 'Área', name: 'area', value: Number(area) });
+  }
+  if (dormitory < 10 && dormitory > 0 && Number(dormitory)) {
+    validItems.push({ label: 'Nº Dormitórios', name: 'dormitory', value: Number(dormitory) });
+  }
 
-  if (area > 0 && area < 10000 && Number(area)) validItems.push({ label: 'Área' });
-
-  if (dorm < 10 && dorm > 0 && Number(dorm)) validItems.push({ label: 'Nº Dormitórios' });
-
-  if (garage < 10 && garage > 0 && Number(garage)) validItems.push({ label: 'Nº Vagas' });
-
+  if (garage < 10 && garage > 0 && Number(garage)) {
+    validItems.push({ label: 'Nº Vagas', name: 'garage', value: Number(garage) });
+  }
 
   return validItems;
 };

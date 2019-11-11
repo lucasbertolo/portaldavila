@@ -1,18 +1,19 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import FilterOption from './FilterOption';
 import Tags from './Tags';
 
 import { SearchIcon } from '../Common/Icons';
 import enums from '../../content/enums';
+import { ValidationFilter } from '../Helpers/Validation';
 
 import './FilterBox.scss';
 
 export default function FilterBox({ selectList }) {
   const [boxFilter, setFilter] = useState(false);
-
+  const [tag, setTag] = useState({});
   const [state, setState] = useState({
     priceMin: 0,
     priceMax: 0,
@@ -27,11 +28,24 @@ export default function FilterBox({ selectList }) {
     selling: false,
   });
 
+  const validList = () => {
+    const listItems = { ...state };
+    const items = ValidationFilter(listItems);
+    setTag(items);
+  };
+
   const handleInput = (e) => {
     const { id, value } = e.target;
     setState((prevState) => ({
       ...prevState,
       [id]: value,
+    }));
+  };
+
+  const clearField = (e) => {
+    setState((prevState) => ({
+      ...prevState,
+      [e]: 0,
     }));
   };
 
@@ -47,9 +61,13 @@ export default function FilterBox({ selectList }) {
     setFilter(!boxFilter);
   };
 
+  useEffect(() => {
+    validList();
+  }, [state]);
+
   return (
     <aside className={boxFilter ? 'open-menu' : ''}>
-      <Tags state={state} />
+      <Tags tag={tag} clearField={clearField} />
 
       <ul id="menu-filter">
         <li className="current">
@@ -120,9 +138,9 @@ export default function FilterBox({ selectList }) {
           />
         </li>
       </ul>
-      <a href="#menu-filter" id="toggle" onClick={handleMenu}>
+      <button type="button" id="toggle" onClick={handleMenu}>
         <span className="icon-bar"><SearchIcon /></span>
-      </a>
+      </button>
     </aside>
   );
 }

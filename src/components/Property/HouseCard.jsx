@@ -36,8 +36,6 @@ const HouseCard = React.memo(({ data, mode, selectList }) => {
     }
   };
 
-  useEffect(() => console.log('mounted or updated'));
-
   const handleVisibility = (e) => {
     if (Number(e.target.id)) {
       db.get(`/property/info/setvisibility/${e.target.id}&0`);

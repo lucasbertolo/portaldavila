@@ -1,6 +1,4 @@
-
-
-#menu-filter{
+#menu-filter {
   text-transform: uppercase;
   background: lightblue;
   text-align: left;
@@ -50,7 +48,7 @@
 
 #menu-filter li.current,
 #menu-filter li:hover {
-  color: #A2A4A7;
+  color: #a2a4a7;
 }
 
 #toggle {
@@ -60,9 +58,10 @@
   right: 0;
   height: 60px;
   width: 50px;
+  cursor: pointer;
   display: flex;
   justify-content: center;
-  background: #D1913C;
+  background: #d1913c;
 }
 
 #toggle .icon-bar {
@@ -76,13 +75,13 @@
   -o-transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
   transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
 
-  svg{
+  svg {
     height: 40px;
     width: 40px;
   }
 }
 
-@media(max-width: 760px) {
+@media (max-width: 760px) {
   #menu-filter li {
     display: block;
     float: initial;
@@ -95,7 +94,7 @@
 //     height: 30px;
 //     margin: 10px auto;
 //     background: blue;
-//   } 
+//   }
 
 //   .filter-box {
 //     color: white;

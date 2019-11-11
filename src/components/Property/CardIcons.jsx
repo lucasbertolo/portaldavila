@@ -8,15 +8,22 @@ const CardIcons = ({
 }) => (
   <span className="card__icons">
     <span className="icon-container">
-      <GarageIcon />
+      <span className="garage-icon-sm">
+        <GarageIcon />
+
+      </span>
       <p className="icon-info">{garage}</p>
     </span>
     <span className="icon-container">
-      <BedIcon />
+      <span className="dormitory-icon-sm">
+        <BedIcon />
+      </span>
       <p className="icon-info" style={{ marginLeft: '8px' }}>{dormitory}</p>
     </span>
     <span className="icon-container">
-      <BathIcon />
+      <span className="bathroom-icon-sm">
+        <BathIcon />
+      </span>
       <p className="icon-info">{bathroom}</p>
     </span>
     <span className="icon-container">

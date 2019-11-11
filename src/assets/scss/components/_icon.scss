@@ -1,5 +1,8 @@
 $height-add-icon: 32px;
 $width-add-icon: 32px;
+$height-icon-sm: 24px;
+$width-icon-sm: 24px;
+
 
 .fav-icon {
   width: 1.4em;
@@ -21,6 +24,14 @@ $width-add-icon: 32px;
 .garage-icon {
   width: $width-add-icon;
   height: $height-add-icon;
+}
+
+
+.dormitory-icon-sm,
+.bathroom-icon-sm,
+.garage-icon-sm {
+  width: $width-icon-sm;
+  height: $height-icon-sm;
 }
 
 // .bath-icon{

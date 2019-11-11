@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import FormControl from '@material-ui/core/FormControl';
 import FormGroup from '@material-ui/core/FormGroup';
@@ -21,8 +21,16 @@ export default function FilterView({
   handleSelect,
 }) {
   const rangeMinMax = (nameMin, nameMax) => {
-    const minValue = Number(state[nameMin]);
-    const maxValue = Number(state[nameMax]);
+    const [min, setMin] = useState(0);
+    const [max, setMax] = useState(0);
+
+    const handleMin = (e) => {
+      setMin(Number(e.target.value));
+    };
+
+    const handleMax = (e) => {
+      setMax(Number(e.target.value));
+    };
 
     return (
       <>
@@ -30,12 +38,13 @@ export default function FilterView({
           <InputLabel htmlFor="outlined-adornment-amount">Min</InputLabel>
           <OutlinedInput
             id={nameMin}
-            value={minValue}
-            onChange={handleInput}
+            value={min}
+            onChange={handleMin}
+            onBlur={handleInput}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             labelWidth={60}
             type="number"
-            error={minValue > maxValue}
+            error={min > max}
 
           />
         </FormControl>
@@ -43,12 +52,13 @@ export default function FilterView({
           <InputLabel htmlFor="outlined-adornment-amount">Max</InputLabel>
           <OutlinedInput
             id={nameMax}
-            value={maxValue}
-            onChange={handleInput}
+            value={max}
+            onChange={handleMax}
+            onBlur={handleInput}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
             labelWidth={60}
             type="number"
-            error={minValue > maxValue}
+            error={min > max}
           />
         </FormControl>
       </>
@@ -57,7 +67,12 @@ export default function FilterView({
 
 
   const rangeNumeric = (name, label) => {
-    const value = Number(state[name]);
+    const [value, setValue] = useState(0);
+
+    const handleValue = (e) => {
+      setValue(Number(e.target.value));
+    };
+
     return (
       <>
         <FormControl className={classes.margin} variant="outlined">
@@ -65,7 +80,8 @@ export default function FilterView({
           <OutlinedInput
             id={name}
             value={value}
-            onChange={handleInput}
+            onChange={handleValue}
+            onBlur={handleInput}
             labelWidth={60}
             type="number"
           />
