@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 
 import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Select from '@material-ui/core/Select';
-import Checkbox from '@material-ui/core/Checkbox';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import enums from '../../content/enums';
 
@@ -18,7 +19,6 @@ export default function FilterView({
   options,
   state,
   handleInput,
-  handleSelect,
 }) {
   const rangeMinMax = (nameMin, nameMax) => {
     const [min, setMin] = useState(0);
@@ -39,6 +39,7 @@ export default function FilterView({
           <OutlinedInput
             id={nameMin}
             value={min}
+            name={nameMin}
             onChange={handleMin}
             onBlur={handleInput}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -52,6 +53,7 @@ export default function FilterView({
           <OutlinedInput
             id={nameMax}
             value={max}
+            name={nameMax}
             onChange={handleMax}
             onBlur={handleInput}
             startAdornment={<InputAdornment position="start">$</InputAdornment>}
@@ -60,7 +62,6 @@ export default function FilterView({
             error={min > max}
           />
         </FormControl>
-        <span>teste</span>
       </>
     );
   };
@@ -80,6 +81,7 @@ export default function FilterView({
           </InputLabel>
           <OutlinedInput
             id={name}
+            name={name}
             value={value}
             onChange={handleValue}
             onBlur={handleInput}
@@ -92,56 +94,40 @@ export default function FilterView({
   };
 
   const selectInput = (name, label, opt) => (
+
     <FormControl className={classes.formControl}>
-      <InputLabel htmlFor={name}>{label}</InputLabel>
+      <InputLabel id={name}>{label}</InputLabel>
       <Select
-        native
-        value={state[name]}
+        labelId={name}
+        id={name}
+        name={name}
+        value={Number(state[name])}
         onChange={handleInput}
-        inputProps={{
-          name,
-          id: name,
-        }}
       >
+        <MenuItem value={0}>Escolha uma opção</MenuItem>
+
         {opt && opt.length > 0
           ? opt.map((x, i) => (
-            <option key={x} value={i + 1}>
-              {x}
-            </option>
+            <MenuItem key={x} value={Number(i)}>{x}</MenuItem>
           ))
           : null}
       </Select>
     </FormControl>
   );
 
-  const checkboxInput = () => (
+  const radioInput = () => (
     <>
       <FormControl component="fieldset" className={classes.formControl}>
-        <FormGroup>
-          <FormControlLabel
-            control={(
-              <Checkbox
-                id="renting"
-                checked={state.renting}
-                onChange={handleSelect}
-                value={state.renting}
-              />
-            )}
-            label="Locação"
-          />
-
-          <FormControlLabel
-            control={(
-              <Checkbox
-                id="selling"
-                checked={state.selling}
-                onChange={handleSelect}
-                value={state.selling}
-              />
-            )}
-            label="Venda"
-          />
-        </FormGroup>
+        <RadioGroup
+          aria-label="purpose"
+          id="purpose"
+          name="purpose"
+          value={Number(state.purpose)}
+          onChange={handleInput}
+        >
+          <FormControlLabel value={enums.purposeOfProperty.renting} control={<Radio />} label="Locação" />
+          <FormControlLabel value={enums.purposeOfProperty.selling} control={<Radio />} label="Venda" />
+        </RadioGroup>
       </FormControl>
     </>
   );
@@ -172,7 +158,7 @@ export default function FilterView({
 
     if (mode === type) return selectInput('type', 'Tipo', options);
 
-    if (mode === purpose) return checkboxInput();
+    if (mode === purpose) return radioInput();
 
     return null;
   };

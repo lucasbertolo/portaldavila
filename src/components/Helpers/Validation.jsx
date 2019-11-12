@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import Model from '../../util/filters';
 
 const ValidationInfo = Yup.object().shape({
   price: Yup.number()
@@ -77,7 +78,8 @@ const ValidationLogin = Yup.object().shape({
 
 const ValidationFilter = (state) => {
   const {
-    priceMax, priceMin, code, area, garage, dormitory,
+    priceMax, priceMin, code, area, garage,
+    dormitory, neighborhood, type, purpose,
   } = state;
 
   const validItems = [];
@@ -106,7 +108,49 @@ const ValidationFilter = (state) => {
     validItems.push({ label: 'Nº Vagas', name: 'garage', value: Number(garage) });
   }
 
+  if (neighborhood > 0) {
+    validItems.push({ label: 'Bairro', name: 'neighborhood', value: Number(neighborhood) });
+  }
+
+  if (type > 0) {
+    validItems.push({ label: 'Tipo', name: 'type', value: Number(type) });
+  }
+
+  if (purpose > 0) {
+    validItems.push({ label: 'Propósito', name: 'purpose', value: Number(purpose) });
+  }
+
   return validItems;
+};
+
+const ValidationGrid = (data, filterList) => {
+  let items = data.slice(0);
+
+  const code = filterList.filter((x) => x.name === 'code');
+  if (code.length > 0) items = Model.EqualsTo(items, Number(code[0].value), 'id');
+
+  const price = filterList.filter((x) => x.name === 'price');
+  if (price.length > 0) items = Model.MinMax(items, Number(price[0].min), Number(price[0].max), 'price');
+
+  const area = filterList.filter((x) => x.name === 'area');
+  if (area.length > 0) items = Model.BiggerThan(items, Number(area[0].value), 'area');
+
+  const dormitory = filterList.filter((x) => x.name === 'dormitory');
+  if (dormitory.length > 0) items = Model.BiggerThan(items, Number(dormitory[0].value), 'dormitory');
+
+  const garage = filterList.filter((x) => x.name === 'garage');
+  if (garage.length > 0) items = Model.BiggerThan(items, Number(garage[0].value), 'garage');
+
+  const neighborhood = filterList.filter((x) => x.name === 'neighborhood');
+  if (neighborhood.length > 0) items = Model.EqualsTo(items, Number(neighborhood[0].value), 'neighborhood_id');
+
+  const type = filterList.filter((x) => x.name === 'type');
+  if (type.length > 0) items = Model.EqualsTo(items, Number(type[0].value), 'type_id');
+
+  const purpose = filterList.filter((x) => x.name === 'purpose');
+  if (purpose.length > 0) items = Model.EqualsTo(items, Number(purpose[0].value), 'purpose_id');
+
+  return items;
 };
 
 
@@ -116,4 +160,5 @@ export {
   ValidationFeatures,
   ValidationLogin,
   ValidationFilter,
+  ValidationGrid,
 };

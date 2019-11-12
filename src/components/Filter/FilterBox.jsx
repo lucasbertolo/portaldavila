@@ -38,10 +38,10 @@ export default function FilterBox({ selectList, setFieldList }) {
   };
 
   const handleInput = (e) => {
-    const { id, value } = e.target;
+    const { value, name } = e.target;
     setState((prevState) => ({
       ...prevState,
-      [id]: value,
+      [name]: value,
     }));
   };
 
@@ -59,15 +59,6 @@ export default function FilterBox({ selectList, setFieldList }) {
     }));
   };
 
-
-  const handleSelect = (e) => {
-    const { id } = e.target;
-    setState((prevState) => ({
-      ...prevState,
-      [id]: !prevState[id],
-    }));
-  };
-
   const handleMenu = () => {
     setFilter(!boxFilter);
   };
@@ -76,81 +67,64 @@ export default function FilterBox({ selectList, setFieldList }) {
     validList();
   }, [state]);
 
+  const options = [
+    {
+      name: 'Preço',
+      mode: enums.filterOptions.price,
+    },
+    {
+      name: 'Bairro',
+      mode: enums.filterOptions.neighborhood,
+      options: selectList.neighborhoodList,
+    },
+    {
+      name: 'Tipo',
+      mode: enums.filterOptions.type,
+      options: selectList.typeList,
+    },
+    {
+      name: 'Proposito',
+      mode: enums.filterOptions.purpose,
+      options: ['Venda', 'Locação'],
+    },
+    {
+      name: 'Vagas',
+      mode: enums.filterOptions.garage,
+    },
+    {
+      name: 'Quartos',
+      mode: enums.filterOptions.dormitory,
+    },
+    {
+      name: 'Metragem',
+      mode: enums.filterOptions.area,
+    },
+    {
+      name: 'Código',
+      mode: enums.filterOptions.code,
+    },
+  ];
   return (
     <aside className={boxFilter ? 'open-menu' : ''}>
       <Tags tag={tag} clearField={clearField} />
 
       <ul id="menu-filter">
-        <li className="current">
-          <FilterOption
-            name="Preço"
-            mode={enums.filterOptions.price}
-            handleInput={handleInput}
-            state={state}
-          />
-        </li>
         <li>
-          <FilterOption
-            name="Bairro"
-            mode={enums.filterOptions.neighborhood}
-            options={selectList.neighborhoodList}
-            handleSelect={handleSelect}
-            state={state}
-          />
-        </li>
-        <li>
-          <FilterOption
-            name="Tipo"
-            mode={enums.filterOptions.type}
-            options={selectList.typeList}
-            state={state}
-            handleSelect={handleSelect}
-          />
-        </li>
-        <li>
-          <FilterOption
-            name="Proposito"
-            mode={enums.filterOptions.purpose}
-            handleSelect={handleSelect}
-            state={state}
-            options={['Venda', 'Locação']}
-          />
-        </li>
-        <li>
-          <FilterOption
-            name="Vagas"
-            handleInput={handleInput}
-            state={state}
-            mode={enums.filterOptions.garage}
-          />
-        </li>
-        <li>
-          <FilterOption
-            name="Quartos"
-            handleInput={handleInput}
-            state={state}
-            mode={enums.filterOptions.dormitory}
-          />
-        </li>
-        <li>
-          <FilterOption
-            name="Metragem"
-            handleInput={handleInput}
-            state={state}
-            mode={enums.filterOptions.area}
-          />
-        </li>
-        <li>
-          <FilterOption
-            name="Código"
-            handleInput={handleInput}
-            state={state}
-            mode={enums.filterOptions.code}
-          />
+          {options.map((x) => (
+            <FilterOption
+              name={x.name}
+              mode={x.mode}
+              handleInput={handleInput}
+              state={state}
+              options={x.options || null}
+            />
+          ))}
         </li>
       </ul>
       <button type="button" id="toggle" onClick={handleMenu}>
-        <span className="icon-bar"><SearchIcon /></span>
+        <span className="icon-bar">
+          <SearchIcon />
+        </span>
       </button>
     </aside>
   );

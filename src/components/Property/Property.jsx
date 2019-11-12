@@ -7,9 +7,8 @@ import HouseCard from './HouseCard';
 
 import FilterBox from '../Filter/FilterBox';
 
-import Model from '../../util/filters';
+import { ValidationGrid } from '../Helpers/Validation';
 import enums from '../../content/enums';
-
 import { db } from '../Helpers/ApiFetch';
 
 import './Property.scss';
@@ -66,22 +65,11 @@ const PropertyView = ({ data, mode }) => {
 
 
   useEffect(() => {
-    setGrid(data || []);
-
-    const code = filterList.filter((x) => x.name === 'code');
-    if (code.length > 0) setGrid(Model.EqualsTo(data, Number(code[0].value), 'id'));
-
-    const price = filterList.filter((x) => x.name === 'price');
-    if (price.length > 0) setGrid(Model.MinMax(data, Number(price[0].min), Number(price[0].max), 'price'));
-
-    const area = filterList.filter((x) => x.name === 'area');
-    if (area.length > 0) setGrid(Model.BiggerThan(data, Number(area[0].value), 'area'));
-
-    const dormitory = filterList.filter((x) => x.name === 'dormitory');
-    if (dormitory.length > 0) setGrid(Model.BiggerThan(data, Number(dormitory[0].value), 'dormitory'));
-
-    const garage = filterList.filter((x) => x.name === 'garage');
-    if (garage.length > 0) setGrid(Model.BiggerThan(data, Number(garage[0].value), 'garage'));
+    if (data) {
+      const items = data.slice(0);
+      const result = ValidationGrid(items, filterList);
+      setGrid(result);
+    }
   }, [filterList]);
 
   const checkButton = () => (mode === enums.viewModeProperty.edit ? (
