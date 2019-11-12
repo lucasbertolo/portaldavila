@@ -8,7 +8,7 @@ import {
 import Link from 'next/link';
 import './Menu.scss';
 
-const Menu = () => (
+const Menu = ({ isLogged, user }) => (
   <div className="ctn-menu-usr">
     <Link href={{ pathname: '/property', query: { editable: true } }} as="/userarea/listproperty">
       <div className="items-menu-usr">
@@ -23,7 +23,7 @@ const Menu = () => (
       </div>
     </Link>
 
-    <Link href={{ pathname: '/visit', query: { isLogged: true, id: 3 } }} as="/userarea/visit">
+    <Link href={{ pathname: '/visit', query: { isLogged, user } }} as="/userarea/visit">
       <div className="items-menu-usr">
         <div className="icon-wrapper-usr">
           <i className="fa-th-list">

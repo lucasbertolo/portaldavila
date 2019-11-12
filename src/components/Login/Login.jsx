@@ -56,7 +56,8 @@ const Login = ({ handleLogin }) => {
           alert(request.data.msg);
           return;
         }
-        handleLogin();
+        console.log(request.data);
+        handleLogin(request.data);
       } else {
         alert('Campo(s) vazio');
       }

@@ -17,14 +17,13 @@ const Visit = ({ data, isLogged }) => (
 );
 
 Visit.getInitialProps = async ({ query }) => {
-  if (query.isLogged) {
-    console.log(query.id);
-    const res = await db(`/visit/${query.id}`);
-    console.log(res);
-    return { data: res.data };
+  if (query.isLogged === 'true') {
+    // const res = await db(`/visit/${query.user.id}`);
+    // return { data: res.data };
+    console.log(query);
   }
 
-  return alert('Não autorizado');
+  return console.log('nao autorizado');
 
   // TO DO - PAGINA NAO AUTORIZADO
 };
