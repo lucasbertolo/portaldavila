@@ -66,7 +66,7 @@ const PropertyView = ({ data, mode }) => {
 
 
   useEffect(() => {
-    setGrid(data);
+    setGrid(data || []);
 
     const code = filterList.filter((x) => x.name === 'code');
     if (code.length > 0) setGrid(Model.EqualsTo(data, Number(code[0].value), 'id'));

@@ -4,8 +4,6 @@ import DetailsBox from './DetailsBox';
 import AdditionalBox from './AdditionalBox';
 import DescriptionBox from './DescriptionBox';
 
-import './MainBox.scss';
-
 const MainBox = ({ info, details, features }) => (
   <div className="box-wrapper">
     <DetailsBox data={details} />

@@ -268,6 +268,20 @@ export default function PropertyInfo(props) {
               label="Permuta"
             />
 
+            <FormControlLabel
+              control={(
+                <Switch
+                  id="isVisible"
+                  name="isVisible"
+                  checked={values.isVisible}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  value={values.isVisible}
+                  color="primary"
+                />
+              )}
+              label="Visibilidade"
+            />
           </form>
         );
       }}
@@ -284,10 +298,10 @@ function Info(data) {
   this.type_id = data.type_id || 0;
   this.area = data.area || 0;
   this.building_area = data.building_area || 0;
-  this.selling = false;
-  this.renting = false;
-  this.exchange = false;
-  this.building_loan = false;
+  this.exchange = data.exchange || false;
+  this.building_loan = data.building_loan || false;
+  this.isVisible = data.isVisible || true;
+
   return (
     this.neighborhood_id,
     this.position,
@@ -297,10 +311,9 @@ function Info(data) {
     this.creator_id,
     this.area,
     this.building_area,
-    this.selling,
-    this.renting,
     this.exchange,
-    this.building_loan
+    this.building_loan,
+    this.isVisible
   );
 }
 
