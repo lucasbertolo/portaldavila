@@ -1,7 +1,10 @@
+
 ul.main {
   list-style: none;
   max-width: 75%;
   margin: 20px auto;
+  margin-top: 100px;
+
 }
 h3 {
   padding: 0;
@@ -10,7 +13,7 @@ h3 {
 
 .date {
   width: 17%;
-  padding: 15% 1% 0 0;
+  padding: 7% 1% 0 0;
   float: left;
 }
 
@@ -26,7 +29,7 @@ h3 {
   float: left;
   width: 80%;
   border-left: 1px solid #ccc;
-  margin-top: 10%;
+  margin-top: 3%;
   padding-top: 3%;
 }
 
@@ -36,7 +39,7 @@ h3 {
 
 .events-detail li {
   padding: 10px;
-  border-bottom: 1px dashed #ccc;
+  border-bottom: 1px dashed black;
   line-height: 22px;
   transition: ease 0.4s all;
 }
@@ -59,7 +62,6 @@ h3 {
 
 .event-location {
   font-size: 0.8em;
-  color: tomato;
   margin-left: 70px;
 }
 
@@ -83,4 +85,12 @@ h3 {
   li.date p {
     margin: 0;
   }
+}
+
+.lbl-name {
+  color: grey;
+}
+
+.lbl-property {
+  color: lightcoral;
 }

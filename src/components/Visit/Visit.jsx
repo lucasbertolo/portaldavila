@@ -29,7 +29,7 @@ export default function Visit({ open, handleClose }) {
     setIsLoading(true);
     const request = await db.post('/visit', {
       property_id: 1,
-      user_id: 7,
+      user_id: 1,
       time_register: time,
       date_register: date,
     });

@@ -2,124 +2,77 @@ import React from 'react';
 import './Schedule.scss';
 
 export default function Schedule({ data }) {
-//   function dateString2Date(dateString) {
-//     const dt = dateString.split(/\-|\s/);
-//     return new Date(`${dt.slice(0, 3).reverse().join('-')} ${dt[3]}`);
-//   }
+  const entries = data.sort(
+    (a, b) => new Date(a.date_register) - new Date(b.date_register),
+  );
+
+  function filterUniqueDates(array) {
+    const lookup = new Set();
+
+    return array.filter((item) => {
+      const serialised = new Date(item.date_register).getDate();
+      if (lookup.has(serialised)) {
+        return false;
+      }
+      lookup.add(serialised);
+      return true;
+    });
+  }
+
+  const filteredDates = filterUniqueDates(data);
+
+  console.log(filteredDates);
   return (
     <ul className="main">
-      <li className="date">
-        <h3>Dec 18</h3>
-      </li>
-      <li className="events">
-        <ul className="events-detail">
-          {data.map((x) => (
-            <li>
-              {
-              console.log(new Date(x.date_register).getDate())
-
-              }
-              <span className="event-time">
-                {x.time_register}
+      <h3 className="lbl-title">Agendamento de Visitas</h3>
+      {filteredDates.map((x) => {
+        const date = new Date(x.date_register);
+        const month = date.toLocaleString('br', { month: 'short' });
+        const day = date.getDate();
+        return (
+          <>
+            <li className="date">
+              <h3>
+                {month}
                 {' '}
--
-                {' '}
-              </span>
-              <span className="event-name">
-Codigo -
-                {' '}
-                {x.property_id}
-              </span>
-              <br />
-              <span className="event-location">Nova Piracicaba</span>
+                {day}
+              </h3>
             </li>
-          ))}
-        </ul>
-      </li>
-
-      <li className="date">
-        <h3>Dec 19</h3>
-      </li>
-      <li className="events cf">
-        <ul className="events-detail">
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-        </ul>
-      </li>
-
-      <li className="date">
-        <h3>Dec 18</h3>
-      </li>
-      <li className="events">
-        <ul className="events-detail">
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-
-          <li>
-            <span className="event-time">2:00pm - </span>
-            <span className="event-name">Kickoff Ceremony</span>
-            <br />
-            <span className="event-location">Headquarters</span>
-          </li>
-        </ul>
-      </li>
+            <li className="events">
+              <ul className="events-detail">
+                {entries
+                  .filter((item) => {
+                    const itemDate = new Date(item.date_register);
+                    return itemDate.getDate() === day;
+                  })
+                  .map((el) => (
+                    <li>
+                      <span className="event-time">
+                        {el.time_register}
+                        {' '}
+                        -
+                        {' '}
+                      </span>
+                      <span className="event-name">
+                        <span className="lbl-name">
+                          Nome do Solicitante -
+                        </span>
+                        {' '}
+                        {el.username}
+                      </span>
+                      <br />
+                      <span className="event-location">
+                        <span className="lbl-property">Código Imóvel - </span>
+                        {' '}
+                        {el.property_id}
+                      </span>
+                    </li>
+                  ))}
+              </ul>
+            </li>
+          </>
+        );
+      })}
     </ul>
   );
 }
