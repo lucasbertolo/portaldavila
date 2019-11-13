@@ -11,6 +11,7 @@ import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
 import CardVisitation from './CardVisitation';
 import Maps from '../Common/Maps';
+import SocialShare from './SocialShare';
 
 import './HouseWrapper.scss';
 
@@ -59,10 +60,10 @@ export default class HouseWrapper extends React.Component {
           </div>
         ) : (
           <>
+            {console.log(this.props)}
             <SliderImages images={images} />
+            <SocialShare />
             <div className="hs-wrapper">
-              {/* <SocialShare /> */}
-
               <CardVisitation kind={kind} neigh={neigh} price={price} />
               <MainBox details={details} features={features} info={info} />
               <ExtraBox features={features} />

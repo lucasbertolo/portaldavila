@@ -1,7 +1,8 @@
 import React from 'react';
 
-const FavIcon = ({ isFav }) => (
+const FavIcon = ({ isFav, handleClick }) => (
   <svg
+    onClick={handleClick}
     className="svg fav-icon"
     viewBox="0 0 100 125"
     enableBackground="new 0 0 100 100"
