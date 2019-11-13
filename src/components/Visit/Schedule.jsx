@@ -2,6 +2,10 @@ import React from 'react';
 import './Schedule.scss';
 
 export default function Schedule({ data }) {
+//   function dateString2Date(dateString) {
+//     const dt = dateString.split(/\-|\s/);
+//     return new Date(`${dt.slice(0, 3).reverse().join('-')} ${dt[3]}`);
+//   }
   return (
     <ul className="main">
       <li className="date">
@@ -11,6 +15,10 @@ export default function Schedule({ data }) {
         <ul className="events-detail">
           {data.map((x) => (
             <li>
+              {
+              console.log(new Date(x.date_register).getDate())
+
+              }
               <span className="event-time">
                 {x.time_register}
                 {' '}

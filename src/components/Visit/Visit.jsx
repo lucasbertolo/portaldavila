@@ -26,21 +26,21 @@ export default function Visit({ open, handleClose }) {
   const handleNext = () => setIndex(index + 1);
 
   const handleSchedule = async () => {
-    // setIsLoading(true);
-    // const request = await db.post('/visit', {
-    //   property_id: 1,
-    //   user_id: 3,
-    //   time_register: time,
-    //   date_register: date.toISOString().slice(0, 19).replace('T', ' '),
-    // });
+    setIsLoading(true);
+    const request = await db.post('/visit', {
+      property_id: 1,
+      user_id: 7,
+      time_register: time,
+      date_register: date,
+    });
 
-    // if (request.status === 200) {
-    //   setIsLoading(false);
-    //   handleNext();
-    // } else {
-    //   setIsLoading(false);
-    //   alert('Erro ao tentar o agendamento, tente novamente mais tarde');
-    // }
+    if (request.status === 200) {
+      setIsLoading(false);
+      handleNext();
+    } else {
+      setIsLoading(false);
+      // alert('Erro ao tentar o agendamento, tente novamente mais tarde');
+    }
     handleNext();
   };
 

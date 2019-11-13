@@ -34,7 +34,7 @@ const Login = ({ handleLogin }) => {
           email: registerEmail,
           password: registerPassword,
           phone: '3333-2222',
-          type_id: enums.userType.guest,
+          type_id: enums.userType.consultant,
         });
         if (request.data.msg) {
           alert(request.data.msg);
@@ -53,15 +53,12 @@ const Login = ({ handleLogin }) => {
           password: loginPassword,
         })
           .then()
-          .catch((err) => alert('Usuário ou senha inválidos'));
-        console.log(request);
+          .catch(() => alert('Usuário ou senha inválidos'));
         if (request) { handleLogin(request.data); }
       } else {
         alert('Campo(s) vazio');
       }
     }
-
-    // handleLogin('a', 'b');
   };
 
   const handleContainer = () => {
@@ -95,7 +92,7 @@ const Login = ({ handleLogin }) => {
                   role="presentation"
                 >
                   <span>or</span>
-            Sign up
+                  Sign up
                 </h2>
                 <div className="form-holder">
                   <Field
