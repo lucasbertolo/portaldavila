@@ -3,13 +3,20 @@
 import React, { useState } from 'react';
 
 import { Formik } from 'formik';
-
 import TextField from '@material-ui/core/TextField';
 
 import { ValidationFeatures } from '../Helpers/Validation';
+import WrapperTooltip from '../Common/WrapperTooltip';
+
 import {
-  AirConditionerIcon, PoolIcon, BalconyIcon,
-  HydrantIcon, CameraIcon, GrillIcon, GardenIcon, LadderIcon,
+  AirConditionerIcon,
+  PoolIcon,
+  BalconyIcon,
+  HydrantIcon,
+  CameraIcon,
+  GrillIcon,
+  GardenIcon,
+  LadderIcon,
 } from '../Common/Icons';
 
 import './PropertyFeatures.scss';
@@ -56,7 +63,6 @@ export default function PropertyFeatures(props) {
 
         return (
           <form className="features-group" noValidate onSubmit={handleSubmit}>
-
             <TextField
               placeholder="Descreva o imóvel"
               multiline
@@ -67,96 +73,142 @@ export default function PropertyFeatures(props) {
               onChange={handleChange}
               name="description"
             />
-            {errors.description ? (
-              <div>{errors.description}</div>
-            ) : null}
+            {errors.description ? <div>{errors.description}</div> : null}
 
             <div className="features-opt">
-              <i className={state.airConditioner ? 'icon-editor active' : 'icon-editor'}>
-                <span
-                  onClick={handleIcon}
-                  role="presentation"
-                  id="airConditioner"
-                  name="airConditioner"
-                  value={state.airConditioner}
-                />
-                <AirConditionerIcon />
-              </i>
+              <WrapperTooltip title="Ar condicionado" position="left">
+                <i
+                  className={
+                    state.airConditioner ? 'icon-editor active' : 'icon-editor'
+                  }
+                >
+                  <span
+                    onClick={handleIcon}
+                    role="presentation"
+                    id="airConditioner"
+                    name="airConditioner"
+                    value={state.airConditioner}
+                  />
+                  <AirConditionerIcon />
+                </i>
+              </WrapperTooltip>
 
-              <i className={state.pool ? 'icon-editor active' : 'icon-editor'}>
-                <span
-                  onClick={handleIcon}
-                  role="presentation"
-                  id="pool"
-                  name="pool"
-                  value={state.pool}
-                />
-                <PoolIcon />
-              </i>
+              <WrapperTooltip title="Piscina" position="top">
+                <i
+                  className={state.pool ? 'icon-editor active' : 'icon-editor'}
+                >
+                  <span
+                    onClick={handleIcon}
+                    role="presentation"
+                    id="pool"
+                    name="pool"
+                    value={state.pool}
+                  />
+                  <PoolIcon />
+                </i>
+              </WrapperTooltip>
 
-              <i className={state.balcony ? 'icon-editor active' : 'icon-editor'}>
-                <span
-                  onClick={handleIcon}
-                  role="presentation"
-                  id="balcony"
-                  name="balcony"
-                  value={state.balcony}
-                />
-                <BalconyIcon />
+              <WrapperTooltip title="Sacada" position="top">
+                <i
+                  className={
+                    state.balcony ? 'icon-editor active' : 'icon-editor'
+                  }
+                >
+                  <span
+                    onClick={handleIcon}
+                    role="presentation"
+                    id="balcony"
+                    name="balcony"
+                    value={state.balcony}
+                  />
+                  <BalconyIcon />
+                </i>
+              </WrapperTooltip>
 
-              </i>
-              <i className={state.fireSecurity ? 'icon-editor active' : 'icon-editor'}>
-                <span
-                  onClick={handleIcon}
-                  role="presentation"
-                  id="fireSecurity"
-                  name="fireSecurity"
-                  value={state.fireSecurity}
-                />
-                <HydrantIcon />
+              <WrapperTooltip title="Extintor" position="right">
+                <i
+                  className={
+                    state.fireSecurity ? 'icon-editor active' : 'icon-editor'
+                  }
+                >
+                  <span
+                    onClick={handleIcon}
+                    role="presentation"
+                    id="fireSecurity"
+                    name="fireSecurity"
+                    value={state.fireSecurity}
+                  />
+                  <HydrantIcon />
+                </i>
+              </WrapperTooltip>
 
-              </i>
-              <i className={state.cameraSecurity ? 'icon-editor active' : 'icon-editor'}>
-                <span
-                  onClick={handleIcon}
-                  role="presentation"
-                  id="cameraSecurity"
-                  name="cameraSecurity"
-                  value={state.cameraSecurity}
-                />
-                <CameraIcon />
-              </i>
-              <i className={state.barbecueGrill ? 'icon-editor active' : 'icon-editor'}>
-                <span
-                  onClick={handleIcon}
-                  role="presentation"
-                  id="barbecueGrill"
-                  name="barbecueGrill"
-                  value={state.barbecueGrill}
-                />
-                <GrillIcon />
+              <WrapperTooltip title="Sistema de segurança" position="left">
+                <i
+                  className={
+                    state.cameraSecurity ? 'icon-editor active' : 'icon-editor'
+                  }
+                >
+                  <span
+                    onClick={handleIcon}
+                    role="presentation"
+                    id="cameraSecurity"
+                    name="cameraSecurity"
+                    value={state.cameraSecurity}
+                  />
+                  <CameraIcon />
+                </i>
+              </WrapperTooltip>
 
-              </i>
-              <i className={state.garden ? 'icon-editor active' : 'icon-editor'}>
-                <span
-                  onClick={handleIcon}
-                  role="presentation"
-                  id="garden"
-                  name="garden"
-                  value={state.garden}
-                />
-                <GardenIcon />
-              </i>
-              <i className={state.stairway ? 'icon-editor active' : 'icon-editor'}>
-                <span
-                  onClick={handleIcon}
-                  role="presentation"
-                  id="stairway"
-                  name="stairway"
-                  value={state.stairway}
-                />
-                <LadderIcon />
-              </i>
+              <WrapperTooltip title="Churrasqueira" position="bottom">
+                <i
+                  className={
+                    state.barbecueGrill ? 'icon-editor active' : 'icon-editor'
+                  }
+                >
+                  <span
+                    onClick={handleIcon}
+                    role="presentation"
+                    id="barbecueGrill"
+                    name="barbecueGrill"
+                    value={state.barbecueGrill}
+                  />
+                  <GrillIcon />
+                </i>
+              </WrapperTooltip>
+
+              <WrapperTooltip title="Jardim" position="bottom">
+                <i
+                  className={
+                    state.garden ? 'icon-editor active' : 'icon-editor'
+                  }
+                >
+                  <span
+                    onClick={handleIcon}
+                    role="presentation"
+                    id="garden"
+                    name="garden"
+                    value={state.garden}
+                  />
+                  <GardenIcon />
+                </i>
+              </WrapperTooltip>
+
+              <WrapperTooltip title="Escadas" position="right">
+                <i
+                  className={
+                    state.stairway ? 'icon-editor active' : 'icon-editor'
+                  }
+                >
+                  <span
+                    onClick={handleIcon}
+                    role="presentation"
+                    id="stairway"
+                    name="stairway"
+                    value={state.stairway}
+                  />
+                  <LadderIcon />
+                </i>
+              </WrapperTooltip>
             </div>
           </form>
         );
