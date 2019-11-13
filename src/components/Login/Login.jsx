@@ -29,7 +29,7 @@ const Login = ({ handleLogin }) => {
 
     if (register) {
       if (registerUsername !== '' && registerEmail !== '' && registerPassword !== '') {
-        const request = await db.post('/registeruser', {
+        const request = await db.post('/register', {
           username: registerUsername,
           email: registerEmail,
           password: registerPassword,
@@ -38,7 +38,9 @@ const Login = ({ handleLogin }) => {
         });
         if (request.data.msg) {
           alert(request.data.msg);
+          return;
         }
+        handleLogin(request.data);
       } else {
         alert('Campo vazio');
       }
@@ -46,18 +48,14 @@ const Login = ({ handleLogin }) => {
 
     if (login) {
       if (loginUsername !== '' && loginPassword !== '') {
-        const request = await db.post('/user', {
-          auth: {
-            username: loginUsername,
-            password: loginPassword,
-          },
-        });
-        if (request.data.msg) {
-          alert(request.data.msg);
-          return;
-        }
-        console.log(request.data);
-        handleLogin(request.data);
+        const request = await db.post('/signin', {
+          username: loginUsername,
+          password: loginPassword,
+        })
+          .then()
+          .catch((err) => alert('Usuário ou senha inválidos'));
+        console.log(request);
+        if (request) { handleLogin(request.data); }
       } else {
         alert('Campo(s) vazio');
       }
