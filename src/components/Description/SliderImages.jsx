@@ -3,7 +3,7 @@ import './SliderImages.scss';
 
 const SliderImages = ({ images }) => {
   const cover = images.filter((item) => item.isCover).map((x) => (
-    <figure>
+    <figure key={x.url}>
       <img src={x.url} alt={x.alt} />
     </figure>
   ));
@@ -17,7 +17,7 @@ const SliderImages = ({ images }) => {
 
     if (slideImages.length >= 1 && slideImages.length < 3) {
       const slide = slideImages.map((x) => (
-        <figure>
+        <figure key={x.url}>
           <img src={x.url} alt={x.alt} />
         </figure>
       ));
@@ -34,13 +34,13 @@ const SliderImages = ({ images }) => {
 
     if (slideImages.length >= 3) {
       const leftSlider = slideImages.slice(0, 2).map((x) => (
-        <figure>
+        <figure key={x.url}>
           <img src={x.url} alt={x.alt} />
         </figure>
       ));
 
       const rightslider = slideImages.slice(2, 4).map((x) => (
-        <figure>
+        <figure key={x.url}>
           <img src={x.url} alt={x.alt} />
         </figure>
       ));

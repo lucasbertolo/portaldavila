@@ -7,7 +7,7 @@ import './Home.scss';
 const Home = () => (
   <div className="idx">
     <img
-      src="https://cdn.pixabay.com/photo/2018/09/19/23/03/sunset-3689760_1280.jpg"
+      src="https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/1920px-Flag_of_France.svg.png"
       alt=""
       className="idx-image"
     />

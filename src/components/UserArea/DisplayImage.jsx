@@ -29,7 +29,7 @@ const DisplayImage = ({
       />
       <FormControl className="photo-input" variant="outlined" fullWidth>
         <OutlinedInput
-          id={index}
+          id={`${index}`}
           name={`alt${index}`}
           value={item.alt}
           onChange={handleChange}

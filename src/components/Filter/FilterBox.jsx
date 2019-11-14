@@ -112,6 +112,7 @@ export default function FilterBox({ selectList, setFieldList }) {
         <li>
           {options.map((x) => (
             <FilterOption
+              key={x.name}
               name={x.name}
               mode={x.mode}
               handleInput={handleInput}

@@ -1,13 +1,12 @@
 const withSass = require('@zeit/next-sass');
 const withManifest = require('next-manifest');
-const withCSS = require('@zeit/next-css');
 
 
 require('dotenv').config();
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 
-module.exports = withManifest(withSass(withCSS({
+module.exports = withManifest(withSass({
   // target: 'serverless',
   webpack(config, options) {
     config.plugins = config.plugins || [];
@@ -28,4 +27,4 @@ module.exports = withManifest(withSass(withCSS({
       cache: true,
     },
   },
-})));
+}));

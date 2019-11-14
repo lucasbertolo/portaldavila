@@ -21,7 +21,6 @@ export default function Schedule({ data }) {
 
   const filteredDates = filterUniqueDates(data);
 
-  console.log(filteredDates);
   return (
     <ul className="main">
       <h3 className="lbl-title">Agendamento de Visitas</h3>

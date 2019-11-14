@@ -12,7 +12,6 @@ import ContactBox from '../Contact/ContactBox';
 import DatePicker from './DatePicker';
 import { db } from '../Helpers/ApiFetch';
 
-
 export default function Visit({ open, handleClose }) {
   const [index, setIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -27,32 +26,34 @@ export default function Visit({ open, handleClose }) {
 
   const handleSchedule = async () => {
     setIsLoading(true);
-    const request = await db.post('/visit', {
+
+    db.post('/visit', {
       property_id: 1,
       user_id: 1,
       time_register: time,
       date_register: date,
-    });
-
-    if (request.status === 200) {
-      setIsLoading(false);
-      handleNext();
-    } else {
-      setIsLoading(false);
-      // alert('Erro ao tentar o agendamento, tente novamente mais tarde');
-    }
-    handleNext();
+    })
+      .then(() => {
+        setIsLoading(false);
+        handleNext();
+      })
+      .catch(() => {
+        setIsLoading(false);
+        setIndex(3);
+      });
   };
 
   const componentList = [
     {
       label: 'Agendar horário',
-      component: <DatePicker
-        handleDateChange={handleDateChange}
-        time={time}
-        date={date}
-        handleTimeChange={handleTimeChange}
-      />,
+      component: (
+        <DatePicker
+          handleDateChange={handleDateChange}
+          time={time}
+          date={date}
+          handleTimeChange={handleTimeChange}
+        />
+      ),
       button: 'Próximo',
       action: handleSchedule,
     },
@@ -64,7 +65,21 @@ export default function Visit({ open, handleClose }) {
     },
     {
       label: 'Confirmação',
-      component: <div>Entraremos em contato para confirmar o agendamento. Muito Obrigado!</div>,
+      component: (
+        <div>
+          Entraremos em contato para confirmar o agendamento. Muito Obrigado!
+        </div>
+      ),
+      button: 'OK',
+      action: handleClose,
+    },
+    {
+      label: 'Erro',
+      component: (
+        <div>
+          Ocorreu um erro no agendamento. Pedimos desculpa pelo incoveniente.
+        </div>
+      ),
       button: 'OK',
       action: handleClose,
     },
@@ -84,17 +99,20 @@ export default function Visit({ open, handleClose }) {
       >
         <DialogTitle id="form-dialog-title">{label}</DialogTitle>
         <DialogContent>
-          {
-            isLoading ? (
-              <div style={{
-                margin: 'auto', width: '80vh', display: 'flex', justifyContent: 'center',
+          {isLoading ? (
+            <div
+              style={{
+                margin: 'auto',
+                width: '80vh',
+                display: 'flex',
+                justifyContent: 'center',
               }}
-              >
-                <RingLoader size={150} color="#123abc" loading={isLoading} />
-              </div>
-            ) : <div>{ component }</div>
-
-          }
+            >
+              <RingLoader size={150} color="#123abc" loading={isLoading} />
+            </div>
+          ) : (
+            <div>{component}</div>
+          )}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">

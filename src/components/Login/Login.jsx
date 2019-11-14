@@ -9,7 +9,7 @@ import { ValidationLogin } from '../Helpers/Validation';
 
 import { db } from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
-import './Login.scss';
+
 
 const Login = ({ handleLogin }) => {
   const [login, setLogin] = useState(true);
@@ -83,7 +83,7 @@ const Login = ({ handleLogin }) => {
         return (
 
           <form className="login-container" noValidate onSubmit={handleSubmit}>
-            <div className="form-structor">
+            <div className="form-structor login-modal">
               <div className={register ? 'signup' : 'signup slide-up'}>
                 <h2
                   className="form-title"

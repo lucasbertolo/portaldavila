@@ -12,6 +12,7 @@ import MainBox from './MainBox';
 import CardVisitation from './CardVisitation';
 import Maps from '../Common/Maps';
 import SocialShare from './SocialShare';
+import ModalLogin from '../Login/ModalLogin';
 
 import './HouseWrapper.scss';
 
@@ -22,6 +23,7 @@ export default class HouseWrapper extends React.Component {
       neighborhoodList: [],
       typeList: [],
       isLoading: false,
+      open: false,
     };
   }
 
@@ -41,8 +43,18 @@ export default class HouseWrapper extends React.Component {
     }));
   }
 
+  handleClickOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   render() {
-    const { typeList, neighborhoodList, isLoading } = this.state;
+    const {
+      typeList, neighborhoodList, isLoading, open,
+    } = this.state;
     const {
       info, details, features, images,
     } = this.props;
@@ -56,11 +68,10 @@ export default class HouseWrapper extends React.Component {
       <>
         {isLoading ? (
           <div style={{ margin: 'auto', height: '400px' }}>
-            <RingLoader size={150} color="#123abc" loading={isLoading} />
+            {/* <RingLoader size={150} color="#123abc" loading={isLoading} /> */}
           </div>
         ) : (
           <>
-            {console.log(this.props)}
             <SliderImages images={images} />
             <SocialShare />
             <div className="hs-wrapper">
@@ -68,6 +79,12 @@ export default class HouseWrapper extends React.Component {
               <MainBox details={details} features={features} info={info} />
               <ExtraBox features={features} />
               <Maps />
+              <button type="button" onClick={this.handleClickOpen}>Abrir</button>
+              <ModalLogin
+                open={open}
+                handleClose={this.handleClose}
+                handleAction={this.handleClose}
+              />
             </div>
           </>
         )}
