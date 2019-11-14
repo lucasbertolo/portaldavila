@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faAdjust } from '@fortawesome/free-solid-svg-icons';
-
+import Footer from '../Footer/Footer';
 import './Header.scss';
 
 export default class Header extends React.Component {
@@ -105,7 +105,10 @@ export default class Header extends React.Component {
               &times;
             </span>
           </div>
+          <Footer />
+
         </div>
+
       </header>
     );
   }

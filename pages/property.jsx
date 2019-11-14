@@ -6,11 +6,13 @@ import { db } from '../src/components/Helpers/ApiFetch';
 import Header from '../src/components/Header/Header';
 import enums from '../src/content/enums';
 import PropertyView from '../src/components/Property/Property';
+import SocialFooter from '../src/components/Footer/SocialFooter';
 
 const Property = ({ data, mode }) => (
   <div>
     <Header />
     <PropertyView mode={mode} data={data} />
+    <SocialFooter />
   </div>
 );
 Property.getInitialProps = async ({ query }) => {
