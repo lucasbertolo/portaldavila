@@ -10,7 +10,7 @@ import SliderImages from './SliderImages';
 import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
 import CardVisitation from './CardVisitation';
-import Maps from '../Common/Maps';
+// import Maps from '../Common/Maps';
 import SocialShare from './SocialShare';
 import ModalLogin from '../Login/ModalLogin';
 
@@ -78,7 +78,7 @@ export default class HouseWrapper extends React.Component {
               <CardVisitation kind={kind} neigh={neigh} price={price} />
               <MainBox details={details} features={features} info={info} />
               <ExtraBox features={features} />
-              <Maps />
+              {/* <Maps /> */}
               <button type="button" onClick={this.handleClickOpen}>Abrir</button>
               <ModalLogin
                 open={open}

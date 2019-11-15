@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 
-import React from 'react';
+import React, { Suspense } from 'react';
 
 import PropertyInfo, { Info } from './PropertyInfo';
 import PropertyFeatures, { Features } from './PropertyFeatures';
 import PropertyDetails, { Details } from './PropertyDetails';
 import PropertyPhotos from './PropertyPhotos';
-import HouseWrapper from '../Description/HouseWrapper';
+// import HouseWrapper from '../Description/HouseWrapper';
 
 import Toast from '../Helpers/Toast';
 
@@ -97,7 +97,8 @@ export default class ManagerForm extends React.Component {
       } catch (error) {
         this.setState({
           toastOpen: true,
-          toastMsg: 'Ops, tivemos um problema para carregar as fotos, tente novamente mais tarde',
+          toastMsg:
+            'Ops, tivemos um problema para carregar as fotos, tente novamente mais tarde',
         });
       }
     }
@@ -124,7 +125,7 @@ export default class ManagerForm extends React.Component {
     this.setState({
       toastOpen: false,
     });
-  }
+  };
 
   handleNext = (e) => {
     const { compIndex } = this.state;
@@ -133,7 +134,10 @@ export default class ManagerForm extends React.Component {
         if (Object.entries(this.errors).length === 0) {
           this.setStepState(compIndex + 1);
         } else {
-          this.setState({ toastOpen: true, toastMsg: 'Existem itens inválidos' });
+          this.setState({
+            toastOpen: true,
+            toastMsg: 'Existem itens inválidos',
+          });
         }
       })
       .catch((err) => this.setState({ toastOpen: true, toastMsg: `${err}` }));
@@ -147,7 +151,10 @@ export default class ManagerForm extends React.Component {
         if (Object.entries(this.errors).length === 0) {
           this.setStepState(compIndex > 0 ? compIndex - 1 : compIndex);
         } else {
-          this.setState({ toastOpen: true, toastMsg: 'Existem itens inválidos' });
+          this.setState({
+            toastOpen: true,
+            toastMsg: 'Existem itens inválidos',
+          });
         }
       })
       .catch((err) => this.setState({ toastOpen: true, toastMsg: `${err}` }));
@@ -168,7 +175,10 @@ export default class ManagerForm extends React.Component {
             this.setStepState(value);
           }
         } else {
-          this.setState({ toastOpen: true, toastMsg: 'Existem itens inválidos' });
+          this.setState({
+            toastOpen: true,
+            toastMsg: 'Existem itens inválidos',
+          });
         }
       })
       .catch((err) => this.setState({ toastOpen: true, toastMsg: `${err}` }));
@@ -187,6 +197,7 @@ export default class ManagerForm extends React.Component {
       images, info, features, details,
     } = this.state;
 
+    const HouseWrapper = React.lazy(() => import('../Description/HouseWrapper'));
     const steps = [
       {
         name: 'Dados gerais',
@@ -235,12 +246,14 @@ export default class ManagerForm extends React.Component {
       {
         name: 'Resumo',
         component: (
-          <HouseWrapper
-            info={info}
-            details={details}
-            features={features}
-            images={images}
-          />
+          <Suspense fallback={<div>Teste</div>}>
+            <HouseWrapper
+              info={info}
+              details={details}
+              features={features}
+              images={images}
+            />
+          </Suspense>
         ),
       },
     ];
