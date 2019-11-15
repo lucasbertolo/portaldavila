@@ -6,6 +6,10 @@ import Menu from '../src/components/UserArea/Menu';
 import Header from '../src/components/Header/Header';
 import Login from '../src/components/Login/Login';
 
+import { storeToken } from '../src/util/user';
+import { db } from '../src/components/Helpers/ApiFetch';
+import enums from '../src/content/enums';
+
 export default class UserArea extends React.Component {
   constructor(props) {
     super(props);
@@ -15,10 +19,64 @@ export default class UserArea extends React.Component {
     };
   }
 
+  componentDidMount() {
+    const token = window.sessionStorage.getItem('remax-portal-token');
+
+    if (token) {
+      return db.post('/signin', {
+        token,
+      })
+        .then((res) => {
+          if (res.data) {
+            this.setState({ isLogged: true, user: res.data });
+          }
+          //
+        })
+        .catch(() => ({ msg: 'Usuário ou senha inválidos' }));
+    }
+
+    return null;
+  }
+
   handleLogin = (user) => {
-    // chamar bd
-    this.setState({ isLogged: true, user });
+    const { loginUsername, loginPassword } = user;
+    // const token = window.sessionStorage.getItem('remax-portal-token');
+
+    return db.post('/signin', {
+      username: loginUsername,
+      password: loginPassword,
+    })
+      .then((res) => {
+        if (res.data.userId) {
+          this.setState({ isLogged: true, user });
+          storeToken(res.data.token);
+        }
+      })
+      .catch(() => ({ msg: 'Usuário ou senha inválidos' }));
   };
+
+  handleRegister = (user) => {
+    const { registerUsername, registerEmail, registerPassword } = user;
+
+    return db.post('/register', {
+      username: registerUsername,
+      email: registerEmail,
+      password: registerPassword,
+      phone: '3333-2222',
+      type_id: enums.userType.consultant,
+    })
+      .then((res) => {
+        if (res.data.userId) {
+          this.setState({ isLogged: true, user });
+        }
+        if (res.data.existUser) {
+          return { msg: 'Usuário ou senha já existentes' };
+        }
+
+        return null;
+      })
+      .catch(() => ({ msg: 'Erro ao tentar cadastrar, tente novamente mais tarde' }));
+  }
 
   render() {
     const { isLogged, user } = this.state;
@@ -32,7 +90,10 @@ export default class UserArea extends React.Component {
         ) : (
           <>
             <Header />
-            <Login handleLogin={this.handleLogin} />
+            <Login
+              handleLogin={this.handleLogin}
+              handleRegister={this.handleRegister}
+            />
           </>
         )}
       </>

@@ -13,4 +13,11 @@ const loadUser = async (username, password) => {
   return false;
 };
 
-export default loadUser;
+const storeToken = (token) => {
+  window.sessionStorage.setItem('remax-portal-token', token);
+};
+
+export {
+  loadUser,
+  storeToken,
+};

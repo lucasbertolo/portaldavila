@@ -1,5 +1,3 @@
-/* eslint-disable no-alert */
-/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 
 import {
@@ -7,13 +5,13 @@ import {
 } from 'formik';
 import { ValidationLogin } from '../Helpers/Validation';
 
-import { db } from '../Helpers/ApiFetch';
-import enums from '../../content/enums';
-
 
 const Login = ({ handleLogin }) => {
   const [login, setLogin] = useState(true);
   const [register, setRegister] = useState(false);
+  const [regStatus, setRegStatus] = useState('');
+  const [logStatus, setLogStatus] = useState('');
+
   const initialValues = {
     loginUsername: '',
     loginPassword: '',
@@ -29,34 +27,17 @@ const Login = ({ handleLogin }) => {
 
     if (register) {
       if (registerUsername !== '' && registerEmail !== '' && registerPassword !== '') {
-        const request = await db.post('/register', {
-          username: registerUsername,
-          email: registerEmail,
-          password: registerPassword,
-          phone: '3333-2222',
-          type_id: enums.userType.consultant,
-        });
-        if (request.data.msg) {
-          alert(request.data.msg);
-          return;
-        }
-        handleLogin(request.data);
+        handleLogin(e);
       } else {
-        alert('Campo vazio');
+        setRegStatus('Campo(s) vazio');
       }
     }
 
     if (login) {
       if (loginUsername !== '' && loginPassword !== '') {
-        const request = await db.post('/signin', {
-          username: loginUsername,
-          password: loginPassword,
-        })
-          .then()
-          .catch(() => alert('Usuário ou senha inválidos'));
-        if (request) { handleLogin(request.data); }
+        handleLogin(e);
       } else {
-        alert('Campo(s) vazio');
+        setLogStatus('Campo(s) vazio');
       }
     }
   };
@@ -77,7 +58,7 @@ const Login = ({ handleLogin }) => {
     >
       {(formikProps) => {
         const {
-          values, handleChange, handleBlur, handleSubmit,
+          values, handleChange, handleBlur, handleSubmit, errors,
         } = formikProps;
 
         return (
@@ -112,6 +93,7 @@ const Login = ({ handleLogin }) => {
                     value={values.registerEmail}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    // error={!!errors.registerEmail}
                     className="input"
                     placeholder="Email"
                   />
@@ -123,12 +105,13 @@ const Login = ({ handleLogin }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     className="input"
+                    // error={!!errors.registerPassword}
                     placeholder="Password"
                   />
                   <ErrorMessage component="span" name="registerPassword" />
-
                 </div>
                 <button type="submit" className="submit-btn">Sign up</button>
+                <p>{regStatus}</p>
               </div>
               <div className={login ? 'login' : 'login slide-up'}>
                 <div className="center">
@@ -167,6 +150,7 @@ const Login = ({ handleLogin }) => {
 
                   </div>
                   <button type="submit" className="submit-btn">Log in</button>
+                  <p>{logStatus}</p>
                 </div>
               </div>
             </div>
