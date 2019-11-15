@@ -6,8 +6,8 @@ const OnBuilding = () => (
     <div className="object">
       <div className="object-rope" />
       <div className="object-shape">
-            Coming
-        <span className="soon">Soon</span>
+            Em
+        <span className="soon">Breve</span>
       </div>
     </div>
     <div className="cover">

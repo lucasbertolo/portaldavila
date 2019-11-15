@@ -3,13 +3,13 @@
 
 import React from 'react';
 
-import { toast } from 'react-toastify';
-
 import PropertyInfo, { Info } from './PropertyInfo';
 import PropertyFeatures, { Features } from './PropertyFeatures';
 import PropertyDetails, { Details } from './PropertyDetails';
 import PropertyPhotos from './PropertyPhotos';
 import HouseWrapper from '../Description/HouseWrapper';
+
+import Toast from '../Helpers/Toast';
 
 import { db } from '../Helpers/ApiFetch';
 
@@ -80,6 +80,8 @@ export default class ManagerForm extends React.Component {
       info: dataInfo,
       details: dataDetails,
       features: dataFeature,
+      toastOpen: false,
+      toastMsg: '',
     };
   }
 
@@ -92,8 +94,10 @@ export default class ManagerForm extends React.Component {
           images: resultPhotos.data,
         });
       } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log(error);
+        this.setState({
+          toastOpen: true,
+          toastMsg: 'Ops, tivemos um problema para carregar as fotos, tente novamente mais tarde',
+        });
       }
     }
   }
@@ -104,6 +108,12 @@ export default class ManagerForm extends React.Component {
     }));
   };
 
+  toastClose = () => {
+    this.setState({
+      toastOpen: false,
+    });
+  }
+
   handleNext = (e) => {
     const { compIndex } = this.state;
     this.submitMyForm(e)
@@ -111,13 +121,10 @@ export default class ManagerForm extends React.Component {
         if (Object.entries(this.errors).length === 0) {
           this.setStepState(compIndex + 1);
         } else {
-          toast('Existem campos inválidos', {
-            type: toast.TYPE.ERROR,
-            autoClose: 5000,
-          });
+          this.setState({ toastOpen: true, toastMsg: 'Existem itens inválidos' });
         }
       })
-      .catch((err) => toast.error(err));
+      .catch((err) => this.setState({ toastOpen: true, toastMsg: `${err}` }));
   };
 
   handlePrevious = (e) => {
@@ -128,13 +135,10 @@ export default class ManagerForm extends React.Component {
         if (Object.entries(this.errors).length === 0) {
           this.setStepState(compIndex > 0 ? compIndex - 1 : compIndex);
         } else {
-          toast('Existem campos inválidos', {
-            type: toast.TYPE.ERROR,
-            autoClose: 5000,
-          });
+          this.setState({ toastOpen: true, toastMsg: 'Existem itens inválidos' });
         }
       })
-      .catch((err) => toast.error(err));
+      .catch((err) => this.setState({ toastOpen: true, toastMsg: `${err}` }));
   };
 
   handleOnClick = (evt) => {
@@ -152,13 +156,10 @@ export default class ManagerForm extends React.Component {
             this.setStepState(value);
           }
         } else {
-          toast('Existem campos inválidos', {
-            type: toast.TYPE.ERROR,
-            autoClose: 5000,
-          });
+          this.setState({ toastOpen: true, toastMsg: 'Existem itens inválidos' });
         }
       })
-      .catch((err) => toast.error(err));
+      .catch((err) => this.setState({ toastOpen: true, toastMsg: `${err}` }));
   };
 
   bindSubmitForm = (submitForm) => {
@@ -282,7 +283,9 @@ export default class ManagerForm extends React.Component {
   };
 
   render() {
-    const { compIndex, buttons } = this.state;
+    const {
+      compIndex, buttons, toastOpen, toastMsg,
+    } = this.state;
     const steps = this.getSteps();
     const progressBar = this.renderSteps();
 
@@ -319,6 +322,12 @@ export default class ManagerForm extends React.Component {
               Salvar
             </button>
           </div>
+          <Toast
+            open={toastOpen}
+            handleClose={this.toastClose}
+            msg={toastMsg}
+            status="error"
+          />
         </div>
       </div>
     );

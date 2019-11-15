@@ -32,7 +32,7 @@ const ErrorBox = () => (
         <div className="number">4</div>
       </div>
 
-      <div className="error-text">Oops. The page you&apos;re looking for doesn&apos;t exist.</div>
+      <div className="error-text">Ops. A página que voce está procurando não existe</div>
     </div>
   </>
 );
