@@ -3,12 +3,11 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebookF,
-  faPinterest,
-  // faInstagram,
+  faInstagram,
   faWhatsapp,
 
 } from '@fortawesome/free-brands-svg-icons';
-import { faGraduationCap, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { faInfo, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 
 const Social = () => (
@@ -25,9 +24,9 @@ const Social = () => (
             <FontAwesomeIcon icon={faEnvelope} />
           </i>
         </a>
-        <a className="btn pinterest" href=" https://br.pinterest.com/lmsarquitetura/" target="_blank" rel="noreferrer noopener" aria-label="Pinterest">
+        <a className="btn instagram" href="https://br.pinterest.com/lmsarquitetura/" target="_blank" rel="noreferrer noopener" aria-label="Instagram">
           <i className="fa fa-pinterest">
-            <FontAwesomeIcon icon={faPinterest} />
+            <FontAwesomeIcon icon={faInstagram} />
           </i>
         </a>
         <a className="btn facebook" href="https://www.facebook.com/profile.php?id=100000227483945" target="_blank" rel="noreferrer noopener" aria-label="Facebook">
@@ -35,9 +34,9 @@ const Social = () => (
             <FontAwesomeIcon icon={faFacebookF} />
           </i>
         </a>
-        <a className="btn academic" href="http://lattes.cnpq.br/1605377522472063" target="_blank" rel="noreferrer noopener" aria-label="Lattes- Curriculo">
+        <a className="btn info" href="http://lattes.cnpq.br/1605377522472063" target="_blank" rel="noreferrer noopener" aria-label="Info">
           <i className="fa fa-academic">
-            <FontAwesomeIcon icon={faGraduationCap} />
+            <FontAwesomeIcon icon={faInfo} />
           </i>
         </a>
       </div>
