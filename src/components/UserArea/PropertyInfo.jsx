@@ -15,7 +15,6 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Switch from '@material-ui/core/Switch';
 
-import FormLabel from '@material-ui/core/FormLabel';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 
@@ -42,7 +41,6 @@ export default function PropertyInfo(props) {
   const classes = useStyles();
 
 
-  // Chamadas para listas de bairros e tipos
   useEffect(() => {
     const fetchBlock = async () => {
       try {
@@ -117,6 +115,8 @@ export default function PropertyInfo(props) {
                 value={Number(values.neighborhood_id)}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                error={!!errors.neighborhood_id}
+
                 inputProps={{
                   name: 'neighborhood_id',
                   id: 'neighborhood_id',
@@ -128,7 +128,9 @@ export default function PropertyInfo(props) {
                   : null}
               </Select>
             </FormControl>
-
+            {errors.neighborhood_id && touched.neighborhood_id ? (
+              <div className="error-group">{errors.neighborhood_id}</div>
+            ) : null}
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="neighborhood_id">Tipo</InputLabel>
               <Select
@@ -136,6 +138,7 @@ export default function PropertyInfo(props) {
                 value={Number(values.type_id)}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                error={!!errors.type_id}
                 inputProps={{
                   name: 'type_id',
                   id: 'type_id',
@@ -147,9 +150,10 @@ export default function PropertyInfo(props) {
                   : null}
               </Select>
             </FormControl>
-
+            {errors.type_id && touched.type_id ? (
+              <div className="error-group">{errors.type_id}</div>
+            ) : null}
             <FormControl component="fieldset" className={classes.formControl}>
-              <FormLabel component="legend">Propósito</FormLabel>
               <RadioGroup
                 aria-label="purpose"
                 id="purpose_id"

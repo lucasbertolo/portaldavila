@@ -82,6 +82,7 @@ export default class ManagerForm extends React.Component {
       features: dataFeature,
       toastOpen: false,
       toastMsg: '',
+      saveState: true,
     };
   }
 
@@ -99,6 +100,17 @@ export default class ManagerForm extends React.Component {
           toastMsg: 'Ops, tivemos um problema para carregar as fotos, tente novamente mais tarde',
         });
       }
+    }
+  }
+
+  componentDidUpdate() {
+    const { images, saveState } = this.state;
+
+    if (images.length > 0 && !saveState) {
+      // eslint-disable-next-line react/no-did-update-set-state
+      this.setState({
+        saveState: true,
+      });
     }
   }
 
@@ -279,12 +291,21 @@ export default class ManagerForm extends React.Component {
       images,
     };
 
+    if (!(images.length > 0)) {
+      this.setState({
+        saveState: false,
+        toastOpen: true,
+        toastMsg: 'É necessário adicionar ao menos uma foto',
+      });
+
+      return;
+    }
     onSubmit(obj);
   };
 
   render() {
     const {
-      compIndex, buttons, toastOpen, toastMsg,
+      compIndex, buttons, toastOpen, toastMsg, saveState,
     } = this.state;
     const steps = this.getSteps();
     const progressBar = this.renderSteps();
@@ -315,6 +336,7 @@ export default class ManagerForm extends React.Component {
               onClick={this.sendData}
               type="button"
               className="button-save button--save"
+              disabled={!saveState}
             >
               <span role="img" aria-label="save-img">
                 ☁️

@@ -86,16 +86,16 @@
 .btn-laydown,
 .btn-laydown::after {
   -webkit-transition: all 0.3s;
-	-moz-transition: all 0.3s;
+  -moz-transition: all 0.3s;
   -o-transition: all 0.3s;
-	transition: all 0.3s;
+  transition: all 0.3s;
 }
 
 .btn-laydown {
   background: none;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #fff;
-  background: rgba(0,0,0, 0.7);
+  background: rgba(0, 0, 0, 0.7);
   color: #fff;
   display: block;
   width: 100%;
@@ -109,14 +109,14 @@
 .btn-laydown::before,
 .btn-laydown::after {
   background: #fff;
-  content: '';
+  content: "";
   position: absolute;
   z-index: -1;
 }
 
 .btn-laydown:hover {
   color: #2ecc71;
-  background: rgba(100,100,100,0.7);
+  background: rgba(100, 100, 100, 0.7);
 }
 
 /* BUTTON 1 */
@@ -131,55 +131,58 @@
   height: 100%;
 }
 
-.next-btn, .prev-btn{
+.next-btn,
+.prev-btn {
   cursor: pointer;
-  position:relative;
-  display:block;
+  position: relative;
+  display: block;
   margin: 100px 0 0 100px;
-  width:50px;
+  width: 50px;
   height: 50px;
   border: solid 6px #999;
   border-radius: 100%;
   z-index: 1;
-  transition: all .2s linear;
-  &:before, &:after{
-    content:"";
+  transition: all 0.2s linear;
+  &:before,
+  &:after {
+    content: "";
     position: absolute;
-    width:35%;
+    width: 35%;
     height: 10%;
-    top:41%;
-    left:55%;
+    top: 41%;
+    left: 55%;
     background: #999;
     z-index: 2;
     transform: translate(-50%, -50%) rotate(45deg);
-    transition: all .2s linear;
+    transition: all 0.2s linear;
   }
-  &:after{
+  &:after {
     z-index: 3;
-    top:59%;
-    left:55%;
+    top: 59%;
+    left: 55%;
     transform: translate(-50%, -50%) rotate(-45deg);
   }
-  &:hover{
+  &:hover {
     border: solid 8px #777;
-    &:after, &:before{
+    &:after,
+    &:before {
       background: #777;
     }
   }
-  &:active{
+  &:active {
     border: solid 8px #111;
-    &:after, &:before{
+    &:after,
+    &:before {
       background: #111;
     }
   }
 }
 
-.prev-btn{
-  transform: rotate(180deg)
+.prev-btn {
+  transform: rotate(180deg);
 }
 
-
-.button-save { 
+.button-save {
   background: black;
   border: 3px solid #343436;
   border-radius: 5px;
@@ -188,16 +191,22 @@
   padding: 10px 16px;
   font-size: 15px;
   position: relative;
+
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.6);
+  }
 }
 
-.button-save:hover { 
+.button-save:hover {
   background: #4d4d50;
 }
 
 .button-save--save:before {
   background: #fedd31;
   display: block;
-  content: '';
+  content: "";
   height: 2px;
   position: absolute;
   left: 3px;
