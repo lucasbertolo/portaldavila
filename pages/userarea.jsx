@@ -19,24 +19,24 @@ export default class UserArea extends React.Component {
     };
   }
 
-  componentDidMount() {
-    const token = window.sessionStorage.getItem('remax-portal-token');
+  // componentDidMount() {
+  //   const token = window.sessionStorage.getItem('remax-portal-token');
 
-    if (token) {
-      return db
-        .post('/signin', {
-          token,
-        })
-        .then((res) => {
-          if (res.data) {
-            this.setState({ isLogged: true, user: res.data });
-          }
-        })
-        .catch(() => ({ msg: 'Usuário ou senha inválidos' }));
-    }
+  //   if (token) {
+  //     return db
+  //       .post('/signin', {
+  //         token,
+  //       })
+  //       .then((res) => {
+  //         if (res.data) {
+  //           this.setState({ isLogged: true, user: res.data });
+  //         }
+  //       })
+  //       .catch(() => ({ msg: 'Usuário ou senha inválidos' }));
+  //   }
 
-    return null;
-  }
+  //   return null;
+  // }
 
   handleLogin = (user) => {
     const { loginUsername, loginPassword } = user;
@@ -48,11 +48,11 @@ export default class UserArea extends React.Component {
       })
       .then((res) => {
         if (res.data.userId) {
-          this.setState({ isLogged: true, user });
+          this.setState({ isLogged: true, user: res.data.user });
           storeToken(res.data.token);
         }
       })
-      .catch(() => ({ msg: 'Usuário ou senha inválidos' }));
+      .catch(() => ({ msg: 'Usuário e/ou senha inválidos' }));
   };
 
   handleRegister = (user) => {
@@ -68,11 +68,11 @@ export default class UserArea extends React.Component {
       })
       .then((res) => {
         if (res.data.userId) {
-          this.setState({ isLogged: true, user: res.data });
+          this.setState({ isLogged: true, user: res.data.user });
           storeToken(res.data.token);
         }
         if (res.data.existUser) {
-          return { msg: 'Usuário ou senha já existentes' };
+          return { msg: 'Usuário já existente' };
         }
 
         return null;
@@ -95,6 +95,7 @@ export default class UserArea extends React.Component {
           <>
             <Header />
             <Login
+              container
               handleLogin={this.handleLogin}
               handleRegister={this.handleRegister}
             />

@@ -84,7 +84,7 @@ export default function PropertyInfo(props) {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={ValidationInfo}
+      // validationSchema={ValidationInfo}
       onSubmit={(values, { setSubmitting }) => {
         values.position = {
           lat: values.lat,

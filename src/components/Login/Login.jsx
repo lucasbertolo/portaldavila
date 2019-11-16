@@ -6,7 +6,7 @@ import {
 import { ValidationLogin } from '../Helpers/Validation';
 
 
-const Login = ({ handleLogin }) => {
+const Login = ({ handleLogin, container }) => {
   const [login, setLogin] = useState(true);
   const [register, setRegister] = useState(false);
   const [regStatus, setRegStatus] = useState('');
@@ -27,15 +27,23 @@ const Login = ({ handleLogin }) => {
 
     if (register) {
       if (registerUsername !== '' && registerEmail !== '' && registerPassword !== '') {
-        handleLogin(e);
+        handleLogin(e)
+          .then((reg) => {
+            if (reg) setRegStatus(reg.msg);
+
+            return null;
+          });
       } else {
         setRegStatus('Campo(s) vazio');
       }
     }
-
     if (login) {
       if (loginUsername !== '' && loginPassword !== '') {
-        handleLogin(e);
+        handleLogin(e)
+          .then((log) => {
+            if (log) setLogStatus(log.msg);
+            return null;
+          });
       } else {
         setLogStatus('Campo(s) vazio');
       }
@@ -61,10 +69,12 @@ const Login = ({ handleLogin }) => {
           values, handleChange, handleBlur, handleSubmit, errors,
         } = formikProps;
 
+        const containerStyle = container ? 'login-container' : '';
+        const formStyle = container ? 'form-structor md-shadow' : 'form-structor login-modal';
         return (
 
-          <form className="login-container" noValidate onSubmit={handleSubmit}>
-            <div className="form-structor login-modal">
+          <form className={containerStyle} noValidate onSubmit={handleSubmit}>
+            <div className={formStyle}>
               <div className={register ? 'signup' : 'signup slide-up'}>
                 <h2
                   className="form-title"
@@ -72,8 +82,8 @@ const Login = ({ handleLogin }) => {
                   onClick={handleContainer}
                   role="presentation"
                 >
-                  <span>or</span>
-                  Sign up
+                  <span>ou</span>
+                  Registrar
                 </h2>
                 <div className="form-holder">
                   <Field
@@ -110,7 +120,7 @@ const Login = ({ handleLogin }) => {
                   />
                   <ErrorMessage component="span" name="registerPassword" />
                 </div>
-                <button type="submit" className="submit-btn">Sign up</button>
+                <button type="submit" className="submit-btn">Login</button>
                 <p>{regStatus}</p>
               </div>
               <div className={login ? 'login' : 'login slide-up'}>
@@ -122,8 +132,8 @@ const Login = ({ handleLogin }) => {
                     onKeyPress={handleContainer}
                     role="presentation"
                   >
-                    <span>or</span>
-                    <p>Log in</p>
+                    <span>ou</span>
+                    <p>Login</p>
                   </h2>
                   <div className="form-holder">
                     <Field

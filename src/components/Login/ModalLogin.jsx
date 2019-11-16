@@ -15,6 +15,12 @@ export default function Visit({ open, handleClose, handleAction }) {
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+        PaperProps={{
+          style: {
+            backgroundColor: 'transparent',
+            boxShadow: 'none',
+          },
+        }}
       >
         <DialogContent>
           <Login />

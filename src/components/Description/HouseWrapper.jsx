@@ -82,6 +82,7 @@ export default class HouseWrapper extends React.Component {
               <button type="button" onClick={this.handleClickOpen}>Abrir</button>
               <ModalLogin
                 open={open}
+                classes="login-modal"
                 handleClose={this.handleClose}
                 handleAction={this.handleClose}
               />
