@@ -12,8 +12,8 @@ import ContactBox from '../Contact/ContactBox';
 import DatePicker from './DatePicker';
 import { db } from '../Helpers/ApiFetch';
 
-export default function Visit({ open, handleClose }) {
-  const [index, setIndex] = useState(0);
+export default function Visit({ open, handleClose, user }) {
+  const [index, setIndex] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
   const [date, setDate] = useState(new Date());
@@ -26,10 +26,9 @@ export default function Visit({ open, handleClose }) {
 
   const handleSchedule = async () => {
     setIsLoading(true);
-
     db.post('/visit', {
       property_id: 1,
-      user_id: 1,
+      user_id: user.id || user.userId,
       time_register: time,
       date_register: date,
     })
@@ -59,7 +58,7 @@ export default function Visit({ open, handleClose }) {
     },
     {
       label: 'Confirme o meio de contato',
-      component: <ContactBox />,
+      component: <ContactBox user={user} />,
       button: 'Próximo',
       action: handleNext,
     },
@@ -115,9 +114,11 @@ export default function Visit({ open, handleClose }) {
           )}
         </DialogContent>
         <DialogActions>
+          {index === 0 && (
           <Button onClick={handleClose} color="primary">
-            Cancelar
+              Cancelar
           </Button>
+          )}
           <Button onClick={action} color="primary">
             {button}
           </Button>

@@ -1,14 +1,15 @@
 import React from 'react';
 
-import Button from '@material-ui/core/Button';
-
 import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 
 import Login from './Login';
 
-export default function Visit({ open, handleClose, handleAction }) {
+export default function Visit(props) {
+  const {
+    open, handleClose, handleLogin, handleRegister,
+  } = props;
+
   return (
     <div>
       <Dialog
@@ -23,16 +24,12 @@ export default function Visit({ open, handleClose, handleAction }) {
         }}
       >
         <DialogContent>
-          <Login />
+          <Login
+            handleLogin={handleLogin}
+            handleRegister={handleRegister}
+          />
         </DialogContent>
-        {/* <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancelar
-          </Button>
-          <Button onClick={handleAction} color="primary">
-            Confirmar
-          </Button>
-        </DialogActions> */}
+
       </Dialog>
     </div>
   );

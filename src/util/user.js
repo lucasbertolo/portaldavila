@@ -10,18 +10,22 @@ const checkToken = () => {
   let isLogged = false;
   let user = {};
 
-  return db.post('/signin', {
-    token,
-  })
-    .then((res) => {
-      if (res.data) {
-        isLogged = true;
-        user = res.data;
-        return Promise.resolve({ isLogged, user });
-      }
-      return Promise.reject();
+  if (token) {
+    return db.post('/signin', {
+      token,
     })
-    .catch(() => Promise.reject(Error('Error trying to get the token')));
+      .then((res) => {
+        if (res.data) {
+          isLogged = true;
+          user = res.data;
+          return Promise.resolve({ isLogged, user });
+        }
+        return Promise.reject();
+      })
+      .catch();
+  }
+
+  return Promise.resolve();
 };
 
 

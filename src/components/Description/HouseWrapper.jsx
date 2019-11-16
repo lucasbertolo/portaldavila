@@ -4,8 +4,6 @@ import React from 'react';
 
 import { RingLoader } from 'react-spinners';
 
-import { db } from '../Helpers/ApiFetch';
-
 import SliderImages from './SliderImages';
 import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
@@ -14,55 +12,96 @@ import CardVisitation from './CardVisitation';
 import SocialShare from './SocialShare';
 import ModalLogin from '../Login/ModalLogin';
 
+import { loadUser, checkToken, registerGuest } from '../../util/user';
+
 import './HouseWrapper.scss';
 
 export default class HouseWrapper extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      neighborhoodList: [],
-      typeList: [],
       isLoading: false,
       open: false,
+      isLogged: false,
+      user: {},
+      modalVisit: false,
     };
   }
 
-  async componentDidMount() {
-    const resultBlock = await db.get('/neighborhood');
-    const block = resultBlock.data.map((item) => item.name);
-    block.unshift('');
-
-    const resultType = await db.get('/typeofproperty');
-    const type = resultType.data.map((item) => item.type);
-    type.unshift('');
-
-    this.setState((prevState) => ({
-      ...prevState,
-      neighborhoodList: block,
-      typeList: type,
-    }));
+  componentDidMount() {
+    checkToken()
+      .then((item) => {
+        if (item) {
+          this.setState({
+            isLogged: item.isLogged,
+            user: item.user,
+          });
+        }
+      })
+      .catch();
   }
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
+  openModalLogin = () => {
+    this.setState({
+      open: true,
+    });
   };
 
-  handleClose = () => {
+  handleLogin = (user) => loadUser(user)
+    .then((data) => {
+      this.setState({
+        isLogged: true,
+        user: data.user,
+        open: false,
+        modalVisit: true,
+      });
+    })
+    .catch(() => ({ msg: 'Usuário e/ou senha inválidos' }));
+
+  handleRegister = (user) => registerGuest(user)
+    .then((data) => {
+      if (!data.existUser) {
+        this.setState({
+          isLogged: true,
+          user: data.user,
+          open: false,
+          modalVisit: true,
+        });
+        return null;
+      }
+      return { msg: 'Usuário já existente' };
+    })
+    .catch(() => ({
+      msg: 'Erro ao tentar cadastrar, tente novamente mais tarde',
+    }));
+
+  closeModalLogin = () => {
     this.setState({ open: false });
+  };
+
+  openModalVisit = () => {
+    const { isLogged, user } = this.state;
+    console.log(user);
+    if (!isLogged) {
+      this.openModalLogin();
+    } else {
+      this.setState({ modalVisit: true });
+    }
+  };
+
+  closeModalVisit = () => {
+    this.setState({ modalVisit: false });
   };
 
   render() {
     const {
-      typeList, neighborhoodList, isLoading, open,
+      isLoading, open, isLogged, user, modalVisit,
     } = this.state;
+
     const {
       info, details, features, images,
     } = this.props;
 
-    const { type_id, neighborhood_id, price } = info;
-
-    const kind = typeList[type_id];
-    const neigh = neighborhoodList[neighborhood_id];
 
     return (
       <>
@@ -73,18 +112,32 @@ export default class HouseWrapper extends React.Component {
         ) : (
           <>
             <SliderImages images={images} />
+
             <SocialShare />
+
             <div className="hs-wrapper">
-              <CardVisitation kind={kind} neigh={neigh} price={price} />
-              <MainBox details={details} features={features} info={info} />
+              <CardVisitation
+                info={info}
+                isLogged={isLogged}
+                modalVisit={modalVisit}
+                openModalVisit={this.openModalVisit}
+                closeModalVisit={this.closeModalVisit}
+                user={user}
+              />
+              <MainBox
+                details={details}
+                features={features}
+                info={info}
+              />
               <ExtraBox features={features} />
               {/* <Maps /> */}
-              <button type="button" onClick={this.handleClickOpen}>Abrir</button>
+
               <ModalLogin
                 open={open}
                 classes="login-modal"
-                handleClose={this.handleClose}
-                handleAction={this.handleClose}
+                handleLogin={this.handleLogin}
+                handleRegister={this.handleRegister}
+                handleClose={this.closeModalLogin}
               />
             </div>
           </>

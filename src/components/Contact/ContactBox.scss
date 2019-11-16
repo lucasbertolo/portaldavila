@@ -1,4 +1,57 @@
 .contact-box {
   width: 100%;
+  height: 100px;
   display: flex;
+  
+  .social-btns{
+    display: flex;
+  }
+
+  .active{
+    height: 80px;
+    background: rgba(0,0,0,0.3);
+    position: relative;
+  }
+
+  .option{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
 }
+
+// .email {
+//   &:hover {
+//     background: grey;
+//   }
+// }
+
+// .whats {
+//   &:hover {
+//     background: green;
+//   }
+// }
+
+// .phone {
+//   &:hover {
+//     background: purple;
+//   }
+// }
+
+// .whats.active {
+//   background: green;
+//   font-size: 1.5em;
+// }
+
+// .phone.active {
+//   background: purple;
+
+//   &:hover {
+//     background: white;
+//   }
+// }
+
+// .email.active {
+//   background: grey;
+// }

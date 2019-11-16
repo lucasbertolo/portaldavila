@@ -97,6 +97,11 @@ $width-icon-sm: 24px;
 .social-btns .btn.whatsapp:before {
   background-color: #329457;
 }
+
+.social-btns .btn.phone:before {
+  background-color: #666773;
+}
+
 .social-btns .btn:focus:before,
 .social-btns .btn:hover:before {
   top: -10%;
@@ -128,6 +133,26 @@ $width-icon-sm: 24px;
     line-height: $social-div-size;
   }
 }
+
+.social-btns .btn-contact {
+  display: inline-block;
+  width: $social-div-size * 2;
+  height: $social-div-size * 2;
+  line-height: $social-div-size * 2;
+  margin: 0 7px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 5px 15px -5px rgba(0, 0, 0, 0.1);
+  opacity: 0.99;
+
+  @media screen and (max-width: $break-medium) {
+    width: $social-div-size * 2;
+    height: $social-div-size * 2;
+    line-height: $social-div-size * 2; 
+  }
+}
 .social-btns .btn:before {
   content: "";
   width: 120%;
@@ -142,5 +167,14 @@ $width-icon-sm: 24px;
 
   @media screen and (max-width: $break-medium) {
     font-size: $icon-size;
+  }
+}
+
+.social-btns .btn-contact .fa {
+  font-size: $icon-size * 2;
+  vertical-align: middle;
+
+  @media screen and (max-width: $break-medium) {
+    font-size: $icon-size * 2;
   }
 }

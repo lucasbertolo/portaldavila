@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
-/* eslint-disable react/prop-types */
 import React from 'react';
 
 import Menu from '../src/components/UserArea/Menu';
@@ -7,10 +5,9 @@ import Header from '../src/components/Header/Header';
 import Login from '../src/components/Login/Login';
 
 import {
-  storeToken, checkToken, loadUser, registerGuest,
+  checkToken, loadUser, registerGuest,
 } from '../src/util/user';
-import { db } from '../src/components/Helpers/ApiFetch';
-import enums from '../src/content/enums';
+
 
 export default class UserArea extends React.Component {
   constructor(props) {
@@ -24,10 +21,12 @@ export default class UserArea extends React.Component {
   // componentDidMount() {
   //   checkToken()
   //     .then((item) => {
-  //       this.setState({
-  //         isLogged: item.isLogged,
-  //         user: item.user,
-  //       });
+  //       if (item) {
+  //         this.setState({
+  //           isLogged: item.isLogged,
+  //           user: item.user,
+  //         });
+  //       }
   //     })
   //     .catch();
   // }

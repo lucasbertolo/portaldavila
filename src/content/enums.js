@@ -22,6 +22,11 @@ const enums = {
     area: 7,
     neighborhood: 8,
   },
+  contactOption: {
+    email: 1,
+    phone: 2,
+    whatsApp: 3,
+  },
 };
 
 

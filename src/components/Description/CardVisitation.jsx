@@ -1,21 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Visit from '../Visit/Visit';
+import { db } from '../Helpers/ApiFetch';
 
 import './CardVisitation.scss';
 
 const CardVisitation = (props) => {
-  const { kind, neigh, price } = props;
-  const [open, setOpen] = React.useState(false);
+  const {
+    openModalVisit, closeModalVisit, modalVisit,
+    info, user,
+  } = props;
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+  const { price, type_id, neighborhood_id } = info;
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const [state, setState] = useState({
+    neighborhoodList: [],
+    typeList: [],
+  });
 
+  useEffect(() => {
+    const fetchBlock = async () => {
+      try {
+        const resultBlock = await db.get('/neighborhood');
+        const options = resultBlock.data.map((item) => item.name);
+
+        setState((prevState) => ({
+          ...prevState,
+          neighborhoodList: options,
+        }));
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      }
+    };
+
+    const fetchType = async () => {
+      try {
+        const resultType = await db.get('/typeofproperty');
+        const options = resultType.data.map((item) => item.type);
+
+        setState((prevState) => ({
+          ...prevState,
+          typeList: options,
+        }));
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.log(error);
+      }
+    };
+
+    fetchBlock();
+    fetchType();
+  }, []);
+
+  const kind = state.typeList[type_id];
+  const neigh = state.neighborhoodList[neighborhood_id];
   return (
     <div className="card-visit">
       <header className="header">
@@ -41,11 +80,15 @@ const CardVisitation = (props) => {
         <button
           className="btn-1 btn-laydown"
           type="button"
-          onClick={handleClickOpen}
+          onClick={openModalVisit}
         >
           Agendar
         </button>
-        <Visit open={open} handleClose={handleClose} />
+        <Visit
+          open={modalVisit}
+          handleClose={closeModalVisit}
+          user={user}
+        />
       </nav>
     </div>
   );
