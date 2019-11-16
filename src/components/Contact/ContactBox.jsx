@@ -11,7 +11,7 @@ export default function ContactBox({ user }) {
   const [option, setOption] = React.useState(user.contact_type);
 
   const handleClick = (e) => {
-    setOption(e.target.value);
+    setOption(Number(e.target.id));
   };
 
   const { whatsApp } = enums.contactOption;
@@ -26,7 +26,7 @@ export default function ContactBox({ user }) {
             <div
               className="option"
               onClick={handleClick}
-              value={whatsApp}
+              id={whatsApp}
               onKeyDown={handleClick}
               role="presentation"
             />
@@ -41,7 +41,7 @@ export default function ContactBox({ user }) {
             <div
               className="option"
               onClick={handleClick}
-              value={email}
+              id={email}
               onKeyDown={handleClick}
               role="presentation"
             />
@@ -51,14 +51,14 @@ export default function ContactBox({ user }) {
           </span>
         </div>
         <div className={option === phone ? 'active' : ''}>
-          <div
-            className="option"
-            onClick={handleClick}
-            value={phone}
-            onKeyDown={handleClick}
-            role="presentation"
-          />
           <span className="btn btn-contact phone">
+            <div
+              className="option"
+              onClick={handleClick}
+              id={phone}
+              onKeyDown={handleClick}
+              role="presentation"
+            />
             <i className="fa">
               <FontAwesomeIcon icon={faPhone} />
             </i>

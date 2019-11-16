@@ -5,20 +5,38 @@ const storeToken = (token) => {
   window.sessionStorage.setItem('remax-portal-token', token);
 };
 
+const getUserInfo = (id) => db
+  .get(`/user/${id}`)
+  .then((item) => {
+    const isLogged = true;
+    const user = item.data;
+    return Promise.resolve({ isLogged, user });
+  })
+  .catch(() => {
+    const isLogged = false;
+    const user = {};
+    return Promise.resolve({ isLogged, user });
+  });
+
 const checkToken = () => {
   const token = window.sessionStorage.getItem('remax-portal-token');
   let isLogged = false;
   let user = {};
 
   if (token) {
-    return db.post('/signin', {
-      token,
-    })
+    return db
+      .post('/signin', {
+        token,
+      })
       .then((res) => {
-        if (res.data) {
-          isLogged = true;
-          user = res.data;
-          return Promise.resolve({ isLogged, user });
+        if (res.data.userId) {
+          return getUserInfo(res.data.userId)
+            .then((x) => {
+              isLogged = x.isLogged;
+              user = x.user;
+              return Promise.resolve({ isLogged, user });
+            })
+            .catch();
         }
         return Promise.reject();
       })
@@ -28,22 +46,27 @@ const checkToken = () => {
   return Promise.resolve();
 };
 
-
 const loadUser = (data) => {
   const { loginUsername, loginPassword } = data;
   let isLogged = false;
   let user = {};
 
-  return db.post('/signin', {
-    username: loginUsername,
-    password: loginPassword,
-  })
+  return db
+    .post('/signin', {
+      username: loginUsername,
+      password: loginPassword,
+    })
     .then((res) => {
-      if (res.data.userId) {
-        isLogged = true;
-        user = res.data.user;
-        storeToken(res.data.token);
-        return Promise.resolve({ isLogged, user });
+      const { userId, token } = res.data;
+      if (userId) {
+        storeToken(token);
+        return getUserInfo(userId)
+          .then((x) => {
+            isLogged = x.isLogged;
+            user = x.user;
+            return Promise.resolve({ isLogged, user });
+          })
+          .catch();
       }
       return Promise.reject();
     })
@@ -55,21 +78,26 @@ const registerGuest = (data) => {
   let isLogged = false;
   let user = {};
 
-  return db.post('/register', {
-    username: registerUsername,
-    email: registerEmail,
-    password: registerPassword,
-    phone: '3333-2222',
-    type_id: enums.userType.consultant,
-  })
+  return db
+    .post('/register', {
+      username: registerUsername,
+      email: registerEmail,
+      password: registerPassword,
+      phone: '3333-2222',
+      type_id: enums.userType.consultant,
+    })
     .then((res) => {
       if (res.data.existUser) {
         return Promise.resolve({ existUser: true });
       }
       if (res.data.userId) {
-        isLogged = true;
-        user = res.data;
-        return Promise.resolve({ isLogged, user });
+        return getUserInfo(res.data.userId)
+          .then((x) => {
+            isLogged = x.isLogged;
+            user = x.user;
+            return Promise.resolve({ isLogged, user });
+          })
+          .catch();
       }
       return Promise.reject();
     })

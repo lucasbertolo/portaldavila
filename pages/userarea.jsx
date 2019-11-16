@@ -18,18 +18,18 @@ export default class UserArea extends React.Component {
     };
   }
 
-  // componentDidMount() {
-  //   checkToken()
-  //     .then((item) => {
-  //       if (item) {
-  //         this.setState({
-  //           isLogged: item.isLogged,
-  //           user: item.user,
-  //         });
-  //       }
-  //     })
-  //     .catch();
-  // }
+  componentDidMount() {
+    checkToken()
+      .then((item) => {
+        if (item) {
+          this.setState({
+            isLogged: item.isLogged,
+            user: item.user,
+          });
+        }
+      })
+      .catch();
+  }
 
   handleLogin = (user) => loadUser(user)
     .then((data) => {
