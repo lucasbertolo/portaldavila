@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 
-import {
-  Formik, Field, ErrorMessage,
-} from 'formik';
+import { Formik, Field, ErrorMessage } from 'formik';
 import { ValidationLogin } from '../Helpers/Validation';
 
-
-const Login = ({ handleLogin, container }) => {
+const Login = ({ handleLogin, handleRegister, container }) => {
   const [login, setLogin] = useState(true);
   const [register, setRegister] = useState(false);
   const [regStatus, setRegStatus] = useState('');
@@ -26,24 +23,26 @@ const Login = ({ handleLogin, container }) => {
     const { loginUsername, loginPassword } = e;
 
     if (register) {
-      if (registerUsername !== '' && registerEmail !== '' && registerPassword !== '') {
-        handleLogin(e)
-          .then((reg) => {
-            if (reg) setRegStatus(reg.msg);
+      if (
+        registerUsername !== ''
+        && registerEmail !== ''
+        && registerPassword !== ''
+      ) {
+        handleRegister(e).then((reg) => {
+          if (reg) setRegStatus(reg.msg);
 
-            return null;
-          });
+          return null;
+        });
       } else {
         setRegStatus('Campo(s) vazio');
       }
     }
     if (login) {
       if (loginUsername !== '' && loginPassword !== '') {
-        handleLogin(e)
-          .then((log) => {
-            if (log) setLogStatus(log.msg);
-            return null;
-          });
+        handleLogin(e).then((log) => {
+          if (log) setLogStatus(log.msg);
+          return null;
+        });
       } else {
         setLogStatus('Campo(s) vazio');
       }
@@ -66,13 +65,18 @@ const Login = ({ handleLogin, container }) => {
     >
       {(formikProps) => {
         const {
-          values, handleChange, handleBlur, handleSubmit, errors,
+          values,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          errors,
         } = formikProps;
 
         const containerStyle = container ? 'login-container' : '';
-        const formStyle = container ? 'form-structor md-shadow' : 'form-structor login-modal';
+        const formStyle = container
+          ? 'form-structor md-shadow'
+          : 'form-structor login-modal';
         return (
-
           <form className={containerStyle} noValidate onSubmit={handleSubmit}>
             <div className={formStyle}>
               <div className={register ? 'signup' : 'signup slide-up'}>
@@ -120,7 +124,9 @@ const Login = ({ handleLogin, container }) => {
                   />
                   <ErrorMessage component="span" name="registerPassword" />
                 </div>
-                <button type="submit" className="submit-btn">Login</button>
+                <button type="submit" className="submit-btn">
+                  Registrar
+                </button>
                 <p>{regStatus}</p>
               </div>
               <div className={login ? 'login' : 'login slide-up'}>
@@ -157,9 +163,10 @@ const Login = ({ handleLogin, container }) => {
                       placeholder="Password"
                     />
                     <ErrorMessage component="span" name="loginPassword" />
-
                   </div>
-                  <button type="submit" className="submit-btn">Log in</button>
+                  <button type="submit" className="submit-btn">
+                    Login
+                  </button>
                   <p>{logStatus}</p>
                 </div>
               </div>
