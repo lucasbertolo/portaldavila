@@ -3,7 +3,9 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
+
 import enums from '../../content/enums';
+import { db } from '../Helpers/ApiFetch';
 
 import './ContactBox.scss';
 
@@ -11,7 +13,15 @@ export default function ContactBox({ user }) {
   const [option, setOption] = React.useState(user.contact_type);
 
   const handleClick = (e) => {
-    setOption(Number(e.target.id));
+    const con = Number(e.target.id);
+    setOption(con);
+    db.put('/user', {
+      user_id: user.id,
+      contact_type: con,
+    })
+      .then()
+      // eslint-disable-next-line no-console
+      .catch(() => console.log('Erro ao atualizar'));
   };
 
   const { whatsApp } = enums.contactOption;
