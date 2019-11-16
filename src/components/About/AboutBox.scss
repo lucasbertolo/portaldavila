@@ -1,0 +1,179 @@
+.about-box {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  background: url("http://www.magazineimobiliario.com/wp-content/uploads/2019/05/remax-800x445.jpg")
+    no-repeat;
+  background-size: 100%;
+  background-position: top center;
+  margin: 0;
+  padding: 0;
+  background-attachment: fixed;
+  font-size: 22px;
+  line-height: 32px;
+  color: #333333;
+  
+
+  nav {
+    background: #ffffff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+    border-bottom: 1px solid #333333;
+  }
+  nav .inner {
+    width: 60%;
+    margin: 0 auto;
+  }
+  nav ul {
+    float: right;
+  }
+  nav ul li {
+    display: inline;
+    margin: 0 0 0 50px;
+  }
+
+  h1 {
+    font-size: 70px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #ffffff;
+    margin: 18% 0;
+  }
+  @media (max-width: 800px) {
+    h1 {
+      font-size: 60px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: #34495e;
+  }
+  a:hover {
+    color: #2c3e50;
+    text-decoration: underline;
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .wrapper {
+    background: #ffffff;
+    width: 100%;
+    min-height: 100%;
+    margin: 0 0 0 0;
+    position: relative;
+}
+
+  .content-wrapper {
+    width: 80%;
+    margin: auto;
+    padding: 5%;
+  }
+  @media (max-width: 640px) {
+    .content-wrapper {
+      width: 100%;
+      padding: 10% 2%;
+    }
+  }
+  .content-wrapper:first-letter {
+    font-size: 80px;
+  }
+  .content-wrapper .image-right {
+    padding: 5% 0 5% 5%;
+    width: 50%;
+    float: right;
+    opacity: 0.8;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -moz-transition-duration: 0.6s;
+    -o-transition-duration: 0.6s;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+    -moz-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    font-size: 80%;
+    font-style: italic;
+    line-height: 20px;
+  }
+  @media (max-width: 900px) {
+    .content-wrapper .image-right {
+      width: 100%;
+      float: left;
+      padding: 0 0 5% 0;
+    }
+  }
+  .content-wrapper .image-right img {
+    margin: 0 0 10px 0;
+  }
+  .content-wrapper .image-right:hover {
+    opacity: 1;
+  }
+  .content-wrapper .image-left {
+    padding: 5% 5% 5% 0;
+    width: 50%;
+    float: left;
+    opacity: 0.8;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    -webkit-transition-property: all;
+    transition-property: all;
+    -moz-transition-duration: 0.6s;
+    -o-transition-duration: 0.6s;
+    -webkit-transition-duration: 0.6s;
+    transition-duration: 0.6s;
+    -moz-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    -webkit-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+    font-size: 80%;
+    font-style: italic;
+    line-height: 20px;
+  }
+  @media (max-width: 900px) {
+    .content-wrapper .image-left {
+      width: 100%;
+      padding: 0 0 5% 0;
+    }
+  }
+  .content-wrapper .image-left img {
+    margin: 0 0 10px 0;
+  }
+  .content-wrapper .image-left:hover {
+    opacity: 1;
+  }
+  .content-wrapper .image-center {
+    padding: 5% 0;
+    width: 169%;
+    position: relative;
+    margin-left: -35%;
+  }
+  @media (max-width: 640px) {
+    .content-wrapper .image-center {
+      width: 127%;
+      margin-left: -13%;
+    }
+  }
+}
+
+.location{
+    width: 80%;
+    margin: auto;
+    display: flex;
+}
+
+.location-info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}

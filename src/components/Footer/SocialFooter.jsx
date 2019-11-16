@@ -3,9 +3,9 @@ import Social from './Social';
 
 import './Footer.scss';
 
-const SocialFooter = () => (
+const SocialFooter = ({ noInfo, bkColor }) => (
   <div className="social-footer">
-    <Social />
+    <Social noInfo={noInfo} bkColor={bkColor} />
   </div>
 );
 

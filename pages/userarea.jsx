@@ -23,14 +23,14 @@ export default class UserArea extends React.Component {
     const token = window.sessionStorage.getItem('remax-portal-token');
 
     if (token) {
-      return db.post('/signin', {
-        token,
-      })
+      return db
+        .post('/signin', {
+          token,
+        })
         .then((res) => {
           if (res.data) {
             this.setState({ isLogged: true, user: res.data });
           }
-          //
         })
         .catch(() => ({ msg: 'Usuário ou senha inválidos' }));
     }
@@ -40,12 +40,12 @@ export default class UserArea extends React.Component {
 
   handleLogin = (user) => {
     const { loginUsername, loginPassword } = user;
-    // const token = window.sessionStorage.getItem('remax-portal-token');
 
-    return db.post('/signin', {
-      username: loginUsername,
-      password: loginPassword,
-    })
+    return db
+      .post('/signin', {
+        username: loginUsername,
+        password: loginPassword,
+      })
       .then((res) => {
         if (res.data.userId) {
           this.setState({ isLogged: true, user });
@@ -58,16 +58,18 @@ export default class UserArea extends React.Component {
   handleRegister = (user) => {
     const { registerUsername, registerEmail, registerPassword } = user;
 
-    return db.post('/register', {
-      username: registerUsername,
-      email: registerEmail,
-      password: registerPassword,
-      phone: '3333-2222',
-      type_id: enums.userType.consultant,
-    })
+    return db
+      .post('/register', {
+        username: registerUsername,
+        email: registerEmail,
+        password: registerPassword,
+        phone: '3333-2222',
+        type_id: enums.userType.consultant,
+      })
       .then((res) => {
         if (res.data.userId) {
-          this.setState({ isLogged: true, user });
+          this.setState({ isLogged: true, user: res.data });
+          storeToken(res.data.token);
         }
         if (res.data.existUser) {
           return { msg: 'Usuário ou senha já existentes' };
@@ -75,8 +77,10 @@ export default class UserArea extends React.Component {
 
         return null;
       })
-      .catch(() => ({ msg: 'Erro ao tentar cadastrar, tente novamente mais tarde' }));
-  }
+      .catch(() => ({
+        msg: 'Erro ao tentar cadastrar, tente novamente mais tarde',
+      }));
+  };
 
   render() {
     const { isLogged, user } = this.state;

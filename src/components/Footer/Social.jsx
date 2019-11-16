@@ -10,8 +10,8 @@ import {
 import { faInfo, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 
-const Social = () => (
-  <div className="bg-social">
+const Social = ({ noInfo, bkColor }) => (
+  <div className="bg-social" style={{ backgroundColor: bkColor }}>
     <div className="align-bottom">
       <div className="social-btns">
         <a className="btn whatsapp" href="https://api.whatsapp.com/send?phone=5519981320147" target="_blank" rel="noreferrer noopener" aria-label="Whatsapp">
@@ -34,11 +34,15 @@ const Social = () => (
             <FontAwesomeIcon icon={faFacebookF} />
           </i>
         </a>
-        <a className="btn info" href="http://lattes.cnpq.br/1605377522472063" target="_blank" rel="noreferrer noopener" aria-label="Info">
-          <i className="fa fa-academic">
-            <FontAwesomeIcon icon={faInfo} />
-          </i>
-        </a>
+        {
+          !noInfo && (
+            <a className="btn info" href="http://lattes.cnpq.br/1605377522472063" target="_blank" rel="noreferrer noopener" aria-label="Info">
+              <i className="fa fa-academic">
+                <FontAwesomeIcon icon={faInfo} />
+              </i>
+            </a>
+          )
+        }
       </div>
     </div>
 
