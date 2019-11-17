@@ -21,9 +21,12 @@ const AdditionalIcons = ({ details }) => {
   return (
     <div className="additional-icons">
       {dormitory === 1 && (
-      <span className="dormitory-icon">
-        <BedIcon />
-      </span>
+        <div className="icon-box">
+          <span className="dormitory-icon">
+            <BedIcon />
+          </span>
+          <p>Dormitório</p>
+        </div>
       )}
       {garage === 1 && (
         <span className="garage-icon">

@@ -6,6 +6,15 @@
     flex-direction: column;
     // background: blue;
     margin-top: 25px;
+    background: yellow;
+    display: flex;
+    flex-direction: column;
+    
+    .icon-box{
+        background: red;
+        width: 40px;
+        height: 40px;
+    }
 }
 
 .box-additional-info{

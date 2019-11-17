@@ -15,6 +15,12 @@ app.prepare().then(() => {
     app.render(req, res, actualPage, queryParams);
   });
 
+  server.get('/property-description/:id', (req, res) => {
+    const actualPage = '/property-description';
+    const queryParams = { id: req.params.id };
+    app.render(req, res, actualPage, queryParams);
+  });
+
   server.get('/team', (req, res) => {
     const actualPage = '/team';
     app.render(req, res, actualPage);

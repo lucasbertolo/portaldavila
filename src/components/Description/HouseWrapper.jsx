@@ -29,6 +29,7 @@ export default class HouseWrapper extends React.Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     checkToken()
       .then((item) => {
         if (item) {
