@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 
 import Visit from '../Visit/Visit';
 
-import { GarageIcon, DocumentIcon } from '../Common/Icons';
+import { DocumentIcon } from '../Common/Icons';
+import Documents from '../Contact/Documents';
 import WrapperTooltip from '../Common/WrapperTooltip';
+
 import enums from '../../content/enums';
 import { db } from '../Helpers/ApiFetch';
 
@@ -23,6 +25,12 @@ const CardVisitation = (props) => {
     neighborhoodList: [],
     typeList: [],
   });
+
+  const [panel, setPanel] = useState(false);
+
+  const handleDocument = () => {
+    setPanel(!panel);
+  };
 
   useEffect(() => {
     const fetchBlock = async () => {
@@ -80,11 +88,18 @@ const CardVisitation = (props) => {
         informações
         {purpose_id === enums.purposeOfProperty.renting && (
           <div className="document-icon">
-            <WrapperTooltip title="Documentos" position="right">
-              <span className="document-icon">
-                <DocumentIcon />
-              </span>
-            </WrapperTooltip>
+            <span className="document-icon">
+              <span
+                onClick={handleDocument}
+                className="clickable-icon"
+                role="presentation"
+              />
+              <WrapperTooltip title="Documentos necessários" position="top">
+                <i>
+                  <DocumentIcon />
+                </i>
+              </WrapperTooltip>
+            </span>
           </div>
         )}
       </main>
@@ -98,6 +113,7 @@ const CardVisitation = (props) => {
         </button>
         <Visit open={modalVisit} handleClose={closeModalVisit} user={user} />
       </nav>
+      <Documents open={panel} handleClose={handleDocument} />
     </div>
   );
 };

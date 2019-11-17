@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faAdjust } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import Footer from '../Footer/Footer';
 
 export default class Header extends React.Component {
@@ -50,18 +50,6 @@ export default class Header extends React.Component {
           </span>
           <span className="header-social">
             <ul>
-              <li>
-                <a
-                  className="btn instagram"
-                  href="https://www.instagram.com/lms_arquitetura/?hl=pt-br"
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  <i title="instagram">
-                    <FontAwesomeIcon icon={faAdjust} />
-                  </i>
-                </a>
-              </li>
               <li>
                 <a
                   className="btn bars"

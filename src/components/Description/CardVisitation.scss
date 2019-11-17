@@ -58,14 +58,24 @@
   main {
     max-height: 60%;
     margin-bottom: 10px;
+    text-align: justify;
+    margin: 10px 10px;
 
     .document-icon {
       height: 40px;
       width: 100%;
-      cursor: pointer;
+      position: relative;
       overflow: hidden;
       display: flex;
       justify-content: flex-end;
+
+      .clickable-icon{
+        cursor: pointer;
+        position: absolute;
+        z-index: 1;
+        width: 40px;
+        height: 100%;
+      }
     }
     span {
       height: 30px;

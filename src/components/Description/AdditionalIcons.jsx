@@ -32,8 +32,8 @@ const AdditionalIcons = ({ details }) => {
             <span className="dormitory-icon">
               <BedIcon />
             </span>
-            <p>Dormitório</p>
           </div>
+          <p>Dormitório</p>
         </div>
       )}
       {garage === 1 && (
@@ -41,9 +41,9 @@ const AdditionalIcons = ({ details }) => {
           <div className="add-feature">
             <span className="garage-icon">
               <GarageIcon />
-              <p>Garagem</p>
             </span>
           </div>
+          <p>Garagem</p>
         </div>
       )}
 
