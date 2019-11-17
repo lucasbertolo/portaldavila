@@ -1,22 +1,40 @@
 .extra-box {
-  width: 50%;
-  max-height: 130px;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  width: 100%;
+  max-height: 100%;
   flex-wrap: wrap;
   .box-extra-icons {
-    margin-top: 10px;
     display: flex;
     .extra-icons {
-      height: 100px;
-      width: 100px;
       display: flex;
-
+      margin: 10px;
       svg {
         margin: auto;
         width: 30px;
         height: 30px;
       }
     }
+  }
+}
+
+
+.fieldset {
+  border: 2px solid lightgray;
+  margin: 2px;
+  width: 30%;
+  max-height: 100px;
+  margin-top: 25px;
+  display: flex;
+  background: rgba(150,150,150,0.2);
+  justify-content: center;
+  position: relative;
+  padding: 15px 12px 10px;
+  
+  .legend {
+    position: absolute;
+    top: -11px;
+    left: 11px;
+    background: white;
+    padding-left: 2px;
+    padding-right: 2px;
   }
 }

@@ -10,6 +10,8 @@ import {
   AirConditionerIcon,
 } from '../Common/Icons';
 
+import WrapperTooltip from '../Common/WrapperTooltip';
+
 import './ExtraBox.scss';
 
 const ExtraBox = ({ features }) => {
@@ -25,62 +27,83 @@ const ExtraBox = ({ features }) => {
   } = features;
 
   return (
-    <div className="extra-box">
-      <div className="box-extra-icons">
-        {garden && (
-          <span className="extra-icons">
-            <GardenIcon />
-          </span>
-        )}
+    <div className="fieldset">
+      <div className="legend">Extras</div>
 
-        {pool && (
-          <span className="extra-icons">
-            <PoolIcon />
-            <p className="icon-info" />
-          </span>
-        )}
+      <div className="extra-box">
+        <div className="box-extra-icons">
 
-        {airConditioner && (
-        <span className="extra-icons">
-          <AirConditionerIcon />
-          <p className="icon-info" />
-        </span>
-        )}
+          {garden && (
+          <WrapperTooltip title="Jardim" position="bottom">
+            <span className="extra-icons">
+              <GardenIcon />
+            </span>
+          </WrapperTooltip>
+          )}
 
-        {balcony && (
-          <span className="extra-icons">
-            <BalconyIcon />
-            <p className="icon-info" />
-          </span>
-        )}
-        {barbecueGrill && (
-          <span className="extra-icons">
-            <GrillIcon />
-            <p className="icon-info" />
-          </span>
-        )}
+          {pool && (
+          <WrapperTooltip title="Piscina" position="bottom">
+            <span className="extra-icons">
+              <PoolIcon />
+              <p className="icon-info" />
+            </span>
+          </WrapperTooltip>
+          )}
 
-        {stairway && (
-          <span className="extra-icons">
-            <LadderIcon />
-            <p className="icon-info" />
-          </span>
-        )}
+          {airConditioner && (
+          <WrapperTooltip title="Ar condicionado" position="bottom">
+            <span className="extra-icons">
+              <AirConditionerIcon />
+              <p className="icon-info" />
+            </span>
+          </WrapperTooltip>
+          )}
 
-        {fireSecurity && (
-          <span className="extra-icons">
-            <HydrantIcon />
-            <p className="icon-info" />
-          </span>
-        )}
+          {balcony && (
+          <WrapperTooltip title="Sacada" position="bottom">
+            <span className="extra-icons">
+              <BalconyIcon />
+              <p className="icon-info" />
+            </span>
+          </WrapperTooltip>
+          )}
+          {barbecueGrill && (
+          <WrapperTooltip title="Churrasqueira" position="bottom">
+            <span className="extra-icons">
+              <GrillIcon />
+              <p className="icon-info" />
+            </span>
+          </WrapperTooltip>
+          )}
 
-        {securityCamera && (
-          <span className="extra-icons">
-            <CameraIcon />
-            <p className="icon-info" />
-          </span>
-        )}
+          {stairway && (
+          <WrapperTooltip title="Escadas" position="bottom">
+            <span className="extra-icons">
+              <LadderIcon />
+              <p className="icon-info" />
+            </span>
+          </WrapperTooltip>
+          )}
 
+          {fireSecurity && (
+          <WrapperTooltip title="Segurança Incêndios" position="bottom">
+            <span className="extra-icons">
+              <HydrantIcon />
+              <p className="icon-info" />
+            </span>
+          </WrapperTooltip>
+          )}
+
+          {securityCamera && (
+          <WrapperTooltip title="Sistema de segurança" position="bottom">
+            <span className="extra-icons">
+              <CameraIcon />
+              <p className="icon-info" />
+            </span>
+          </WrapperTooltip>
+          )}
+
+        </div>
       </div>
     </div>
   );

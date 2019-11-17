@@ -36,7 +36,14 @@ const AdditionalBox = ({ info, details }) => {
         </>
         )}
 
-        {gourmet_space > 0 && <h5>Possui área gourmet</h5>}
+        {gourmet_space > 0 && (
+        <>
+          {' '}
+          <h5>Área gourmet</h5>
+          {' '}
+          <p>Possui área personalizada gourmet</p>
+        </>
+        )}
       </div>
 
       <AdditionalIcons details={details} />

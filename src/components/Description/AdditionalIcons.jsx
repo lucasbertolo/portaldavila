@@ -38,10 +38,10 @@ const AdditionalIcons = ({ details }) => {
       )}
       {garage === 1 && (
         <div className="icon-box">
-          <div>
+          <div className="add-feature">
             <span className="garage-icon">
               <GarageIcon />
-              <p>Dormitório</p>
+              <p>Garagem</p>
             </span>
           </div>
         </div>
@@ -54,69 +54,75 @@ const AdditionalIcons = ({ details }) => {
               <BathIcon />
             </span>
           </div>
-          <p>Dormitório</p>
+          <p>Banheiro</p>
         </div>
       )}
       {kitchen === 1 && (
         <div className="icon-box">
-          <div>
+          <div className="add-feature">
             <span className="kitchen-icon">
               <KitchenIcon />
             </span>
-            <p>Dormitório</p>
           </div>
+
+          <p>Cozinha</p>
         </div>
       )}
 
       {dining_room === 1 && (
         <div className="icon-box">
-          <div>
+          <div className="add-feature">
             <span className="box-icon dining-room-icon">
               <DiningRoomIcon />
             </span>
-            <p>Dormitório</p>
           </div>
+
+          <p>Sala de Jantar</p>
         </div>
       )}
       {laundry === 1 && (
         <div className="icon-box">
-          <div>
+          <div className="add-feature">
             <span className="box-icon laundry-icon">
               <LaundryIcon />
             </span>
-            <p>Dormitório</p>
           </div>
+
+          <p>Lavanderia</p>
         </div>
       )}
       {office === 1 && (
         <div className="icon-box">
-          <div>
+          <div className="add-feature">
             <span className="box-icon office-icon">
               <OfficeIcon />
             </span>
-            <p>Dormitório</p>
           </div>
+
+          <p>Escritório</p>
         </div>
       )}
 
       {living_room === 1 && (
         <div className="icon-box">
-          <div>
+          <div className="add-feature">
             <span className="box-icon living-room-icon">
               <LivingRoomIcon />
             </span>
-            <p>Dormitório</p>
           </div>
+
+          <p>Sala de Estar</p>
         </div>
       )}
       {washbasin === 1 && (
         <div className="icon-box">
-          <div>
+          <div className="add-feature">
             <span className="box-icon washbasin-icon">
               <WashbasinIcon />
             </span>
-            <p>Dormitório</p>
           </div>
+
+          <p>Lavabo</p>
         </div>
       )}
     </div>
