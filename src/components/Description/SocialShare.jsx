@@ -4,20 +4,24 @@ import { db } from '../Helpers/ApiFetch';
 import { FavIcon } from '../Common/Icons';
 import './SocialShare.scss';
 
-export default function SocialShare() {
+export default function SocialShare({ user, isLogged, openModalLogin }) {
   const [isFav, setFav] = useState(false);
   const handleClick = async () => {
-    try {
-      const res = await db.post('/favorite', {
-        user_id: 1,
-        property_id: 1,
-        status: !isFav,
-      });
-      if (res) {
-        setFav(!isFav);
+    if (isLogged) {
+      try {
+        const res = await db.post('/favorite', {
+          user_id: user.id,
+          property_id: 1,
+          status: !isFav,
+        });
+        if (res) {
+          setFav(!isFav);
+        }
+      } catch {
+        console.log('Nao foi possivel completar a ação');
       }
-    } catch {
-      console.log('Nao foi possivel completar a ação');
+    } else {
+      openModalLogin();
     }
   };
   return (

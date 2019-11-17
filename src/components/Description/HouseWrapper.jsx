@@ -53,7 +53,7 @@ export default class HouseWrapper extends React.Component {
         isLogged: true,
         user: data.user,
         open: false,
-        modalVisit: true,
+        // modalVisit: true,
       });
     })
     .catch(() => ({ msg: 'Usuário e/ou senha inválidos' }));
@@ -65,7 +65,7 @@ export default class HouseWrapper extends React.Component {
           isLogged: true,
           user: data.user,
           open: false,
-          modalVisit: true,
+          // modalVisit: true,
         });
         return null;
       }
@@ -80,7 +80,7 @@ export default class HouseWrapper extends React.Component {
   };
 
   openModalVisit = () => {
-    const { isLogged, user } = this.state;
+    const { isLogged } = this.state;
     if (!isLogged) {
       this.openModalLogin();
     } else {
@@ -112,7 +112,11 @@ export default class HouseWrapper extends React.Component {
           <>
             <SliderImages images={images} />
 
-            <SocialShare />
+            <SocialShare
+              openModalLogin={this.openModalLogin}
+              user={user}
+              isLogged={isLogged}
+            />
 
             <div className="hs-wrapper">
               <CardVisitation
