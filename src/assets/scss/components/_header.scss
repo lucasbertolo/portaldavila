@@ -67,7 +67,7 @@ $section-line: 14px;
   left: 0;
   width: 100%;
   z-index: 15;
-  background-image: $gradient-color;
+  background: rgba(255,255,255,0.6);
 
   @media screen and (max-width: $break-medium) {
     font-size: 0.8em;

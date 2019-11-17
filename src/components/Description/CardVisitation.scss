@@ -8,7 +8,6 @@
   right: 3%;
   z-index: 1;
   margin-top: 100px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -18,27 +17,64 @@
     display: flex;
     flex-direction: column;
 
+    .card-title {
+      font-size: 1.4em;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card-subtitle {
+      font-size: 1.1em;
+      font-weight: 500;
+    }
+
+    .card-rest {
+      font-size: 1em;
+      font-weight: 500;
+    }
     span {
       margin: 5px;
+    }
+
+    .icon {
+      padding: 20px;
+      height: 100%;
+      svg {
+        padding: 5px;
+        margin: auto;
+        height: 50px;
+        width: auto;
+      }
     }
   }
 
   aside {
     display: flex;
-    // padding: 20px;
     min-height: 70px;
     justify-content: flex-end;
     overflow: hidden;
   }
-  .icon {
-    padding: 20px;
-    height: 100%;
-    svg{
-        background: orange;
-        padding: 5px;
-        margin: auto;
-        height: 50px;
-        width: auto;
+  main {
+    max-height: 60%;
+    margin-bottom: 10px;
+
+    .document-icon {
+      height: 40px;
+      width: 100%;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      justify-content: flex-end;
+    }
+    span {
+      height: 30px;
+      margin-right: 20px;
+      width: 30px;
+      svg {
+        width: 40px;
+        height: 40px;
+      }
     }
   }
 }

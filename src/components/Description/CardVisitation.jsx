@@ -1,17 +1,23 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState, useEffect } from 'react';
 
 import Visit from '../Visit/Visit';
+
+import { GarageIcon, DocumentIcon } from '../Common/Icons';
+import WrapperTooltip from '../Common/WrapperTooltip';
+import enums from '../../content/enums';
 import { db } from '../Helpers/ApiFetch';
 
 import './CardVisitation.scss';
 
 const CardVisitation = (props) => {
   const {
-    openModalVisit, closeModalVisit, modalVisit,
-    info, user,
+    openModalVisit, closeModalVisit, modalVisit, info, user,
   } = props;
 
-  const { price, type_id, neighborhood_id } = info;
+  const {
+    price, type_id, neighborhood_id, purpose_id,
+  } = info;
 
   const [state, setState] = useState({
     neighborhoodList: [],
@@ -56,25 +62,31 @@ const CardVisitation = (props) => {
   const kind = state.typeList[type_id];
   const neigh = state.neighborhoodList[neighborhood_id];
   return (
-    <div className="card-visit">
+    <div className="card-visit sm-shadow">
       <header className="header">
-        <span>
-          Venda - R$
-          {price}
-          ,00
+        <span className="card-title">
+          <span>Venda</span>
+          <span>R${price},00</span>
         </span>
-        <span>
-          {neigh}
-          {' '}
-          - Piracicaba/SP
+        <span className="card-subtitle">
+          <span>{neigh} - Piracicaba/SP</span>
         </span>
-        <span>{kind}</span>
+        <span className="card-rest">
+          <span>{kind}</span>
+        </span>
       </header>
       <main>
-        <span>
-          Faça uma visita e conheça melhor o imóvel ou contate-nos para mais
-          informações
-        </span>
+        Faça uma visita e conheça melhor o imóvel ou contate-nos para mais
+        informações
+        {purpose_id === enums.purposeOfProperty.renting && (
+          <div className="document-icon">
+            <WrapperTooltip title="Documentos" position="right">
+              <span className="document-icon">
+                <DocumentIcon />
+              </span>
+            </WrapperTooltip>
+          </div>
+        )}
       </main>
       <nav className="container-btn">
         <button
@@ -84,11 +96,7 @@ const CardVisitation = (props) => {
         >
           Agendar
         </button>
-        <Visit
-          open={modalVisit}
-          handleClose={closeModalVisit}
-          user={user}
-        />
+        <Visit open={modalVisit} handleClose={closeModalVisit} user={user} />
       </nav>
     </div>
   );
