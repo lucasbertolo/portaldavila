@@ -13,7 +13,7 @@ import DatePicker from './DatePicker';
 import { db } from '../Helpers/ApiFetch';
 
 export default function Visit({ open, handleClose, user }) {
-  const [index, setIndex] = useState(1);
+  const [index, setIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   const [date, setDate] = useState(new Date());
