@@ -105,6 +105,7 @@ export default class ManagerForm extends React.Component {
   componentDidUpdate() {
     const { images, saveState } = this.state;
 
+    console.log(images);
     if (images.length > 0 && !saveState) {
       // eslint-disable-next-line react/no-did-update-set-state
       this.setState({

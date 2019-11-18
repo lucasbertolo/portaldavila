@@ -5,6 +5,7 @@
 import React, { Component } from 'react';
 
 import axios from 'axios';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
 import config from '../../content/config';
@@ -16,7 +17,6 @@ class PropertyPhotos extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: props.message || '',
       photos: props.data || [],
     };
   }
@@ -90,71 +90,76 @@ class PropertyPhotos extends Component {
     ev.preventDefault();
 
     const file = this.uploadInput.files[0];
-    const maxSize = file.size / 1024 / 1024;
-    const { photos } = this.state;
-    const fileParts = this.uploadInput.files[0].name.split('.');
-    const name = fileParts[0];
-    const type = fileParts[1];
 
-    if (maxSize > 5 || photos.length > 5) {
-      if (maxSize > 5) {
-        this.setState({ message: 'Imagem muito grande, máximo de 10mb permitido' });
+    if (file) {
+      const maxSize = file.size / 1024 / 1024;
+      const { photos } = this.state;
+      const fileParts = this.uploadInput.files[0].name.split('.');
+      const name = fileParts[0];
+      const type = fileParts[1];
+
+      if (maxSize > 5 || photos.length > 5) {
+        if (maxSize > 5) {
+          console.log(maxSize);
+        } else {
+          console.log('Limite de fotos atingido');
+        }
       } else {
-        this.setState({ message: 'Máximo de 6 imagens permitidos' });
-      }
-    } else {
-      // // AWS
-      db.post('/sign_s3', {
-        fileName: name,
-        fileType: type,
-      })
-        .then((response) => {
-          const { returnData } = response.data;
-          const { signedRequest } = returnData;
-          // const { url } = returnData;
-          const options = {
-            headers: {
-              'Content-Type': type,
-              'x-amz-acl': 'authenticated-read',
-            },
-          };
-          axios.put(signedRequest, file, options)
-            .then(() => {
-              const src = `${config.cdn}${name}`;
-              photos.push({ url: src });
-              this.setState({
-                success: true,
-                photos,
-              });
-            })
-            .catch((error) => {
-              this.setState({ message: error });
-            });
+        db.post('/sign_s3', {
+          fileName: name,
+          fileType: type,
         })
-        .catch((error) => {
+          .then((response) => {
+            const { returnData } = response.data;
+            const { signedRequest } = returnData;
+            const { url } = returnData;
+
+            const options = {
+              headers: {
+                'Content-Type': type,
+                'x-amz-acl': 'authenticated-read',
+              },
+            };
+            axios.put(signedRequest, file, options)
+              .then((item) => {
+                const cdn = `${config.cdn}${name}`;
+
+                photos.push({ url: item.config.url, fileName: name, cdn });
+                this.setState({
+                  url,
+                  photos,
+                  success: true,
+                });
+              })
+              .catch((error) => {
+                console.log(error);
+              });
+          })
+          .catch((error) => {
           // eslint-disable-next-line no-console
-          console.log(error);
-        });
+            console.log(error);
+          });
 
 
-      // MOCK
-      // axios.get('https://dog.ceo/api/breeds/image/random')
-      //   .then((res) => {
-      //     const url = res.data.message;
-      //     // const { photos } = this.state;
-      //     photos.push({ url });
+        // MOCK
+        // axios.get('https://dog.ceo/api/breeds/image/random')
+        //   .then((res) => {
+        //     const url = res.data.message;
+        //     // const { photos } = this.state;
+        //     photos.push({ url });
 
       //     this.setState({
       //       photos,
       //     });
       //   })
       //   .catch();
+      }
     }
   }
 
 
   render() {
-    const { message, photos } = this.state;
+    const { photos } = this.state;
     const { bindSubmitForm } = this.props;
 
     bindSubmitForm(this.onSubmit);
@@ -181,9 +186,6 @@ class PropertyPhotos extends Component {
             <br />
           </div>
         </div>
-
-        {message}
-
       </>
     );
   }

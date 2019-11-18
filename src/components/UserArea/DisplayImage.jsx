@@ -22,10 +22,9 @@ const DisplayImage = ({
       key={index}
       style={{ gridArea: `grid-${index}` }}
     >
-      {console.log(item.url)}
       <img
         className={item.iscover ? 'active md-shadow' : 'md-shadow'}
-        src={item.url}
+        src={item.cdn || item.url}
         alt="property"
       />
       <FormControl className="photo-input" variant="outlined" fullWidth>

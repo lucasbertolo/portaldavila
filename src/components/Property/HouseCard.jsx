@@ -19,6 +19,7 @@ import './HouseCard.scss';
 
 const HouseCard = React.memo(({ data, mode, selectList }) => {
   const {
+    cdn,
     url,
     price,
     type_id,
@@ -57,7 +58,7 @@ const HouseCard = React.memo(({ data, mode, selectList }) => {
         <LazyLoadComponent
           placeholder={<PlaceHolderCard />}
         >
-          <CardImage url={url} />
+          <CardImage url={cdn || url} />
         </LazyLoadComponent>
         <CardInfo
           typeId={type_id}
