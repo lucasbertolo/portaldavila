@@ -4,12 +4,13 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
 import HouseCard from './HouseCard';
-
 import FilterBox from '../Filter/FilterBox';
 
 import { ValidationGrid } from '../Helpers/Validation';
+
 import enums from '../../content/enums';
 import { db } from '../Helpers/ApiFetch';
+
 
 import './Property.scss';
 
@@ -63,7 +64,6 @@ const PropertyView = ({ data, mode }) => {
     fetchType();
   }, []);
 
-
   useEffect(() => {
     if (data) {
       const items = data.slice(0);
@@ -86,18 +86,19 @@ const PropertyView = ({ data, mode }) => {
   ) : null);
 
   const addButton = checkButton();
-  const selectList = { neighborhoodList: state.neighborhoodList, typeList: state.typeList };
+  const selectList = {
+    neighborhoodList: state.neighborhoodList,
+    typeList: state.typeList,
+  };
   return (
     <>
       <main className="main-container">
-        <FilterBox
-          selectList={selectList}
-          setFieldList={setFieldList}
-        />
+        <FilterBox selectList={selectList} setFieldList={setFieldList} />
 
         {grid.length > 0 ? (
           <section className="cards">
             {grid.map((item) => (
+
               <HouseCard
                 data={item}
                 key={item.id}

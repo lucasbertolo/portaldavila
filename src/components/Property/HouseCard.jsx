@@ -1,5 +1,7 @@
 /* eslint-disable no-restricted-globals */
-import React, { useEffect } from 'react';
+import React from 'react';
+
+import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
 import { db } from '../Helpers/ApiFetch';
 
@@ -9,6 +11,8 @@ import CardHeader from './CardHeader';
 import CardIcons from './CardIcons';
 
 import enums from '../../content/enums';
+import PlaceHolderCard from '../Helpers/Loading';
+
 import './HouseCard.scss';
 
 const HouseCard = React.memo(({ data, mode, selectList }) => {
@@ -63,7 +67,11 @@ const HouseCard = React.memo(({ data, mode, selectList }) => {
         </>
       ) : null}
       <CardHeader price={price} isFav />
-      <CardImage url={url} />
+      <LazyLoadComponent
+        placeholder={<PlaceHolderCard />}
+      >
+        <CardImage url={url} />
+      </LazyLoadComponent>
       <CardInfo
         typeId={type_id}
         blockId={neighborhood_id}

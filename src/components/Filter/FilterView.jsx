@@ -95,7 +95,7 @@ export default function FilterView({
 
   const selectInput = (name, label, opt) => (
 
-    <FormControl className={classes.formControl}>
+    <FormControl className={classes.formControl} style={{ minWidth: 200 }}>
       <InputLabel id={name}>{label}</InputLabel>
       <Select
         labelId={name}

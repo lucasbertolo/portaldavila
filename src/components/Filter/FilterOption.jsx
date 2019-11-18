@@ -76,7 +76,7 @@ export default function FilterOption({
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <div>
+        <div style={{ minWidth: '210px', padding: '5px' }}>
           <FilterView
             state={state}
             classes={classes}

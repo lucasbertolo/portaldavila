@@ -13,6 +13,7 @@
   transform: translateX(100%);
   position: fixed;
   right: 0;
+  z-index: 3;
   padding-right: 5em;
   -webkit-transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
   -moz-transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
@@ -61,7 +62,9 @@
   cursor: pointer;
   display: flex;
   justify-content: center;
-  background: #d1913c;
+  background: #242582;
+  z-index: 5;
+  
 }
 
 #toggle .icon-bar {
@@ -76,6 +79,7 @@
   transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
 
   svg {
+    fill: white;
     height: 40px;
     width: 40px;
   }
@@ -88,78 +92,4 @@
   }
 }
 
-// .container-filter{
-//   .toggle-button {
-//     width: 28px;
-//     height: 30px;
-//     margin: 10px auto;
-//     background: blue;
-//   }
 
-//   .filter-box {
-//     color: white;
-//     border: 1px solid white;
-//     width: 150px;
-//     height: 100px;
-//     padding: 10px;
-//     border-radius: 3px;
-//     line-height: 100px;
-//     text-align: center;
-//     margin: auto;
-//     // display: none;
-//   }
-// }
-
-// .filter {
-//   margin-right: 20px;
-//   width: 317px;
-//   height: 69px;
-//   border-radius: 4px;
-//   background-color: #ffffff;
-//   box-shadow: 0 0 30px 0 rgba(199, 199, 199, 0.25);
-//   position: relative;
-//   display: flex;
-//   align-items: center;
-//   padding: 0 20px;
-//   margin-bottom: 20px;
-//   label {
-//     // font-family: Product Sans;
-//     font-size: 18px;
-//     font-weight: bold;
-//     color: rgba(33, 75, 93, 0.5);
-//     position: absolute;
-//     transition: 0.4s ease-in-out;
-//     margin-top: 2px;
-//   }
-//   input {
-//     width: 200px;
-//     margin-top: 20px;
-//     border: none;
-//     outline: none;
-//     // font-family: Product Sans;
-//     font-size: 20px;
-//     color: #214b5d;
-//     transition: 0.4s linear;
-//     border-bottom: 2px solid rgba(0, 0, 0, 0);
-//     &:focus {
-//       border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-//     }
-//     &:focus + label {
-//       font-size: 14px;
-//       margin-top: -15px;
-//     }
-//     &:valid + label {
-//       font-size: 14px;
-//       margin-top: -15px;
-//     }
-//   }
-// }
-
-// #search {
-//   input {
-//     width: 100%;
-//   }
-//   i {
-//     color: #214b5d;
-//   }
-// }
