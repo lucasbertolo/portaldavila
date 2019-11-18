@@ -15,7 +15,7 @@ const History = () => (
 
         <div className="image-left">
           <img
-            src="https://imgs.kenlo.io/VWRCUkQ2Tnp3d1BJRDBJVe1szBgxTLVGOsBXp7Jb3Tausvq7IyLq0m1NNXk6UBhFL-hPy3R-Wpsl805m2ZRl4RJ4mNBeU7a-tTKGwojTu43G8hjRxL7zlvX-8uzYYObm77cD9pbUJWOWl+k4HdF4bBFyOrghS0yxAduMZXMJ-zKBqEyTE+dKHmAFhERoyE4BgQPoGMD9ugRolnv1Ur6C+2iUSq+sFA==.png"
+            src="https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/rmx-text__1__SNlfpep48.png"
             alt="logo-remax"
           />
         </div>
