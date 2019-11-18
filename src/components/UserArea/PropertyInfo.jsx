@@ -304,7 +304,7 @@ function Info(data) {
   this.building_area = data.building_area || 0;
   this.exchange = data.exchange || false;
   this.building_loan = data.building_loan || false;
-  this.isVisible = data.isVisible || true;
+  this.isVisible = data.isvisible || true;
 
   return (
     this.neighborhood_id,

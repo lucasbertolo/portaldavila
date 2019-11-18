@@ -28,7 +28,7 @@ class PropertyPhotos extends Component {
     if (photos.length === 0) {
       return Promise.reject('É necessário adicionar ao menos uma foto');
     }
-    const coverCheck = photos.filter((item) => item.isCover === true);
+    const coverCheck = photos.filter((item) => item.iscover === true);
     if (coverCheck.length === 0) {
       return Promise.reject('Selecione ao menos uma foto como capa');
     }
@@ -64,10 +64,10 @@ class PropertyPhotos extends Component {
   setCover = (e) => {
     const { photos } = this.state;
     // eslint-disable-next-line no-param-reassign
-    photos.map((el) => { el.isCover = false; });
+    photos.map((el) => { el.iscover = false; });
 
     const index = photos.findIndex((x) => x.url === e.target.id);
-    photos[index].isCover = true;
+    photos[index].iscover = true;
 
     this.setState({
       photos,

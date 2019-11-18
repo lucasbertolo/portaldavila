@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SliderImages = ({ images }) => {
-  const cover = images.filter((item) => item.isCover).map((x) => (
+  const cover = images.filter((item) => item.iscover).map((x) => (
     <figure key={x.url}>
       <img src={x.url} alt={x.alt} />
     </figure>
@@ -12,7 +12,7 @@ const SliderImages = ({ images }) => {
       return null;
     }
 
-    const slideImages = images.filter((x) => !x.isCover);
+    const slideImages = images.filter((x) => !x.iscover);
 
     if (slideImages.length >= 1 && slideImages.length < 3) {
       const slide = slideImages.map((x) => (
