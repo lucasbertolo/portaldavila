@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
 
+import Link from 'next/link';
 import HouseCard from './HouseCard';
 import FilterBox from '../Filter/FilterBox';
 

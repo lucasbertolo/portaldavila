@@ -1,14 +1,13 @@
 import React from 'react';
-import { FavIcon, PriceIcon } from '../Common/Icons';
+import { FavIcon } from '../Common/Icons';
 
-const CardHeader = ({ price, isFav }) => (
+const CardHeader = ({ isFav, code }) => (
   <div className="card__info-hover">
     <FavIcon isFav={isFav} />
     <div className="card__price-info">
-      <PriceIcon />
-      <span className="card__value">
-        {`${price.toString().concat(', 00')}`}
-      </span>
+      Código -
+      {' '}
+      {code}
     </div>
   </div>
 );

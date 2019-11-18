@@ -3,12 +3,14 @@ import React from 'react';
 
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
+import Link from 'next/link';
 import { db } from '../Helpers/ApiFetch';
 
 import CardInfo from './CardInfo';
 import CardImage from './CardImage';
 import CardHeader from './CardHeader';
 import CardIcons from './CardIcons';
+
 
 import enums from '../../content/enums';
 import PlaceHolderCard from '../Helpers/Loading';
@@ -47,44 +49,52 @@ const HouseCard = React.memo(({ data, mode, selectList }) => {
   };
 
   return (
-    <article className="card" style={style}>
-      {mode === enums.viewModeProperty.edit ? (
-        <>
-          <span
-            className="card-visibility"
-            onClick={handleRemove}
-            onKeyUp={handleRemove}
-            role="presentation"
-            id={property_id}
-          />
-          <span
-            className="card-remove"
-            onClick={handleVisibility}
-            onKeyUp={handleVisibility}
-            role="presentation"
-            id={property_id}
-          />
-        </>
-      ) : null}
-      <CardHeader price={price} isFav />
-      <LazyLoadComponent
-        placeholder={<PlaceHolderCard />}
-      >
-        <CardImage url={url} />
-      </LazyLoadComponent>
-      <CardInfo
-        typeId={type_id}
-        blockId={neighborhood_id}
-        purposeId={purpose_id}
-        selectList={selectList}
-      />
-      <CardIcons
-        garage={garage}
-        dormitory={dormitory}
-        area={area}
-        bathroom={bathroom}
-      />
-    </article>
+    <Link
+      href={{
+        pathname: '/property-description',
+        query: { id: property_id },
+      }}
+    >
+      <article className="card" style={style}>
+        {mode === enums.viewModeProperty.edit ? (
+          <>
+            <span
+              className="card-visibility"
+              onClick={handleRemove}
+              onKeyUp={handleRemove}
+              role="presentation"
+              id={property_id}
+            />
+            <span
+              className="card-remove"
+              onClick={handleVisibility}
+              onKeyUp={handleVisibility}
+              role="presentation"
+              id={property_id}
+            />
+          </>
+        ) : null}
+        <CardHeader code={property_id} isFav />
+        <LazyLoadComponent
+          placeholder={<PlaceHolderCard />}
+        >
+          <CardImage url={url} />
+        </LazyLoadComponent>
+        <CardInfo
+          typeId={type_id}
+          price={price}
+          blockId={neighborhood_id}
+          purposeId={purpose_id}
+          selectList={selectList}
+        />
+        <CardIcons
+          garage={garage}
+          dormitory={dormitory}
+          area={area}
+          bathroom={bathroom}
+        />
+      </article>
+    </Link>
   );
 });
 

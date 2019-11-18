@@ -8,13 +8,16 @@
 
 .card__category {
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 2px;
   font-weight: 500;
   color: #868686;
+  display: flex;
 }
 
 .card__title {
   margin-top: 5px;
   margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
 }
