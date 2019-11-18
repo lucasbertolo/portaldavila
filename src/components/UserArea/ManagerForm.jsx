@@ -7,7 +7,6 @@ import PropertyInfo, { Info } from './PropertyInfo';
 import PropertyFeatures, { Features } from './PropertyFeatures';
 import PropertyDetails, { Details } from './PropertyDetails';
 import PropertyPhotos from './PropertyPhotos';
-// import HouseWrapper from '../Description/HouseWrapper';
 
 import Toast from '../Helpers/Toast';
 
@@ -67,7 +66,6 @@ export default class ManagerForm extends React.Component {
 
   constructor(props) {
     super(props);
-
     const dataInfo = new Info(this.props);
     const dataDetails = new Details(this.props);
     const dataFeature = new Features(this.props);

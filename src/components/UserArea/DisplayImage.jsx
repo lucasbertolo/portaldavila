@@ -22,6 +22,7 @@ const DisplayImage = ({
       key={index}
       style={{ gridArea: `grid-${index}` }}
     >
+      {console.log(item.url)}
       <img
         className={item.iscover ? 'active md-shadow' : 'md-shadow'}
         src={item.url}

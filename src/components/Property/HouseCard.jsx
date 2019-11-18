@@ -30,50 +30,29 @@ const HouseCard = React.memo(({ data, mode, selectList }) => {
     bathroom,
     property_id,
   } = data;
-  const style = mode === enums.viewModeProperty.edit ? {} : { overflow: 'hidden' };
+  // const style = mode === enums.viewModeProperty.edit ? {} : { overflow: 'hidden' };
 
-  const handleRemove = (e) => {
-    // eslint-disable-next-line no-alert
-    const result = confirm('Want to delete?');
-    if (result) {
-      if (Number(e.target.id)) {
-        db.delete(`/property/${e.target.id}`);
-      }
-    }
-  };
-
-  const handleVisibility = (e) => {
-    if (Number(e.target.id)) {
-      db.get(`/property/info/setvisibility/${e.target.id}&0`);
-    }
-  };
+  // const handleRemove = (e) => {
+  //   // eslint-disable-next-line no-alert
+  //   const result = confirm('Want to delete?');
+  //   if (result) {
+  //     if (Number(e.target.id)) {
+  //       db.delete(`/property/${e.target.id}`);
+  //     }
+  //   }
+  // };
+  const path = mode === enums.viewModeProperty.edit
+    ? '/userarea/manager'
+    : '/property-description';
 
   return (
     <Link
       href={{
-        pathname: '/property-description',
+        pathname: path,
         query: { id: property_id },
       }}
     >
-      <article className="card" style={style}>
-        {mode === enums.viewModeProperty.edit ? (
-          <>
-            <span
-              className="card-visibility"
-              onClick={handleRemove}
-              onKeyUp={handleRemove}
-              role="presentation"
-              id={property_id}
-            />
-            <span
-              className="card-remove"
-              onClick={handleVisibility}
-              onKeyUp={handleVisibility}
-              role="presentation"
-              id={property_id}
-            />
-          </>
-        ) : null}
+      <article className="card">
         <CardHeader code={property_id} isFav />
         <LazyLoadComponent
           placeholder={<PlaceHolderCard />}
