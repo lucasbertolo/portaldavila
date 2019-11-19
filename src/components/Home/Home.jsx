@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import './Home.scss';
 
-const backgroundSrc = 'https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/piracicaba-min_hsSCd2ECg.jpg';
+const backgroundSrc = 'https://ik.imagekit.io/2agnc6wu5cbty/remaxportal/piracicaba_qrCZR1QZJ.jpg';
 
 const Home = () => (
   <div className="idx">

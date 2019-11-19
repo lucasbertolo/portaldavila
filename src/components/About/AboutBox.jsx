@@ -10,7 +10,7 @@ const AboutBox = () => (
   <div className="about-box">
     <History />
     <div className="location">
-      {/* <Maps lat={-22.711063} lng={-47.656581} /> */}
+      <Maps lat={-22.711063} lng={-47.656581} />
       <Location />
     </div>
   </div>

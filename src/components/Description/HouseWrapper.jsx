@@ -8,7 +8,7 @@ import SliderImages from './SliderImages';
 import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
 import CardVisitation from './CardVisitation';
-// import Maps from '../Common/Maps';
+import Maps from '../Common/Maps';
 import SocialShare from './SocialShare';
 import ModalLogin from '../Login/ModalLogin';
 
@@ -106,7 +106,7 @@ export default class HouseWrapper extends React.Component {
       <>
         {isLoading ? (
           <div style={{ margin: 'auto', height: '400px' }}>
-            {/* <RingLoader size={150} color="#123abc" loading={isLoading} /> */}
+            <RingLoader size={150} color="#123abc" loading={isLoading} />
           </div>
         ) : (
           <>
@@ -133,7 +133,7 @@ export default class HouseWrapper extends React.Component {
                 info={info}
               />
               <ExtraBox features={features} />
-              {/* <Maps /> */}
+              <Maps lat={-22.711063} lng={-47.656581} />
 
               <ModalLogin
                 open={open}
