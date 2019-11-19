@@ -61,7 +61,7 @@ const ManagerProperty = ({ data, error, userId }) => {
             open: true,
           });
 
-          Router.push('/userarea/property');
+          Router.push('/userarea');
         }
       })
       .catch(() => {

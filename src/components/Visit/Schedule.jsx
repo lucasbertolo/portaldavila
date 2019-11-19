@@ -58,8 +58,10 @@ export default function Schedule({ data }) {
 
   const handleConfirm = () => {
     const item = document.querySelector(`#line${target}`);
+    console.log(user.id);
     db.put('/visit', {
       visit_id: target,
+      consultor_id: user.id,
       status: true,
     })
       .then(() => {
@@ -140,7 +142,7 @@ export default function Schedule({ data }) {
                               {el.property_id}
                             </span>
                           </div>
-                          {el.status !== null && (
+                          {el.status === null && (
                           <div className="confirmation-box">
                             <div className="visit-icon">
                               <span
