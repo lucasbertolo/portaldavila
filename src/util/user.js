@@ -84,7 +84,7 @@ const registerGuest = (data) => {
       email: registerEmail,
       password: registerPassword,
       phone: '3333-2222',
-      type_id: enums.userType.consultant,
+      type_id: enums.userType.guest,
     })
     .then((res) => {
       if (res.data.existUser) {

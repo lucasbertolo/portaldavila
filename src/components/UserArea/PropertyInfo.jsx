@@ -84,7 +84,7 @@ export default function PropertyInfo(props) {
   return (
     <Formik
       initialValues={initialValues}
-      // validationSchema={ValidationInfo}
+      validationSchema={ValidationInfo}
       onSubmit={(values, { setSubmitting }) => {
         values.position = {
           lat: values.lat,
@@ -305,6 +305,7 @@ function Info(data) {
   this.exchange = data.exchange || false;
   this.building_loan = data.building_loan || false;
   this.isVisible = data.isvisible || true;
+  this.creator_id = data.creator_id || 1;
 
   return (
     this.neighborhood_id,

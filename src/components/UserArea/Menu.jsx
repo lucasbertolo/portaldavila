@@ -18,8 +18,8 @@ const Menu = ({ isLogged, user }) => {
     <div className="ctn-menu-usr">
       {Number(type_id) === enums.userType.consultant && (
         <Link
-          href={{ pathname: '/property', query: { editable: true } }}
-          as="/userarea/listproperty"
+          href={{ pathname: '/property', query: { editable: true, userId: id } }}
+          as="/property"
         >
           <div className="items-menu-usr">
             <div className="icon-wrapper-usr">
@@ -44,7 +44,7 @@ const Menu = ({ isLogged, user }) => {
             type_id,
           },
         }}
-        as="/userarea/visit"
+        as="/visit"
       >
         <div className="items-menu-usr">
           <div className="icon-wrapper-usr">

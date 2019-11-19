@@ -40,7 +40,26 @@ export default class Header extends React.Component {
 
   render() {
     // const { title } = this.props;
-    const listItems = ['property', 'about', 'contact', 'userarea'];
+    // const listItems = ['sobre', 'Imóveis', 'Tranalhe conosco', 'userarea'];
+
+    const listItems = [
+      {
+        page: 'about',
+        label: 'Sobre',
+      },
+      {
+        page: 'comingsoon',
+        label: 'Trabalhe Conosco',
+      },
+      {
+        page: 'team',
+        label: 'Equipe',
+      },
+      {
+        page: 'property',
+        label: 'Imóveis',
+      },
+    ];
     return (
       <header id="header">
         <nav className="header-wrapper">
@@ -74,10 +93,10 @@ export default class Header extends React.Component {
             </Link>
             {
                 listItems.map((item) => (
-                  <div key={item}>
-                    <Link href={`/${item}`}>
-                      <section id={item}>
-                        <p>{item}</p>
+                  <div key={item.page}>
+                    <Link href={`/${item.page}`}>
+                      <section id={item.page}>
+                        <p>{item.label}</p>
                       </section>
                     </Link>
                   </div>

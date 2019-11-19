@@ -9,7 +9,7 @@ const handle = app.getRequestHandler();
 app.prepare().then(() => {
   const server = express();
 
-  server.get('/userarea/:id', (req, res) => {
+  server.get('/userarea', (req, res) => {
     const actualPage = '/userarea';
     const queryParams = { id: req.params.id };
     app.render(req, res, actualPage, queryParams);
@@ -30,6 +30,12 @@ app.prepare().then(() => {
     const actualPage = '/property';
     app.render(req, res, actualPage);
   });
+
+  server.get('/manager/:id', (req, res) => {
+    const actualPage = '/manager';
+    app.render(req, res, actualPage);
+  });
+
 
   server.get('*', (req, res) => handle(req, res));
 

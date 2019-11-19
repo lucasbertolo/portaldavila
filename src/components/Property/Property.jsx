@@ -14,7 +14,7 @@ import { db } from '../Helpers/ApiFetch';
 
 import './Property.scss';
 
-const PropertyView = ({ data, mode }) => {
+const PropertyView = ({ data, mode, userId }) => {
   const [state, setState] = useState({
     neighborhoodList: [],
     typeList: [],
@@ -74,7 +74,9 @@ const PropertyView = ({ data, mode }) => {
 
   const checkButton = () => (mode === enums.viewModeProperty.edit ? (
     <nav className="align-bottom-left">
-      <Link href="/userarea/manager">
+      <Link
+        href={{ pathname: '/manager', query: { userId } }}
+      >
         <button type="button" className="btn-icon add-property">
           <div className="circle">
             <span className="icon arrow" />

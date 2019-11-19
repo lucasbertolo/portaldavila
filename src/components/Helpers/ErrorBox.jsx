@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 
 import './ErrorBox.scss';
 
-const ErrorBox = () => (
+const ErrorBox = ({ auth }) => (
   <>
     <Header />
 
@@ -32,7 +32,13 @@ const ErrorBox = () => (
         <div className="number">4</div>
       </div>
 
-      <div className="error-text">Ops. A página que voce está procurando não existe</div>
+      {
+        auth
+          ? <div className="error-text">Ops. Conteúdo não autorizado</div>
+
+          : <div className="error-text">Ops. A página que voce está procurando não existe</div>
+
+      }
     </div>
   </>
 );
