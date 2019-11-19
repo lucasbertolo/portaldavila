@@ -73,7 +73,7 @@ const ManagerProperty = ({ data, error, userId }) => {
       });
   };
 
-  const validation = state.isLogged && state.user === enums.userType.consultant;
+  const validation = state.isLogged && state.user.type_id === enums.userType.consultant;
 
   return (
     <>
