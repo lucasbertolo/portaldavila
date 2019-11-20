@@ -11,7 +11,6 @@ import { ValidationGrid } from '../Helpers/Validation';
 import enums from '../../content/enums';
 import db from '../Helpers/ApiFetch';
 
-
 import './Property.scss';
 
 const PropertyView = ({ data, user, favList }) => {
@@ -74,9 +73,7 @@ const PropertyView = ({ data, user, favList }) => {
 
   const checkButton = () => (user.type_id === enums.viewModeProperty.edit ? (
     <nav className="align-bottom-left">
-      <Link
-        href={{ pathname: '/manager', query: { userId: user.id } }}
-      >
+      <Link href={{ pathname: '/manager', query: { userId: user.id } }}>
         <button type="button" className="btn-icon add-property">
           <div className="circle">
             <span className="icon arrow" />
@@ -95,12 +92,17 @@ const PropertyView = ({ data, user, favList }) => {
   return (
     <>
       <main className="main-container">
-        <FilterBox selectList={selectList} setFieldList={setFieldList} />
+        <FilterBox
+          selectList={selectList}
+          setFieldList={setFieldList}
+        />
 
         {grid.length > 0 ? (
           <section className="cards">
             {grid.map((item) => {
-              const getStatus = favList.filter((fav) => fav.id === item.id);
+              const getStatus = favList.filter(
+                (fav) => fav.property_id === item.property_id,
+              );
               const status = getStatus.length > 0;
               return (
                 <HouseCard

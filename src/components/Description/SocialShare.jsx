@@ -16,8 +16,10 @@ export default function SocialShare({
         if (isLogged) {
           const initFav = await db.get(`/favorite/${user.id}&${propertyId}`);
           if (initFav) {
-            const current = initFav.data[0].status;
-            setFav(current);
+            if (initFav.data.length > 0) {
+              const current = initFav.data[0].status;
+              setFav(current);
+            }
           }
         }
       } catch (error) {
