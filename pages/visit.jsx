@@ -14,7 +14,6 @@ import GuestView from '../src/components/Visit/GuestView';
 export default class Visit extends React.Component {
   static async getInitialProps({ query }) {
     if (query.id && query.isLogged && query.type_id) {
-      console.log('aqui');
       if (Number(query.type_id) === enums.userType.consultant) {
         const res = await db.post('/visitschedule');
         if (res) {

@@ -139,20 +139,6 @@ class PropertyPhotos extends Component {
           // eslint-disable-next-line no-console
             console.log(error);
           });
-
-
-        // MOCK
-        // axios.get('https://dog.ceo/api/breeds/image/random')
-        //   .then((res) => {
-        //     const url = res.data.message;
-        //     // const { photos } = this.state;
-        //     photos.push({ url });
-
-      //     this.setState({
-      //       photos,
-      //     });
-      //   })
-      //   .catch();
       }
     }
   }

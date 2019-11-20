@@ -3,7 +3,6 @@ import React from 'react';
 const SliderImages = ({ images }) => {
   const cover = images.filter((item) => item.iscover).map((x) => (
     <figure key={x.url}>
-      {console.log(x)}
       <img src={x.cdn || x.url} alt={x.alt} />
     </figure>
   ));

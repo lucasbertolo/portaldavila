@@ -98,9 +98,8 @@ export default class HouseWrapper extends React.Component {
     } = this.state;
 
     const {
-      info, details, features, images,
+      info, details, features, images, propertyId,
     } = this.props;
-
 
     return (
       <>
@@ -116,6 +115,7 @@ export default class HouseWrapper extends React.Component {
               openModalLogin={this.openModalLogin}
               user={user}
               isLogged={isLogged}
+              propertyId={propertyId}
             />
 
             <div className="hs-wrapper">
