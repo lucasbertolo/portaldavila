@@ -3,7 +3,7 @@ import enums from '../../content/enums';
 
 const GuestVisitCard = (props) => {
   const {
-    url, date, time, code, contact,
+    url, date, time, code, contact, status,
   } = props;
 
   const responseOption = () => {
@@ -22,14 +22,30 @@ const GuestVisitCard = (props) => {
 
   const res = responseOption();
 
+  const defineStatus = () => {
+    switch (status) {
+      case false:
+        return 'card-false';
+      case true:
+        return 'card-confirm';
+      default:
+        return 'card-undefined';
+    }
+  };
+
+  const statusVisit = defineStatus();
+
   return (
     <div className="container-guest-visit">
       <div className="card-visit">
-        <div className="front side">
-          <h1 className="logo">{url}</h1>
+        <div
+          className="front side"
+          style={{ background: `url(${url}) no-repeat`, backgroundSize: 'cover' }}
+        >
+          {/* <h1 className="logo">{url}</h1> */}
         </div>
 
-        <div className="back side">
+        <div className={`${statusVisit} back side`}>
           <h3 className="name">
             Código
             {code}

@@ -44,8 +44,6 @@ export default class Visit extends React.Component {
     const { isLogged } = this.state;
 
     if (!isLogged) {
-      console.log('aqui2');
-
       checkToken()
         .then((item) => {
           if (item) {
@@ -83,8 +81,6 @@ export default class Visit extends React.Component {
     })
 
   getDataGuest = async (id) => {
-    console.log('aqui3');
-
     const res = await db(`/visit/${id}`);
     if (res) {
       return Promise.resolve({ success: true, data: res.data });
@@ -93,8 +89,6 @@ export default class Visit extends React.Component {
   }
 
   getDataConsultant = async () => {
-    console.log('aqui 4');
-
     const res = await db.post('/visitschedule');
     if (res) {
       return Promise.resolve({ success: true, data: res.data });

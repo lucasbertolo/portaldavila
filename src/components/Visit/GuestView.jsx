@@ -14,6 +14,7 @@ const GuestView = ({ data }) => (
             date={x.date_register}
             time={x.time_register}
             contact={x.contact_type}
+            status={x.status}
           />
         </div>
       ))
