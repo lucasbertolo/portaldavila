@@ -9,7 +9,7 @@ import FilterBox from '../Filter/FilterBox';
 import { ValidationGrid } from '../Helpers/Validation';
 
 import enums from '../../content/enums';
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 
 
 import './Property.scss';

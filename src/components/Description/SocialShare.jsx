@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 
 import { FavIcon } from '../Common/Icons';
 import './SocialShare.scss';

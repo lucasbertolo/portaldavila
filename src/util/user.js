@@ -1,4 +1,4 @@
-import { db } from '../components/Helpers/ApiFetch';
+import db from '../components/Helpers/ApiFetch';
 import enums from '../content/enums';
 
 const storeToken = (token) => {

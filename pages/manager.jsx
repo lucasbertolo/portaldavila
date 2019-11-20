@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 
 import Router from 'next/router';
-import { db } from '../src/components/Helpers/ApiFetch';
+import db from '../src/components/Helpers/ApiFetch';
 import { checkToken } from '../src/util/user';
 
 import ManagerForm from '../src/components/UserArea/ManagerForm';

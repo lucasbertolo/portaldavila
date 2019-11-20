@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { db } from '../src/components/Helpers/ApiFetch';
+import db from '../src/components/Helpers/ApiFetch';
 
 import Header from '../src/components/Header/Header';
 import enums from '../src/content/enums';

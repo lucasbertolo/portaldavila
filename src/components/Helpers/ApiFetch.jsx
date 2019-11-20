@@ -7,7 +7,4 @@ const db = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-export {
-  // eslint-disable-next-line import/prefer-default-export
-  db,
-};
+export default db;

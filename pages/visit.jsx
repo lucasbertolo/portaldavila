@@ -1,45 +1,117 @@
 
 import React from 'react';
-import { db } from '../src/components/Helpers/ApiFetch';
+import Router from 'next/router';
+import db from '../src/components/Helpers/ApiFetch';
 
+import { checkToken } from '../src/util/user';
 import Header from '../src/components/Header/Header';
+import SocialFooter from '../src/components/Footer/SocialFooter';
 import enums from '../src/content/enums';
-import Schedule from '../src/components/Visit/Schedule';
+// import Schedule from '../src/components/Visit/Schedule';
+import GuestView from '../src/components/Visit/GuestView';
 // import enums from '../src/content/enums';
 
-const Visit = ({ data, isLogged }) => (
-  <div>
-    {/* {isLogged ? (
-      <>
-        <Header />
-      </>
-    ) : null } */}
-    <Header />
-    <Schedule data={data} />
-  </div>
-);
-
-Visit.getInitialProps = async ({ query }) => {
-  if (query.isLogged === 'true') {
-    if (Number(query.type_id) === enums.userType.guest) {
-      const res = await db(`/visit/${query.id}`);
-      return { data: res.data };
+export default class Visit extends React.Component {
+  static async getInitialProps({ query }) {
+    if (query.id && query.isLogged && query.type_id) {
+      console.log('aqui');
+      if (Number(query.type_id) === enums.userType.consultant) {
+        const res = await db.post('/visitschedule');
+        if (res) {
+          return { data: res.data, isLogged: true };
+        }
+      }
+      if (Number(query.type_id) === enums.userType.guest) {
+        const res = await db(`/visit/${query.id}`);
+        if (res) {
+          return { data: res.data, isLogged: true };
+        }
+      }
     }
-    if (Number(query.type_id) === enums.userType.consultant) {
-      const res = await db.post('/visitschedule');
-      // {
-      //   // username: query.username, // usar token
-      // });
-      return { data: res.data };
-    }
+    return { data: {} };
+  }
 
-    return { data: [] };
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: props.data || [],
+      isLogged: props.isLogged || false,
+    };
   }
 
 
-  return console.log('nao autorizado');
+  componentDidMount() {
+    const { isLogged } = this.state;
 
-  // TO DO - PAGINA NAO AUTORIZADO
-};
+    if (!isLogged) {
+      console.log('aqui2');
 
-export default Visit;
+      checkToken()
+        .then((item) => {
+          if (item) {
+            if (Number(item.user.type_id) === enums.userType.consultant) {
+              return this.handleConsultant(item.user);
+            }
+            if (Number(item.user.type_id) === enums.userType.guest) {
+              return this.handleGuest(item.user);
+            }
+            return { data: [] };
+          }
+          Router.push('/userarea');
+          return null;
+        })
+        .catch(() => {
+          Router.push('/userarea');
+        });
+    }
+  }
+
+  handleGuest = (item) => this.getDataGuest(item.id)
+    .then((res) => {
+      this.setState({
+        isLogged: item.isLogged,
+        data: res.data,
+      });
+    })
+
+  handleConsultant = (item) => this.getDataConsultant()
+    .then((res) => {
+      this.setState({
+        isLogged: item.isLogged,
+        data: res.data,
+      });
+    })
+
+  getDataGuest = async (id) => {
+    console.log('aqui3');
+
+    const res = await db(`/visit/${id}`);
+    if (res) {
+      return Promise.resolve({ success: true, data: res.data });
+    }
+    return Promise.reject(Error({ success: false, data: res.data }));
+  }
+
+  getDataConsultant = async () => {
+    console.log('aqui 4');
+
+    const res = await db.post('/visitschedule');
+    if (res) {
+      return Promise.resolve({ success: true, data: res.data });
+    }
+    return Promise.reject(Error({ success: false, data: res.data }));
+  }
+
+
+  render() {
+    const { data } = this.state;
+    return (
+      <div>
+        <Header />
+        {/* <Schedule data={data} /> */}
+        <GuestView data={data} />
+        <SocialFooter />
+      </div>
+    );
+  }
+}

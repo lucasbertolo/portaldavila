@@ -10,7 +10,7 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import { RingLoader } from 'react-spinners';
 import ContactBox from '../Contact/ContactBox';
 import DatePicker from './DatePicker';
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 
 export default function Visit({ open, handleClose, user }) {
   const [index, setIndex] = useState(0);
