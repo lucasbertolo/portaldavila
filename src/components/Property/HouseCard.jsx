@@ -4,7 +4,6 @@ import React from 'react';
 import { LazyLoadComponent } from 'react-lazy-load-image-component';
 
 import Link from 'next/link';
-import { db } from '../Helpers/ApiFetch';
 
 import CardInfo from './CardInfo';
 import CardImage from './CardImage';
@@ -17,7 +16,9 @@ import PlaceHolderCard from '../Helpers/Loading';
 
 import './HouseCard.scss';
 
-const HouseCard = React.memo(({ data, mode, selectList }) => {
+const HouseCard = React.memo(({
+  data, user, selectList, isFav,
+}) => {
   const {
     cdn,
     url,
@@ -31,20 +32,19 @@ const HouseCard = React.memo(({ data, mode, selectList }) => {
     bathroom,
     property_id,
   } = data;
-  // const style = mode === enums.viewModeProperty.edit ? {} : { overflow: 'hidden' };
 
-  // const handleRemove = (e) => {
-  //   // eslint-disable-next-line no-alert
-  //   const result = confirm('Want to delete?');
-  //   if (result) {
-  //     if (Number(e.target.id)) {
-  //       db.delete(`/property/${e.target.id}`);
-  //     }
-  //   }
-  // };
-  const path = mode === enums.viewModeProperty.edit
-    ? '/userarea/manager'
-    : '/property-description';
+  const defineRoute = () => {
+    let route = '';
+    if (user && user.type_id === enums.userType.consultant) {
+      route = '/manager';
+    } else {
+      route = '/property-description';
+    }
+
+    return route;
+  };
+
+  const path = defineRoute();
 
   return (
     <Link
@@ -54,7 +54,7 @@ const HouseCard = React.memo(({ data, mode, selectList }) => {
       }}
     >
       <article className="card">
-        <CardHeader code={property_id} isFav />
+        <CardHeader code={property_id} isFav={isFav} />
         <LazyLoadComponent
           placeholder={<PlaceHolderCard />}
         >

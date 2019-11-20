@@ -14,7 +14,7 @@ import db from '../Helpers/ApiFetch';
 
 import './Property.scss';
 
-const PropertyView = ({ data, mode, userId }) => {
+const PropertyView = ({ data, user, favList }) => {
   const [state, setState] = useState({
     neighborhoodList: [],
     typeList: [],
@@ -72,10 +72,10 @@ const PropertyView = ({ data, mode, userId }) => {
     }
   }, [filterList]);
 
-  const checkButton = () => (mode === enums.viewModeProperty.edit ? (
+  const checkButton = () => (user.type_id === enums.viewModeProperty.edit ? (
     <nav className="align-bottom-left">
       <Link
-        href={{ pathname: '/manager', query: { userId } }}
+        href={{ pathname: '/manager', query: { userId: user.id } }}
       >
         <button type="button" className="btn-icon add-property">
           <div className="circle">
@@ -99,18 +99,22 @@ const PropertyView = ({ data, mode, userId }) => {
 
         {grid.length > 0 ? (
           <section className="cards">
-            {grid.map((item) => (
-
-              <HouseCard
-                data={item}
-                key={item.id}
-                mode={mode}
-                selectList={selectList}
-              />
-            ))}
+            {grid.map((item) => {
+              const getStatus = favList.filter((fav) => fav.id === item.id);
+              const status = getStatus.length > 0;
+              return (
+                <HouseCard
+                  data={item}
+                  key={item.id}
+                  user={user}
+                  selectList={selectList}
+                  isFav={status}
+                />
+              );
+            })}
           </section>
         ) : (
-          <div>No properties</div>
+          <div>Nenhum imóvel encontrado :/</div>
         )}
       </main>
       {addButton}
