@@ -10,7 +10,7 @@ import PropertyPhotos from './PropertyPhotos';
 
 import Toast from '../Helpers/Toast';
 
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 
 import './ManagerForm.scss';
 

@@ -71,7 +71,7 @@ const PropertyView = ({ data, user, favList }) => {
     }
   }, [filterList]);
 
-  const checkButton = () => (user.type_id === enums.viewModeProperty.edit ? (
+  const checkButton = () => (user.type_id === enums.userType.consultant ? (
     <nav className="align-bottom-left">
       <Link href={{ pathname: '/manager', query: { userId: user.id } }}>
         <button type="button" className="btn-icon add-property">
@@ -91,6 +91,7 @@ const PropertyView = ({ data, user, favList }) => {
   };
   return (
     <>
+      {addButton}
       <main className="main-container">
         <FilterBox
           selectList={selectList}
