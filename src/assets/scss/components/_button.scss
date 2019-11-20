@@ -134,12 +134,14 @@
 .next-btn,
 .prev-btn {
   cursor: pointer;
-  position: relative;
+  position: fixed;
+  top: 50%;
+  right: 0;
   display: block;
   margin: 100px 0 0 100px;
   width: 50px;
   height: 50px;
-  border: solid 6px #999;
+  // border: solid 6px #999;
   border-radius: 100%;
   z-index: 1;
   transition: all 0.2s linear;
@@ -166,7 +168,7 @@
     border: solid 8px #777;
     &:after,
     &:before {
-      background: #777;
+      background: black;
     }
   }
   &:active {
@@ -180,6 +182,7 @@
 
 .prev-btn {
   transform: rotate(180deg);
+  left: 0;
 }
 
 .button-save {
