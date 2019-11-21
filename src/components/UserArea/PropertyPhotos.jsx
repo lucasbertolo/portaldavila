@@ -8,8 +8,10 @@ import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
+
 import config from '../../content/config';
 import db from '../Helpers/ApiFetch';
+import { OverlayLoading } from '../Helpers/Loading';
 
 import DisplayImage from './DisplayImage';
 
@@ -18,6 +20,7 @@ class PropertyPhotos extends Component {
     super(props);
     this.state = {
       photos: props.data || [],
+      isLoading: false,
     };
   }
 
@@ -91,6 +94,7 @@ class PropertyPhotos extends Component {
 
     const file = this.uploadInput.files[0];
 
+    this.setState({ isLoading: true });
     if (file) {
       const maxSize = file.size / 1024 / 1024;
       const { photos } = this.state;
@@ -129,9 +133,11 @@ class PropertyPhotos extends Component {
                   url,
                   photos,
                   success: true,
+                  isLoading: false,
                 });
               })
               .catch((error) => {
+                this.setState({ isLoading: false });
                 console.log(error);
               });
           })
@@ -145,13 +151,14 @@ class PropertyPhotos extends Component {
 
 
   render() {
-    const { photos } = this.state;
+    const { photos, isLoading } = this.state;
     const { bindSubmitForm } = this.props;
 
     bindSubmitForm(this.onSubmit);
 
     return (
       <>
+        { isLoading && <OverlayLoading />}
         <DisplayImage
           photos={photos}
           handleChange={this.handleChange}

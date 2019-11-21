@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropagateLoader } from 'react-spinners';
 
 import './Loading.scss';
 
@@ -19,5 +20,19 @@ const PlaceHolderCard = () => (
     </div>
   </div>
 );
+
+export function OverlayLoading({ status }) {
+  return (
+    <div className="overlay-loader">
+      <div>
+        <PropagateLoader
+          size={25}
+          color="#36D7B7"
+          loading={status}
+        />
+      </div>
+    </div>
+  );
+}
 
 export default PlaceHolderCard;
