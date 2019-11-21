@@ -5,7 +5,7 @@ import { faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 import enums from '../../content/enums';
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 
 import './ContactBox.scss';
 

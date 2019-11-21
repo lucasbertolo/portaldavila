@@ -1,34 +1,34 @@
 
   .wrapper-upload{    
-    width:15%;
-    height:15%;
+    width:10%;
+    height:10%;
     position: fixed;
-    bottom: 10%;
+    bottom: 0;
     right: 5px;
     display:flex;
     align-items:center;
     justify-content:center;  
   
     .file-upload{        
-      height:100px;
-      width:100px;
+      height:70px;
+      width:70px;
       border-radius: 100px;
       position:relative;      
       display:flex;
       justify-content:center;
       align-items: center;    
-      border:4px solid #FFFFFF;
+      border:2px solid #FFFFFF;
       overflow:hidden;
       background-image: linear-gradient(to bottom, #2590EB 50%, #FFFFFF 50%);
       background-size: 100% 200%;
       transition: all 1s;
       color: #FFFFFF;
-      font-size:50px;
+      font-size:40px;
       z-index: 100;
   
       input[type='file']{
-        height:130px;
-        width:130px;
+        height:80px;
+        width:80px;
         position:absolute;
         top:0;
         left:0;

@@ -160,7 +160,7 @@ const ValidationGrid = (data, filterList) => {
   let items = data.slice(0);
 
   const code = filterList.filter((x) => x.name === 'code');
-  if (code.length > 0) { items = Model.EqualsTo(items, Number(code[0].value), 'id'); }
+  if (code.length > 0) { items = Model.EqualsTo(items, Number(code[0].value), 'property_id'); }
 
   const price = filterList.filter((x) => x.name === 'price');
   if (price.length > 0) {

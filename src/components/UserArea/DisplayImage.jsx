@@ -9,9 +9,9 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputAdornment from '@material-ui/core/InputAdornment';
 
+import WrapperTooltip from '../Common/WrapperTooltip';
 
 import './DisplayImage.scss';
-
 
 const DisplayImage = ({
   photos, handleChange, removePhoto, setCover,
@@ -36,31 +36,32 @@ const DisplayImage = ({
           placeholder="Descrição"
           startAdornment={(
             <InputAdornment position="start" className="rmv-photo">
-              <span id={item.id || item.url} onClick={removePhoto} />
-              <FontAwesomeIcon
-                icon={faTrashAlt}
-              />
+              <div>
+                <WrapperTooltip title="Deletar imagem" position="bottom">
+                  <span id={item.id || item.url} onClick={removePhoto} />
+                </WrapperTooltip>
+                <FontAwesomeIcon icon={faTrashAlt} />
+              </div>
             </InputAdornment>
-          )}
+            )}
           endAdornment={(
             <InputAdornment position="end" className="set-cover">
-              <span id={item.url} onClick={setCover} />
-              <FontAwesomeIcon
-                icon={faImage}
-              />
+              <div>
+                <WrapperTooltip title="Definir como capa" position="bottom">
+                  <span id={item.url} onClick={setCover} />
+                </WrapperTooltip>
+
+                <FontAwesomeIcon icon={faImage} />
+              </div>
             </InputAdornment>
-          )}
+            )}
           type="text"
         />
       </FormControl>
     </span>
   ));
 
-  return (
-    <div className="container-editor-images">
-      {arrayImages}
-    </div>
-  );
+  return <div className="container-editor-images">{arrayImages}</div>;
 };
 
 export default DisplayImage;

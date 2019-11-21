@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import React from 'react';
-import { db } from '../src/components/Helpers/ApiFetch';
+import db from '../src/components/Helpers/ApiFetch';
 
 import Header from '../src/components/Header/Header';
 import SocialFooter from '../src/components/Footer/SocialFooter';
@@ -13,7 +13,9 @@ import { Features } from '../src/components/UserArea/PropertyFeatures';
 
 import ErrorBox from '../src/components/Helpers/ErrorBox';
 
-const PropertyDescription = ({ data, images, notFound }) => {
+const PropertyDescription = ({
+  data, images, notFound, propertyId,
+}) => {
   const dataInfo = new Info(data);
   const dataDetails = new Details(data);
   const dataFeature = new Features(data);
@@ -29,6 +31,7 @@ const PropertyDescription = ({ data, images, notFound }) => {
           details={dataDetails}
           features={dataFeature}
           images={images}
+          propertyId={Number(propertyId)}
         />
       )}
       <SocialFooter />
@@ -40,9 +43,13 @@ PropertyDescription.getInitialProps = async ({ query }) => {
     const res = await db(`/property-description/${query.id}`);
     if (res) {
       const deserializedImages = res.data.images.map((x) => JSON.parse(x));
-      return { data: res.data.property, images: deserializedImages || [] };
+      return {
+        data: res.data.property,
+        images: deserializedImages || [],
+        propertyId: query.id,
+      };
     }
-    return { data: {}, images: [] };
+    return { data: {}, images: [], propertyId: 0 };
   } catch (e) {
     return { data: {}, images: [], notFound: true };
   }

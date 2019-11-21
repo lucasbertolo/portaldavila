@@ -11,7 +11,8 @@ const theme = createMuiTheme({
   overrides: {
     MuiTooltip: {
       tooltip: {
-        fontSize: '0.8em',
+        fontSize: '1em',
+        fontFamily: 'EB Garamond, serif',
         color: '#fff',
         backgroundColor: 'rgba(0,0,0,0.7)',
       },

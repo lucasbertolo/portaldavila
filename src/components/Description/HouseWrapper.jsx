@@ -8,7 +8,7 @@ import SliderImages from './SliderImages';
 import ExtraBox from './ExtraBox';
 import MainBox from './MainBox';
 import CardVisitation from './CardVisitation';
-import Maps from '../Common/Maps';
+// import Maps from '../Common/Maps';
 import SocialShare from './SocialShare';
 import ModalLogin from '../Login/ModalLogin';
 
@@ -98,9 +98,8 @@ export default class HouseWrapper extends React.Component {
     } = this.state;
 
     const {
-      info, details, features, images,
+      info, details, features, images, propertyId,
     } = this.props;
-
 
     return (
       <>
@@ -116,6 +115,7 @@ export default class HouseWrapper extends React.Component {
               openModalLogin={this.openModalLogin}
               user={user}
               isLogged={isLogged}
+              propertyId={propertyId}
             />
 
             <div className="hs-wrapper">
@@ -133,7 +133,7 @@ export default class HouseWrapper extends React.Component {
                 info={info}
               />
               <ExtraBox features={features} />
-              <Maps lat={-22.711063} lng={-47.656581} />
+              {/* <Maps lat={-22.711063} lng={-47.656581} /> */}
 
               <ModalLogin
                 open={open}

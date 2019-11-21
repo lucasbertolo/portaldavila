@@ -8,7 +8,11 @@ const CardIcons = ({
 }) => (
   <span className="card__icons">
     <span className="icon-container">
+<<<<<<< HEAD
+      <WrapperTooltip title="garagem" position="bottom">
+=======
       <WrapperTooltip title="Vagas de garagem" position="bottom">
+>>>>>>> dev
         <span className="garage-icon-sm">
           <GarageIcon />
         </span>
@@ -21,10 +25,19 @@ const CardIcons = ({
           <BedIcon />
         </span>
       </WrapperTooltip>
+<<<<<<< HEAD
+      <p className="icon-info" style={{ marginLeft: '8px' }}>
+        {dormitory}
+      </p>
+    </span>
+    <span className="icon-container">
+      <WrapperTooltip title="Banheiro" position="bottom">
+=======
       <p className="icon-info" style={{ marginLeft: '8px' }}>{dormitory}</p>
     </span>
     <span className="icon-container">
       <WrapperTooltip title="Banheiros" position="bottom">
+>>>>>>> dev
         <span className="bathroom-icon-sm">
           <BathIcon />
         </span>

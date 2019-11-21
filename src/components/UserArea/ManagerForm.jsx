@@ -10,9 +10,10 @@ import PropertyPhotos from './PropertyPhotos';
 
 import Toast from '../Helpers/Toast';
 
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 
 import './ManagerForm.scss';
+import DeleteButton from './DeleteButton';
 
 const getNavStyles = (indx, length) => {
   const styles = [];
@@ -318,6 +319,7 @@ export default class ManagerForm extends React.Component {
     const {
       compIndex, buttons, toastOpen, toastMsg, saveState,
     } = this.state;
+    const { property_id } = this.props;
     const steps = this.getSteps();
     const progressBar = this.renderSteps();
 
@@ -355,6 +357,7 @@ export default class ManagerForm extends React.Component {
               Salvar
             </button>
           </div>
+          <DeleteButton propertyId={property_id} />
           <Toast
             open={toastOpen}
             handleClose={this.toastClose}

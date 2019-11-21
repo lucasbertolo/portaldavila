@@ -9,12 +9,11 @@ import FilterBox from '../Filter/FilterBox';
 import { ValidationGrid } from '../Helpers/Validation';
 
 import enums from '../../content/enums';
-import { db } from '../Helpers/ApiFetch';
-
+import db from '../Helpers/ApiFetch';
 
 import './Property.scss';
 
-const PropertyView = ({ data, mode, userId }) => {
+const PropertyView = ({ data, user, favList }) => {
   const [state, setState] = useState({
     neighborhoodList: [],
     typeList: [],
@@ -72,11 +71,9 @@ const PropertyView = ({ data, mode, userId }) => {
     }
   }, [filterList]);
 
-  const checkButton = () => (mode === enums.viewModeProperty.edit ? (
+  const checkButton = () => (user.type_id === enums.userType.consultant ? (
     <nav className="align-bottom-left">
-      <Link
-        href={{ pathname: '/manager', query: { userId } }}
-      >
+      <Link href={{ pathname: '/manager', query: { userId: user.id } }}>
         <button type="button" className="btn-icon add-property">
           <div className="circle">
             <span className="icon arrow" />
@@ -94,23 +91,33 @@ const PropertyView = ({ data, mode, userId }) => {
   };
   return (
     <>
+      {addButton}
       <main className="main-container">
-        <FilterBox selectList={selectList} setFieldList={setFieldList} />
+        <FilterBox
+          selectList={selectList}
+          setFieldList={setFieldList}
+        />
 
         {grid.length > 0 ? (
           <section className="cards">
-            {grid.map((item) => (
-
-              <HouseCard
-                data={item}
-                key={item.id}
-                mode={mode}
-                selectList={selectList}
-              />
-            ))}
+            {grid.map((item) => {
+              const getStatus = favList.filter(
+                (fav) => fav.property_id === item.property_id,
+              );
+              const status = getStatus.length > 0;
+              return (
+                <HouseCard
+                  data={item}
+                  key={item.id}
+                  user={user}
+                  selectList={selectList}
+                  isFav={status}
+                />
+              );
+            })}
           </section>
         ) : (
-          <div>No properties</div>
+          <div>Nenhum imóvel encontrado :/</div>
         )}
       </main>
       {addButton}

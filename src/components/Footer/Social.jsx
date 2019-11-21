@@ -46,15 +46,14 @@ const Social = ({ noInfo, bkColor }) => {
               <FontAwesomeIcon icon={faFacebookF} />
             </i>
           </a>
-          {
-          !noInfo && (
-            <a className="btn info" onClick={openDialog} target="_blank" rel="noreferrer noopener" aria-label="Info">
-              <i className="fa fa-academic">
-                <FontAwesomeIcon icon={faInfo} />
-              </i>
-            </a>
-          )
-        }
+          {/* <a className="btn info" onClick={openDialog} target="_blank" rel="noreferrer noopener" aria-label="Info"> */}
+
+          <a className="btn info-ft" href="https://google.com" target="_blank" rel="noreferrer noopener" aria-label="Facebook">
+
+            <i className="fa fa-academic">
+              <FontAwesomeIcon icon={faInfo} />
+            </i>
+          </a>
         </div>
       </div>
       <InfoDialog open={info} handleClose={handleClose} />

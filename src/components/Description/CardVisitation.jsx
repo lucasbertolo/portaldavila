@@ -8,7 +8,7 @@ import Documents from '../Contact/Documents';
 import WrapperTooltip from '../Common/WrapperTooltip';
 
 import enums from '../../content/enums';
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 
 import './CardVisitation.scss';
 

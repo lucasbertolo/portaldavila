@@ -1,8 +1,6 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
-import {
-  Formik, ErrorMessage,
-} from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 
 import TextField from '@material-ui/core/TextField';
 import { ValidationDetails } from '../Helpers/Validation';
@@ -15,6 +13,52 @@ export default function PropertyDetails(props) {
   };
   const { bindSubmitForm, bindErrors } = props;
 
+  const listItems = [
+    {
+      name: 'dormitory',
+      label: 'Dormitórios',
+    },
+    {
+      name: 'garage',
+      label: 'Garagem',
+    },
+    {
+      name: 'bathroom',
+      label: 'Banheiro',
+    },
+    {
+      name: 'living_room',
+      label: 'Sala de estar',
+    },
+    {
+      name: 'dining_room',
+      label: 'Sala de jantar',
+    },
+    {
+      name: 'suite',
+      label: 'Suítes',
+    },
+    {
+      name: 'laundry',
+      label: 'Lavanderia',
+    },
+    {
+      name: 'washbasin',
+      label: 'Lavabo',
+    },
+    {
+      name: 'kitchen',
+      label: 'Cozinha',
+    },
+    {
+      name: 'gourmet_space',
+      label: 'Área gourmet',
+    },
+    {
+      name: 'office',
+      label: 'Escritório',
+    },
+  ];
   return (
     <Formik
       initialValues={initialValues}
@@ -33,29 +77,27 @@ export default function PropertyDetails(props) {
         bindSubmitForm(formikProps.submitForm);
 
         return (
-
           <form className="details-group" noValidate onSubmit={handleSubmit}>
-            {
-              Object.keys(initialValues).map((item) => (
-                <div
-                  key={item}
-                  className="input-details"
-                >
-                  <TextField
-                    value={values[item]}
-                    label={item}
-                    id={item}
-                    type="number"
-                    name={item}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    margin="normal"
-                    variant="outlined"
-                  />
-                  <ErrorMessage className="error-message" component="span" name={item} />
-                </div>
-              ))
-            }
+            {listItems.map((item) => (
+              <div key={item.name} className="input-details">
+                <TextField
+                  value={values[item.name]}
+                  label={item.label}
+                  id={item.name}
+                  type="number"
+                  name={item.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  margin="normal"
+                  variant="outlined"
+                />
+                <ErrorMessage
+                  className="error-message"
+                  component="span"
+                  name={item.name}
+                />
+              </div>
+            ))}
           </form>
         );
       }}
@@ -75,7 +117,6 @@ export function Details(data) {
   this.kitchen = data.kitchen || 0;
   this.gourmet_space = data.gourmet_space || 0;
   this.office = data.office || 0;
-
 
   return (
     this.dormitory,

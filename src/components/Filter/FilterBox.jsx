@@ -103,6 +103,7 @@ export default function FilterBox({ selectList, setFieldList }) {
       name: 'Código',
       mode: enums.filterOptions.code,
     },
+
   ];
   return (
     <aside className={boxFilter ? 'open-menu' : ''}>

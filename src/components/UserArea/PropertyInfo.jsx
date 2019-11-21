@@ -20,7 +20,7 @@ import FormControl from '@material-ui/core/FormControl';
 
 import { Formik } from 'formik';
 import { ValidationInfo } from '../Helpers/Validation';
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
 
 import './PropertyInfo.scss';

@@ -61,7 +61,11 @@ const ManagerProperty = ({ data, error, userId }) => {
             open: true,
           });
 
+<<<<<<< HEAD
+          Router.push('/userarea');
+=======
           Router.push('/property');
+>>>>>>> dev
         }
       })
       .catch(() => {
@@ -74,6 +78,10 @@ const ManagerProperty = ({ data, error, userId }) => {
   };
 
   const validation = state.isLogged && state.user.type_id === enums.userType.consultant;
+<<<<<<< HEAD
+
+=======
+>>>>>>> dev
   return (
     <>
       <Header />

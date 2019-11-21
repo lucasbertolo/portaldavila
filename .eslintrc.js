@@ -22,7 +22,8 @@ module.exports = {
   ],
   rules: {
     'camelcase': 0,
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    "react/jsx-props-no-spreading": "off",
   },
   parser: "babel-eslint"
 };
