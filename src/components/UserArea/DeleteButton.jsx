@@ -1,24 +1,35 @@
+/* eslint-disable no-alert */
 import React from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
-import db from '../Helpers/ApiFetch';
 import Router from 'next/router';
+import db from '../Helpers/ApiFetch';
+
+import './DeleteButton.scss';
 
 const DeleteButton = ({ propertyId }) => {
   const handleDelete = () => {
-    db.delete(`property/${propertyId}`)
-    .then(() => Router.push('/property'))
-    .catch()
+    // eslint-disable-next-line no-restricted-globals
+    const result = confirm('Want to delete?');
+
+    if (result) {
+      db.delete(`property/${propertyId}`)
+        .then(() => Router.push('/property'))
+        .catch();
+    }
   };
   return (
     <>
-      <span className="manager-delete-container">
-        <i className="fa" onClick={handleDelete} role="presentation">
-          <FontAwesomeIcon icon={faTrashAlt} />
-        </i>
-      </span>
+      <div className="manager-delete-container">
+        <button
+          onClick={handleDelete}
+          type="button"
+          className="button-delete button--delete"
+        >
+          <span role="img" aria-label="save-img">
+            🗑️
+          </span>
+              Deletar
+        </button>
+      </div>
     </>
   );
 };

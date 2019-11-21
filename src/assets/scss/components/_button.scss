@@ -185,7 +185,7 @@
   left: 0;
 }
 
-.button-save {
+.button-save, .button-delete {
   background: black;
   border: 3px solid #343436;
   border-radius: 5px;
@@ -200,13 +200,21 @@
     cursor: not-allowed;
     background: rgba(0, 0, 0, 0.6);
   }
+
+  &:hover{
+    background: #4d4d50;
+  }
 }
 
-.button-save:hover {
-  background: #4d4d50;
+.button-delete{
+  background: #a5051a;
+
+  &:hover{
+    background: #dd364d;
+  }
 }
 
-.button-save--save:before {
+.button--save:before {
   background: #fedd31;
   display: block;
   content: "";
@@ -216,3 +224,5 @@
   top: 3px;
   width: calc(100% - 6px);
 }
+
+
