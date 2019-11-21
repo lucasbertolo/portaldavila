@@ -7,9 +7,7 @@ import Header from '../src/components/Header/Header';
 import SocialFooter from '../src/components/Footer/SocialFooter';
 
 import HouseWrapper from '../src/components/Description/HouseWrapper';
-import { Info } from '../src/components/UserArea/PropertyInfo';
-import { Details } from '../src/components/UserArea/PropertyDetails';
-import { Features } from '../src/components/UserArea/PropertyFeatures';
+import { Info, Details, Features } from '../src/components/Helpers/Models';
 
 import ErrorBox from '../src/components/Helpers/ErrorBox';
 

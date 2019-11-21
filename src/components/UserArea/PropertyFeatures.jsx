@@ -216,29 +216,3 @@ export default function PropertyFeatures(props) {
     </Formik>
   );
 }
-
-export function Features(data, id) {
-  this.description = data.description || '';
-  this.airConditioner = data.air_conditioning || false;
-  this.pool = data.pool || false;
-  this.balcony = data.balcony || false;
-  this.barbecueGrill = data.barbecue_grill || false;
-  this.stairway = data.stairway || false;
-  this.garden = data.garden || false;
-  this.fireSecurity = data.fire_security || false;
-  this.cameraSecurity = data.camera_security || false;
-  this.property_id = id || false;
-
-  return (
-    this.description,
-    this.airConditioner,
-    this.pool,
-    this.balcony,
-    this.barbecueGrill,
-    this.stairway,
-    this.garden,
-    this.fireSecurity,
-    this.cameraSecurity,
-    this.property_id
-  );
-}

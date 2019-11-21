@@ -293,35 +293,3 @@ export default function PropertyInfo(props) {
 
   );
 }
-
-function Info(data) {
-  this.neighborhood_id = data.neighborhood_id || 0;
-  this.position = data.position ? JSON.stringify(data.position) : null;
-  this.price = data.price || 0;
-  this.purpose_id = Number(data.purpose_id) || 1;
-  this.type_id = data.type_id || 0;
-  this.area = data.area || 0;
-  this.building_area = data.building_area || 0;
-  this.exchange = data.exchange || false;
-  this.building_loan = data.building_loan || false;
-  this.isVisible = data.isvisible || true;
-  this.creator_id = data.creator_id || 1;
-
-  return (
-    this.neighborhood_id,
-    this.position,
-    this.price,
-    this.purpose_id,
-    this.type_id,
-    this.creator_id,
-    this.area,
-    this.building_area,
-    this.exchange,
-    this.building_loan,
-    this.isVisible
-  );
-}
-
-export {
-  Info,
-};

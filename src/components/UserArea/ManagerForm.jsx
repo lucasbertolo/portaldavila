@@ -3,11 +3,12 @@
 
 import React, { Suspense } from 'react';
 
-import PropertyInfo, { Info } from './PropertyInfo';
-import PropertyFeatures, { Features } from './PropertyFeatures';
-import PropertyDetails, { Details } from './PropertyDetails';
+import PropertyInfo from './PropertyInfo';
+import PropertyFeatures from './PropertyFeatures';
+import PropertyDetails from './PropertyDetails';
 import PropertyPhotos from './PropertyPhotos';
 
+import { Info, Features, Details } from '../Helpers/Models';
 import Toast from '../Helpers/Toast';
 
 import db from '../Helpers/ApiFetch';
