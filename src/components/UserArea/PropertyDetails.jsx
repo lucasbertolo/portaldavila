@@ -69,7 +69,7 @@ export default function PropertyDetails(props) {
     >
       {(formikProps) => {
         const {
-          values, handleChange, handleBlur, handleSubmit,
+          values, handleChange, handleBlur, handleSubmit, errors,
         } = formikProps;
 
         bindErrors(formikProps.errors);
@@ -89,6 +89,7 @@ export default function PropertyDetails(props) {
                   onBlur={handleBlur}
                   margin="normal"
                   variant="outlined"
+                  error={!!errors[item.name]}
                 />
                 <ErrorMessage
                   className="error-message"
