@@ -58,7 +58,6 @@ export default function Schedule({ data }) {
 
   const handleConfirm = () => {
     const item = document.querySelector(`#line${target}`);
-    console.log(user.id);
     db.put('/visit', {
       visit_id: target,
       consultor_id: user.id,
@@ -122,7 +121,7 @@ export default function Schedule({ data }) {
                             <span className="event-time">
                               {el.time_register}
                               {' '}
--
+                                -
                               {' '}
                             </span>
                             <span className="event-name">
