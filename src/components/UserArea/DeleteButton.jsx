@@ -4,10 +4,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import db from '../Helpers/ApiFetch';
+import Router from 'next/router';
 
 const DeleteButton = ({ propertyId }) => {
   const handleDelete = () => {
-    db.delete(`property/${propertyId}`);
+    db.delete(`property/${propertyId}`)
+    .then(() => Router.push('/property'))
+    .catch()
   };
   return (
     <>
