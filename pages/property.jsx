@@ -40,7 +40,7 @@ const Property = ({ data, error }) => {
   return (
     !error ? (
       <div>
-        <Header />
+        <Header user={state.user} isLogged={state.isLogged} />
         <PropertyView
           isLogged={state.isLogged}
           user={state.user}

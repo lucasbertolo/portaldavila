@@ -1,3 +1,6 @@
+$section-line: 14px;
+$avatar-size: 40px;
+
 .menu {
   position: fixed;
   top: 0;
@@ -60,8 +63,6 @@
   }
 }
 
-$section-line: 14px;
-
 #header {
   position: fixed;
   top: 0;
@@ -69,7 +70,7 @@ $section-line: 14px;
   left: 0;
   width: 100%;
   z-index: 15;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.6);
 
   @media screen and (max-width: $break-medium) {
     font-size: 0.8em;
@@ -82,6 +83,9 @@ $section-line: 14px;
     justify-content: space-between;
     overflow: hidden;
 
+    ul {
+      display: flex;
+    }
     li {
       padding: 10px;
       cursor: pointer;
@@ -91,17 +95,20 @@ $section-line: 14px;
       }
     }
 
-    .header-social ul {
+    .header-social {
+      width: 10%;
       display: flex;
       justify-content: flex-end;
-      height: 100%;
+      ul {
+        height: 100%;
+        width: 100%;
+        .menu-bars {
+          margin-top: $section-line * 2;
+          margin-right: 5px;
 
-      li {
-        margin-top: $section-line * 2;
-        margin-right: 5px;
-
-        @media screen and (max-width: $break-medium) {
-          margin-top: $section-line * 1.7;
+          @media screen and (max-width: $break-medium) {
+            margin-top: $section-line * 1.7;
+          }
         }
       }
     }
@@ -145,3 +152,42 @@ $section-line: 14px;
     }
   }
 }
+
+.header-login-container{
+  margin-top: 15px;
+  position: relative;
+
+#avatar-container {
+  text-align: center;
+}
+
+.smGlobalBtn { 
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    width: $avatar-size;
+    height: $avatar-size;
+    border:2px solid #ddd; /* add border to the buttons */
+    box-shadow: 0 3px 3px #999;
+    padding: 0px;
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.7em;
+    border-radius: 50%;
+
+}
+.avatarBtn{
+    background: #4060A5;
+}
+.avatarBtn:hover{
+    color: #4060A5;
+    background: #fff;
+    border-color: #4060A5; /* change the border color on mouse hover */
+}
+
+  
+}
+

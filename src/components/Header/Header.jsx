@@ -1,20 +1,32 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
-import Link from 'next/link';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import Footer from '../Footer/Footer';
+
+import AvatarDropdown from './AvatarDropdown';
+import Menu from './Menu';
 
 export default class Header extends React.Component {
-//   componentDidMount() {
-//     const { title } = this.props;
-//     const spy = document.getElementById(`${title}`);
-//     spy.style.textDecoration = 'line-through';
-//   }
-
-  shouldComponentUpdate() {
-    return false;
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: props.user || {},
+      isLogged: props.isLogged || false,
+      dropdown: false,
+      achorEl: null,
+    };
   }
+
+
+  openDropdown = (event) => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+ closeDropdown = () => {
+   this.setState({ anchorEl: null });
+ };
+
 
   openMenu = () => {
     const menu = document.getElementById('menu');
@@ -27,39 +39,21 @@ export default class Header extends React.Component {
     }
   };
 
-  closeMenu = () => {
-    const menu = document.getElementById('menu');
-    const header = document.getElementById('header');
-    const submenu = document.getElementById('submenu');
-    menu.style.visibility = 'hidden';
-    header.style.visibility = 'visible';
-    if (submenu) {
-      submenu.style.visibility = 'visible';
-    }
-  };
+  //  handleDropdown = () => {
+  //    const { dropdown } = this.state;
+  //    this.setState({ dropdown: !dropdown });
+  //  }
+
+  // handleUser = () => {
+  //   const { isLogged, user } = this.state;
+
+  //   if (isLogged) {
+
+  //   }
+  // }
 
   render() {
-    // const { title } = this.props;
-    // const listItems = ['sobre', 'Imóveis', 'Tranalhe conosco', 'userarea'];
-
-    const listItems = [
-      {
-        page: 'about',
-        label: 'Sobre',
-      },
-      {
-        page: 'comingsoon',
-        label: 'Trabalhe Conosco',
-      },
-      {
-        page: 'team',
-        label: 'Equipe',
-      },
-      {
-        page: 'property',
-        label: 'Imóveis',
-      },
-    ];
+    const { user, anchorEl } = this.state;
     return (
       <header id="header">
         <nav className="header-wrapper">
@@ -69,7 +63,8 @@ export default class Header extends React.Component {
           </span>
           <span className="header-social">
             <ul>
-              <li>
+
+              <li className="menu-bars">
                 <a
                   className="btn bars"
                   onClick={this.openMenu}
@@ -80,41 +75,28 @@ export default class Header extends React.Component {
                   </i>
                 </a>
               </li>
+              <li>
+                <div className="header-login-container">
+                  <div id="avatar-container">
+                    <span
+                      role="presentation"
+                      className="avatarBtn smGlobalBtn"
+                      onClick={this.openDropdown}
+                    >
+                      {user.username}
+                    </span>
+                  </div>
+                </div>
+              </li>
             </ul>
           </span>
         </nav>
-
-        <div className="menu" id="menu">
-          <div className="menu-wrapper">
-            <Link href="/">
-              <section>
-                <p>Home</p>
-              </section>
-            </Link>
-            {
-                listItems.map((item) => (
-                  <div key={item.page}>
-                    <Link href={`/${item.page}`}>
-                      <section id={item.page}>
-                        <p>{item.label}</p>
-                      </section>
-                    </Link>
-                  </div>
-                ))
-            }
-
-            <span
-              className="close"
-              onClick={this.closeMenu}
-              role="presentation"
-            >
-              &times;
-            </span>
-          </div>
-          <Footer />
-
-        </div>
-
+        <Menu />
+        <AvatarDropdown
+          anchorEl={anchorEl}
+          handleClick={this.openDropdown}
+          handleClose={this.closeDropdown}
+        />
       </header>
     );
   }
