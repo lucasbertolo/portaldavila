@@ -14,7 +14,7 @@ export default class Header extends React.Component {
       user: props.user || {},
       isLogged: props.isLogged || false,
       dropdown: false,
-      achorEl: null,
+      anchorEl: null,
     };
   }
 
@@ -54,6 +54,7 @@ export default class Header extends React.Component {
 
   render() {
     const { user, anchorEl } = this.state;
+    const { logOut } = this.props;
     return (
       <header id="header">
         <nav className="header-wrapper">
@@ -93,6 +94,7 @@ export default class Header extends React.Component {
         </nav>
         <Menu />
         <AvatarDropdown
+          logOut={logOut}
           anchorEl={anchorEl}
           handleClick={this.openDropdown}
           handleClose={this.closeDropdown}

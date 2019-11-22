@@ -5,6 +5,10 @@ const storeToken = (token) => {
   window.sessionStorage.setItem('remax-portal-token', token);
 };
 
+const removeToken = () => {
+  window.sessionStorage.removeItem('remax-portal-token');
+};
+
 const getUserInfo = (id) => db
   .get(`/user/${id}`)
   .then((item) => {
@@ -105,5 +109,5 @@ const registerGuest = (data) => {
 };
 
 export {
-  storeToken, checkToken, loadUser, registerGuest,
+  storeToken, checkToken, loadUser, registerGuest, removeToken,
 };

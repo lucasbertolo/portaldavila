@@ -2,6 +2,7 @@ import React from 'react';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { withStyles } from '@material-ui/core/styles';
+import { removeToken } from '../../util/user';
 
 const StyledMenu = withStyles({
   paper: {
@@ -22,7 +23,11 @@ const StyledMenu = withStyles({
     {...props}
   />
 ));
-export default function AvatarDropdown({ anchorEl, handleClose }) {
+export default function AvatarDropdown({ anchorEl, handleClose, logOut }) {
+  const handleLogout = () => {
+    removeToken();
+    logOut();
+  };
   return (
     <div>
       <StyledMenu
@@ -33,7 +38,7 @@ export default function AvatarDropdown({ anchorEl, handleClose }) {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>Gerenciar meus dados</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </StyledMenu>
     </div>
   );

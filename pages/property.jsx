@@ -17,6 +17,10 @@ const Property = ({ data, error }) => {
     favList: [],
   });
 
+  const logOut = () => {
+    setState({ isLogged: false });
+  };
+
   useEffect(() => {
     try {
       checkToken()
@@ -40,7 +44,11 @@ const Property = ({ data, error }) => {
   return (
     !error ? (
       <div>
-        <Header user={state.user} isLogged={state.isLogged} />
+        <Header
+          user={state.user}
+          logOut={logOut}
+          isLogged={state.isLogged}
+        />
         <PropertyView
           isLogged={state.isLogged}
           user={state.user}
