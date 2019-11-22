@@ -14,7 +14,8 @@ import './CardVisitation.scss';
 
 const CardVisitation = (props) => {
   const {
-    openModalVisit, closeModalVisit, modalVisit, info, user,
+    openModalVisit, closeModalVisit, modalVisit,
+    info, user, propertyId,
   } = props;
 
   const {
@@ -111,7 +112,12 @@ const CardVisitation = (props) => {
         >
           Agendar
         </button>
-        <Visit open={modalVisit} handleClose={closeModalVisit} user={user} />
+        <Visit
+          open={modalVisit}
+          handleClose={closeModalVisit}
+          user={user}
+          propertyId={propertyId}
+        />
       </nav>
       <Documents open={panel} handleClose={handleDocument} />
     </div>

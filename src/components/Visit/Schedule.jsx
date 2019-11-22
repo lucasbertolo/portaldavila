@@ -4,10 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
 import InfoDialog from './InfoDialog';
 
-import { db } from '../Helpers/ApiFetch';
+import db from '../Helpers/ApiFetch';
 
 import './Schedule.scss';
-
 
 export default function Schedule({ data }) {
   const entries = data.sort(
@@ -18,12 +17,19 @@ export default function Schedule({ data }) {
     const lookup = new Set();
 
     return array.filter((item) => {
-      const serialised = new Date(item.date_register).getDate();
+      const date = new Date(item.date_register).getDate();
+      const today = new Date().getDate();
+      const serialised = date;
       if (lookup.has(serialised)) {
         return false;
       }
-      lookup.add(serialised);
-      return true;
+
+      if (date > today) {
+        lookup.add(serialised);
+        return true;
+      }
+
+      return null;
     });
   }
 
@@ -42,7 +48,6 @@ export default function Schedule({ data }) {
     setTarget(Number(e.target.id));
     setOpen(true);
   };
-
 
   const openNegative = (e) => {
     const getInfo = data.filter((x) => x.visit_id === Number(e.target.id));
@@ -84,9 +89,9 @@ export default function Schedule({ data }) {
   };
 
   return (
-    <>
+    <div className="schedule-container">
       <ul className="main">
-        <h3 className="lbl-title">Agendamento de Visitas</h3>
+        <h3 className="lbl-title">Controle de Visitas</h3>
         {filteredDates.map((x) => {
           const date = new Date(x.date_register);
           const month = date.toLocaleString('pt-BR', { month: 'short' });
@@ -107,6 +112,7 @@ export default function Schedule({ data }) {
                       const itemDate = new Date(item.date_register);
                       return itemDate.getDate() === day;
                     })
+                    .sort((a, b) => a.time_register.localeCompare(b.time_register))
                     .map((el) => {
                       const bkClasses = el.status
                         ? 'event-box confirm'
@@ -115,18 +121,20 @@ export default function Schedule({ data }) {
                         <li
                           id={`line${el.visit_id}`}
                           key={el.date_register}
-                          className={el.status !== null ? bkClasses : 'event-box'}
+                          className={
+                            el.status !== null ? bkClasses : 'event-box'
+                          }
                         >
                           <div className="event-info">
                             <span className="event-time">
                               {el.time_register}
                               {' '}
-                                -
+-
                               {' '}
                             </span>
                             <span className="event-name">
                               <span className="lbl-name">
-                              Nome do Solicitante -
+                                Nome do Solicitante -
                               </span>
                               {' '}
                               {el.username}
@@ -134,7 +142,7 @@ export default function Schedule({ data }) {
                             <br />
                             <span className="event-location">
                               <span className="lbl-property">
-                              Código Imóvel -
+                                Código Imóvel -
                                 {' '}
                               </span>
                               {' '}
@@ -142,33 +150,32 @@ export default function Schedule({ data }) {
                             </span>
                           </div>
                           {el.status === null && (
-                          <div className="confirmation-box">
-                            <div className="visit-icon">
-                              <span
-                                name="deny"
-                                id={el.visit_id}
-                                className="hvr-icn"
-                                onClick={openNegative}
-                                role="presentation"
-                              />
-                              <i className="times">
-                                <FontAwesomeIcon icon={faTimes} />
-                              </i>
+                            <div className="confirmation-box">
+                              <div className="visit-icon">
+                                <span
+                                  name="deny"
+                                  id={el.visit_id}
+                                  className="hvr-icn"
+                                  onClick={openNegative}
+                                  role="presentation"
+                                />
+                                <i className="times">
+                                  <FontAwesomeIcon icon={faTimes} />
+                                </i>
+                              </div>
+                              <div className="visit-icon">
+                                <div
+                                  name="confirm"
+                                  id={el.visit_id}
+                                  className="hvr-icn"
+                                  onClick={openConfirmation}
+                                  role="presentation"
+                                />
+                                <i className="check">
+                                  <FontAwesomeIcon icon={faCheck} />
+                                </i>
+                              </div>
                             </div>
-                            <div className="visit-icon">
-                              <div
-                                name="confirm"
-                                id={el.visit_id}
-                                className="hvr-icn"
-                                onClick={openConfirmation}
-                                role="presentation"
-                              />
-                              <i className="check">
-                                <FontAwesomeIcon icon={faCheck} />
-                              </i>
-                            </div>
-                          </div>
-
                           )}
                         </li>
                       );
@@ -186,7 +193,6 @@ export default function Schedule({ data }) {
         user={user}
         status={status}
       />
-    </>
-
+    </div>
   );
 }

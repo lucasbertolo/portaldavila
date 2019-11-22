@@ -100,7 +100,6 @@ export default class HouseWrapper extends React.Component {
     const {
       info, details, features, images, propertyId,
     } = this.props;
-
     return (
       <>
         {isLoading ? (
@@ -126,6 +125,7 @@ export default class HouseWrapper extends React.Component {
                 openModalVisit={this.openModalVisit}
                 closeModalVisit={this.closeModalVisit}
                 user={user}
+                propertyId={propertyId}
               />
               <MainBox
                 details={details}

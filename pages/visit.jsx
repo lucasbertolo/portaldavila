@@ -7,8 +7,8 @@ import { checkToken } from '../src/util/user';
 import Header from '../src/components/Header/Header';
 import SocialFooter from '../src/components/Footer/SocialFooter';
 import enums from '../src/content/enums';
-// import Schedule from '../src/components/Visit/Schedule';
-import GuestView from '../src/components/Visit/GuestView';
+import Schedule from '../src/components/Visit/Schedule';
+// import GuestView from '../src/components/Visit/GuestView';
 // import enums from '../src/content/enums';
 
 export default class Visit extends React.Component {
@@ -27,7 +27,7 @@ export default class Visit extends React.Component {
         }
       }
     }
-    return { data: {} };
+    return { data: [] };
   }
 
   constructor(props) {
@@ -101,8 +101,8 @@ export default class Visit extends React.Component {
     return (
       <div>
         <Header />
-        {/* <Schedule data={data} /> */}
-        <GuestView data={data} />
+        <Schedule data={data} />
+        {/* <GuestView data={data} /> */}
         <SocialFooter />
       </div>
     );

@@ -12,7 +12,9 @@ import ContactBox from '../Contact/ContactBox';
 import DatePicker from './DatePicker';
 import db from '../Helpers/ApiFetch';
 
-export default function Visit({ open, handleClose, user }) {
+export default function Visit({
+  open, handleClose, user, propertyId,
+}) {
   const [index, setIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,7 +29,7 @@ export default function Visit({ open, handleClose, user }) {
   const handleSchedule = async () => {
     setIsLoading(true);
     db.post('/visit', {
-      property_id: 1,
+      property_id: propertyId,
       user_id: user.id || user.userId,
       time_register: time,
       date_register: date,
