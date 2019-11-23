@@ -115,6 +115,8 @@ class MyApp extends App {
           user={user}
           openModalLogin={this.openModalLogin}
           hideHeader={this.hideHeader}
+          handleLogin={this.handleLogin}
+          handleRegister={this.handleRegister}
         />
 
         <ModalLogin
