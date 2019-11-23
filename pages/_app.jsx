@@ -6,6 +6,7 @@ import Router from 'next/router';
 import Header from '../src/components/Header/Header';
 import { checkToken, loadUser, registerGuest } from '../src/util/user';
 
+import ModalLogin from '../src/components/Login/ModalLogin';
 import '../src/assets/scss/main.scss';
 
 
@@ -26,13 +27,14 @@ class MyApp extends App {
       user: {},
       isLogged: false,
       nonVisibleHeader: true,
+      open: false,
     };
   }
 
 
   handleLogin = (user) => loadUser(user)
     .then((data) => {
-      this.setState({ isLogged: true, user: data.user });
+      this.setState({ isLogged: true, user: data.user, open: false });
       return { success: true };
     })
     .catch(() => ({ success: false, msg: 'Usuário e/ou senha inválidos' }));
@@ -40,7 +42,7 @@ class MyApp extends App {
   handleRegister = (user) => registerGuest(user)
     .then((data) => {
       if (!data.existUser) {
-        this.setState({ isLogged: true, user: data.user });
+        this.setState({ isLogged: true, user: data.user, open: false });
         return { success: true };
       }
       return { success: false, msg: 'Usuário já existente' };
@@ -61,6 +63,12 @@ class MyApp extends App {
   hideHeader = () => {
     this.setState({
       nonVisibleHeader: true,
+    });
+  }
+
+  openModalLogin = () => {
+    this.setState({
+      open: true,
     });
   }
 
@@ -87,7 +95,9 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps } = this.props;
-    const { user, isLogged, nonVisibleHeader } = this.state;
+    const {
+      user, isLogged, nonVisibleHeader, open,
+    } = this.state;
 
     return (
       <>
@@ -95,8 +105,7 @@ class MyApp extends App {
           user={user}
           isLogged={isLogged}
           logOut={this.logOut}
-          handleLogin={this.handleLogin}
-          handleRegister={this.handleRegister}
+          openModalLogin={this.openModalLogin}
           nonVisibleHeader={nonVisibleHeader}
         />
 
@@ -104,9 +113,16 @@ class MyApp extends App {
           {...pageProps}
           isLogged={isLogged}
           user={user}
+          openModalLogin={this.openModalLogin}
+          hideHeader={this.hideHeader}
+        />
+
+        <ModalLogin
+          open={open}
+          classes="login-modal"
           handleLogin={this.handleLogin}
           handleRegister={this.handleRegister}
-          hideHeader={this.hideHeader}
+          handleClose={this.closeModalLogin}
         />
       </>
     );

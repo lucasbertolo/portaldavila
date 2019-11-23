@@ -11,7 +11,8 @@ import { Info, Details, Features } from '../src/components/Helpers/Models';
 import ErrorBox from '../src/components/Helpers/ErrorBox';
 
 const PropertyDescription = ({
-  data, images, notFound, propertyId, user, isLogged,
+  data, images, notFound, propertyId,
+  user, isLogged, openModalLogin,
 }) => {
   const dataInfo = new Info(data);
   const dataDetails = new Details(data);
@@ -29,6 +30,7 @@ const PropertyDescription = ({
           details={dataDetails}
           features={dataFeature}
           images={images}
+          openModalLogin={openModalLogin}
           propertyId={Number(propertyId)}
         />
       )}

@@ -7,13 +7,11 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AvatarDropdown from './AvatarDropdown';
 import Menu from './Menu';
 
-import ModalLogin from '../Login/ModalLogin';
 
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      open: false,
       anchorEl: null,
     };
   }
@@ -26,44 +24,6 @@ export default class Header extends React.Component {
     this.setState({ anchorEl: null });
   };
 
-  openModalLogin = () => {
-    this.setState({
-      open: true,
-    });
-  };
-
-  register = (user) => {
-    const { handleRegister } = this.props;
-
-    return handleRegister(user)
-      .then((res) => {
-        if (res.success) {
-          this.setState({
-            open: false,
-          });
-          return res;
-        }
-        return res;
-      })
-      .catch((res) => res);
-  };
-
-  login = (user) => {
-    const { handleLogin } = this.props;
-
-    return handleLogin(user)
-      .then((res) => {
-        if (res.success) {
-          this.setState({
-            open: false,
-          });
-          return res;
-        }
-        return res;
-      })
-      .catch((res) => res);
-  };
-
   signOff = () => {
     const { logOut } = this.props;
     this.setState({
@@ -72,12 +32,6 @@ export default class Header extends React.Component {
 
     logOut();
   }
-
-  closeModalLogin = () => {
-    this.setState({
-      open: false,
-    });
-  };
 
   openMenu = () => {
     const menu = document.getElementById('menu');
@@ -91,9 +45,11 @@ export default class Header extends React.Component {
   };
 
   render() {
-    const { anchorEl, open } = this.state;
-    const { nonVisibleHeader, isLogged, user } = this.props;
-    const letter = user.username ? user.username.charAt(0).toUpperCase() : '';
+    const { anchorEl } = this.state;
+    const {
+      nonVisibleHeader, isLogged, user, openModalLogin,
+    } = this.props;
+    const letter = user && user.username ? user.username.charAt(0).toUpperCase() : '';
 
     return !nonVisibleHeader ? (
       <header id="header">
@@ -130,7 +86,7 @@ export default class Header extends React.Component {
                   ) : (
                     <div
                       className="login"
-                      onClick={this.openModalLogin}
+                      onClick={openModalLogin}
                       role="presentation"
                     >
                       Login
@@ -147,13 +103,6 @@ export default class Header extends React.Component {
           anchorEl={anchorEl}
           handleClick={this.openDropdown}
           handleClose={this.closeDropdown}
-        />
-        <ModalLogin
-          open={open}
-          classes="login-modal"
-          handleLogin={this.login}
-          handleRegister={this.register}
-          handleClose={this.closeModalLogin}
         />
       </header>
     ) : null;

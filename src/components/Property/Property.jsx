@@ -112,7 +112,7 @@ const PropertyView = ({ data, user, favList }) => {
               return (
                 <HouseCard
                   data={item}
-                  key={item.id}
+                  key={item.property_id}
                   user={user}
                   selectList={selectList}
                   isFav={status}

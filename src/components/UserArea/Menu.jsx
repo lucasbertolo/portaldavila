@@ -59,7 +59,15 @@ const Menu = ({ isLogged, user }) => {
       </Link>
 
       {Number(type_id) === enums.userType.guest && (
-        <Link href="/comingsoon">
+        <Link
+          href={{
+            pathname: '/favorites',
+            query: {
+              id,
+            },
+          }}
+          as="/favorites"
+        >
           <div className="items-menu-usr">
             <div className="icon-wrapper-usr">
               <i className="fa-th-large">

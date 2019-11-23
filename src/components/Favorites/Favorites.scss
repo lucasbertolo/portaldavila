@@ -1,0 +1,12 @@
+.favorites-grid{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 100px;
+
+    .cards{
+        width: 80%;
+        margin: auto;
+        display: flex;
+    }
+}

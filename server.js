@@ -13,8 +13,7 @@ app.prepare().then(() => {
 
   server.get('/userarea', (req, res) => {
     const actualPage = '/userarea';
-    const queryParams = { id: req.params.id };
-    app.render(req, res, actualPage, queryParams);
+    app.render(req, res, actualPage);
   });
 
   server.get('/property-description/:id', (req, res) => {
@@ -35,7 +34,14 @@ app.prepare().then(() => {
 
   server.get('/manager/:id', (req, res) => {
     const actualPage = '/manager';
-    app.render(req, res, actualPage);
+    const queryParams = { id: req.params.id };
+    app.render(req, res, actualPage, queryParams);
+  });
+
+  server.get('/favorites/:id', (req, res) => {
+    const actualPage = '/favorites';
+    const queryParams = { id: req.params.id };
+    app.render(req, res, actualPage, queryParams);
   });
 
 

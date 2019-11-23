@@ -42,7 +42,8 @@ export default class HouseWrapper extends React.Component {
     } = this.state;
 
     const {
-      info, details, features, images, propertyId, openModalLogin, isLogged, user,
+      info, details, features, images, propertyId,
+      openModalLogin, isLogged, user,
     } = this.props;
     return (
       <>
