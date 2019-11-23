@@ -3,7 +3,6 @@
 import React from 'react';
 import db from '../src/components/Helpers/ApiFetch';
 
-import Header from '../src/components/Header/Header';
 import SocialFooter from '../src/components/Footer/SocialFooter';
 
 import HouseWrapper from '../src/components/Description/HouseWrapper';
@@ -12,7 +11,7 @@ import { Info, Details, Features } from '../src/components/Helpers/Models';
 import ErrorBox from '../src/components/Helpers/ErrorBox';
 
 const PropertyDescription = ({
-  data, images, notFound, propertyId,
+  data, images, notFound, propertyId, user, isLogged,
 }) => {
   const dataInfo = new Info(data);
   const dataDetails = new Details(data);
@@ -20,11 +19,12 @@ const PropertyDescription = ({
 
   return (
     <div>
-      <Header />
       {notFound ? (
         <ErrorBox />
       ) : (
         <HouseWrapper
+          user={user}
+          isLogged={isLogged}
           info={dataInfo}
           details={dataDetails}
           features={dataFeature}

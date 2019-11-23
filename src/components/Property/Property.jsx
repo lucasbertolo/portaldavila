@@ -71,18 +71,19 @@ const PropertyView = ({ data, user, favList }) => {
     }
   }, [filterList]);
 
-  const checkButton = () => (user.type_id === enums.userType.consultant ? (
-    <nav className="align-bottom-left">
-      <Link href={{ pathname: '/manager', query: { userId: user.id } }}>
-        <button type="button" className="btn-icon add-property">
-          <div className="circle">
-            <span className="icon arrow" />
-          </div>
-          <p className="button-text">Adicionar imóveis</p>
-        </button>
-      </Link>
-    </nav>
-  ) : null);
+  const checkButton = () => (
+    user && user.type_id === enums.userType.consultant ? (
+      <nav className="align-bottom-left">
+        <Link href={{ pathname: '/manager', query: { userId: user.id } }}>
+          <button type="button" className="btn-icon add-property">
+            <div className="circle">
+              <span className="icon arrow" />
+            </div>
+            <p className="button-text">Adicionar imóveis</p>
+          </button>
+        </Link>
+      </nav>
+    ) : null);
 
   const addButton = checkButton();
   const selectList = {
@@ -101,10 +102,13 @@ const PropertyView = ({ data, user, favList }) => {
         {grid.length > 0 ? (
           <section className="cards">
             {grid.map((item) => {
-              const getStatus = favList.filter(
-                (fav) => fav.property_id === item.property_id,
-              );
-              const status = getStatus.length > 0;
+              let status = false;
+              if (favList && favList.length > 0) {
+                const getStatus = favList.filter(
+                  (fav) => fav.property_id === item.property_id,
+                );
+                status = getStatus.length > 0;
+              }
               return (
                 <HouseCard
                   data={item}

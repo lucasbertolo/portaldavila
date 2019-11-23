@@ -1,43 +1,28 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import Router from 'next/router';
 import db from '../src/components/Helpers/ApiFetch';
-import { checkToken } from '../src/util/user';
 
 import ManagerForm from '../src/components/UserArea/ManagerForm';
-import Header from '../src/components/Header/Header';
 
 import enums from '../src/content/enums';
 import Toast from '../src/components/Helpers/Toast';
 import ErrorBox from '../src/components/Helpers/ErrorBox';
 
 
-const ManagerProperty = ({ data, error, userId }) => {
+const ManagerProperty = ({
+  user, isLogged, data, error,
+}) => {
   const [state, setState] = useState({
     msg: '',
     open: false,
     status: 'info',
-    user: {},
-    isLogged: false,
   });
+
   const toastClose = () => {
     setState({ open: false });
   };
-
-
-  useEffect(() => {
-    checkToken()
-      .then((item) => {
-        if (item) {
-          setState({
-            isLogged: item.isLogged,
-            user: item.user,
-          });
-        }
-      })
-      .catch();
-  }, []);
 
   const onSubmit = (obj) => {
     let id;
@@ -51,7 +36,7 @@ const ManagerProperty = ({ data, error, userId }) => {
 
     db[method](url, {
       data: obj,
-      creator_id: userId,
+      creator_id: user.id,
     })
       .then((message) => {
         if (message.status === 200) {
@@ -73,10 +58,9 @@ const ManagerProperty = ({ data, error, userId }) => {
       });
   };
 
-  const validation = state.isLogged && state.user.type_id === enums.userType.consultant;
+  const validation = isLogged && user.type_id === enums.userType.consultant;
   return (
     <>
-      <Header />
       {!error && validation ? (
         <>
           <Toast
@@ -88,8 +72,8 @@ const ManagerProperty = ({ data, error, userId }) => {
           <ManagerForm
             {...data}
             onSubmit={onSubmit}
-            user={state.user}
-            isLogged={state.isLogged}
+            user={user}
+            isLogged={isLogged}
           />
         </>
       ) : (
@@ -102,9 +86,8 @@ const ManagerProperty = ({ data, error, userId }) => {
 ManagerProperty.getInitialProps = async ({ query }) => {
   if (query.id) {
     try {
-      const { userId } = query;
       const res = await db(`/property/${query.id}`);
-      return { data: res.data, userId };
+      return { data: res.data };
     } catch (error) {
       return { error: true };
     }

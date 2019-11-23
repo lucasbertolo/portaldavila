@@ -153,21 +153,21 @@ $avatar-size: 40px;
   }
 }
 
-.header-login-container{
+.header-login-container {
   margin-top: 15px;
   position: relative;
 
-#avatar-container {
-  text-align: center;
-}
+  #avatar-container {
+    text-align: center;
+  }
 
-.smGlobalBtn { 
+  .smGlobalBtn {
     display: inline-block;
     position: relative;
     cursor: pointer;
     width: $avatar-size;
     height: $avatar-size;
-    border:2px solid #ddd; /* add border to the buttons */
+    border: 2px solid #ddd; /* add border to the buttons */
     box-shadow: 0 3px 3px #999;
     padding: 0px;
     text-decoration: none;
@@ -177,17 +177,18 @@ $avatar-size: 40px;
     font-weight: normal;
     line-height: 1.7em;
     border-radius: 50%;
-
-}
-.avatarBtn{
-    background: #4060A5;
-}
-.avatarBtn:hover{
-    color: #4060A5;
+  }
+  .avatarBtn {
+    background: #4060a5;
+  }
+  .avatarBtn:hover {
+    color: #4060a5;
     background: #fff;
-    border-color: #4060A5; /* change the border color on mouse hover */
-}
+    border-color: #4060a5; /* change the border color on mouse hover */
+  }
 
-  
+  .login{
+    margin-top: $section-line * 2;
+    font-weight: bold;
+  }
 }
-
