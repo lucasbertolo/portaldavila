@@ -47,13 +47,14 @@ const GuestVisitCard = (props) => {
 
         <div className={`${statusVisit} back side`}>
           <h3 className="name">
-            Código
+            Código -
+            {' '}
             {code}
           </h3>
           <div className="info">
             <p>
               <span className="property">Data: </span>
-              {date}
+              {new Date(date).toLocaleDateString('pt-BR')}
             </p>
             <p>
               <span className="property">Horário: </span>

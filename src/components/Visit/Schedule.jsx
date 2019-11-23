@@ -7,6 +7,7 @@ import InfoDialog from './InfoDialog';
 import db from '../Helpers/ApiFetch';
 
 import './Schedule.scss';
+import Legend from './Legend';
 
 export default function Schedule({ data }) {
   const entries = data.sort(
@@ -193,6 +194,7 @@ export default function Schedule({ data }) {
         user={user}
         status={status}
       />
+      <Legend classes="visit-legend" />
     </div>
   );
 }

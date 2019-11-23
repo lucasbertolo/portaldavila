@@ -1,0 +1,35 @@
+.visit-legend {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    min-width: 140px;
+
+    div{
+        display: flex;
+        margin: 10px;
+    }
+    span {
+        height: 20px;
+        margin: auto;
+        flex: 1;
+    }
+    p{
+        flex: 5;
+        text-align: center;
+    }
+
+    .undefined{
+        background: #fff;
+    }
+
+    .confirmed{
+        background: #86DEB7;
+    }
+
+    .rejected {
+        background: #FF686B;
+    }  
+}

@@ -79,11 +79,11 @@ h3 {
 }
 
 .events-detail li.denied {
-  background: lightgrey;
+  background: #FF686B;
 }
 
 .events-detail li.confirm {
-  background: lightgreen;
+  background: #86DEB7;
 }
 
 .event-info {
@@ -134,9 +134,11 @@ h3 {
 }
 
 .lbl-name {
-  color: grey;
+  color: rgba(0,0,0,0.7);
+  font-weight: bold;;
 }
 
 .lbl-property {
-  color: lightcoral;
+  color: black;
+  font-weight: bold;
 }
