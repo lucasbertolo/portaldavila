@@ -13,7 +13,6 @@ export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: props.user || {},
       open: false,
       anchorEl: null,
     };
@@ -92,8 +91,10 @@ export default class Header extends React.Component {
   };
 
   render() {
-    const { user, anchorEl, open } = this.state;
-    const { nonVisibleHeader, isLogged } = this.props;
+    const { anchorEl, open } = this.state;
+    const { nonVisibleHeader, isLogged, user } = this.props;
+    const letter = user.username ? user.username.charAt(0).toUpperCase() : '';
+
     return !nonVisibleHeader ? (
       <header id="header">
         <nav className="header-wrapper">
@@ -123,7 +124,7 @@ export default class Header extends React.Component {
                         className="avatarBtn smGlobalBtn"
                         onClick={this.openDropdown}
                       >
-                        {user.username}
+                        {letter}
                       </span>
                     </div>
                   ) : (
