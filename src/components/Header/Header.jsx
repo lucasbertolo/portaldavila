@@ -7,12 +7,14 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import AvatarDropdown from './AvatarDropdown';
 import Menu from './Menu';
 
+import ModalLogin from '../Login/ModalLogin';
+
 export default class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       user: props.user || {},
-      // isLogged: props.isLogged || false,
+      open: false,
       anchorEl: null,
     };
   }
@@ -23,6 +25,46 @@ export default class Header extends React.Component {
 
   closeDropdown = () => {
     this.setState({ anchorEl: null });
+  };
+
+  openModalLogin = () => {
+    this.setState({
+      open: true,
+    });
+  };
+
+  register = (user) => {
+    const { handleRegister } = this.props;
+
+    return handleRegister(user)
+      .then((res) => {
+        if (res.success) {
+          this.setState({ open: false });
+          return res;
+        }
+        return res;
+      })
+      .catch((res) => res);
+  }
+
+  login = (user) => {
+    const { handleLogin } = this.props;
+
+    return handleLogin(user)
+      .then((res) => {
+        if (res.success) {
+          this.setState({ open: false });
+          return res;
+        }
+        return res;
+      })
+      .catch((res) => res);
+  }
+
+  closeModalLogin = () => {
+    this.setState({
+      open: false,
+    });
   };
 
   openMenu = () => {
@@ -37,10 +79,10 @@ export default class Header extends React.Component {
   };
 
   render() {
-    const { user, anchorEl } = this.state;
-    const { isLogged } = this.props;
-
-    const { logOut, nonVisibleHeader } = this.props;
+    const { user, anchorEl, open } = this.state;
+    const {
+      logOut, nonVisibleHeader, isLogged,
+    } = this.props;
     return (
       !nonVisibleHeader ? (
         <header id="header">
@@ -75,9 +117,16 @@ export default class Header extends React.Component {
                             {user.username}
                           </span>
                         </div>
-                      ) : <div className="login">Login</div>
+                      ) : (
+                        <div
+                          className="login"
+                          onClick={this.openModalLogin}
+                          role="presentation"
+                        >
+                        Login
+                        </div>
+                      )
                     }
-
                   </div>
                 </li>
               </ul>
@@ -89,6 +138,13 @@ export default class Header extends React.Component {
             anchorEl={anchorEl}
             handleClick={this.openDropdown}
             handleClose={this.closeDropdown}
+          />
+          <ModalLogin
+            open={open}
+            classes="login-modal"
+            handleLogin={this.login}
+            handleRegister={this.register}
+            handleClose={this.closeModalLogin}
           />
         </header>
       ) : null

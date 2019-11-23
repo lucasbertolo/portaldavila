@@ -30,7 +30,6 @@ const Login = ({ handleLogin, handleRegister, container }) => {
       ) {
         handleRegister(e).then((reg) => {
           if (reg) setRegStatus(reg.msg);
-
           return null;
         });
       } else {
@@ -69,7 +68,6 @@ const Login = ({ handleLogin, handleRegister, container }) => {
           handleChange,
           handleBlur,
           handleSubmit,
-          errors,
         } = formikProps;
 
         const containerStyle = container ? 'login-container' : '';

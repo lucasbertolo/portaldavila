@@ -24,7 +24,6 @@ class MyApp extends App {
     super(props);
     this.state = {
       user: {},
-      nonVisibleHeader: true,
       isLogged: false,
     };
   }
@@ -32,16 +31,17 @@ class MyApp extends App {
   handleLogin = (user) => loadUser(user)
     .then((data) => {
       this.setState({ isLogged: true, user: data.user });
+      return { success: true };
     })
-    .catch(() => ({ msg: 'Usuário e/ou senha inválidos' }));
+    .catch(() => ({ success: false, msg: 'Usuário e/ou senha inválidos' }));
 
   handleRegister = (user) => registerGuest(user)
     .then((data) => {
       if (!data.existUser) {
         this.setState({ isLogged: true, user: data.user });
-        return null;
+        return { success: true };
       }
-      return { msg: 'Usuário já existente' };
+      return { success: false, msg: 'Usuário já existente' };
     })
     .catch(() => ({
       msg: 'Erro ao tentar cadastrar, tente novamente mais tarde',
@@ -57,7 +57,6 @@ class MyApp extends App {
   };
 
   componentDidMount() {
-    const nonVisibleHeader = Router.route === '/';
     try {
       checkToken().then((item) => {
         if (item) {
@@ -71,15 +70,11 @@ class MyApp extends App {
       // eslint-disable-next-line no-console
       console.log(err);
     }
-
-    this.setState({
-      nonVisibleHeader,
-    });
   }
 
   render() {
     const { Component, pageProps } = this.props;
-    const { user, isLogged, nonVisibleHeader } = this.state;
+    const { user, isLogged } = this.state;
 
     return (
       <>
@@ -87,7 +82,8 @@ class MyApp extends App {
           user={user}
           isLogged={isLogged}
           logOut={this.logOut}
-          nonVisibleHeader={nonVisibleHeader}
+          handleLogin={this.handleLogin}
+          handleRegister={this.handleRegister}
         />
 
         <Component
