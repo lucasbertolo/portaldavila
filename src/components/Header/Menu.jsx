@@ -8,16 +8,16 @@ const listItems = [
     label: 'Sobre',
   },
   {
-    page: 'comingsoon',
-    label: 'Trabalhe Conosco',
-  },
-  {
     page: 'team',
     label: 'Equipe',
   },
   {
     page: 'property',
     label: 'Imóveis',
+  },
+  {
+    page: 'userarea',
+    label: 'Área do usuário',
   },
 ];
 

@@ -23,7 +23,7 @@ const PlaceHolderCard = () => (
 
 export function OverlayLoading({ status }) {
   return (
-    <div className="overlay-loader">
+    <div className={status ? 'overlay-loader overlay-active' : 'overlay-hidden'}>
       <div>
         <PropagateLoader
           size={25}
