@@ -23,7 +23,9 @@ const StyledMenu = withStyles({
     {...props}
   />
 ));
-export default function AvatarDropdown({ anchorEl, handleClose, logOut }) {
+export default function AvatarDropdown({
+  anchorEl, handleClose, logOut, openModalUser,
+}) {
   const handleLogout = () => {
     removeToken();
     logOut();
@@ -37,7 +39,7 @@ export default function AvatarDropdown({ anchorEl, handleClose, logOut }) {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Gerenciar meus dados</MenuItem>
+        <MenuItem onClick={openModalUser}>Gerenciar meus dados</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </StyledMenu>
     </div>

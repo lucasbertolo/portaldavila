@@ -47,7 +47,7 @@ export default class Header extends React.Component {
   render() {
     const { anchorEl } = this.state;
     const {
-      nonVisibleHeader, isLogged, user, openModalLogin,
+      nonVisibleHeader, isLogged, user, openModalLogin, openModalUser,
     } = this.props;
     const letter = user && user.username ? user.username.charAt(0).toUpperCase() : '';
 
@@ -101,6 +101,7 @@ export default class Header extends React.Component {
         <AvatarDropdown
           logOut={this.signOff}
           anchorEl={anchorEl}
+          openModalUser={openModalUser}
           handleClick={this.openDropdown}
           handleClose={this.closeDropdown}
         />

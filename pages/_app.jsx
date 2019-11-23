@@ -7,6 +7,7 @@ import Header from '../src/components/Header/Header';
 import { checkToken, loadUser, registerGuest } from '../src/util/user';
 
 import ModalLogin from '../src/components/Login/ModalLogin';
+import ModalUser from '../src/components/Login/ModalUser';
 import '../src/assets/scss/main.scss';
 
 
@@ -28,6 +29,7 @@ class MyApp extends App {
       isLogged: false,
       nonVisibleHeader: true,
       open: false,
+      modalUser: false,
     };
   }
 
@@ -72,6 +74,13 @@ class MyApp extends App {
     });
   }
 
+  openModalUser = () => {
+    console.log('aqui');
+    this.setState({
+      modalUser: true,
+    });
+  }
+
   componentDidMount() {
     const nonVisibleHeader = Router.route === '/';
     try {
@@ -96,7 +105,7 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     const {
-      user, isLogged, nonVisibleHeader, open,
+      user, isLogged, nonVisibleHeader, open, modalUser,
     } = this.state;
 
     return (
@@ -107,6 +116,7 @@ class MyApp extends App {
           logOut={this.logOut}
           openModalLogin={this.openModalLogin}
           nonVisibleHeader={nonVisibleHeader}
+          openModalUser={this.openModalUser}
         />
 
         <Component
@@ -125,6 +135,11 @@ class MyApp extends App {
           handleLogin={this.handleLogin}
           handleRegister={this.handleRegister}
           handleClose={this.closeModalLogin}
+        />
+
+        <ModalUser
+          modalUser={modalUser}
+          user={user}
         />
       </>
     );

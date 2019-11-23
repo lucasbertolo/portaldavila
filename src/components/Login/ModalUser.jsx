@@ -3,17 +3,18 @@ import React from 'react';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 
-import Login from './Login';
+import UserCard from './UserCard';
 
-export default function ModalLogin(props) {
+export default function ModalUser(props) {
   const {
-    open, handleClose, handleLogin, handleRegister,
+    modalUser, handleClose,
   } = props;
+
 
   return (
     <div>
       <Dialog
-        open={open}
+        open={modalUser}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
         PaperProps={{
@@ -24,10 +25,7 @@ export default function ModalLogin(props) {
         }}
       >
         <DialogContent>
-          <Login
-            handleLogin={handleLogin}
-            handleRegister={handleRegister}
-          />
+          <UserCard />
         </DialogContent>
 
       </Dialog>
