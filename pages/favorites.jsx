@@ -45,7 +45,14 @@ const Favorites = (props) => {
       <SocialFooter />
     </div>
   ) : (
-    <ErrorBox />
+    <ErrorBox
+      auth
+      user={user}
+      isLogged={isLogged}
+      logOut={logOut}
+      openModalLogin={openModalLogin}
+      openModalUser={openModalUser}
+    />
   );
 };
 Favorites.getInitialProps = async ({ query }) => {

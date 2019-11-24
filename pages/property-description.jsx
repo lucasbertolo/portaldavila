@@ -30,7 +30,14 @@ const PropertyDescription = ({
     <div>
       {notFound ? (
         <>
-          <ErrorBox />
+          <ErrorBox
+            notFound
+            user={user}
+            isLogged={isLogged}
+            logOut={logOut}
+            openModalLogin={openModalLogin}
+            openModalUser={openModalUser}
+          />
         </>
       ) : (
         <>

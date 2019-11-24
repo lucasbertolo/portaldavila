@@ -91,7 +91,14 @@ const ManagerProperty = (props) => {
           />
         </>
       ) : (
-        <ErrorBox auth />
+        <ErrorBox
+          auth
+          user={user}
+          isLogged={isLogged}
+          logOut={logOut}
+          openModalLogin={openModalLogin}
+          openModalUser={openModalUser}
+        />
       )}
     </>
   );

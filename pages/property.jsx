@@ -50,7 +50,14 @@ const Property = (props) => {
       <SocialFooter />
     </div>
   ) : (
-    <ErrorBox />
+    <ErrorBox
+      internal
+      user={user}
+      isLogged={isLogged}
+      logOut={logOut}
+      openModalLogin={openModalLogin}
+      openModalUser={openModalUser}
+    />
   );
 };
 Property.getInitialProps = async () => {

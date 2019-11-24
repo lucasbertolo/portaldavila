@@ -7,52 +7,57 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
-  const server = express();
-  server.use(compression());
+app
+  .prepare()
+  .then(() => {
+    const server = express();
+    server.use(compression());
 
-  server.get('/userarea', (req, res) => {
-    const actualPage = '/userarea';
-    app.render(req, res, actualPage);
-  });
+    server.get('/userarea', (req, res) => {
+      const actualPage = '/userarea';
+      app.render(req, res, actualPage);
+    });
 
-  server.get('/property-description/:id', (req, res) => {
-    const actualPage = '/property-description';
-    const queryParams = { id: req.params.id };
-    app.render(req, res, actualPage, queryParams);
-  });
+    server.get('/property-description/:id', (req, res) => {
+      const actualPage = '/property-description';
+      const queryParams = { id: req.params.id };
+      app.render(req, res, actualPage, queryParams);
+    });
 
-  server.get('/team', (req, res) => {
-    const actualPage = '/team';
-    app.render(req, res, actualPage);
-  });
+    server.get('/team', (req, res) => {
+      const actualPage = '/team';
+      app.render(req, res, actualPage);
+    });
 
-  server.get('/property', (req, res) => {
-    const actualPage = '/property';
-    app.render(req, res, actualPage);
-  });
+    server.get('/property', (req, res) => {
+      const actualPage = '/property';
+      app.render(req, res, actualPage);
+    });
 
-  server.get('/manager/:id', (req, res) => {
-    const actualPage = '/manager';
-    const queryParams = { id: req.params.id };
-    app.render(req, res, actualPage, queryParams);
-  });
+    server.get('/manager/:id', (req, res) => {
+      const actualPage = '/manager';
+      const queryParams = { id: req.params.id };
+      app.render(req, res, actualPage, queryParams);
+    });
 
-  server.get('/favorites/:id', (req, res) => {
-    const actualPage = '/favorites';
-    const queryParams = { id: req.params.id };
-    app.render(req, res, actualPage, queryParams);
-  });
+    server.get('/favorites/:id', (req, res) => {
+      const actualPage = '/favorites';
+      const queryParams = { id: req.params.id };
+      app.render(req, res, actualPage, queryParams);
+    });
 
+    server.get('/visit/', (req, res) => {
+      const actualPage = '/visit';
+      app.render(req, res, actualPage);
+    });
 
-  server.get('*', (req, res) => handle(req, res));
+    server.get('*', (req, res) => handle(req, res));
 
-
-  server.listen(4000, (err) => {
-    if (err) throw err;
-    console.log('Ready on http://localhost:4000');
-  });
-})
+    server.listen(4000, (err) => {
+      if (err) throw err;
+      console.log('Ready on http://localhost:4000');
+    });
+  })
   .catch((ex) => {
     console.error(ex.stack);
     process.exit(1);

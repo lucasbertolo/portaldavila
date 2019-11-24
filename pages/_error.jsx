@@ -19,13 +19,27 @@ class ErrorPage extends React.Component {
   render() {
     let response;
     const { errorCode, router } = this.props;
+    const {
+      user,
+      isLogged,
+      logOut,
+      openModalLogin,
+      openModalUser,
+    } = this.props;
+
     switch (errorCode) {
       case 200: // Also display a 404 if someone requests /_error explicitly
       case 404:
         response = (
           <div>
             <Head />
-            <ErrorBox />
+            <ErrorBox
+              isLogged={isLogged}
+              user={user}
+              openModalLogin={openModalLogin}
+              logOut={logOut}
+              openModalUser={openModalUser}
+            />
           </div>
         );
         break;
