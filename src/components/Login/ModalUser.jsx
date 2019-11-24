@@ -6,7 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import UserCard from './UserCard';
 
 export default function ModalUser(props) {
-  const { modalUser, closeModalUser, user } = props;
+  const {
+    modalUser, closeModalUser, user, refreshUser,
+  } = props;
 
   return (
     <div>
@@ -22,7 +24,11 @@ export default function ModalUser(props) {
         }}
       >
         <DialogContent>
-          <UserCard user={user} handleClose={closeModalUser} />
+          <UserCard
+            user={user}
+            handleClose={closeModalUser}
+            refreshUser={refreshUser}
+          />
         </DialogContent>
       </Dialog>
     </div>

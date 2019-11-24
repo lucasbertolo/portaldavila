@@ -24,7 +24,7 @@ const UserCard = ({ user, handleClose, refreshUser }) => {
       id: user.id,
     })
       .then(() => {
-        refreshUser();
+        refreshUser(user.id);
         handleClose();
       })
       .catch(() => setMessage('Erro interno, tente novamente mais tarde'));

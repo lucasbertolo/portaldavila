@@ -109,5 +109,5 @@ const registerGuest = (data) => {
 };
 
 export {
-  storeToken, checkToken, loadUser, registerGuest, removeToken,
+  storeToken, checkToken, loadUser, registerGuest, removeToken, getUserInfo,
 };

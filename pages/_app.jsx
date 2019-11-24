@@ -4,7 +4,9 @@ import App from 'next/app';
 import Router from 'next/router';
 
 import Header from '../src/components/Header/Header';
-import { checkToken, loadUser, registerGuest } from '../src/util/user';
+import {
+  checkToken, loadUser, registerGuest, getUserInfo,
+} from '../src/util/user';
 
 import ModalLogin from '../src/components/Login/ModalLogin';
 import ModalUser from '../src/components/Login/ModalUser';
@@ -33,6 +35,11 @@ class MyApp extends App {
     };
   }
 
+  refreshUser = (id) => getUserInfo(id)
+    .then((data) => {
+      this.setState({ isLogged: true, user: data.user });
+      return { success: true };
+    })
 
   handleLogin = (user) => loadUser(user)
     .then((data) => {
@@ -152,6 +159,7 @@ class MyApp extends App {
           modalUser={modalUser}
           user={user}
           closeModalUser={this.closeModalUser}
+          refreshUser={this.refreshUser}
         />
       </>
     );

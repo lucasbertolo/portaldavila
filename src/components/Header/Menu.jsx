@@ -36,16 +36,20 @@ const Menu = () => (
   <div className="menu" id="menu">
     <div className="menu-wrapper">
       <Link href="/">
-        <section>
-          <p>Home</p>
-        </section>
+        <div role="presentation" onClick={closeMenu}>
+          <section>
+            <p>Home</p>
+          </section>
+        </div>
       </Link>
       {listItems.map((item) => (
         <div key={item.page}>
           <Link href={`/${item.page}`}>
-            <section id={item.page}>
-              <p>{item.label}</p>
-            </section>
+            <div role="presentation" onClick={closeMenu}>
+              <section id={item.page}>
+                <p>{item.label}</p>
+              </section>
+            </div>
           </Link>
         </div>
       ))}
