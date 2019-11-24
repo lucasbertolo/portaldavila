@@ -24,6 +24,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DatePicker(props) {
   const today = new Date();
+  const tomorrow = new Date(today);
+  tomorrow.setDate(tomorrow.getDate() + 1);
   const {
     time, date, handleTimeChange, handleDateChange,
   } = props;
@@ -36,7 +38,7 @@ export default function DatePicker(props) {
           disableToolbar
           variant="inline"
           format="dd/MM/yyyy"
-          minDate={today}
+          minDate={tomorrow}
           id="selectedDate"
           label="Escolha o dia"
           value={date}

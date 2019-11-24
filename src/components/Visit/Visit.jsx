@@ -17,8 +17,13 @@ export default function Visit({
 }) {
   const [index, setIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(' Ocorreu um erro no agendamento. Pedimos desculpa pelo incoveniente.');
 
-  const [date, setDate] = useState(new Date());
+  const today = new Date();
+  const initialDate = new Date(today);
+  initialDate.setDate(initialDate.getDate() + 1);
+
+  const [date, setDate] = useState(initialDate);
   const [time, setTime] = useState('09:30');
 
   const handleDateChange = (e) => setDate(e);
@@ -38,7 +43,10 @@ export default function Visit({
         setIsLoading(false);
         handleNext();
       })
-      .catch(() => {
+      .catch((err) => {
+        if (err.response.status === 500) {
+          setErrorMessage('Já existe uma visita cadastrada para este usuário neste imóvel');
+        }
         setIsLoading(false);
         setIndex(3);
       });
@@ -78,7 +86,7 @@ export default function Visit({
       label: 'Erro',
       component: (
         <div>
-          Ocorreu um erro no agendamento. Pedimos desculpa pelo incoveniente.
+          {errorMessage}
         </div>
       ),
       button: 'OK',
