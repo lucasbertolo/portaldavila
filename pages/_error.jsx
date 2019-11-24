@@ -6,22 +6,13 @@ import Head from 'next/head';
 // import Link from 'next/link';
 // import { Container } from 'reactstrap';
 import { withRouter } from 'next/router';
-import PropTypes from 'prop-types';
 import ErrorBox from '../src/components/Helpers/ErrorBox';
 import '../src/assets/scss/main.scss';
 
-
 class ErrorPage extends React.Component {
-  static propTypes() {
-    return {
-      errorCode: PropTypes.number.isRequired,
-      url: PropTypes.string.isRequired,
-    };
-  }
-
   static getInitialProps({ res, xhr }) {
     // eslint-disable-next-line no-nested-ternary
-    const errorCode = res ? res.statusCode : (xhr ? xhr.status : null);
+    const errorCode = res ? res.statusCode : xhr ? xhr.status : null;
     return { errorCode };
   }
 
@@ -54,23 +45,23 @@ class ErrorPage extends React.Component {
             <h1 className="display-4">
 HTTP
               {' '}
-              { errorCode }
+              {errorCode}
               {' '}
 Error
             </h1>
             <p>
-                An
+              An
               {' '}
               <strong>
 HTTP
                 {' '}
-                { errorCode }
+                {errorCode}
               </strong>
               {' '}
-error occurred while
-                trying to access
+error occurred while trying
+              to access
               {' '}
-              <strong>{ router.pathname }</strong>
+              <strong>{router.pathname}</strong>
             </p>
           </div>
         );

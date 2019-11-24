@@ -5,6 +5,7 @@ import db from '../src/components/Helpers/ApiFetch';
 import SocialFooter from '../src/components/Footer/SocialFooter';
 import Schedule from '../src/components/Visit/Schedule';
 import GuestView from '../src/components/Visit/GuestView';
+import Header from '../src/components/Header/Header';
 
 import enums from '../src/content/enums';
 
@@ -80,10 +81,24 @@ export default class Visit extends React.Component {
 
   render() {
     const { data } = this.state;
-    const { user } = this.props;
+
+    const {
+      user,
+      isLogged,
+      logOut,
+      openModalLogin,
+      openModalUser,
+    } = this.props;
 
     return (
       <div>
+        <Header
+          user={user}
+          isLogged={isLogged}
+          logOut={logOut}
+          openModalLogin={openModalLogin}
+          openModalUser={openModalUser}
+        />
         {user && user.type_id === enums.userType.consultant ? (
           <Schedule data={data} />
         ) : null}

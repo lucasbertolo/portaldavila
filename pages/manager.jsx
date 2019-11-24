@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 import Router from 'next/router';
 import db from '../src/components/Helpers/ApiFetch';
+import Header from '../src/components/Header/Header';
 
 import ManagerForm from '../src/components/UserArea/ManagerForm';
 
@@ -10,10 +11,16 @@ import enums from '../src/content/enums';
 import Toast from '../src/components/Helpers/Toast';
 import ErrorBox from '../src/components/Helpers/ErrorBox';
 
-
-const ManagerProperty = ({
-  user, isLogged, data, error,
-}) => {
+const ManagerProperty = (props) => {
+  const {
+    data,
+    error,
+    user,
+    isLogged,
+    logOut,
+    openModalLogin,
+    openModalUser,
+  } = props;
   const [state, setState] = useState({
     msg: '',
     open: false,
@@ -63,6 +70,13 @@ const ManagerProperty = ({
     <>
       {!error && validation ? (
         <>
+          <Header
+            user={user}
+            isLogged={isLogged}
+            logOut={logOut}
+            openModalLogin={openModalLogin}
+            openModalUser={openModalUser}
+          />
           <Toast
             open={state.open}
             handleClose={toastClose}

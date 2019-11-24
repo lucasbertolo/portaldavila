@@ -3,7 +3,6 @@ import React from 'react';
 import App from 'next/app';
 import Router from 'next/router';
 
-import Header from '../src/components/Header/Header';
 import {
   checkToken, loadUser, registerGuest, getUserInfo,
 } from '../src/util/user';
@@ -69,12 +68,6 @@ class MyApp extends App {
     Router.push('/');
   };
 
-  hideHeader = () => {
-    this.setState({
-      nonVisibleHeader: true,
-    });
-  }
-
   openModalLogin = () => {
     this.setState({
       open: true,
@@ -123,27 +116,19 @@ class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
     const {
-      user, isLogged, nonVisibleHeader, open, modalUser,
+      user, isLogged, open, modalUser,
     } = this.state;
 
     return (
       <>
-        <Header
-          user={user}
-          isLogged={isLogged}
-          logOut={this.logOut}
-          openModalLogin={this.openModalLogin}
-          nonVisibleHeader={nonVisibleHeader}
-          openModalUser={this.openModalUser}
-        />
-
         <Component
           {...pageProps}
           isLogged={isLogged}
           user={user}
           openModalLogin={this.openModalLogin}
-          hideHeader={this.hideHeader}
           handleLogin={this.handleLogin}
+          logOut={this.logOut}
+          openModalUser={this.openModalUser}
           handleRegister={this.handleRegister}
         />
 
