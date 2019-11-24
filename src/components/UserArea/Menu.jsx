@@ -2,9 +2,9 @@ import React from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faHorse,
   faCalendarCheck,
   faStar,
+  faWarehouse,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'next/link';
@@ -24,7 +24,7 @@ const Menu = ({ isLogged, user }) => {
           <div className="items-menu-usr">
             <div className="icon-wrapper-usr">
               <i className="fa-file-text-o">
-                <FontAwesomeIcon icon={faHorse} />
+                <FontAwesomeIcon icon={faWarehouse} />
               </i>
             </div>
             <div className="project-name">
