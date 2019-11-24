@@ -19,7 +19,9 @@ const Login = ({ handleLogin, handleRegister, container }) => {
   };
 
   const handleLogon = async (e) => {
-    const { registerUsername, registerEmail, registerPassword } = e;
+    const {
+      registerUsername, registerEmail, registerPhone, registerPassword,
+    } = e;
     const { loginUsername, loginPassword } = e;
 
     if (register) {
@@ -27,6 +29,7 @@ const Login = ({ handleLogin, handleRegister, container }) => {
         registerUsername !== ''
         && registerEmail !== ''
         && registerPassword !== ''
+        && registerPhone !== ''
       ) {
         handleRegister(e).then((reg) => {
           if (reg) setRegStatus(reg.msg);
@@ -108,6 +111,17 @@ const Login = ({ handleLogin, handleRegister, container }) => {
                     // error={!!errors.registerEmail}
                     className="input"
                     placeholder="Email"
+                  />
+                  <ErrorMessage component="span" name="registerEmail" />
+                  <Field
+                    type="email"
+                    name="registerPhone"
+                    value={values.registerPhone}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    // error={!!errors.registerEmail}
+                    className="input"
+                    placeholder="Telefone"
                   />
                   <ErrorMessage component="span" name="registerEmail" />
                   <Field

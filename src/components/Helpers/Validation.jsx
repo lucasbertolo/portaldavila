@@ -75,7 +75,6 @@ const ValidationFeatures = Yup.object().shape({
 const ValidationLogin = Yup.object().shape({
   loginEmail: Yup.string().email('Campo deve ser um email'),
   registerEmail: Yup.string().email('Campo deve ser um email'),
-  registerPhone: Yup.number('Digite apenas os numeros, sem pontos'),
   registerPassword: Yup.string().min(
     8,
     'Senha é muito curta, deve ter mais de 8 digitos',

@@ -78,7 +78,9 @@ const loadUser = (data) => {
 };
 
 const registerGuest = (data) => {
-  const { registerUsername, registerEmail, registerPassword } = data;
+  const {
+    registerUsername, registerEmail, registerPassword, registerPhone,
+  } = data;
   let isLogged = false;
   let user = {};
 
@@ -87,7 +89,7 @@ const registerGuest = (data) => {
       username: registerUsername,
       email: registerEmail,
       password: registerPassword,
-      phone: '3333-2222',
+      phone: registerPhone,
       type_id: enums.userType.guest,
     })
     .then((res) => {
@@ -109,5 +111,6 @@ const registerGuest = (data) => {
 };
 
 export {
-  storeToken, checkToken, loadUser, registerGuest, removeToken, getUserInfo,
+  storeToken, checkToken, loadUser,
+  registerGuest, removeToken, getUserInfo,
 };
