@@ -1,4 +1,4 @@
-// @import "../../assets/scss/libs/vars";
+@import "../libs/vars";
 
 .footer {
   margin-top: 15px;
@@ -9,7 +9,6 @@
   width: 100%;
   padding: 5px;
   margin-left: 20px;
-
   color: $color6;
 
   a {

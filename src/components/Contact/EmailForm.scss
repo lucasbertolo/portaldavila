@@ -1,0 +1,27 @@
+@import "../../assets/scss/libs/vars";
+
+.email-form {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  background: $modal-bk;
+  color: $modal-color;
+
+  div {
+    color: $white;
+    margin: 10px 5px;
+  }
+
+  .save {
+    display: flex;
+    justify-content: flex-end;
+
+    .contact-submit {
+        border: none;
+      &:hover {
+        color: $modal-color;
+        background: $modal-bk-hover;
+      }
+    }
+  }
+}

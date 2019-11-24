@@ -81,6 +81,13 @@ const ValidationLogin = Yup.object().shape({
   ),
 });
 
+
+const ValidationEmail = Yup.object().shape({
+  email: Yup.string().email('Campo deve ser um email'),
+  name: Yup.string().required('Campo deve ser preenchido'),
+  message: Yup.string().required('Campo deve ser preenchido'),
+});
+
 // const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
 
 const ValidationUser = Yup.object().shape({
@@ -215,4 +222,5 @@ export {
   ValidationFilter,
   ValidationGrid,
   ValidationUser,
+  ValidationEmail,
 };

@@ -2,16 +2,16 @@
 
 .visit-modal {
   .visit-content {
-    background: $lightlypurple;
+    background: $modal-bk;
     display: flex;
     justify-content: center;
     padding: 50px;
-    color: $bluegreen ;
+    color: $modal-color ;
   }
   .visit-title,
   .visit-action {
-    color: $bluegreen;
-    background: $lightlypurple;
+    color: $modal-color;
+    background: $modal-bk;
     h2 {
       font-family: $serif ;
     }
@@ -30,10 +30,10 @@
   }
 
   button {
-    color: $bluegreen;
+    color: $modal-color;
 
     &:hover {
-      background: $lightlypurple;
+      background: $modal-bk-hover;
     }
   }
 }

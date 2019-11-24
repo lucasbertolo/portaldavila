@@ -1,8 +1,34 @@
 import React, { useState } from 'react';
 
-import { Formik, Field, ErrorMessage } from 'formik';
-// import { ValidationLogin } from '../Helpers/Validation';
+import { withStyles } from '@material-ui/core/styles';
+import { Formik, ErrorMessage } from 'formik';
 import TextField from '@material-ui/core/TextField';
+import { ValidationEmail } from '../Helpers/Validation';
+import db from '../Helpers/ApiFetch';
+
+import './EmailForm.scss';
+
+const CssTextField = withStyles({
+  root: {
+    '& label.Mui-focused': {
+      color: '#fff',
+    },
+    '& .MuiInput-underline:after': {
+      borderBottomColor: '#fff',
+    },
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'rgba(255,255,255,0.7)',
+      },
+      '&:hover fieldset': {
+        borderColor: '#66fcf1',
+      },
+      '&.Mui-focused fieldset': {
+        borderColor: '#66fcf1',
+      },
+    },
+  },
+})(TextField);
 
 const EmailForm = () => {
   const [sendStatus, setSendStatus] = useState('');
@@ -14,47 +40,50 @@ const EmailForm = () => {
     message: '',
   };
 
+  const onSubmit = (values) => {
+    const {
+      name, phone, email, message,
+    } = values;
+    db.post('/contact', {
+      name,
+      phone,
+      email,
+      message,
+    })
+      .then(() => setSendStatus('Enviado com sucesso'))
+      .catch(() => setSendStatus('Erro no envio, tente novamente mais tarde'));
+  };
+
   return (
     <Formik
       initialValues={initialValues}
-      //   validationSchema={ValidationLogin}
+      validationSchema={ValidationEmail}
       onSubmit={(values, { setSubmitting }) => {
+        onSubmit(values);
         setSubmitting(false);
       }}
     >
       {(formikProps) => {
         const {
-          values, handleChange, handleBlur, handleSubmit,
+          values, handleChange, handleBlur, handleSubmit, errors,
         } = formikProps;
 
         return (
-          <form noValidate onSubmit={handleSubmit}>
+          <form noValidate onSubmit={handleSubmit} className="email-form">
+            <h2>Envie sua mensagem</h2>
             <div>
-              <TextField
+              <CssTextField
                 type="text"
                 name="name"
                 value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="input"
-                required
-                placeholder="Nome"
+                label="Nome"
+                error={!!errors.name}
               />
-              <ErrorMessage component="span" name="name" />
 
-              <TextField
-                type="email"
-                name="email"
-                value={values.email}
-                onChange={handleChange}
-                onBlur={handleBlur}
-                // error={!!errors.registerEmail}
-                className="input"
-                required
-                placeholder="Email"
-              />
-              <ErrorMessage component="span" name="email" />
-              <TextField
+              <CssTextField
                 type="text"
                 name="phone"
                 value={values.phone}
@@ -62,25 +91,55 @@ const EmailForm = () => {
                 onBlur={handleBlur}
                 // error={!!errors.registerEmail}
                 className="input"
-                placeholder="Celular"
-                required
+                label="Celular"
               />
-              <ErrorMessage component="span" name="phone" />
-              <Field
+              <div>
+                <ErrorMessage component="span" name="phone" />
+                <ErrorMessage component="span" name="name" />
+              </div>
+            </div>
+            <div>
+              <CssTextField
+                fullWidth
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                // error={!!errors.registerEmail}
+                className="input"
+                label="Email"
+                error={!!errors.email}
+              />
+              <div>
+                <ErrorMessage component="span" name="email" />
+              </div>
+            </div>
+            <div>
+              <CssTextField
                 type="text"
                 name="message"
+                fullWidth
+                multiline
+                rows={2}
+                rowsMax={4}
                 value={values.message}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 className="input"
-                // error={!!errors.registerPassword}
-                placeholder="Mensagem"
-                required
+                label="Mensagem"
+                error={!!errors.message}
               />
-              <ErrorMessage component="span" name="message" />
-              <button type="submit" className="submit-btn">
+              <div>
+                <ErrorMessage component="span" name="message" />
+              </div>
+            </div>
+            <div className="save">
+              <button type="submit" className="contact-submit btn-laydown">
                 Enviar
               </button>
+            </div>
+            <div>
               <p>{sendStatus}</p>
             </div>
           </form>

@@ -1,3 +1,5 @@
+@import '../libs/vars';
+
 $section-line: 14px;
 $avatar-size: 40px;
 
@@ -167,7 +169,7 @@ $avatar-size: 40px;
     cursor: pointer;
     width: $avatar-size;
     height: $avatar-size;
-    border: 2px solid #ddd; /* add border to the buttons */
+    border: 2px solid #ddd; 
     box-shadow: 0 3px 3px #999;
     padding: 0px;
     text-decoration: none;
