@@ -95,7 +95,7 @@ const CardVisitation = (props) => {
                 className="clickable-icon"
                 role="presentation"
               />
-              <WrapperTooltip title="Documentos necessários" position="top">
+              <WrapperTooltip title="Documentos necessários para locação" position="top">
                 <i>
                   <DocumentIcon />
                 </i>

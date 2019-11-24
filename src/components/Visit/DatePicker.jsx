@@ -36,7 +36,6 @@ export default function DatePicker(props) {
           disableToolbar
           variant="inline"
           format="dd/MM/yyyy"
-          margin="normal"
           minDate={today}
           id="selectedDate"
           label="Escolha o dia"

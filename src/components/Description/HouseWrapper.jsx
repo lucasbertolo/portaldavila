@@ -24,9 +24,9 @@ export default class HouseWrapper extends React.Component {
 
 
   openModalVisit = () => {
-    const { isLogged } = this.state;
+    const { openModalLogin, isLogged } = this.props;
     if (!isLogged) {
-      this.openModalLogin();
+      openModalLogin();
     } else {
       this.setState({ modalVisit: true });
     }
