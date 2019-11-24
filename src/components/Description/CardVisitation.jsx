@@ -70,12 +70,15 @@ const CardVisitation = (props) => {
 
   const kind = state.typeList[type_id];
   const neigh = state.neighborhoodList[neighborhood_id];
+  const purpose = purpose_id === enums.purposeOfProperty.renting
+    ? 'Locação'
+    : 'Venda';
   return (
     <div className="card-visit sm-shadow">
       <header className="header">
         <span className="card-title">
-          <span>Venda</span>
-          <span>R${price},00</span>
+          <span>{purpose}</span>
+          <span>R${price}</span>
         </span>
         <span className="card-subtitle">
           <span>{neigh} - Piracicaba/SP</span>
