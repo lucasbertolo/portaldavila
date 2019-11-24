@@ -4,8 +4,9 @@ import { Formik, ErrorMessage } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import TextField from '@material-ui/core/TextField';
-import db from '../Helpers/ApiFetch';
 
+import enums from '../../content/enums';
+import db from '../Helpers/ApiFetch';
 import { ValidationUser } from '../Helpers/Validation';
 
 import './UserCard.scss';
@@ -15,6 +16,21 @@ const UserCard = ({ user, handleClose, refreshUser }) => {
   const [message, setMessage] = useState('');
   const handleButton = () => setVisibility(!visible);
 
+  const defineUser = () => {
+    if (user && user.type_id) {
+      switch (user.type_id) {
+        case enums.userType.admin:
+          return 'Administrador';
+        case enums.userType.consultant:
+          return 'Consultor';
+        case enums.userType.guest:
+          return 'Visitante';
+        default:
+          return 'Visitante';
+      }
+    }
+    return 'visitante';
+  };
   const handleUpdate = (values) => {
     const { email, phone } = values;
 
@@ -29,6 +45,8 @@ const UserCard = ({ user, handleClose, refreshUser }) => {
       })
       .catch(() => setMessage('Erro interno, tente novamente mais tarde'));
   };
+
+  const type = defineUser();
 
   return (
     <Formik
@@ -51,6 +69,13 @@ const UserCard = ({ user, handleClose, refreshUser }) => {
           <form noValidate onSubmit={handleSubmit}>
             <div className="user-card">
               <div className="name">{user.username}</div>
+              <div style={{ display: 'flex' }}>
+                <h2> Tipo de Usuário: </h2>
+                <p>
+                &nbsp;&nbsp;
+                  {type}
+                </p>
+              </div>
               <div>
                 <TextField
                   label="Telefone"
