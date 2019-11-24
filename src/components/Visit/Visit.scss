@@ -1,0 +1,39 @@
+@import "../../assets/scss/libs/vars";
+
+.visit-modal {
+  .visit-content {
+    background: $lightlypurple;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+    color: $bluegreen ;
+  }
+  .visit-title,
+  .visit-action {
+    color: $bluegreen;
+    background: $lightlypurple;
+    h2 {
+      font-family: $serif ;
+    }
+  }
+
+  label,
+  input,
+  svg {
+    color: $white;
+  }
+
+  div {
+    &::before {
+      border-bottom: 1px solid $white;
+    }
+  }
+
+  button {
+    color: $bluegreen;
+
+    &:hover {
+      background: $lightlypurple;
+    }
+  }
+}

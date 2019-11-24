@@ -12,6 +12,8 @@ import ContactBox from '../Contact/ContactBox';
 import DatePicker from './DatePicker';
 import db from '../Helpers/ApiFetch';
 
+import './Visit.scss';
+
 export default function Visit({
   open, handleClose, user, propertyId,
 }) {
@@ -105,9 +107,15 @@ export default function Visit({
         open={open}
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
+        className="visit-modal"
       >
-        <DialogTitle id="form-dialog-title">{label}</DialogTitle>
-        <DialogContent>
+        <DialogTitle
+          id="form-dialog-title"
+          className="visit-title"
+        >
+          {label}
+        </DialogTitle>
+        <DialogContent className="visit-content">
           {isLoading ? (
             <div
               style={{
@@ -123,13 +131,13 @@ export default function Visit({
             <div>{component}</div>
           )}
         </DialogContent>
-        <DialogActions>
+        <DialogActions className="visit-action">
           {index === 0 && (
-          <Button onClick={handleClose} color="primary">
+          <Button onClick={handleClose}>
               Cancelar
           </Button>
           )}
-          <Button onClick={action} color="primary">
+          <Button onClick={action}>
             {button}
           </Button>
         </DialogActions>

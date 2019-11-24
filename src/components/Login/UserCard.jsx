@@ -4,11 +4,11 @@ import { Formik, ErrorMessage } from 'formik';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import TextField from '@material-ui/core/TextField';
+import db from '../Helpers/ApiFetch';
 
 import { ValidationUser } from '../Helpers/Validation';
 
 import './UserCard.scss';
-import db from '../Helpers/ApiFetch';
 
 const UserCard = ({ user, handleClose, refreshUser }) => {
   const [visible, setVisibility] = useState(false);
