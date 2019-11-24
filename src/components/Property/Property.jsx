@@ -74,7 +74,7 @@ const PropertyView = ({ data, user, favList }) => {
   const checkButton = () => (
     user && user.type_id === enums.userType.consultant ? (
       <nav className="align-bottom-left">
-        <Link href={{ pathname: '/manager', query: { userId: user.id } }}>
+        <Link href={{ pathname: '/manager' }}>
           <button type="button" className="btn-icon add-property">
             <div className="circle">
               <span className="icon arrow" />

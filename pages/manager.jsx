@@ -5,7 +5,7 @@ import Router from 'next/router';
 import db from '../src/components/Helpers/ApiFetch';
 import Header from '../src/components/Header/Header';
 
-import ManagerForm from '../src/components/UserArea/ManagerForm';
+import ManagerForm from '../src/components/Manager/ManagerForm';
 
 import enums from '../src/content/enums';
 import Toast from '../src/components/Helpers/Toast';
