@@ -1,22 +1,9 @@
 .user-card {
-  height: 500px;
   width: 500px;
-  padding: 20px;
-
-  table {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 600px;
-
-    transition: all 0.2s ease;
-
-    transform: translateX(-50%) translateY(-50%);
-
-    background: #fff;
-
-    padding: 20px;
-  }
+  padding: 30px;
+  margin: 20px;
+  position: relative;
+  background:rgba(255,255,255,0.9);
 
   .name {
     font-size: 30px;
@@ -27,60 +14,33 @@
     font-size: 300%;
   }
 
-  .label {
-    width: 70px;
-    font-weight: bold;
-  }
-
-  .label,
-  .phone,
-  .mobile,
-  .email {
-    display: inline-block;
-  }
-
-  .details-td {
-    border-right: 1px solid #eee;
-    white-space: nowrap;
-
-    padding: 20px;
-    padding-right: 30px;
-  }
-
-  .description-td {
-    position: relative;
-    width: 100%;
-    padding: 20px;
-    padding-left: 30px;
-    padding-right: 30px;
-    text-align: justify;
-    margin-top: 15px;
-  }
-  .description {
-    outline: 0px solid transparent;
-    border: 0px solid transparent;
-  }
   .edit {
     position: absolute;
-    top: 0px;
-    right: 0;
-
+    top: 20px;
+    right: 20px;
     width: 13px;
     height: 13px;
-
     cursor: pointer;
   }
-  .update {
-    display: none;
-    position: absolute;
-    right: 20px;
-    bottom: 0;
-    background: #c2e59c;
-    border: 0;
-    padding: 5px;
-    width: 80px;
-    color: #333;
-    outline: 0px solid transparent;
-    border: 0px solid transparent;
+
+  .save-box{
+    display: flex;
+    justify-content: flex-end;
+    .save-user {
+        background: #c2e59c;
+        border: 0;
+        padding: 5px;
+        width: 80px;
+        color: #333;
+        outline: 0px solid transparent;
+        border: 0px solid transparent;
+        cursor: pointer;
+        &:hover{
+            background: #305706;
+            color: white;
+
+        }
+      }
   }
+  
 }

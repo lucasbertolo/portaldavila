@@ -75,9 +75,20 @@ class MyApp extends App {
   }
 
   openModalUser = () => {
-    console.log('aqui');
     this.setState({
       modalUser: true,
+    });
+  }
+
+  closeModalUser = () => {
+    this.setState({
+      modalUser: false,
+    });
+  }
+
+  closeModalLogin = () => {
+    this.setState({
+      open: false,
     });
   }
 
@@ -140,6 +151,7 @@ class MyApp extends App {
         <ModalUser
           modalUser={modalUser}
           user={user}
+          closeModalUser={this.closeModalUser}
         />
       </>
     );

@@ -6,16 +6,13 @@ import DialogContent from '@material-ui/core/DialogContent';
 import UserCard from './UserCard';
 
 export default function ModalUser(props) {
-  const {
-    modalUser, handleClose,
-  } = props;
-
+  const { modalUser, closeModalUser, user } = props;
 
   return (
     <div>
       <Dialog
         open={modalUser}
-        onClose={handleClose}
+        onClose={closeModalUser}
         aria-labelledby="form-dialog-title"
         PaperProps={{
           style: {
@@ -25,9 +22,8 @@ export default function ModalUser(props) {
         }}
       >
         <DialogContent>
-          <UserCard />
+          <UserCard user={user} handleClose={closeModalUser} />
         </DialogContent>
-
       </Dialog>
     </div>
   );
