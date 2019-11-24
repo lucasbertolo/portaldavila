@@ -64,13 +64,21 @@ export default function SocialShare({
         status="error"
         msg="Não foi possivel completar a ação, tente novamente mais tarde"
       />
-      <div className="social-box">
-        <WrapperTooltip title="Adicionar aos favoritos" position="bottom">
-          <span>
-            <FavIcon isFav={isFav} handleClick={handleClick} />
-          </span>
-        </WrapperTooltip>
+      <div className="sub-slider">
+        <div className="social-box">
+          <WrapperTooltip title="Adicionar aos favoritos" position="bottom">
+            <span>
+              <FavIcon isFav={isFav} handleClick={handleClick} />
+            </span>
+          </WrapperTooltip>
+        </div>
+        <h1>
+        Código -
+          {' '}
+          {propertyId}
+        </h1>
       </div>
+
     </>
   );
 }
