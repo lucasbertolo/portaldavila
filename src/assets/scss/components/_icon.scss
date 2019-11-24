@@ -53,6 +53,11 @@ $width-icon-sm: 24px;
 
 .fav-icon {
   margin-top: 3px;
+
+  &:hover{
+    transform: scale(1.5);
+    transition: 1s all ease-in-out;
+  }
 }
 
 .selected-fav {

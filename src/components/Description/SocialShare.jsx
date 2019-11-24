@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import db from '../Helpers/ApiFetch';
 
-import { FavIcon } from '../Common/Icons';
-import './SocialShare.scss';
+import db from '../Helpers/ApiFetch';
 import enums from '../../content/enums';
+
+import WrapperTooltip from '../Common/WrapperTooltip';
+import { FavIcon } from '../Common/Icons';
+
+import './SocialShare.scss';
+
 
 export default function SocialShare({
   user, isLogged, openModalLogin, propertyId,
@@ -33,17 +37,13 @@ export default function SocialShare({
   const handleClick = async () => {
     if (isLogged) {
       try {
-        if (user.type_id === enums.userType.guest) {
-          const res = await db.post('/favorite', {
-            user_id: user.id,
-            property_id: propertyId,
-            status: !isFav,
-          });
-          if (res) {
-            setFav(!isFav);
-          }
-        } else {
-          console.log('Essa ação só é permitidada para visitantes');
+        const res = await db.post('/favorite', {
+          user_id: user.id,
+          property_id: propertyId,
+          status: !isFav,
+        });
+        if (res) {
+          setFav(!isFav);
         }
       } catch {
         console.log('Nao foi possivel completar a ação');
@@ -54,7 +54,11 @@ export default function SocialShare({
   };
   return (
     <div className="social-box">
-      <FavIcon isFav={isFav} handleClick={handleClick} />
+      <WrapperTooltip title="Adicionar aos favoritos" position="bottom">
+        <span>
+          <FavIcon isFav={isFav} handleClick={handleClick} />
+        </span>
+      </WrapperTooltip>
     </div>
   );
 }

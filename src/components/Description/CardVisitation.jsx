@@ -15,7 +15,7 @@ import './CardVisitation.scss';
 const CardVisitation = (props) => {
   const {
     openModalVisit, closeModalVisit, modalVisit,
-    info, user, propertyId,
+    info, user, propertyId, manager,
   } = props;
 
   const {
@@ -73,6 +73,7 @@ const CardVisitation = (props) => {
   const purpose = purpose_id === enums.purposeOfProperty.renting
     ? 'Locação'
     : 'Venda';
+
   return (
     <div className="card-visit sm-shadow">
       <header className="header">
@@ -112,6 +113,7 @@ const CardVisitation = (props) => {
           className="btn-1 btn-laydown"
           type="button"
           onClick={openModalVisit}
+          disabled={manager}
         >
           Agendar
         </button>

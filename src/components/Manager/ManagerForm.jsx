@@ -252,6 +252,7 @@ export default class ManagerForm extends React.Component {
               details={details}
               features={features}
               images={images}
+              manager
             />
           </Suspense>
         ),

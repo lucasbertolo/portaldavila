@@ -104,6 +104,14 @@
   padding: 1em 20px;
   position: relative;
   text-transform: uppercase;
+  cursor: pointer;
+  
+  &[disabled] {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: rgba(0, 0, 0, 0.6);
+  }
+
 }
 
 .btn-laydown::before,

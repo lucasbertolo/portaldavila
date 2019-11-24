@@ -43,7 +43,7 @@ export default class HouseWrapper extends React.Component {
 
     const {
       info, details, features, images, propertyId,
-      openModalLogin, isLogged, user,
+      openModalLogin, isLogged, user, manager,
     } = this.props;
     return (
       <>
@@ -55,12 +55,15 @@ export default class HouseWrapper extends React.Component {
           <>
             <SliderImages images={images} />
 
+            {!manager && (
             <SocialShare
               openModalLogin={openModalLogin}
               user={user}
               isLogged={isLogged}
               propertyId={propertyId}
+              manager={manager}
             />
+            )}
 
             <div className="hs-wrapper">
               <CardVisitation
@@ -72,6 +75,7 @@ export default class HouseWrapper extends React.Component {
                 closeModalVisit={this.closeModalVisit}
                 user={user}
                 propertyId={propertyId}
+                manager={manager}
               />
               <MainBox
                 details={details}
