@@ -8,12 +8,14 @@ import axios from 'axios';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
-
-import config from '../../content/config';
 import db from '../Helpers/ApiFetch';
-import { OverlayLoading } from '../Helpers/Loading';
 
 import DisplayImage from './DisplayImage';
+
+import { OverlayLoading } from '../Helpers/Loading';
+import config from '../../content/config';
+import Toast from '../Helpers/Toast';
+
 
 class PropertyPhotos extends Component {
   constructor(props) {
@@ -21,6 +23,9 @@ class PropertyPhotos extends Component {
     this.state = {
       photos: props.data || [],
       isLoading: false,
+      toast: false,
+      msg: '',
+      status: 'info',
     };
   }
 
@@ -48,7 +53,19 @@ class PropertyPhotos extends Component {
 
     if (result) {
       if (Number(e.target.id)) {
-        db.delete(`/property/photos/${e.target.id}`);
+        db.delete(`/property/photos/${e.target.id}`)
+          .then(() => this.setState({
+            msg: 'Excluída com sucesso',
+            toast: true,
+            status: 'success',
+          }))
+          .catch(() => {
+            this.setState({
+              msg: 'Erro ao excluir',
+              toast: true,
+              status: 'error',
+            });
+          });
       }
 
       const newList = photos.filter((item) => {
@@ -102,11 +119,19 @@ class PropertyPhotos extends Component {
       const name = fileParts[0];
       const type = fileParts[1];
 
-      if (maxSize > 5 || photos.length > 5) {
+      if (maxSize > 5 || photos.length > 4) {
         if (maxSize > 5) {
-          console.log(maxSize);
+          this.setState({
+            msg: 'Tamanho máximo permitido é de 5mb',
+            toast: true,
+            status: 'error',
+          });
         } else {
-          console.log('Limite de fotos atingido');
+          this.setState({
+            msg: 'Só é permitido adicionar 5 fotos por imóvel',
+            toast: true,
+            status: 'error',
+          });
         }
       } else {
         db.post('/sign_s3', {
@@ -136,22 +161,37 @@ class PropertyPhotos extends Component {
                   isLoading: false,
                 });
               })
-              .catch((error) => {
-                this.setState({ isLoading: false });
-                console.log(error);
+              .catch(() => {
+                this.setState({
+                  isLoading: false,
+                  toast: true,
+                  msg: 'Erro ao adicionar foto',
+                  status: 'error',
+                });
               });
           })
-          .catch((error) => {
-          // eslint-disable-next-line no-console
-            console.log(error);
+          .catch(() => {
+            this.setState({
+              isLoading: false,
+              toast: true,
+              msg: 'Erro ao adicionar foto',
+              status: 'error',
+            });
           });
       }
     }
   }
 
+  closeToast = () => {
+    this.setState({
+      toast: false,
+    });
+  }
 
   render() {
-    const { photos, isLoading } = this.state;
+    const {
+      photos, isLoading, toast, msg, status,
+    } = this.state;
     const { bindSubmitForm } = this.props;
 
     bindSubmitForm(this.onSubmit);
@@ -159,6 +199,12 @@ class PropertyPhotos extends Component {
     return (
       <>
         { isLoading && <OverlayLoading />}
+        <Toast
+          open={toast}
+          handleClose={this.closeToast}
+          status={status}
+          msg={msg}
+        />
         <DisplayImage
           photos={photos}
           handleChange={this.handleChange}
