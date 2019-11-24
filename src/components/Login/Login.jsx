@@ -123,7 +123,6 @@ const Login = ({ handleLogin, handleRegister, container }) => {
                     className="input"
                     placeholder="Telefone"
                   />
-                  <ErrorMessage component="span" name="registerEmail" />
                   <Field
                     type="password"
                     name="registerPassword"

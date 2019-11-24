@@ -124,7 +124,9 @@ const PropertyView = ({
             })}
           </section>
         ) : (
-          <div>Nenhum imóvel encontrado :/</div>
+          <div className="no-content">
+            <h3>Não há itens para serem exibidos</h3>
+          </div>
         )}
       </main>
       {addButton}

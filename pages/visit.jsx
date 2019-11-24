@@ -110,12 +110,21 @@ export default class Visit extends React.Component {
               openModalLogin={openModalLogin}
               openModalUser={openModalUser}
             />
-            {user && user.type_id === enums.userType.consultant ? (
-              <Schedule data={data} />
-            ) : null}
-            {user && user.type_id === enums.userType.guest ? (
-              <GuestView data={data} />
-            ) : null}
+            {data.length > 0 ? (
+              <div>
+                {user && user.type_id === enums.userType.consultant ? (
+                  <Schedule data={data} />
+                ) : null}
+                {user && user.type_id === enums.userType.guest ? (
+                  <GuestView data={data} />
+                ) : null}
+              </div>
+
+            ) : (
+              <div className="no-content">
+                <h3>Não há itens para serem exibidos</h3>
+              </div>
+            )}
 
             <SocialFooter />
           </>
