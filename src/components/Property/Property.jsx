@@ -13,7 +13,9 @@ import db from '../Helpers/ApiFetch';
 
 import './Property.scss';
 
-const PropertyView = ({ data, user, favList }) => {
+const PropertyView = ({
+  data, user, favList, manager,
+}) => {
   const [state, setState] = useState({
     neighborhoodList: [],
     typeList: [],
@@ -72,7 +74,7 @@ const PropertyView = ({ data, user, favList }) => {
   }, [filterList]);
 
   const checkButton = () => (
-    user && user.type_id === enums.userType.consultant ? (
+    user && user.type_id === enums.userType.consultant && manager ? (
       <nav className="align-bottom-left">
         <Link href={{ pathname: '/manager' }}>
           <button type="button" className="btn-icon add-property">
@@ -116,6 +118,7 @@ const PropertyView = ({ data, user, favList }) => {
                   user={user}
                   selectList={selectList}
                   isFav={status}
+                  manager={manager}
                 />
               );
             })}

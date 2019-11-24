@@ -5,7 +5,7 @@ import db from '../Helpers/ApiFetch';
 
 import './DeleteButton.scss';
 
-const DeleteButton = ({ propertyId }) => {
+const DeleteButton = ({ propertyId, edit }) => {
   const handleDelete = () => {
     // eslint-disable-next-line no-restricted-globals
     const result = confirm('Want to delete?');
@@ -23,16 +23,16 @@ const DeleteButton = ({ propertyId }) => {
           onClick={handleDelete}
           type="button"
           className="button-delete button--delete"
+          disabled={!edit}
         >
           <span role="img" aria-label="save-img">
             🗑️
           </span>
-              Deletar
+          Deletar
         </button>
       </div>
     </>
   );
 };
-
 
 export default DeleteButton;

@@ -1,24 +1,21 @@
 /* eslint-disable no-restricted-globals */
-import React from 'react';
+import React from "react";
 
-import { LazyLoadComponent } from 'react-lazy-load-image-component';
+import { LazyLoadComponent } from "react-lazy-load-image-component";
 
-import Link from 'next/link';
+import Link from "next/link";
 
-import CardInfo from './CardInfo';
-import CardImage from './CardImage';
-import CardHeader from './CardHeader';
-import CardIcons from './CardIcons';
+import CardInfo from "./CardInfo";
+import CardImage from "./CardImage";
+import CardHeader from "./CardHeader";
+import CardIcons from "./CardIcons";
 
+import enums from "../../content/enums";
+import PlaceHolderCard from "../Helpers/Loading";
 
-import enums from '../../content/enums';
-import PlaceHolderCard from '../Helpers/Loading';
+import "./HouseCard.scss";
 
-import './HouseCard.scss';
-
-const HouseCard = React.memo(({
-  data, user, selectList, isFav,
-}) => {
+const HouseCard = React.memo(({ data, user, selectList, isFav, manager }) => {
   const {
     cdn,
     url,
@@ -30,34 +27,34 @@ const HouseCard = React.memo(({
     dormitory,
     area,
     bathroom,
-    property_id,
+    property_id
   } = data;
 
   const defineRoute = () => {
-    let route = '';
-    if (user && user.type_id === enums.userType.consultant) {
-      route = '/manager';
+    let route = "";
+    if (user && user.type_id === enums.userType.consultant && manager) {
+      route = "/manager";
     } else {
-      route = '/property-description';
+      route = "/property-description";
     }
 
     return route;
   };
 
-  const path = defineRoute();
+  const link = defineRoute();
 
   return (
     <Link
       href={{
-        pathname: path,
-        query: { id: property_id },
+        pathname: link,
+        query: {
+          id: property_id
+        }
       }}
     >
       <article className="card">
         <CardHeader code={property_id} isFav={isFav} />
-        <LazyLoadComponent
-          placeholder={<PlaceHolderCard />}
-        >
+        <LazyLoadComponent placeholder={<PlaceHolderCard />}>
           <CardImage url={cdn || url} />
         </LazyLoadComponent>
         <CardInfo

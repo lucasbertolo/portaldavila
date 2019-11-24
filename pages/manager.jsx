@@ -20,6 +20,7 @@ const ManagerProperty = (props) => {
     logOut,
     openModalLogin,
     openModalUser,
+    edit,
   } = props;
   const [state, setState] = useState({
     msg: '',
@@ -85,6 +86,7 @@ const ManagerProperty = (props) => {
           />
           <ManagerForm
             {...data}
+            edit={edit}
             onSubmit={onSubmit}
             user={user}
             isLogged={isLogged}
@@ -108,7 +110,7 @@ ManagerProperty.getInitialProps = async ({ query }) => {
   if (query.id) {
     try {
       const res = await db(`/property/${query.id}`);
-      return { data: res.data };
+      return { data: res.data, edit: true };
     } catch (error) {
       return { error: true };
     }

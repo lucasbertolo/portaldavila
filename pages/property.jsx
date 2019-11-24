@@ -18,6 +18,7 @@ const Property = (props) => {
     logOut,
     openModalLogin,
     openModalUser,
+    manager,
   } = props;
 
   const [favList, setFavList] = useState([]);
@@ -46,6 +47,7 @@ const Property = (props) => {
         user={user}
         data={data}
         favList={favList}
+        manager={manager}
       />
       <SocialFooter />
     </div>
@@ -60,10 +62,12 @@ const Property = (props) => {
     />
   );
 };
-Property.getInitialProps = async () => {
+Property.getInitialProps = async ({ query }) => {
+  const manager = query && query.manager;
+
   try {
     const res = await db('/property');
-    return { data: res.data };
+    return { data: res.data, manager };
   } catch (error) {
     return { error: true };
   }

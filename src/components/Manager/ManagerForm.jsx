@@ -320,7 +320,7 @@ export default class ManagerForm extends React.Component {
     const {
       compIndex, buttons, toastOpen, toastMsg, saveState,
     } = this.state;
-    const { property_id } = this.props;
+    const { property_id, edit } = this.props;
     const steps = this.getSteps();
     const progressBar = this.renderSteps();
 
@@ -358,7 +358,7 @@ export default class ManagerForm extends React.Component {
               Salvar
             </button>
           </div>
-          <DeleteButton propertyId={property_id} />
+          <DeleteButton propertyId={property_id} edit={edit} />
           <Toast
             open={toastOpen}
             handleClose={this.toastClose}
