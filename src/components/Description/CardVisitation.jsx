@@ -38,7 +38,7 @@ const CardVisitation = (props) => {
       try {
         const resultBlock = await db.get('/neighborhood');
         const options = resultBlock.data.map((item) => item.name);
-
+        options.unshift('');
         setState((prevState) => ({
           ...prevState,
           neighborhoodList: options,
@@ -53,6 +53,7 @@ const CardVisitation = (props) => {
       try {
         const resultType = await db.get('/typeofproperty');
         const options = resultType.data.map((item) => item.type);
+        options.unshift('');
 
         setState((prevState) => ({
           ...prevState,
