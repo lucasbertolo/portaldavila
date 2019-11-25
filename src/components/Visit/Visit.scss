@@ -6,34 +6,12 @@
     display: flex;
     justify-content: center;
     padding: 50px;
-    color: $modal-color ;
   }
   .visit-title,
   .visit-action {
-    color: $modal-color;
     background: $modal-bk;
     h2 {
       font-family: $serif ;
-    }
-  }
-
-  label,
-  input,
-  svg {
-    color: $white;
-  }
-
-  div {
-    &::before {
-      border-bottom: 1px solid $white;
-    }
-  }
-
-  button {
-    color: $modal-color;
-
-    &:hover {
-      background: $modal-bk-hover;
     }
   }
 }
