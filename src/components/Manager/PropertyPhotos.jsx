@@ -111,8 +111,6 @@ class PropertyPhotos extends Component {
     const file = this.uploadInput.files[0];
 
     if (file) {
-      showLoading();
-
       const maxSize = file.size / 1024 / 1024;
       const { photos } = this.state;
       const fileParts = this.uploadInput.files[0].name.split('.');
@@ -134,6 +132,8 @@ class PropertyPhotos extends Component {
           });
         }
       } else {
+        showLoading();
+
         db.post('/sign_s3', {
           fileName: name,
           fileType: type,
