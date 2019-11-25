@@ -55,7 +55,7 @@ const Social = ({ noInfo, bkColor }) => {
           </a>
           <a
             className="btn instagram"
-            href="https://google.com/"
+            href="https://www.instagram.com/remaxportalimoveis/"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Instagram"
@@ -66,7 +66,7 @@ const Social = ({ noInfo, bkColor }) => {
           </a>
           <a
             className="btn facebook"
-            href="https://google.com"
+            href="https://www.facebook.com/remaxportalimoveis/"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Facebook"

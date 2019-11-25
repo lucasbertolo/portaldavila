@@ -4,7 +4,9 @@ import AdditionalIcons from './AdditionalIcons';
 import './AdditionalBox.scss';
 
 const AdditionalBox = ({ info, details }) => {
-  const { building_loan, exchange } = info;
+  const {
+    building_loan, exchange, building_area, area,
+  } = info;
   // const brand = true;
   const { gourmet_space, suite } = details;
   return (
@@ -43,6 +45,26 @@ const AdditionalBox = ({ info, details }) => {
           {' '}
           <p>Possui área personalizada gourmet</p>
         </>
+        )}
+
+        {area > 0 && (
+        <p style={{ marginTop: '5px' }}>
+            Área:
+          {' '}
+          {area}
+          m
+          <sup>2</sup>
+        </p>
+        )}
+
+        {building_area > 0 && (
+          <p style={{ marginTop: '5px' }}>
+            Área construída:
+            {' '}
+            { building_area}
+            m
+            <sup>2</sup>
+          </p>
         )}
       </div>
 

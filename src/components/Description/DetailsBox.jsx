@@ -15,6 +15,7 @@ const DetailsBox = ({ data }) => {
     dormitory, bathroom, garage, washbasin, living_room,
     office, dining_room, laundry, kitchen,
   } = data;
+
   return (
     <div className="box-details">
       <div className="box-column">
