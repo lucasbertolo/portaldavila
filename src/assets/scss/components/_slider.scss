@@ -1,23 +1,25 @@
 .container-slider {
     width: 100%;
-    height: 500px;
+    height: 450px;
+    max-height: 450px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(40vh, 100%));
     grid-auto-flow: column;
     margin: 100px 0 15px 0;
-  
+    overflow: hidden;
     .cover-photo,
     .slider-photos {
       height: 100%;
+      max-height: 450px;
       display: grid;
       overflow: hidden;
       grid-auto-flow: column;
       grid-template-columns: repeat(auto-fit, minmax(49%, 100%));
       grid-template-rows: repeat(auto-fit, minmax(49%, 100%));
       img{
-        height: 100%;
+        height: 450px;
+        max-height: 450px;
         width: 100%;
-        max-height: 100%;
         max-width: 100%;
       }
     }
@@ -26,10 +28,12 @@
       display: grid;
       grid-auto-flow: dense;
       height: 100%;
+      max-height: 100%;
       border: 1px solid black;
       grid-template-columns: repeat(auto-fit, minmax(250px, 100%));
       figure {
         height: 100%;
+        max-height: 100%;
         width: 100%;
         max-height: 100%;
         max-width: 100%;
