@@ -197,6 +197,9 @@ export default class ManagerForm extends React.Component {
       images, info, features, details,
     } = this.state;
 
+    const {
+      hideLoading, showLoading,
+    } = this.props;
     const HouseWrapper = React.lazy(() => import('../Description/HouseWrapper'));
     const steps = [
       {
@@ -240,6 +243,8 @@ export default class ManagerForm extends React.Component {
             data={images}
             bindSubmitForm={this.bindSubmitForm}
             bindErrors={this.bindErrors}
+            showLoading={showLoading}
+            hideLoading={hideLoading}
           />
         ),
       },

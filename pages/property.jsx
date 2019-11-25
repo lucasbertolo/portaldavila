@@ -64,7 +64,6 @@ const Property = (props) => {
 };
 Property.getInitialProps = async ({ query }) => {
   const manager = query && query.manager;
-
   try {
     const res = await db('/property');
     return { data: res.data, manager };

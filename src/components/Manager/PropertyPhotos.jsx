@@ -12,7 +12,6 @@ import db from '../Helpers/ApiFetch';
 
 import DisplayImage from './DisplayImage';
 
-import { OverlayLoading } from '../Helpers/Loading';
 import config from '../../content/config';
 import Toast from '../Helpers/Toast';
 
@@ -22,7 +21,6 @@ class PropertyPhotos extends Component {
     super(props);
     this.state = {
       photos: props.data || [],
-      isLoading: false,
       toast: false,
       msg: '',
       status: 'info',
@@ -109,10 +107,12 @@ class PropertyPhotos extends Component {
   handleUpload = (ev) => {
     ev.preventDefault();
 
+    const { showLoading, hideLoading } = this.props;
     const file = this.uploadInput.files[0];
 
-    this.setState({ isLoading: true });
     if (file) {
+      showLoading();
+
       const maxSize = file.size / 1024 / 1024;
       const { photos } = this.state;
       const fileParts = this.uploadInput.files[0].name.split('.');
@@ -158,25 +158,26 @@ class PropertyPhotos extends Component {
                   url,
                   photos,
                   success: true,
-                  isLoading: false,
                 });
+                hideLoading();
               })
               .catch(() => {
                 this.setState({
-                  isLoading: false,
                   toast: true,
                   msg: 'Erro ao adicionar foto',
                   status: 'error',
                 });
+                hideLoading();
               });
           })
           .catch(() => {
             this.setState({
-              isLoading: false,
               toast: true,
               msg: 'Erro ao adicionar foto',
               status: 'error',
             });
+
+            hideLoading();
           });
       }
     }
@@ -190,7 +191,7 @@ class PropertyPhotos extends Component {
 
   render() {
     const {
-      photos, isLoading, toast, msg, status,
+      photos, toast, msg, status,
     } = this.state;
     const { bindSubmitForm } = this.props;
 
@@ -198,7 +199,6 @@ class PropertyPhotos extends Component {
 
     return (
       <>
-        { isLoading && <OverlayLoading />}
         <Toast
           open={toast}
           handleClose={this.closeToast}

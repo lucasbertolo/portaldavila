@@ -4,13 +4,16 @@ import App from 'next/app';
 import Router from 'next/router';
 
 import {
-  checkToken, loadUser, registerUser, getUserInfo,
+  checkToken,
+  loadUser,
+  registerUser,
+  getUserInfo,
 } from '../src/util/user';
 
+import { OverlayLoading } from '../src/components/Helpers/Loading';
 import ModalLogin from '../src/components/Login/ModalLogin';
 import ModalUser from '../src/components/Login/ModalUser';
 import '../src/assets/scss/main.scss';
-
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -31,33 +34,53 @@ class MyApp extends App {
       nonVisibleHeader: true,
       open: false,
       modalUser: false,
+      loading: false,
     };
   }
 
-  refreshUser = (id) => getUserInfo(id)
-    .then((data) => {
-      this.setState({ isLogged: true, user: data.user });
-      return { success: true };
-    })
+  refreshUser = (id) => getUserInfo(id).then((data) => {
+    this.setState({ isLogged: true, user: data.user });
+    return { success: true };
+  });
 
-  handleLogin = (user) => loadUser(user)
-    .then((data) => {
-      this.setState({ isLogged: true, user: data.user, open: false });
-      return { success: true };
-    })
-    .catch(() => ({ success: false, msg: 'Usuário e/ou senha inválidos' }));
+  showLoading = () => this.setState({ loading: true });
 
-  handleRegister = (user, type_id) => registerUser(user, type_id)
-    .then((data) => {
-      if (!data.existUser) {
+  hideLoading = () => this.setState({ loading: false });
+
+  handleLogin = (user) => {
+    this.showLoading();
+    return loadUser(user)
+      .then((data) => {
         this.setState({ isLogged: true, user: data.user, open: false });
+        this.hideLoading();
         return { success: true };
-      }
-      return { success: false, msg: 'Usuário já existente' };
-    })
-    .catch(() => ({
-      msg: 'Erro ao tentar cadastrar, tente novamente mais tarde',
-    }));
+      })
+      .catch(() => {
+        this.hideLoading();
+        return { success: false, msg: 'Usuário e/ou senha inválidos' };
+      });
+  };
+
+  handleRegister = (user, type_id) => {
+    this.showLoading();
+
+    return registerUser(user, type_id)
+      .then((data) => {
+        if (!data.existUser) {
+          this.setState({ isLogged: true, user: data.user, open: false });
+          this.hideLoading();
+          return { success: true };
+        }
+        this.hideLoading();
+        return { success: false, msg: 'Usuário já existente' };
+      })
+      .catch(() => {
+        this.hideLoading();
+        return {
+          msg: 'Erro ao tentar cadastrar, tente novamente mais tarde',
+        };
+      });
+  };
 
   logOut = () => {
     this.setState({
@@ -72,51 +95,51 @@ class MyApp extends App {
     this.setState({
       open: true,
     });
-  }
+  };
 
   openModalUser = () => {
     this.setState({
       modalUser: true,
     });
-  }
+  };
 
   closeModalUser = () => {
     this.setState({
       modalUser: false,
     });
-  }
+  };
 
   closeModalLogin = () => {
     this.setState({
       open: false,
     });
-  }
+  };
 
   componentDidMount() {
-    const nonVisibleHeader = Router.route === '/';
     try {
+      this.showLoading();
+
       checkToken().then((item) => {
         if (item) {
+          this.hideLoading();
           this.setState({
             isLogged: true,
             user: item.user,
           });
         }
+        this.hideLoading();
       });
     } catch (err) {
       // eslint-disable-next-line no-console
+      this.hideLoading();
       console.log(err);
     }
-
-    this.setState({
-      nonVisibleHeader,
-    });
   }
 
   render() {
     const { Component, pageProps } = this.props;
     const {
-      user, isLogged, open, modalUser,
+      user, isLogged, open, modalUser, loading,
     } = this.state;
 
     return (
@@ -130,6 +153,8 @@ class MyApp extends App {
           logOut={this.logOut}
           openModalUser={this.openModalUser}
           handleRegister={this.handleRegister}
+          showLoading={this.showLoading}
+          hideLoading={this.hideLoading}
         />
 
         <ModalLogin
@@ -146,6 +171,8 @@ class MyApp extends App {
           closeModalUser={this.closeModalUser}
           refreshUser={this.refreshUser}
         />
+
+        <OverlayLoading status={loading} />
       </>
     );
   }

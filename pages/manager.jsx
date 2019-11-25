@@ -21,6 +21,8 @@ const ManagerProperty = (props) => {
     openModalLogin,
     openModalUser,
     edit,
+    showLoading,
+    hideLoading,
   } = props;
   const [state, setState] = useState({
     msg: '',
@@ -90,6 +92,8 @@ const ManagerProperty = (props) => {
             onSubmit={onSubmit}
             user={user}
             isLogged={isLogged}
+            showLoading={showLoading}
+            hideLoading={hideLoading}
           />
         </>
       ) : (
