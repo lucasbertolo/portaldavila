@@ -4,7 +4,7 @@ import App from 'next/app';
 import Router from 'next/router';
 
 import {
-  checkToken, loadUser, registerGuest, getUserInfo,
+  checkToken, loadUser, registerUser, getUserInfo,
 } from '../src/util/user';
 
 import ModalLogin from '../src/components/Login/ModalLogin';
@@ -47,7 +47,7 @@ class MyApp extends App {
     })
     .catch(() => ({ success: false, msg: 'Usuário e/ou senha inválidos' }));
 
-  handleRegister = (user) => registerGuest(user)
+  handleRegister = (user, type_id) => registerUser(user, type_id)
     .then((data) => {
       if (!data.existUser) {
         this.setState({ isLogged: true, user: data.user, open: false });

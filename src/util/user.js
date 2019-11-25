@@ -77,7 +77,7 @@ const loadUser = (data) => {
     .catch(() => Promise.reject(Error({ msg: 'Usuário e/ou senha inválidos' })));
 };
 
-const registerGuest = (data) => {
+const registerUser = (data, type_id) => {
   const {
     registerUsername, registerEmail, registerPassword, registerPhone,
   } = data;
@@ -90,7 +90,7 @@ const registerGuest = (data) => {
       email: registerEmail,
       password: registerPassword,
       phone: registerPhone,
-      type_id: enums.userType.guest,
+      type_id: type_id || enums.userType.guest,
     })
     .then((res) => {
       if (res.data.existUser) {
@@ -112,5 +112,5 @@ const registerGuest = (data) => {
 
 export {
   storeToken, checkToken, loadUser,
-  registerGuest, removeToken, getUserInfo,
+  registerUser, removeToken, getUserInfo,
 };

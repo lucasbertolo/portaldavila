@@ -5,6 +5,7 @@ import {
   faCalendarCheck,
   faStar,
   faWarehouse,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons';
 
 import Link from 'next/link';
@@ -32,6 +33,23 @@ const Menu = ({ isLogged, user }) => {
             </div>
           </div>
         </Link>
+      )}
+
+      {Number(type_id) === enums.userType.admin && (
+      <Link
+        href={{ pathname: '/registeruser' }}
+      >
+        <div className="items-menu-usr">
+          <div className="icon-wrapper-usr">
+            <i className="fa-file-text-o">
+              <FontAwesomeIcon icon={faPlus} />
+            </i>
+          </div>
+          <div className="project-name">
+            <p>Cadastro de consultores</p>
+          </div>
+        </div>
+      </Link>
       )}
 
       <Link
