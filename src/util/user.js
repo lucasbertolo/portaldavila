@@ -91,7 +91,7 @@ const registerUser = (data, type_id) => {
       password: registerPassword,
       phone: registerPhone,
       type_id: type_id || enums.userType.guest,
-      // type_id: enums.userType.admin
+      // type_id: enums.userType.admin,
     })
     .then((res) => {
       if (res.data.existUser) {
