@@ -8,6 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Slide from '@material-ui/core/Slide';
 
+import './InfoDialog.scss';
 import enums from '../../content/enums';
 
 const Transition = React.forwardRef((props, ref) => (
@@ -33,7 +34,7 @@ export default function InfoDialog({
       case enums.contactOption.email:
         return 'Email';
       case enums.contactOption.phone:
-        return 'phone';
+        return 'Telefone';
       default:
         return '';
     }
@@ -56,21 +57,20 @@ export default function InfoDialog({
           Confirmação de visita
         </DialogTitle>
         <DialogContent>
-          <div>
-            <h3>Nome do solicitante: {username} </h3>
+          <div className="confirmation-visit-box">
+            <h3><span className="label"> Nome do solicitante: </span>  &nbsp; &nbsp;{username} </h3>
             <h3>
-              Telefone:
-              {phone}{' '}
+              <span className="label">Telefone:</span> &nbsp; &nbsp;  {phone}
             </h3>
-            <h3>Email: {email} </h3>
+            <h3><span className="label">Email:</span> &nbsp; &nbsp; {email} </h3>
             <p>
-              Agendamento de visita para o dia {date} no imóvel{' '}
-              <b>Código {property_id}</b>
+              Agendamento de visita para o dia {date} no imóvel
+              <b> de código {property_id}</b>.
             </p>
-            <p>Foi solicitado uma resposta via {type}.</p>
+            <p>Foi solicitado uma resposta via <i>{type}</i>.</p>
             {
                 status
-                  ? <p>Deseja confirmar o agendamento?</p>
+                  ? <p className="res">Deseja confirmar o agendamento?</p>
                   : <p> Deseja cancelar o agendamento? </p>
             }
 
@@ -78,10 +78,10 @@ export default function InfoDialog({
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
-            Cancelar
+            Não
           </Button>
           <Button onClick={action} color="primary">
-            Confirmar
+            Sim
           </Button>
         </DialogActions>
       </Dialog>

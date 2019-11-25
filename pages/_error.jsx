@@ -34,6 +34,7 @@ class ErrorPage extends React.Component {
           <div>
             <Head />
             <ErrorBox
+              notFound
               isLogged={isLogged}
               user={user}
               openModalLogin={openModalLogin}

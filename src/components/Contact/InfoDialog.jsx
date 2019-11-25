@@ -5,10 +5,11 @@ import Dialog from '@material-ui/core/Dialog';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
 
+import './InfoDialog.scss';
 
 const DialogContent = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(4),
   },
 }))(MuiDialogContent);
 
@@ -29,11 +30,14 @@ export default function InfoDialog({ handleClose, open }) {
       >
 
         <DialogContent dividers>
-          <div className="location-info">
-            <h3>Piracicaba - SP</h3>
-            <h5>Av. Manoel Conceição, 100</h5>
-            <p>019 - 3388-0000</p>
-            <p>remaxportal@remaxportal.com</p>
+          <div className="info-dialog">
+            <h3>Av. Manoel Conceição, 100</h3>
+            <h5>Piracicaba - SP</h5>
+            <p className="label">Telefone: 019 - 3388-0000</p>
+            <p className="label">
+              Contato:
+              <span className="email">remaxportal@remaxportal.com</span>
+            </p>
           </div>
         </DialogContent>
         <DialogActions>
