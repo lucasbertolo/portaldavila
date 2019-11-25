@@ -168,6 +168,11 @@
     width: 80%;
     margin: auto;
     display: flex;
+
+    .maps{
+      width: 10%;
+      max-width: 100px;
+    }
 }
 
 .location-info{

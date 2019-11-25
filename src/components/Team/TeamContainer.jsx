@@ -1,61 +1,49 @@
 import React from 'react';
+
+import SocialFooter from '../Footer/SocialFooter';
 import './TeamContainer.scss';
 
 const managers = [
   {
     name: 'Guerino',
-    position: 'Diretor',
-    about: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-    tempor incididunt ut labore et dolore magna aliqua.`,
-    image: 'http://itsthe.space/codepen/samuel.jpg',
+    position: 'Diretor Geral',
+    about: 'guerino@remaxportal.com.br',
+    image: 'https://ik.imagekit.io/2agnc6wu5cbty/images__2__VEH99b_3UN.jpeg',
   },
   {
     name: 'Rita',
     position: 'Diretora',
-    about: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-    tempor incididunt ut labore et dolore magna aliqua.`,
-    image: 'http://itsthe.space/codepen/samuel.jpg',
+    about: 'rita@remaxportal.com.br',
+    image: 'https://ik.imagekit.io/2agnc6wu5cbty/woman3_1idKIgSQvU.jpeg',
   },
   {
     name: 'Maria',
     position: 'Diretora',
-    about: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-    tempor incididunt ut labore et dolore magna aliqua.`,
-    image: 'http://itsthe.space/codepen/samuel.jpg',
-  },
-  {
-    name: 'Salete',
-    position: 'Administradora',
-    about: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
-    tempor incididunt ut labore et dolore magna aliqua.`,
-    image: 'http://itsthe.space/codepen/samuel.jpg',
+    about: 'mariasocorro@remaxportalcom.br',
+    image: 'https://ik.imagekit.io/2agnc6wu5cbty/women_1yPyQWAwj.jpeg',
   },
 ];
 
 const agents = [
   {
     name: 'Armando',
-    src: 'http://square-vn.com/app/dscms/assets/images/person-4.jpg?v=1495618120',
-    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    phone: '999123123',
+    src: 'https://ik.imagekit.io/2agnc6wu5cbty/download_VHlXa-wxn.jpeg',
+    phone: '(19) 993311233',
   },
   {
-    name: 'Armando',
-    src: 'http://square-vn.com/app/dscms/assets/images/person-4.jpg?v=1495618120',
-    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    phone: '999123123',
+    name: 'Deivid',
+    src: 'https://ik.imagekit.io/2agnc6wu5cbty/images__1__vn-myWPV6.jpeg',
+    phone: '(19) 981721435',
   },
   {
-    name: 'Armando',
-    src: 'http://square-vn.com/app/dscms/assets/images/person-4.jpg?v=1495618120',
-    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    phone: '999123123',
+    name: 'Joana',
+    src: 'https://ik.imagekit.io/2agnc6wu5cbty/images__1__E5_WmAvFY.jpeg',
+    phone: '(19) 99676243',
   },
   {
-    name: 'Armando',
-    src: 'http://square-vn.com/app/dscms/assets/images/person-4.jpg?v=1495618120',
-    about: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-    phone: '999123123',
+    name: 'Carlos',
+    src: 'https://ik.imagekit.io/2agnc6wu5cbty/images_tCGQTlHenk.jpeg',
+    phone: '(19) 999411238',
   },
 ];
 
@@ -119,11 +107,11 @@ const TeamContainer = () => (
         <div className="team-member">
           <img className="team-photo" src={ag.src} alt="agent" />
           <h3>{ag.name}</h3>
-          <span>{ag.about}</span>
           <span>{ag.phone}</span>
         </div>
       ))}
     </section>
+    <SocialFooter />
   </>
 );
 

@@ -1,10 +1,9 @@
 import React from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
-import './Maps.scss';
 
 const mapStyles = {
-  width: '70%',
+  width: '600px',
   height: '400px',
 };
 

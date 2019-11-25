@@ -112,7 +112,7 @@ h1.team-h1 {
 }
 
 .team-member {
-  width: 16%;
+  width: 20%;
   float: left;
   text-align: center;
   margin-right: 5%;
@@ -145,7 +145,8 @@ h1.team-h1 {
   text-align: left;
   margin: auto;
   max-width: 100%;
-  height: auto;
+  min-width: 80%;
+  height: 200px;
   transition: 0.1s transform ease-in-out;
 }
 
