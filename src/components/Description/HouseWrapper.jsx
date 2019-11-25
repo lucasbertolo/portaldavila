@@ -22,7 +22,6 @@ export default class HouseWrapper extends React.Component {
     };
   }
 
-
   openModalVisit = () => {
     const { openModalLogin, isLogged } = this.props;
     if (!isLogged) {
@@ -45,6 +44,8 @@ export default class HouseWrapper extends React.Component {
       info, details, features, images, propertyId,
       openModalLogin, isLogged, user, manager,
     } = this.props;
+
+    const { position } = info;
     return (
       <>
         {isLoading ? (
@@ -83,8 +84,7 @@ export default class HouseWrapper extends React.Component {
                 info={info}
               />
               <ExtraBox features={features} />
-              <Maps lat={-22.711063} lng={-47.656581} />
-
+              <Maps lat={position.lat} lng={position.long} />
 
             </div>
           </>

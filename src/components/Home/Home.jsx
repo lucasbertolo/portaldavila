@@ -17,8 +17,8 @@ const Home = () => (
           <Link href="/team">
             <li>Equipe</li>
           </Link>
-          <Link href="/comingsoon">
-            <li>Trabalhe Conosco</li>
+          <Link href="/about">
+            <li>Sobre</li>
           </Link>
         </ul>
       </header>

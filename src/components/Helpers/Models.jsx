@@ -55,7 +55,7 @@ export function Features(data, id) {
 
 export function Info(data) {
   this.neighborhood_id = data.neighborhood_id || 0;
-  this.position = data.position ? JSON.stringify(data.position) : null;
+  this.position = data.position ? JSON.parse(data.position) : null;
   this.price = data.price || 0;
   this.purpose_id = Number(data.purpose_id) || 1;
   this.type_id = data.type_id || 0;
