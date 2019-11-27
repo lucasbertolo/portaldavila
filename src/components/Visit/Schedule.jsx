@@ -19,18 +19,24 @@ export default function Schedule({ data }) {
 
     return array.filter((item) => {
       const date = new Date(item.date_register).getDate();
-      const today = new Date().getDate();
+
+      // Checking if data is higher than today
+      const today = new Date();
+      const checkDate = new Date(item.date_register);
+
       const serialised = date;
       if (lookup.has(serialised)) {
         return false;
       }
 
-      if (date > today) {
+      if (checkDate > today) {
         lookup.add(serialised);
         return true;
       }
 
       return null;
+      // lookup.add(serialised);
+      // return true;
     });
   }
 
@@ -130,7 +136,7 @@ export default function Schedule({ data }) {
                             <span className="event-time">
                               {el.time_register}
                               {' '}
--
+                          -
                               {' '}
                             </span>
                             <span className="event-name">
