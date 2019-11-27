@@ -100,7 +100,7 @@ const Login = ({ handleLogin, handleRegister, container }) => {
                     className="input"
                     placeholder="Nome de usuário"
                   />
-                  <ErrorMessage component="span" name="registerName" />
+                  <ErrorMessage component="span" name="registerName" className="login-error"/>
 
                   <Field
                     type="email"
@@ -112,7 +112,7 @@ const Login = ({ handleLogin, handleRegister, container }) => {
                     className="input"
                     placeholder="Email"
                   />
-                  <ErrorMessage component="span" name="registerEmail" />
+                  <ErrorMessage component="span" name="registerEmail" className="login-error" />
                   <Field
                     type="email"
                     name="registerPhone"
@@ -133,7 +133,7 @@ const Login = ({ handleLogin, handleRegister, container }) => {
                     // error={!!errors.registerPassword}
                     placeholder="Password"
                   />
-                  <ErrorMessage component="span" name="registerPassword" />
+                  <ErrorMessage component="span" name="registerPassword" className="login-error"/>
                 </div>
                 <button type="submit" className="submit-btn">
                   Registrar
@@ -162,7 +162,7 @@ const Login = ({ handleLogin, handleRegister, container }) => {
                       className="input"
                       placeholder="Nome de usuário"
                     />
-                    <ErrorMessage component="span" name="loginUsername" />
+                    <ErrorMessage component="span" name="loginUsername" className="login-error" />
 
                     <Field
                       type="password"
@@ -173,7 +173,7 @@ const Login = ({ handleLogin, handleRegister, container }) => {
                       className="input"
                       placeholder="Password"
                     />
-                    <ErrorMessage component="span" name="loginPassword" />
+                    <ErrorMessage component="span" name="loginPassword" className="login-error" />
                   </div>
                   <button type="submit" className="submit-btn">
                     Login
