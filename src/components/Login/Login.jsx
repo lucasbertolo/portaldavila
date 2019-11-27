@@ -141,7 +141,7 @@ const Login = ({ handleLogin, handleRegister, container }) => {
                 <p>{regStatus}</p>
               </div>
               <div className={login ? 'login' : 'login slide-up'}>
-                <div className="center">
+                <div className="center-modal">
                   <h2
                     className="form-title"
                     id="login"
