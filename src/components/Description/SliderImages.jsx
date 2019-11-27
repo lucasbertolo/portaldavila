@@ -2,7 +2,7 @@ import React from 'react';
 
 const SliderImages = ({ images }) => {
   const cover = images.filter((item) => item.iscover).map((x) => (
-    <figure key={x.url}>
+    <figure key={x.url} className="shine">
       <img src={x.cdn || x.url} alt={x.alt} />
     </figure>
   ));
@@ -16,7 +16,7 @@ const SliderImages = ({ images }) => {
 
     if (slideImages.length >= 1 && slideImages.length < 3) {
       const slide = slideImages.map((x) => (
-        <figure key={x.url}>
+        <figure key={x.url} className="shine">
           <img src={x.cdn || x.url} alt={x.alt} />
         </figure>
       ));
@@ -33,13 +33,13 @@ const SliderImages = ({ images }) => {
 
     if (slideImages.length >= 3) {
       const leftSlider = slideImages.slice(0, 2).map((x) => (
-        <figure key={x.url}>
+        <figure key={x.url} className="shine">
           <img src={x.cdn || x.url} alt={x.alt} />
         </figure>
       ));
 
       const rightslider = slideImages.slice(2, 4).map((x) => (
-        <figure key={x.url}>
+        <figure key={x.url} className="shine">
           <img src={x.cdn || x.url} alt={x.alt} />
         </figure>
       ));
