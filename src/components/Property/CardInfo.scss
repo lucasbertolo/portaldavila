@@ -1,3 +1,5 @@
+@import '../../assets/scss/libs/vars';
+
 .card__info {
   z-index: 2;
   background-color: #fff;
@@ -13,6 +15,10 @@
   font-weight: 500;
   color: #868686;
   display: flex;
+
+  @media  (max-width: $desktop-width)  and (min-width: $tablet-width){
+    font-size: 24px;
+   }
 }
 
 .card__title {
@@ -20,4 +26,9 @@
   margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
+
+  @media  (max-width: $desktop-width)  and (min-width: $tablet-width){
+    font-size: 30px;
+    margin: 20px 0;
+   }
 }

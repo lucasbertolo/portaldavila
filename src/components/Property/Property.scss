@@ -1,3 +1,5 @@
+@import '../../assets/scss/libs/vars';
+
 .main-container {
   width: 85%;
   padding-bottom: 100px;
@@ -8,10 +10,20 @@
   margin: auto;
   margin-top: 100px;
   z-index: -200 !important;
+
+  @media (max-width: $desktop-width) {
+    width: 100%;
+  }
 }
 
 .cards{
     width: 93%;
     display: flex;
     flex-wrap: wrap;
+
+    @media (max-width: $desktop-width) {
+      background: orange;
+      width: 100%;
+      justify-content: center;
+    }
 }
