@@ -1,25 +1,25 @@
-@import '../../assets/scss/libs/vars';
+@import "../../assets/scss/libs/vars";
 
 .card__icons {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
+  height: 80px;
+  padding-bottom: 15px;
+  .icon-container {
+    padding-top: 20px;
     height: 80px;
-    padding-bottom: 15px;
-    .icon-container {
-      padding-top: 20px;
-      height: 80px;
-      display: flex;
-      justify-content: flex-end;
-      z-index: 10;
-    
-      .icon-info {
-        z-index: 5;
-        margin-left: 5px;
-      }
-    }  
+    display: flex;
+    justify-content: flex-end;
+    z-index: 10;
 
-    @media  (max-width: $desktop-width)  and (min-width: $tablet-width){
-      font-size: 24px;
-      margin: 20px 0;
-     }
+    .icon-info {
+      z-index: 5;
+      margin-left: 5px;
+    }
   }
+
+  @media (max-width: $desktop-width) and (min-width: $tablet-width) {
+    font-size: 24px;
+    margin: 20px 0;
+  }
+}

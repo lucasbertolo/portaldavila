@@ -20,9 +20,14 @@
     width: 93%;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom: 100px;
 
+    @media (max-width: $tablet-width) {
+      margin-top: 50px;
+    }
     @media (max-width: $desktop-width) {
       width: 100%;
       justify-content: center;
+      margin-top: 10px;
     }
 }

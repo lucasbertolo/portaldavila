@@ -1,3 +1,5 @@
+@import "../../assets/scss/libs/vars";
+
 .tags-box {
   width: 100px;
   height: auto;
@@ -12,4 +14,11 @@
   .tag{
     margin: 5px 0;
   }
+
+  @media  (max-width: $tablet-width) {
+    top: 75px;
+    width: 100%;
+    z-index: 5;
+    background: transparent;
+   }
 }

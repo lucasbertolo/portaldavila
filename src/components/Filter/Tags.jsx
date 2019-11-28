@@ -13,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '5px',
     padding: theme.spacing(0.5),
     boxShadow: 'none',
+    background: 'transparent',
   },
   chip: {
     margin: theme.spacing(0.5),
