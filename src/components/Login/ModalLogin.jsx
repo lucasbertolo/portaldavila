@@ -11,7 +11,7 @@ export default function ModalLogin(props) {
   } = props;
 
   return (
-    <div>
+    <div className="dialog-md-lg">
       <Dialog
         open={open}
         onClose={handleClose}

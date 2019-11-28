@@ -53,7 +53,7 @@ export default class HouseWrapper extends React.Component {
             <RingLoader size={150} color="#123abc" loading={isLoading} />
           </div>
         ) : (
-          <>
+          <div className="container-house-description">
             <SliderImages images={images} />
 
             {!manager && (
@@ -84,10 +84,10 @@ export default class HouseWrapper extends React.Component {
                 info={info}
               />
               <ExtraBox features={features} />
-              <Maps lat={position ? position.lat : null} lng={position ? position.long : null} />
+              {/* <Maps lat={position ? position.lat : null} lng={position ? position.long : null} /> */}
 
             </div>
-          </>
+          </div>
         )}
       </>
     );

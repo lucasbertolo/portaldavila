@@ -11,7 +11,7 @@ export default function ModalUser(props) {
   } = props;
 
   return (
-    <div>
+    <div className="dialog-md-usr">
       <Dialog
         open={modalUser}
         onClose={closeModalUser}

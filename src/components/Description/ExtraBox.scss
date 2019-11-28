@@ -1,5 +1,10 @@
+.container-extra-box{
+  max-width: 35%;
+  display: flex;
+}
+
 .extra-box {
-  width: 100%;
+  // width: 100%;
   max-height: 100%;
   flex-wrap: wrap;
   .box-extra-icons {
@@ -18,7 +23,6 @@
 
 .fieldset {
   border: 2px solid lightgray;
-  width: 30%;
   max-height: 100px;
   margin: 30px 2px;
   display: flex;

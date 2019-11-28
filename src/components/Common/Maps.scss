@@ -1,0 +1,17 @@
+@import "../../assets/scss/libs/vars";
+
+.map-container{
+    max-width: 500px;
+}
+.google-map{
+    width: 60% !important;
+    max-height: 350px !important;
+    margin-bottom: 100px;
+
+  @media screen and (max-width: $tablet-width) {
+    width: 100% !important;
+    height: 250px !important;
+    // margin: auto;
+    margin-top: 10px;
+  }
+}

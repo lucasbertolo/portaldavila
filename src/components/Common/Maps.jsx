@@ -1,11 +1,8 @@
 import React from 'react';
 import { Map, GoogleApiWrapper } from 'google-maps-react';
 
+import './Maps.scss';
 
-const mapStyles = {
-  width: '600px',
-  height: '400px',
-};
 
 const Maps = ({ google, lat, lng }) => {
   // Centro de Piracicaba
@@ -17,7 +14,7 @@ const Maps = ({ google, lat, lng }) => {
       <Map
         google={google}
         zoom={15}
-        style={mapStyles}
+        className="google-map"
         initialCenter={{ lat: Number(latitude), lng: Number(longitude) }}
       />
     </div>
