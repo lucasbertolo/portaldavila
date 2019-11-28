@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import Paper from '@material-ui/core/Paper';
@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     marginBottom: '5px',
     padding: theme.spacing(0.5),
+    boxShadow: 'none',
   },
   chip: {
     margin: theme.spacing(0.5),

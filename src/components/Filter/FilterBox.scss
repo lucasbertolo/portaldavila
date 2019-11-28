@@ -1,3 +1,5 @@
+@import "../../assets/scss/libs/vars";
+
 #menu-filter {
   text-transform: uppercase;
   background: lightblue;
@@ -7,18 +9,20 @@
   padding: 5px;
   display: flex;
   margin: 0 auto;
-  -webkit-transform: translateX(100%);
-  -moz-transform: translateX(100%);
-  -o-transform: translateX(100%);
   transform: translateX(100%);
   position: fixed;
   right: 0;
   z-index: 3;
   padding-right: 5em;
-  -webkit-transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
-  -moz-transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
-  -o-transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
   transition: all 700ms cubic-bezier(0.46, -0.85, 0, 0.79);
+
+  @media (max-width: $desktop-width) {
+    height: 110px;
+    margin-top: 53px;
+    width: 110px;
+    background: none;
+    flex-direction: row;
+  }
 }
 
 .open-menu #menu-filter {
@@ -38,6 +42,12 @@
   list-style: none;
   position: relative;
   text-align: center;
+
+  @media (max-width: $desktop-width) {
+    display: flex;
+    flex-direction: column;
+    background: lightblue;
+  }
 }
 
 // #menu li a {
@@ -64,7 +74,6 @@
   justify-content: center;
   background: #242582;
   z-index: 5;
-  
 }
 
 #toggle .icon-bar {
@@ -84,12 +93,3 @@
     width: 40px;
   }
 }
-
-@media (max-width: 760px) {
-  #menu-filter li {
-    display: block;
-    float: initial;
-  }
-}
-
-
