@@ -1,4 +1,4 @@
-@import '../libs/vars';
+@import "../libs/vars";
 
 $section-line: 14px;
 $avatar-size: 40px;
@@ -98,9 +98,18 @@ $avatar-size: 40px;
     }
 
     .header-social {
-      width: 10%;
+      width: 7%;
       display: flex;
       justify-content: flex-end;
+
+      @media (min-width: $break-medium) and (max-width: $break-large) {
+        width: 12%;
+      }
+
+      @media screen and (max-width: $break-small) {
+        width: 25%;
+      }
+
       ul {
         height: 100%;
         width: 100%;
@@ -124,11 +133,6 @@ $avatar-size: 40px;
       &:hover {
         color: $color5;
       }
-
-      @media screen and (max-width: $break-medium) {
-        font-size: 1.5em;
-      }
-
       .logo {
         width: 60px;
         height: 60px;
@@ -169,7 +173,7 @@ $avatar-size: 40px;
     cursor: pointer;
     width: $avatar-size;
     height: $avatar-size;
-    border: 2px solid #ddd; 
+    border: 2px solid #ddd;
     box-shadow: 0 3px 3px #999;
     padding: 0px;
     text-decoration: none;
@@ -179,6 +183,12 @@ $avatar-size: 40px;
     font-weight: normal;
     line-height: 1.7em;
     border-radius: 50%;
+
+    @media screen and (max-width: $break-medium) {
+      width: $avatar-size / 1.3;
+      height: $avatar-size / 1.3;
+      font-size: 16px;
+    }
   }
   .avatarBtn {
     background: #4060a5;
@@ -189,8 +199,12 @@ $avatar-size: 40px;
     border-color: #4060a5; /* change the border color on mouse hover */
   }
 
-  .login{
+  .login {
     margin-top: $section-line * 2;
     font-weight: bold;
+
+    @media screen and (max-width: $break-small) {
+      margin-top: $section-line * 1.7;
+    }
   }
 }
