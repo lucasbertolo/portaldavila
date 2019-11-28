@@ -1,13 +1,15 @@
+.tags-box {
+  width: 100px;
+  height: auto;
+  padding: 5px;
+  display: flex;
+  margin: 0 auto;
+  position: fixed;
+  top: 200px;
+  left: 0;
+  padding-right: 5em;
 
-
-.tags-box{ 
-    width: 100px;
-    height: auto;
-    padding: 5px;
-    display: flex;
-    margin: 0 auto;
-    position: fixed;
-    top: 200px;
-    left: 0;
-    padding-right: 5em;
+  .tag{
+    margin: 5px 0;
   }
+}

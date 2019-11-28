@@ -33,7 +33,7 @@ export default function Tags({ tag, clearField }) {
             key={data.name}
             label={data.label}
             onDelete={handleDelete(data)}
-            className={classes.chip}
+            className="fadeIn tag"
           />
         ))}
       </Paper>

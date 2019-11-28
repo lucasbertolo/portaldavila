@@ -25,6 +25,10 @@
   }
 }
 
+.fadeIn {
+  animation: fadeIn 2s ease-out ;
+}
+
 .shine img {
 	opacity: 1;
 	-webkit-transition: .3s ease-in-out;

@@ -15,7 +15,7 @@ const PlaceHolderCard = () => (
         <div className="line line__6" />
         <div className="line line__7" />
         <div className="line line__8" />
-        <div className="circle" />
+        {/* <div className="circle" /> */}
       </div>
     </div>
   </div>
