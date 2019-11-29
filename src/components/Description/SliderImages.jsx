@@ -29,11 +29,13 @@ const SliderImages = ({ images }) => {
         return src;
     }
   };
-  const cover = images.filter((item) => item.iscover).map((x) => (
-    <figure key={x.url} className="shine">
-      <img src={defineSize('cover', x.cdn) || x.url} alt={x.alt} id="cover" />
-    </figure>
-  ));
+  const cover = images
+    .filter((item) => item.iscover)
+    .map((x) => (
+      <figure key={x.url} className="shine">
+        <img src={defineSize('cover', x.cdn) || x.url} alt={x.alt} id="cover" />
+      </figure>
+    ));
 
   const slider = () => {
     if (images.length === 0) {
@@ -45,15 +47,17 @@ const SliderImages = ({ images }) => {
     if (slideImages.length >= 1 && slideImages.length < 3) {
       const slide = slideImages.map((x) => (
         <figure key={x.url} className="shine">
-          <img src={defineSize('left-aside', x.cdn) || x.url} alt={x.alt} id="left-aside" />
+          <img
+            src={defineSize('left-aside', x.cdn) || x.url}
+            alt={x.alt}
+            id="left-aside"
+          />
         </figure>
       ));
 
       return (
         <div className="slider-photos">
-          <div className="slider-left">
-            {slide}
-          </div>
+          <div className="slider-left">{slide}</div>
         </div>
       );
     }
@@ -61,26 +65,29 @@ const SliderImages = ({ images }) => {
     if (slideImages.length >= 3) {
       const leftSlider = slideImages.slice(0, 2).map((x) => (
         <figure key={x.url} className="shine">
-          <img src={defineSize('left-aside', x.cdn) || x.url} alt={x.alt} id="left-aside" />
+          <img
+            src={defineSize('left-aside', x.cdn) || x.url}
+            alt={x.alt}
+            id="left-aside"
+          />
         </figure>
       ));
 
       const rightslider = slideImages.slice(2, 4).map((x) => (
         <figure key={x.url} className="shine">
-          <img src={defineSize('right-aside', x.cdn) || x.url} alt={x.alt} id="right-aside" />
+          <img
+            src={defineSize('right-aside', x.cdn) || x.url}
+            alt={x.alt}
+            id="right-aside"
+          />
         </figure>
       ));
 
       return (
         <div className="slider-photos">
-          <div className="slider-left">
-            {leftSlider}
-          </div>
-          <div className="slider-right">
-            {rightslider}
-          </div>
+          <div className="slider-left">{leftSlider}</div>
+          <div className="slider-right">{rightslider}</div>
         </div>
-
       );
     }
 
@@ -89,19 +96,12 @@ const SliderImages = ({ images }) => {
 
   const sliderImages = slider();
 
-
-  return (
-    images.length > 0
-      ? (
-        <div className="container-slider">
-          <div className="cover-photo">
-            {cover}
-          </div>
-          {sliderImages}
-        </div>
-      ) : null
-  );
+  return images.length > 0 ? (
+    <div className="container-slider">
+      <div className="cover-photo">{cover}</div>
+      {sliderImages}
+    </div>
+  ) : null;
 };
-
 
 export default SliderImages;
