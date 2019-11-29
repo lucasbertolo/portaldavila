@@ -1,13 +1,40 @@
 import React, { useState, useEffect } from 'react';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFacebookF,
+  faInstagram,
+  faWhatsapp,
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+  TelegramShareButton,
+  WhatsappShareButton,
+  PinterestShareButton,
+  VKShareButton,
+  OKShareButton,
+  RedditShareButton,
+  TumblrShareButton,
+  LivejournalShareButton,
+  MailruShareButton,
+  ViberShareButton,
+  WorkplaceShareButton,
+  LineShareButton,
+  PocketShareButton,
+  InstapaperShareButton,
+  EmailShareButton,
+} from 'react-share';
 import db from '../Helpers/ApiFetch';
 
 import WrapperTooltip from '../Common/WrapperTooltip';
 import { FavIcon } from '../Common/Icons';
 
-import './SocialShare.scss';
-import Toast from '../Helpers/Toast';
 
+import Toast from '../Helpers/Toast';
+import './SocialShare.scss';
+import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
 
 export default function SocialShare({
   user, isLogged, openModalLogin, propertyId,
@@ -69,6 +96,11 @@ export default function SocialShare({
           <WrapperTooltip title="Adicionar aos favoritos" position="bottom">
             <span>
               <FavIcon isFav={isFav} handleClick={handleClick} />
+            </span>
+          </WrapperTooltip>
+          <WrapperTooltip title="Compartilhar" position="bottom">
+            <span className="share-btn">
+              <FontAwesomeIcon icon={faShareAlt} aria-label="share" />
             </span>
           </WrapperTooltip>
         </div>
