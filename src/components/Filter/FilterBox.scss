@@ -42,7 +42,6 @@
   list-style: none;
   position: relative;
   text-align: center;
-
   @media (max-width: $desktop-width) {
     display: flex;
     flex-direction: column;
@@ -74,6 +73,11 @@
   justify-content: center;
   background: #242582;
   z-index: 5;
+
+  &:hover{
+    background: rgba(35, 95, 129, 0.56);
+    transition: all 0.3s ease-in-out;
+  }
 }
 
 #toggle .icon-bar {

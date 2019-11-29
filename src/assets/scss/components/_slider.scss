@@ -1,46 +1,59 @@
+$container-height: 500px;
+
 .container-slider {
     width: 100%;
-    height: 450px;
-    max-height: 450px;
+    height: $container-height;
+    max-height: $container-height;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(40vh, 100%));
+    grid-template-columns: repeat(auto-fit, minmax(50vw, 100%));
     grid-auto-flow: column;
     margin: 100px 0 15px 0;
     border: 1px solid rgba(255,255,255,0.4);
     overflow: hidden;
+    
     .cover-photo,
     .slider-photos {
       height: 100%;
-      max-height: 450px;
-      display: grid;
+      max-height: $container-height;
+      min-width: 49vw;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.4);
-      grid-auto-flow: column;
-      grid-template-columns: repeat(auto-fit, minmax(49%, 100%));
-      grid-template-rows: repeat(auto-fit, minmax(49%, 100%));
+      border: 1px solid rgba(255,255,255,0.4);      
+    }
+
+    .cover-photo{
       img{
-        height: 450px;
-        max-height: 450px;
+        height: $container-height;
+        max-height: $container-height;
         width: 100%;
         max-width: 100%;
       }
     }
+
+    .slider-photos{
+      display: grid;
+      border: 1px solid rgba(255,255,255,0.4);
+      grid-auto-flow: column;
+      height: 100%;
+      grid-template-columns: repeat(auto-fit, minmax(49%, 100%));
+    }
     .slider-left,
     .slider-right {
       display: grid;
-      grid-auto-flow: dense;
-      height: 100%;
+      // grid-auto-flow: dense;
       border: 1px solid rgba(255,255,255,0.4);
+      grid-template-columns: repeat(auto-fit, minmax(24vw, 100%));
 
-      max-height: 100%;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 100%));
-      figure {
-        height: 100%;
-        max-height: 100%;
-        width: 100%;
-        max-height: 100%;
-        max-width: 100%;
+      figure{
+        border: 1px solid rgba(255,255,255,0.4);
+        overflow: hidden;
+        position: relative;
+        img{
+          max-height: 100%;
+          min-height: 100%;
+          width: 100%;
+        }
       }
+     
     }
   }
   
