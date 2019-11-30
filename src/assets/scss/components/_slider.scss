@@ -1,3 +1,5 @@
+@import '../libs/vars';
+
 $container-height: 500px;
 
 .container-slider {
@@ -48,10 +50,15 @@ $container-height: 500px;
   .slider-left,
   .slider-right {
     display: grid;
+    max-height: 100%;
     // grid-auto-flow: dense;
     border: 1px solid rgba(255, 255, 255, 0.4);
     grid-template-columns: repeat(auto-fit, minmax(24vw, 100%));
+    grid-auto-rows: $container-height / 2;
 
+    @media screen and (max-width: $break-medium) {
+      grid-auto-rows: auto;
+    }
     figure {
       border: 1px solid rgba(255, 255, 255, 0.4);
       overflow: hidden;

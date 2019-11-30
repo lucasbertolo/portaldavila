@@ -27,7 +27,7 @@ const CardInfo = (props) => {
       </span>
       <h3 className="card__title">
         <span>{`R$${price}`}</span>
-        <span>{`${selectList.neighborhoodList[blockId]}`}</span>
+        <span style={{ textAlign: 'right' }}>{`${selectList.neighborhoodList[blockId]}`}</span>
       </h3>
     </div>
   );
