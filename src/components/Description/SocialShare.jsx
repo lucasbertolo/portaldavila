@@ -1,11 +1,20 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
+import Router from 'next/router';
+import { withStyles } from '@material-ui/core/styles';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebookF,
   faInstagram,
-  faWhatsapp,
+  faPinterestP,
+  faLinkedinIn,
+  faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
+
+import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
+
+import Menu from '@material-ui/core/Menu';
 import {
   FacebookShareButton,
   LinkedinShareButton,
@@ -13,38 +22,36 @@ import {
   TelegramShareButton,
   WhatsappShareButton,
   PinterestShareButton,
-  VKShareButton,
-  OKShareButton,
-  RedditShareButton,
-  TumblrShareButton,
-  LivejournalShareButton,
-  MailruShareButton,
-  ViberShareButton,
-  WorkplaceShareButton,
-  LineShareButton,
-  PocketShareButton,
-  InstapaperShareButton,
-  EmailShareButton,
 } from 'react-share';
 import db from '../Helpers/ApiFetch';
 
 import WrapperTooltip from '../Common/WrapperTooltip';
 import { FavIcon } from '../Common/Icons';
 
-
 import Toast from '../Helpers/Toast';
 import './SocialShare.scss';
-import { faShareAlt } from '@fortawesome/free-solid-svg-icons';
+
+const StyledMenu = withStyles({
+  paper: {
+    background: 'transparent',
+  },
+})((props) => <Menu elevation={0} getContentAnchorEl={null} {...props} />);
 
 export default function SocialShare({
-  user, isLogged, openModalLogin, propertyId,
+  user,
+  isLogged,
+  openModalLogin,
+  propertyId,
 }) {
   const [isFav, setFav] = useState(false);
   const [toast, setToast] = useState(false);
-
+  const [route, setRoute] = useState('');
   const closeToast = () => setToast(false);
 
   useEffect(() => {
+    console.log(Router.asPath);
+    setRoute(Router.route);
+
     const fetchFavorite = async () => {
       try {
         if (isLogged) {
@@ -65,6 +72,16 @@ export default function SocialShare({
     fetchFavorite();
   }, [isLogged]);
 
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const openShare = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const handleClick = async () => {
     if (isLogged) {
       try {
@@ -83,6 +100,7 @@ export default function SocialShare({
       openModalLogin();
     }
   };
+
   return (
     <>
       <Toast
@@ -99,7 +117,7 @@ export default function SocialShare({
             </span>
           </WrapperTooltip>
           <WrapperTooltip title="Compartilhar" position="bottom">
-            <span className="share-btn">
+            <span className="share-btn" onClick={openShare} role="presentation">
               <FontAwesomeIcon icon={faShareAlt} aria-label="share" />
             </span>
           </WrapperTooltip>
@@ -110,7 +128,44 @@ export default function SocialShare({
           {propertyId}
         </h1>
       </div>
-
+      <StyledMenu
+        id="customized-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleClose}
+      >
+        <ul className="social-nav model-5">
+          <li>
+            <TwitterShareButton url={route}>
+              <a className="twitter">
+                <FontAwesomeIcon icon={faTwitter} />
+              </a>
+            </TwitterShareButton>
+          </li>
+          <li>
+            <a className="facebook">
+              <FontAwesomeIcon icon={faFacebookF} />
+            </a>
+          </li>
+          <li>
+            <a className="instagram">
+              <FontAwesomeIcon icon={faInstagram} />
+            </a>
+          </li>
+          <li>
+            <a className="linkedin">
+              <FontAwesomeIcon icon={faLinkedinIn} />
+            </a>
+          </li>
+          <li>
+            <a className="pinterest">
+              <FontAwesomeIcon icon={faPinterestP} />
+            </a>
+          </li>
+        </ul>
+        <br />
+      </StyledMenu>
     </>
   );
 }
