@@ -6,8 +6,6 @@ import { withStyles } from '@material-ui/core/styles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebookF,
-  faInstagram,
-  faPinterestP,
   faLinkedinIn,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
@@ -19,9 +17,6 @@ import {
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
-  TelegramShareButton,
-  WhatsappShareButton,
-  PinterestShareButton,
 } from 'react-share';
 import db from '../Helpers/ApiFetch';
 
@@ -29,6 +24,8 @@ import WrapperTooltip from '../Common/WrapperTooltip';
 import { FavIcon } from '../Common/Icons';
 
 import Toast from '../Helpers/Toast';
+
+import config from '../../content/config';
 import './SocialShare.scss';
 
 const StyledMenu = withStyles({
@@ -49,8 +46,8 @@ export default function SocialShare({
   const closeToast = () => setToast(false);
 
   useEffect(() => {
-    console.log(Router.asPath);
-    setRoute(Router.route);
+    const url = config.urlPortal + Router.asPath;
+    setRoute(url);
 
     const fetchFavorite = async () => {
       try {
@@ -123,7 +120,7 @@ export default function SocialShare({
           </WrapperTooltip>
         </div>
         <h1>
-        Código -
+          Código -
           {' '}
           {propertyId}
         </h1>
@@ -144,24 +141,18 @@ export default function SocialShare({
             </TwitterShareButton>
           </li>
           <li>
-            <a className="facebook">
-              <FontAwesomeIcon icon={faFacebookF} />
-            </a>
+            <FacebookShareButton url={route}>
+              <a className="facebook">
+                <FontAwesomeIcon icon={faFacebookF} />
+              </a>
+            </FacebookShareButton>
           </li>
           <li>
-            <a className="instagram">
-              <FontAwesomeIcon icon={faInstagram} />
-            </a>
-          </li>
-          <li>
-            <a className="linkedin">
-              <FontAwesomeIcon icon={faLinkedinIn} />
-            </a>
-          </li>
-          <li>
-            <a className="pinterest">
-              <FontAwesomeIcon icon={faPinterestP} />
-            </a>
+            <LinkedinShareButton url={route}>
+              <a className="linkedin">
+                <FontAwesomeIcon icon={faLinkedinIn} />
+              </a>
+            </LinkedinShareButton>
           </li>
         </ul>
         <br />
