@@ -84,7 +84,7 @@ export default class HouseWrapper extends React.Component {
                 info={info}
               />
               <ExtraBox features={features} />
-              {/* <Maps lat={position ? position.lat : null} lng={position ? position.long : null} /> */}
+              <Maps lat={position ? position.lat : null} lng={position ? position.long : null} />
 
             </div>
           </div>
