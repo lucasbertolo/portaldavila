@@ -1,3 +1,5 @@
+@import '../../assets/scss/libs/vars';
+
 $padding: 30px;
 $width-card: 400px;
 $height-card: 300px;
@@ -80,6 +82,13 @@ $height-card: 300px;
   }
   .property {
     font-weight: 700;
+  }
+
+  @media (max-width: $tablet-width) {
+    .container-guest-visit {
+      height: $height-card / 1.5;
+    }
+
   }
 
   @media (max-width: 700px) {

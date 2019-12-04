@@ -1,35 +1,71 @@
+@import "../../assets/scss/libs/vars";
+
 .visit-legend {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+  min-width: 140px;
+
+  div {
     display: flex;
-    flex-direction: column;
-    z-index: 5;
-    min-width: 140px;
+    margin: 10px;
+  }
+  span {
+    height: 20px;
+    margin: auto;
+    flex: 1;
+  }
+  p {
+    flex: 5;
+    text-align: center;
+  }
 
-    div{
-        display: flex;
-        margin: 10px;
-    }
+  .undefined {
+    background: #fff;
+  }
+
+  .confirmed {
+    background: #86deb7;
+  }
+
+  .rejected {
+    background: #ff686b;
+  }
+
+  @media (max-width: $desktop-width) {
+    background: #fff;
+    height: 50px;
+    width: 90%;
+    bottom: 70px;
+    // justify-content: space-around;
+    flex-direction: row;
+    // margin: 0 5px;
     span {
-        height: 20px;
-        margin: auto;
-        flex: 1;
+      height: 20px;
+      width: 50px;
+      flex: 1;
+      margin: 0;
     }
+  }
+
+  @media (max-width: $break-small) {
+    min-height: 60px;
+    padding: 5px;
+    // flex-wrap: wrap;
+    background: red;
+    flex-direction: column;
+
+    div {
+      display: flex;
+      margin: 0;
+      width: 100%;
+    }
+
     p{
-        flex: 5;
-        text-align: center;
+        margin: 5px !important;
     }
-
-    .undefined{
-        background: #fff;
-    }
-
-    .confirmed{
-        background: #86DEB7;
-    }
-
-    .rejected {
-        background: #FF686B;
-    }  
+  }
 }
