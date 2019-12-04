@@ -37,7 +37,7 @@ const GuestVisitCard = (props) => {
 
   return (
     <div className="container-guest-visit">
-      <div className="card-visit">
+      <div className="card-visit ">
         <div
           className="front side"
           style={{ background: `url(${url}) no-repeat`, backgroundSize: 'cover' }}
@@ -45,7 +45,7 @@ const GuestVisitCard = (props) => {
           {/* <h1 className="logo">{url}</h1> */}
         </div>
 
-        <div className={`${statusVisit} back side`}>
+        <div className={`${statusVisit} back side sm-shadow`}>
           <h3 className="name">
             Código -
             {' '}
